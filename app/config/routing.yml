@@ -1,0 +1,5 @@
+_main:
+    resource: "@IphpCoreBundle/Resources/config/routing.yml"
+
+fos_user_all:
+    resource: "@IphpCoreBundle/Resources/config/routing/fos_user.yml"

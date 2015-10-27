@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+                  xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+        name="Application\Iphp\CoreBundle\Entity\Rubric"
+        table="rubric__rubric"
+        repository-class="Application\Iphp\CoreBundle\Entity\RubricRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <many-to-one field="parent" target-entity="Application\Iphp\CoreBundle\Entity\Rubric" inversed-by="children">
+            <join-column name="parent_id" referenced-column-name="id" on-delete="SET NULL"/>
+            <gedmo:tree-parent/>
+        </many-to-one>
+
+
+         <indexes>
+             <index name="status_idx" columns="status"/>
+             <index name="updated_at_idx" columns="updated_at"></index>
+             <index name="created_at_idx" columns="created_at"></index>
+         </indexes>
+
+       <gedmo:tree type="nested"/>
+    </entity>
+</doctrine-mapping>
