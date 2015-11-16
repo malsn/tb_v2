@@ -1,0 +1,3 @@
+too_big_app_homepage:
+    path:     /subscriptions/all
+    defaults: { _controller: IppContentBundle:Subscribe:index }

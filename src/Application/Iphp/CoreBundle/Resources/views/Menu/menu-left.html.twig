@@ -1,0 +1,16 @@
+<div class="list-group">
+    {% for rubric in rubrics %}
+    <a href="{{ entitypath(rubric) }}" class="list-group-item {{ rubric.isActive ? 'active ':'' }}">{{ rubric }}</a>
+    {% if rubric.children | length %}
+    <ul>
+        {% for subrubric in rubric.children %}
+             <li>
+                 <a class="list-group-item list-sub-group-item {{ subrubric.isActive ? 'active ':'' }}" style="padding-left: 40px;font-size: small" href="{{ entitypath(subrubric) }}">{{ subrubric }}</a>
+             </li>
+             {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    {% endfor %}
+</div>

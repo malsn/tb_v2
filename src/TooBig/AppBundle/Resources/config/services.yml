@@ -1,0 +1,9 @@
+services:
+    item_model:
+        class: TooBig\AppBundle\Model\ItemModel
+        calls:
+            - [setContainer, [ "@service_container" ]]
+    rubric_model:
+        class: TooBig\AppBundle\Model\RubricModel
+        calls:
+            - [setContainer, [ "@service_container" ]]

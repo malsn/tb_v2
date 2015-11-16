@@ -17,5 +17,7 @@
             <generator strategy="AUTO"/>
         </id>
 
+        <one-to-many field="contentFiles" target-entity="Application\Iphp\ContentBundle\Entity\ContentFileMedia" mapped-by="file"/>
+
     </entity>
 </doctrine-mapping>

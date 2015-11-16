@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="TooBig\AppBundle\Entity\Item"
+            table="item__item"
+            repository-class="TooBig\AppBundle\Entity\ItemRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="stateId" type="integer" column="state_id" nullable="true"/>
+        <field name="endDate" type="datetime" column="end_date" nullable="true"/>
+        <field name="price" type="integer" column="price" nullable="false"/>
+        <field name="hits" type="integer" column="hits" nullable="true"/>
+        <field name="logs" type="text" column="logs" nullable="true"/>
+
+        <field name="title" type="string" column="title"/>
+        <field name="abstract" type="text" column="abstract" nullable="true"/>
+        <field name="content" type="text" column="content" nullable="true"/>
+        <field name="rawContent" type="text" column="raw_content" nullable="true"/>
+        <field name="redirectUrl" type="string" column="redirect_url" nullable="true"/>
+        <field name="image" type="array" column="image" nullable="true"/>
+
+        <field name="contentFormatter" type="string" column="content_formatter" nullable="true"/>
+
+        <field name="enabled" type="boolean" column="enabled"/>
+        <field name="redirectToFirstFile" type="boolean" column="redirect_to_first_file"/>
+        <field name="slug" type="string" column="slug"/>
+
+        <field name="publicationDateStart" type="datetime" column="publication_date_start" nullable="true"/>
+
+        <field name="commentsEnabled" type="boolean" column="comments_enabled"/>
+        <field name="commentsCloseAt" type="datetime" column="comments_close_at" nullable="true"/>
+        <field name="commentsDefaultStatus" type="integer" column="comments_default_status" nullable="true"/>
+
+
+        <field name="date" type="datetime" column="date" nullable="true"/>
+        <field name="createdAt" type="datetime" column="created_at"/>
+        <field name="updatedAt" type="datetime" column="updated_at"/>
+
+        <one-to-many field="filesMedia" target-entity="TooBig\AppBundle\Entity\ItemFileMedia" mapped-by="item">
+            <cascade><cascade-persist/></cascade>
+        </one-to-many>
+        <one-to-many field="imagesMedia" target-entity="TooBig\AppBundle\Entity\ItemImageMedia" mapped-by="item">
+            <cascade><cascade-persist/></cascade>
+        </one-to-many>
+
+        <many-to-one target-entity="Application\Iphp\CoreBundle\Entity\Rubric" field="rubric">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <many-to-one target-entity="Application\Sonata\UserBundle\Entity\User" field="createdBy">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <many-to-one target-entity="Application\Sonata\UserBundle\Entity\User" field="updatedBy">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <many-to-one target-entity="TooBig\AppBundle\Entity\Brand" field="brand">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <many-to-one target-entity="TooBig\AppBundle\Entity\Color" field="color">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <one-to-many field="rateComments" target-entity="TooBig\AppBundle\Entity\RateComment" mapped-by="item">
+            <cascade><cascade-persist/></cascade>
+        </one-to-many>
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="prePersist"/>
+            <lifecycle-callback type="preUpdate" method="preUpdate"/>
+        </lifecycle-callbacks>
+
+        <unique-constraints>
+            <unique-constraint columns="rubric_id,slug" name="rubricslug_idx"/>
+        </unique-constraints>
+
+        <indexes>
+               <index name="enabled_idx" columns="enabled"></index>
+               <index name="updated_at_idx" columns="updated_at"></index>
+               <index name="created_at_idx" columns="created_at"></index>
+        </indexes>
+
+
+    </entity>
+</doctrine-mapping>

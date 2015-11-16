@@ -12,9 +12,10 @@
 
 
         <many-to-one target-entity="Application\Iphp\ContentBundle\Entity\Content" field="content" inversed-by="filesMedia">
-            <join-column name="content_id" referenced-column-name="id" />
+            <join-column name="content_id" referenced-column-name="id"></join-column>
+            <cascade><cascade-persist/></cascade>
         </many-to-one>
-        <many-to-one target-entity="Application\Sonata\MediaBundle\Entity\Media" field="file">
+        <many-to-one target-entity="Application\Sonata\MediaBundle\Entity\Media" field="file" inversed-by="contentFiles">
             <join-column name="file_id" referenced-column-name="id" />
         </many-to-one>
 

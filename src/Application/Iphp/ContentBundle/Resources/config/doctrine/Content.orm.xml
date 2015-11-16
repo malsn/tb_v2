@@ -12,8 +12,13 @@
             <generator strategy="AUTO"/>
         </id>
 
-
-
+        <one-to-many field="filesMedia" target-entity="Application\Iphp\ContentBundle\Entity\ContentFileMedia" mapped-by="content">
+            <cascade><cascade-persist/></cascade>
+        </one-to-many>
+        <one-to-many field="imagesMedia" target-entity="Application\Iphp\ContentBundle\Entity\ContentImageMedia" mapped-by="content">
+            <cascade><cascade-persist/></cascade>
+        </one-to-many>
+        
         <unique-constraints>
             <unique-constraint columns="rubric_id,slug" name="rubricslug_idx"/>
         </unique-constraints>

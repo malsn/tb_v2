@@ -3,6 +3,7 @@ imports:
     - { resource: "@IphpCoreBundle/Resources/config/security.yml" }
     - { resource: "@IphpCoreBundle/Resources/config/config.yml" }
     - { resource: "@IphpContentBundle/Resources/config/config.yml" }
+    - { resource: "@TooBigAppBundle/Resources/config/admin.yml" }
 
 framework:
     #esi:             ~

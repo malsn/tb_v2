@@ -1,0 +1,13 @@
+{% extends 'IphpCoreBundle::page-with-header.html.twig' %}
+
+
+{% block page_body %}
+
+{% for rubric in rubrics %}
+<dl>
+    <dt><a href="{{ entitypath(rubric) }}">{{ rubric }}</a></dt>
+    <dd>{{ rubric.abstract }}</dd>
+</dl>
+{% endfor %}
+
+{% endblock page_body %}

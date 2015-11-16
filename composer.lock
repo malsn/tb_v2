@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f1e1135853c3ec8c74e8d416d38c8ef0",
+    "hash": "51723b0acef16837cb040c9bf1813960",
     "content-hash": "a1f2fb97fe13c3cfcbabfd79b29103d4",
     "packages": [
         {
@@ -2483,12 +2483,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "d25dd30453ac9948f41491a6ea367d28e464fac2"
+                "reference": "8b7dfdd913528a3e024a6d1c8a0dfdfe675f4131"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/d25dd30453ac9948f41491a6ea367d28e464fac2",
-                "reference": "d25dd30453ac9948f41491a6ea367d28e464fac2",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/8b7dfdd913528a3e024a6d1c8a0dfdfe675f4131",
+                "reference": "8b7dfdd913528a3e024a6d1c8a0dfdfe675f4131",
                 "shasum": ""
             },
             "require": {
@@ -2556,7 +2556,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2015-10-27 09:35:58"
+            "time": "2015-10-27 16:29:36"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -2709,12 +2709,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "e46293aa6dd94f054c500ef990538d822c763ebd"
+                "reference": "63245e12c948bf50278383e70fd5d6841af17e17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/e46293aa6dd94f054c500ef990538d822c763ebd",
-                "reference": "e46293aa6dd94f054c500ef990538d822c763ebd",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/63245e12c948bf50278383e70fd5d6841af17e17",
+                "reference": "63245e12c948bf50278383e70fd5d6841af17e17",
                 "shasum": ""
             },
             "require": {
@@ -2760,7 +2760,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-10-20 06:53:22"
+            "time": "2015-10-27 18:46:42"
         },
         {
             "name": "sensio/framework-extra-bundle",
