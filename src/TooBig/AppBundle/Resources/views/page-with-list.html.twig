@@ -7,7 +7,7 @@
 {% if searchForm is defined and searchForm %}
 {% block search_form %}
 {% form_theme searchForm 'form_table_layout.html.twig' %}
-<form action="./" method="get" {{ form_enctype(searchForm) }}>
+<form action="../../../../Application/Iphp/CoreBundle/Resources/views" method="get" {{ form_enctype(searchForm) }}>
     {{ form_widget(searchForm) }}
     <input type="submit" value="Искать"/>
 </form>
