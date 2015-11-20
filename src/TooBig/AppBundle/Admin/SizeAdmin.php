@@ -5,16 +5,16 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use TooBig\AppBundle\Entity\SizeType;
 
-class BrandAdmin extends Admin
+class SizeAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text', array('label' => 'Name'))
-            ->add('description', null, array('label' => 'Description')) //if no type is specified, SonataAdminBundle tries to guess it
-            ->add('imageUpload', 'file', ['required' => false])
+            ->add('value', 'text', array('label' => 'Name'))
+            ->add('size_type')
         ;
     }
 
@@ -22,9 +22,7 @@ class BrandAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('description')
-            ->add('createdAt');
+            ->add('value')
         ;
     }
 
@@ -32,9 +30,7 @@ class BrandAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
-            ->add('description')
-            ->add('createdAt');
+            ->addIdentifier('value')
         ;
     }
 }

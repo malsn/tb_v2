@@ -21,7 +21,7 @@ class Model
     /**
      * @var Brand
      */
-    private $brand_id;
+    private $brand;
 
 
     /**
@@ -61,19 +61,21 @@ class Model
     /**
      * @return Brand
      */
-    public function getBrandId()
+    public function getBrand()
     {
-        return $this->brand_id;
+        return $this->brand;
     }
 
     /**
-     * @param Brand $brand_id
+     * @param Brand $brand
      */
-    public function setBrandId($brand_id)
+    public function setBrand($brand)
     {
-        $this->brand_id = $brand_id;
+        $this->brand = $brand;
     }
 
-
+    public function __toString(){
+        return $this->getName();
+    }
 }
 

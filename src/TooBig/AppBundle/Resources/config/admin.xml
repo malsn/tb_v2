@@ -108,11 +108,35 @@
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
+        <service id="item.admin.model" class="TooBig\AppBundle\Admin\ModelAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="References"
+                 label="Model"/>
+            <argument/>
+            <argument>TooBig\AppBundle\Entity\Model</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+
         <service id="item.admin.color" class="TooBig\AppBundle\Admin\ColorAdmin">
             <tag name="sonata.admin" manager_type="orm" group="References"
                  label="Color"/>
             <argument/>
             <argument>TooBig\AppBundle\Entity\Color</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+
+        <service id="item.admin.size_type" class="TooBig\AppBundle\Admin\SizeTypeAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="References"
+                 label="SizeType"/>
+            <argument/>
+            <argument>TooBig\AppBundle\Entity\SizeType</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+
+        <service id="item.admin.size" class="TooBig\AppBundle\Admin\SizeAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="References"
+                 label="Size"/>
+            <argument/>
+            <argument>TooBig\AppBundle\Entity\Size</argument>
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 

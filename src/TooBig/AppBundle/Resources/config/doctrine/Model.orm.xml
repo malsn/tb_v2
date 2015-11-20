@@ -5,7 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" column="name" length="255"/>
-    <many-to-one target-entity="TooBig\AppBundle\Entity\Brand" field="brand_id">
+    <many-to-one target-entity="TooBig\AppBundle\Entity\Brand" field="brand">
       <cascade><cascade-persist/></cascade>
     </many-to-one>
   </entity>

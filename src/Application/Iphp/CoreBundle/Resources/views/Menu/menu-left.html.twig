@@ -1,7 +1,7 @@
 <div class="list-group">
     {% for rubric in rubrics %}
     <a href="{{ entitypath(rubric) }}" class="list-group-item {{ rubric.isActive ? 'active ':'' }}">{{ rubric }}</a>
-    {% if rubric.children | length %}
+    {% if rubric.children | length and rubric.isActive %}
     <ul>
         {% for subrubric in rubric.children %}
              <li>

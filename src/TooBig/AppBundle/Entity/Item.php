@@ -29,12 +29,6 @@ class Item extends BaseItem
     protected $id;
 
     /**
-     * @var Color
-     */
-
-    private $color;
-
-    /**
      * @var integer
      */
     private $stateId;
@@ -63,6 +57,28 @@ class Item extends BaseItem
      * @var Brand
      */
     private $brand;
+
+
+    /**
+     * @var Model
+     */
+    private $model;
+
+    /**
+     * @var Color
+     */
+
+    private $color;
+
+    /**
+     * @var SizeType
+     */
+    private $size_type;
+
+    /**
+     * @var Size
+     */
+    private $size;
 
     /**
      * @var RateComment[]
@@ -196,4 +212,54 @@ class Item extends BaseItem
     {
         $this->brand = $brand;
     }
+
+    /**
+     * @return Model
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * @param Model $model
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+    }
+
+    /**
+     * @return SizeType
+     */
+    public function getSizeType()
+    {
+        return $this->size_type;
+    }
+
+    /**
+     * @param SizeType $size_type
+     */
+    public function setSizeType($size_type)
+    {
+        $this->size_type = $size_type;
+    }
+
+    /**
+     * @return Size
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param Size $size
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    }
+
+
 }

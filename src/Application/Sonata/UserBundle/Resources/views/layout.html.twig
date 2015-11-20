@@ -1,4 +1,22 @@
+<!DOCTYPE html>
+<html {% block html_attributes %}class="no-js"{% endblock %}>
+<head>
+    {% block meta_tags %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8">
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    {% endblock %}
+
+    {% stylesheets 'bundles/sonatauser/bootstrap/3.3/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+</head>
+<body {% block body_attributes %}class="sonata-bc skin-black fixed"{% endblock %}>
+
 <div>
     {% block fos_user_content %}
     {% endblock fos_user_content %}
 </div>
+
+</body>
+</html>

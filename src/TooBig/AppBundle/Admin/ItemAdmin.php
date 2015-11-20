@@ -195,7 +195,10 @@ class ItemAdmin extends Admin
                     'inline' => 'table',
                 ))*/
             ->add('brand')
+            ->add('model')
             ->add('color')
+            ->add('size_type')
+            ->add('size')
             ->add('price', 'text', ['required' => true])
             ->end();
     }

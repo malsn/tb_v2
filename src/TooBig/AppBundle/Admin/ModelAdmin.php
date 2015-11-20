@@ -6,15 +6,14 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class BrandAdmin extends Admin
+class ModelAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('name', 'text', array('label' => 'Name'))
-            ->add('description', null, array('label' => 'Description')) //if no type is specified, SonataAdminBundle tries to guess it
-            ->add('imageUpload', 'file', ['required' => false])
+            ->add('brand')
         ;
     }
 
@@ -23,8 +22,6 @@ class BrandAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('description')
-            ->add('createdAt');
         ;
     }
 
@@ -33,8 +30,6 @@ class BrandAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('description')
-            ->add('createdAt');
         ;
     }
 }

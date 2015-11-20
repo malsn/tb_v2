@@ -15,6 +15,7 @@
 
     {% block stylesheets %}
         <link href="/bundles/iphpcore/bootstrap/3.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/bundles/toobigapp/css/style.css" rel="stylesheet">
         <style>
             body {
                 padding-top: 70px;
@@ -150,12 +151,15 @@
 
                                         {% block user_top_actions %}
 
-                                            {% if path_exists ('sonata_admin_dashboard') %}
+                                            {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_ADMIN") %}
                                                 <li><a href="{{ path ('sonata_admin_dashboard') }}">
                                                         <span class="glyphicon glyphicon-edit"
                                                               aria-hidden="true"></span> Admin Dashboard</a></li>
                                             {% endif %}
 
+                                                <li><a href="/}}">
+                                                        <span class="glyphicon glyphicon-user"
+                                                              aria-hidden="true"></span> User Profile</a></li>
 
                                             {% block user_top_action_logout %}
 
@@ -226,7 +230,10 @@
 
             </div>
             <div class="col-md-9">
-                {% block body %}{% endblock body %}
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+                {% block body %}
+                {% endblock body %}
             </div>
         </div>
     </div>

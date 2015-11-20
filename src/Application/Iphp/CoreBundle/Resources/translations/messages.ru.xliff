@@ -160,6 +160,35 @@
                 <target>Содержание</target>
             </trans-unit>
 
+            <trans-unit id="Items">
+                <source>Items</source>
+                <target>Объявления</target>
+            </trans-unit>
+
+            <trans-unit id="Brand">
+                <source>Brand</source>
+                <target>Бренды</target>
+            </trans-unit>
+
+            <trans-unit id="Model">
+                <source>Model</source>
+                <target>Модели</target>
+            </trans-unit>
+
+            <trans-unit id="Color">
+                <source>Color</source>
+                <target>Цвета</target>
+            </trans-unit>
+
+            <trans-unit id="SizeType">
+                <source>SizeType</source>
+                <target>Типы размеров</target>
+            </trans-unit>
+
+            <trans-unit id="Size">
+                <source>Size</source>
+                <target>Размеры</target>
+            </trans-unit>
 
             <trans-unit id="Keywords">
                 <source>Keywords</source>

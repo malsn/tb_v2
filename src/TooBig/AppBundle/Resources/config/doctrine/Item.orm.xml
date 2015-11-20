@@ -61,7 +61,16 @@
         <many-to-one target-entity="TooBig\AppBundle\Entity\Brand" field="brand">
             <cascade><cascade-persist/></cascade>
         </many-to-one>
+        <many-to-one target-entity="TooBig\AppBundle\Entity\Model" field="model">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
         <many-to-one target-entity="TooBig\AppBundle\Entity\Color" field="color">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <many-to-one target-entity="TooBig\AppBundle\Entity\SizeType" field="size_type">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <many-to-one target-entity="TooBig\AppBundle\Entity\Size" field="size">
             <cascade><cascade-persist/></cascade>
         </many-to-one>
         <one-to-many field="rateComments" target-entity="TooBig\AppBundle\Entity\RateComment" mapped-by="item">

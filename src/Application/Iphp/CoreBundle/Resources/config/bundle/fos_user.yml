@@ -5,3 +5,6 @@ fos_user:
 
     group:
         group_class: %iphp.usergroup.class%
+    registration:
+        form:
+           type: modified_fos_user_registration

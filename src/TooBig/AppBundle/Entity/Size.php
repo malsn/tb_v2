@@ -21,7 +21,7 @@ class Size
      * @var SizeType
      */
     private $size_type;
-    
+
     /**
      * Get id
      *
@@ -57,7 +57,7 @@ class Size
     }
 
     /**
-     * @return \TooBig\AppBundle\Entity\SizeType
+     * @return SizeType
      */
     public function getSizeType()
     {
@@ -65,13 +65,15 @@ class Size
     }
 
     /**
-     * @param \TooBig\AppBundle\Entity\SizeType $size_type
+     * @param SizeType $size_type
      */
     public function setSizeType($size_type)
     {
         $this->size_type = $size_type;
     }
 
-
+    public function __toString(){
+        return $this->getValue();
+    }
 }
 
