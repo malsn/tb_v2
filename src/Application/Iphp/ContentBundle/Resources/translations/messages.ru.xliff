@@ -6,6 +6,10 @@
                 <source>Content List</source>
                 <target>Список материалов</target>
             </trans-unit>
+            <trans-unit id="Item List">
+                <source>Item List</source>
+                <target>Список объявлений</target>
+            </trans-unit>
             <trans-unit id="Content Create">
                 <source>Content Create</source>
                 <target>Новый материал</target>
