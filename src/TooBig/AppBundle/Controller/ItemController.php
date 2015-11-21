@@ -2,7 +2,7 @@
 
 namespace TooBig\AppBundle\Controller;
 
-use Application\Iphp\ContentBundle\Entity\Content;
+use TooBig\AppBundle\Entity\Item;
 use Iphp\ContentBundle\Controller\ContentController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,7 +20,7 @@ class ItemController extends ContentController
     {
         $rubric = $this->get('rubric_model')->getRubricById($rubric_id);
 
-        $record = new Content();
+        $record = new Item();
         $record->setRubric($rubric);
         $record->setEnabled(true);
 
@@ -38,7 +38,7 @@ class ItemController extends ContentController
                         'notice',
                         'Your changes were saved!'
                     );
-                    return $this->render('IphpContentBundle:Content:content.html.twig', ['content'=>$record]);
+                    return $this->render('TooBigAppBundle:Item:item.html.twig', ['content'=>$record]);
                 } catch (\Exception $e) {
                     $this->get('session')->getFlashBag()->add(
                         'notice',
@@ -98,23 +98,16 @@ class ItemController extends ContentController
 
         if (!$content) throw $this->createNotFoundException('ќбъ€вление с кодом "' . $slug . '" не найдено');
 
-
-        /*       if ($content->getRedirectToFirstFile())
-               {
-                   foreach ($content->getFiles() as $contentFile)
-                   {
-                       if ($contentFile->getPublished() && $contentFile->getFile())
-                       {
-                           print
-                       }
-                   }
-               }*/
-
         if ($content->getRedirectUrl())
             return $this->redirect($content->getRedirectUrl());
 
 
         return   array('content' => $content);
 
+    }
+
+    protected function getRepository()
+    {
+        return $this->getDoctrine()->getRepository('TooBigAppBundle:Item');
     }
 }
