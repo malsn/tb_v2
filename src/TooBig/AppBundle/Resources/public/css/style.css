@@ -1,3 +1,22 @@
 /* styles for TooBig */
 
 div.list-group > ul > li { list-style: none; }
+
+/*ShopItem*/
+.shopitem-div { padding: 10px 30px; }
+.shopitem-img-msg-div { float: left; max-width: 20%; }
+.shopitem-name-sect-desc-div { float:right; max-width: 70%; }
+.shopitem-name-sect-desc-div { padding: 0 15px; }
+.shopitem-name-h1 { font-size: 16px; color: #7E5C15; }
+.shopitem-img-div { padding: 3px; height: 250; }
+.shopitem-img-main { border: 3px #fff solid; }
+.shopitem-price-div { color: red; font-weight: 700; }
+.shopitem-tocart { margin: 0px 0; width: 66px; height: 23px; font-weight: 400; padding: 0px; background: url(/uploads/termo/files/cart_mini.png)}
+.shopitem-tocart a { color: #fff; text-decoration: none; }
+#cart-apply { height: 70px; }
+#BuyCart { font-size: 12px; padding: 10px; }
+.shopitem-img-list-div { text-align: left; }
+#thumblist.clearfix {  background-color: #fff; padding: 3px; margin: 5px 0; }
+#thumblist.clearfix li { display: inline; padding-right: 2px; }
+#thumblist.clearfix li img { border: 1px #333 solid; }
+/*ShopItem*/
