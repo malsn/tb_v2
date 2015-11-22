@@ -1,6 +1,7 @@
 /* styles for TooBig */
 
 div.list-group > ul > li { list-style: none; }
+img.img-polaroid { width: 200px; height: auto; }
 
 /*ShopItem*/
 .shopitem-div { padding: 10px 30px; }

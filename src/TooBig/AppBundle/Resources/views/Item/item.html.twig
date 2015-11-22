@@ -56,11 +56,11 @@
 {% if content %}
 
 
-{% block content_image %}
+{# block content_image %}
 {% if content.image %}
     <a href="{{ content.image.path }}" target="_blank"><img src="{{ content.image.path }}" class="img-polaroid"></a>
 {% endif %}
-{% endblock %}
+{% endblock #}
 
 
 {% block content_content %}
