@@ -50,7 +50,7 @@
 
     {% for image in content.imagesMedia  if image.media %}
     {% block content_img %}
-    <a href="{{ image.media.providerReference}}" target="_blank"><img src="{{ image.media.providerReference}}" class="img-polaroid"></a>
+    <a href="{% path image.media, 'small' %}" target="_blank">{% thumbnail image.media, 'small' with {'class': 'img-polaroid'} %}</a>
     {% endblock content_img %}
     {% endfor %}
 
