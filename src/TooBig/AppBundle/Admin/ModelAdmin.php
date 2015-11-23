@@ -22,6 +22,7 @@ class ModelAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('brand')
         ;
     }
 
@@ -30,6 +31,7 @@ class ModelAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
+            ->addIdentifier('brand')
         ;
     }
 }
