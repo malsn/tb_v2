@@ -1,13 +1,13 @@
 parameters:
 
-    iphp.admin.title: Iphp
+    iphp.admin.title: TooBig
 
     #iphp.content.admin.content.class: Application\Iphp\ContentBundle\Admin\ContentAdmin
 
 
 sonata_admin:
     title:      %iphp.admin.title%
-    #title_logo: /bundles/iphpcore/images/iphp.jpg
+    title_logo: /bundles/iphpcore/images/iphp.jpg
     templates:
         # default global templates
         layout: IphpCoreBundle::Admin/standard_layout.html.twig
