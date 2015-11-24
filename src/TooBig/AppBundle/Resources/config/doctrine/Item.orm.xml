@@ -17,6 +17,7 @@
         <field name="price" type="integer" column="price" nullable="false"/>
         <field name="hits" type="integer" column="hits" nullable="true"/>
         <field name="logs" type="text" column="logs" nullable="true"/>
+        <field name="gender" type="string" column="gender" nullable="false"/>
 
         <field name="title" type="string" column="title"/>
         <field name="abstract" type="text" column="abstract" nullable="true"/>

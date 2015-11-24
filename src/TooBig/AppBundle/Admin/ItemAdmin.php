@@ -3,6 +3,7 @@
 
 namespace TooBig\AppBundle\Admin;
 
+use TooBig\AppBundle\Form\Type\GenderType;
 use FOS\UserBundle\Model\UserManagerInterface;
 use TooBig\AppBundle\Entity\Item;
 use TooBig\AppBundle\Entity\Brand;
@@ -143,7 +144,7 @@ class ItemAdmin extends Admin
     {
         $formMapper->with('Item', array('class' => 'col-md-12'))
 
-            ->add('content', 'ckeditor', array('label' => 'Текст'))
+            ->add('content', 'ckeditor', array('label' => 'Описание объявления'))
 
 
             ->add('imagesMedia', 'sonata_type_collection', [
@@ -194,11 +195,11 @@ class ItemAdmin extends Admin
                     'sortable' => 'pos',
                     'inline' => 'table',
                 ))*/
-            ->add('brand')
-            ->add('model')
+            ->add('brand', 'entity', ['class'=>'TooBig\AppBundle\Entity\Brand','attr'=>['class'=>'brand']])
             ->add('color')
             ->add('size_type')
             ->add('size')
+            ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('price', 'text', ['required' => true])
             ->end();
     }

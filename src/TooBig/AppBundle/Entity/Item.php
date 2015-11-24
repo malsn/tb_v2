@@ -81,6 +81,11 @@ class Item extends BaseItem
     private $size;
 
     /**
+     * @var string
+     */
+    private $gender;
+
+    /**
      * @var RateComment[]
      */
     protected $rateComments;
@@ -260,6 +265,23 @@ class Item extends BaseItem
     {
         $this->size = $size;
     }
+
+    /**
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
 
 
 }

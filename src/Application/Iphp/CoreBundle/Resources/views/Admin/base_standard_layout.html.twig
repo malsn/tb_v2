@@ -1,0 +1,51 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+    <script src="/bundles/iphpcore/js/select2/select2.js"></script>
+
+    {% block javascript_datepicker_init %}
+        <script type="text/javascript">
+            $(function () {
+
+
+
+                    $.datepicker.setDefaults($.datepicker.regional['{{ app.request.locale }}']);
+                    $.datepicker.setDefaults({ dateFormat: 'dd.mm.yy' });
+
+
+                    try {
+                        $('.date').live('click', function () {
+                            $(this).datepicker('destroy').datepicker({showOn: 'focus'}).focus();
+                        });
+
+                    } catch (e) {}
+
+
+            });
+        </script>
+    {% endblock javascript_datepicker_init %}
+
+
+    {# for genemu#}
+    {% if form is defined %}{{ form_javascript(form) }}{% endif %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/bundles/iphpcore/js/select2/select2.css">
+    {#<link rel="stylesheet" href="/bundles/sonatacore/public/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />#}
+
+    {% if form is defined %}{{ form_stylesheet(form) }}{% endif %}
+    <style>
+        label.label_hidden {
+            display: none
+        }
+
+    </style>
+
+
+{% endblock %}
