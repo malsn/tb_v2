@@ -23,6 +23,7 @@ class SizeAdmin extends Admin
     {
         $datagridMapper
             ->add('value')
+            ->add('size_type')
         ;
     }
 
@@ -31,6 +32,7 @@ class SizeAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('value')
+            ->addIdentifier('size_type')
         ;
     }
 }

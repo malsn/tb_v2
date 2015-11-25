@@ -5,5 +5,8 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" column="name" length="255"/>
+    <one-to-many field="sizes" target-entity="TooBig\AppBundle\Entity\Size" mapped-by="size_type">
+      <cascade><cascade-persist/></cascade>
+    </one-to-many>
   </entity>
 </doctrine-mapping>

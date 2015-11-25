@@ -15,6 +15,26 @@
                 <argument type="service" id="service_container" />
             </call>
         </service>
+        <service id="model_model" class="TooBig\AppBundle\Model\ModelModel">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="brand_model" class="TooBig\AppBundle\Model\BrandModel">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="size_model" class="TooBig\AppBundle\Model\SizeModel">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="sizetype_model" class="TooBig\AppBundle\Model\SizeTypeModel">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
     </services>
 
 </container>

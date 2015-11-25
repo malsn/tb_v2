@@ -3,10 +3,10 @@
 
 namespace TooBig\AppBundle\Admin;
 
+use TooBig\AppBundle\Form\Type\BrandType;
 use TooBig\AppBundle\Form\Type\GenderType;
 use FOS\UserBundle\Model\UserManagerInterface;
 use TooBig\AppBundle\Entity\Item;
-use TooBig\AppBundle\Entity\Brand;
 use Iphp\CoreBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -15,6 +15,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 
 use Sonata\AdminBundle\Admin\AdminInterface;
+use TooBig\AppBundle\Form\Type\SizeTypeType;
 
 class ItemAdmin extends Admin
 {
@@ -157,7 +158,7 @@ class ItemAdmin extends Admin
             ])
 
 
-            ->add('filesMedia', 'sonata_type_collection',
+            /*->add('filesMedia', 'sonata_type_collection',
                 array(
                     'required' => false,
                     'by_reference' => false
@@ -172,7 +173,7 @@ class ItemAdmin extends Admin
 
             ->add('imageUpload', 'file', ['required' => false])
             ->add('image', 'iphp_file',['upload' => false])
-            /*             ->add('images', 'sonata_type_collection',
+                         ->add('images', 'sonata_type_collection',
                                      array('by_reference' => false),
                                      array(
                                          'edit' => 'inline',
@@ -195,10 +196,41 @@ class ItemAdmin extends Admin
                     'sortable' => 'pos',
                     'inline' => 'table',
                 ))*/
-            ->add('brand', 'entity', ['class'=>'TooBig\AppBundle\Entity\Brand','attr'=>['class'=>'brand']])
+            ->add('brand', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\Brand',
+                'empty_value' => 'Укажите бренд',
+                'attr'=>[
+                    'class'=>'brand',
+                    'path-controller'=>'/app_dev.php/brand/model/'
+                    ]
+                ])
+            ->add('model', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\Model',
+                'empty_value' => 'Укажите модель',
+                'attr'=>[
+                    'class'=>'model',
+                    'disabled'=>''
+                ]
+            ])
+            ->add('size_type', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\SizeType',
+                'empty_value' => 'Укажите размерный ряд',
+                'attr'=>[
+                    'class'=>'size-type',
+                    'path-controller'=>'/app_dev.php/size/type/'
+                ]
+            ])
+            ->add('size', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\Size',
+                'empty_value' => 'Укажите размер',
+                'attr'=>[
+                    'class'=>'size',
+                    'disabled'=>''
+                ]
+            ])
+            /*->add('brand', new BrandType(), [ 'compound' => true ])
+            ->add('size_type', new SizeTypeType(), [ 'compound' => true ])*/
             ->add('color')
-            ->add('size_type')
-            ->add('size')
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('price', 'text', ['required' => true])
             ->end();

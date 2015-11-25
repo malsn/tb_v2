@@ -24,8 +24,8 @@
 <dl>
 
     {% block entity_list_entry_image  %}
-        {% if entity.image %}
-            <dt><a href="{{ entitypath(entity) }}" target="_blank"><img src="{{ entity.image.path }}" class="img-polaroid"></a></dt>
+        {% if entity.imagesMedia | length %}
+            <dt><a href="{{ entitypath(entity) }}" target="_blank"><img src="{% path entity.imagesMedia[0].media, 'preview' %}" class="img-polaroid"></a></dt>
         {% endif %}
     {% endblock entity_list_entry_image  %}
 

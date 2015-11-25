@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Brand
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="TooBigAppBundle\Entity\BrandRepository")
  */
 class Brand
 {

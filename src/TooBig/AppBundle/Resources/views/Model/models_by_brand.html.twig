@@ -1,0 +1,13 @@
+<div class="form-group ajax-model" id="sonata-ba-field-container-{{ form_name }}_model">
+    <label class="control-label required" for="{{ form_name }}_model">
+        Модель
+    </label>
+    <div class="sonata-ba-field sonata-ba-field-standard-natural">
+        <select id="{{ form_name }}_model" name="{{ form_name }}[model]" class="form-control">
+            <option value="">Укажите модель</option>
+            {% for model in models %}
+                <option value="{{ model.id }}">{{ model.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>

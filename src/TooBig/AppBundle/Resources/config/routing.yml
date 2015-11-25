@@ -1,3 +1,9 @@
 front_item_add:
     path:     /item/add/{rubric_id}
     defaults: { _controller: TooBigAppBundle:Item:add }
+list_model_by_brand:
+    path:     /brand/model/
+    defaults: { _controller: TooBigAppBundle:Model:listModelbyBrand }
+list_size_by_sizetype:
+    path:     /size/type/
+    defaults: { _controller: TooBigAppBundle:Size:listSizebySizeType }

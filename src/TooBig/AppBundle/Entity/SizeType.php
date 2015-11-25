@@ -2,8 +2,11 @@
 
 namespace TooBig\AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 /**
  * SizeType
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="TooBigAppBundle\Entity\SizeTypeRepository")
  */
 class SizeType
 {
@@ -18,6 +21,10 @@ class SizeType
     private $name;
 
 
+    /**
+     * @var Size[]
+     */
+    private $sizes;
     /**
      * Get id
      *
@@ -51,6 +58,24 @@ class SizeType
     {
         return $this->name;
     }
+
+    /**
+     * @return Size[]
+     */
+    public function getSizes()
+    {
+        return $this->sizes;
+    }
+
+    /**
+     * @param Size[] $sizes
+     */
+    public function setSizes($sizes)
+    {
+        $this->sizes = $sizes;
+    }
+
+
 
     public function __toString(){
         return $this->getName();
