@@ -116,8 +116,8 @@ class ItemAdmin extends Admin
             ->add('rubric', 'rubricchoice')
 
 
-            ->add('redirectUrl')
-            ->add('redirectToFirstFile', null, ['required' => false])
+            /*->add('redirectUrl')
+            ->add('redirectToFirstFile', null, ['required' => false])*/
             ->add('abstract')
             ->end();
     }
