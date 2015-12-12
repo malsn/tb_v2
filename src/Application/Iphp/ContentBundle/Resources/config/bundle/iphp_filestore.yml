@@ -1,0 +1,36 @@
+iphp_file_store:
+    mappings:
+       content_file:
+           upload_dir: %iphp.web_dir%/files/contentfile
+           upload_path: /files/contentfile
+           directory_namer:
+             property:
+                 params: { field : "content.id"}
+           namer: ~
+
+
+       content_image:
+           upload_dir: %iphp.web_dir%/files/contentimage
+           upload_path: /files/contentimage
+           directory_namer:
+              property:
+                   params: { field : "content.id"}
+           namer: ~
+
+
+       content_announceimage:
+           upload_dir: %iphp.web_dir%/files/contentimage
+           upload_path: /files/contentimage
+           directory_namer:
+               property:
+                   params: { field : "id"}
+           namer: ~
+
+
+       brand_image:
+            upload_dir: %iphp.web_dir%/files/brandimage
+            upload_path: /files/brandimage
+            directory_namer:
+               property:
+                    params: { field : "item__brand.id"}
+            namer: ~
