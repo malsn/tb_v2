@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Brand
  *
+ * @FileStore\Uploadable
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="TooBigAppBundle\Entity\BrandRepository")
  */
@@ -49,7 +50,7 @@ class Brand
      * @Assert\Image(
      *     maxSize="20M"
      * )
-     * @FileStore\UploadableField(mapping="brand_image", fileDataProperty ="image"))
+     * @FileStore\UploadableField(mapping="content_announceimage", fileDataProperty ="image")
      *
      * @var File $image
      */

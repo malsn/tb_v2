@@ -5,7 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="value" type="string" column="value" length="255"/>
-    <many-to-one target-entity="TooBig\AppBundle\Entity\SizeType" field="size_type">
+    <many-to-one target-entity="TooBig\AppBundle\Entity\SizeType" field="size_type" inversed-by="sizes">
       <cascade><cascade-persist/></cascade>
     </many-to-one>
   </entity>

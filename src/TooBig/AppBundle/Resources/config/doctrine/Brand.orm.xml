@@ -14,6 +14,7 @@
         <field name="name" type="string" column="name" nullable="false"/>
         <field name="createdAt" type="datetime" column="created_at" nullable="true"/>
         <field name="description" type="text" column="description" nullable="true"/>
+        <field name="image" type="array" column="image" nullable="true"/>
 
 
     </entity>
