@@ -157,12 +157,17 @@
 
             <trans-unit id="Content">
                 <source>Content</source>
-                <target>Содержание</target>
+                <target>Страницы</target>
             </trans-unit>
 
             <trans-unit id="Items">
                 <source>Items</source>
                 <target>Объявления</target>
+            </trans-unit>
+
+            <trans-unit id="Item">
+                <source>Item</source>
+                <target>Объявление</target>
             </trans-unit>
 
             <trans-unit id="Brand">
