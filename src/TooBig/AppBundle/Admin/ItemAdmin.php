@@ -3,6 +3,7 @@
 
 namespace TooBig\AppBundle\Admin;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use TooBig\AppBundle\Form\Type\BrandType;
 use TooBig\AppBundle\Form\Type\GenderType;
 use FOS\UserBundle\Model\UserManagerInterface;
@@ -23,6 +24,11 @@ class ItemAdmin extends Admin
      * @var UserManagerInterface
      */
     protected $userManager;
+
+    /**
+     * @var Route
+     */
+    protected $route_service;
 
 
     /*    function configure()
@@ -201,8 +207,7 @@ class ItemAdmin extends Admin
                 'empty_value' => 'Укажите бренд',
                 'attr'=>[
                     'class'=>'brand',
-                    /*'path-controller' => $this->routeGenerator->generateUrl(AdminInterface::class,'list_model_by_brand')*/
-                    'path-controller' => '/app_dev.php/brand/model/'
+                    'path-controller' => $this->route_service->generate('list_model_by_brand', array())
                     ]
                 ])
             ->add('model', 'entity', [
@@ -218,8 +223,7 @@ class ItemAdmin extends Admin
                 'empty_value' => 'Укажите размерный ряд',
                 'attr'=>[
                     'class'=>'size-type',
-                    /*'path-controller' => $this->routeGenerator->generateUrl(AdminInterface::class,'list_size_by_sizetype')*/
-                    'path-controller' => '/app_dev.php/size/type/'
+                    'path-controller' => $this->route_service->generate('list_size_by_sizetype', array())
                 ]
             ])
             ->add('size', 'entity', [
@@ -306,6 +310,16 @@ class ItemAdmin extends Admin
     public function getUserManager()
     {
         return $this->userManager;
+    }
+
+    public function setRoutingService($routing)
+    {
+        $this->route_service = $routing;
+    }
+
+    public function getRoutingService()
+    {
+        return $this->route_service;
     }
 
 }

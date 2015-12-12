@@ -51,6 +51,10 @@
                 <argument type="service" id="fos_user.user_manager"/>
             </call>
 
+            <call method="setRoutingService">
+                <argument type="service" id="router"/>
+            </call>
+
             <!--
             <call method="setPoolFormatter">
                 <argument type="service" id="sonata.formatter.pool"/>
