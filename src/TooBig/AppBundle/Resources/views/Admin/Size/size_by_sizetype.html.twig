@@ -1,8 +1,8 @@
-<div class="form-group control-group ajax-size" id="{{ form_name }}_size">
-    <label class="col-sm-3 control-label required" for="{{ form_name }}_size">
+<div class="form-group ajax-size" id="sonata-ba-field-container-{{ form_name }}_size">
+    <label class="control-label required" for="{{ form_name }}_size">
         Размер
     </label>
-    <div class="col-sm-9">
+    <div class="sonata-ba-field sonata-ba-field-standard-natural">
         <select id="{{ form_name }}_size" name="{{ form_name }}[size]" class="form-control">
             <option value="">Укажите размер</option>
             {% for size in sizes %}

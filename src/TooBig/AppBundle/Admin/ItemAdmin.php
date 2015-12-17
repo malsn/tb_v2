@@ -207,7 +207,7 @@ class ItemAdmin extends Admin
                 'empty_value' => 'Укажите бренд',
                 'attr'=>[
                     'class'=>'brand',
-                    'path-controller' => $this->route_service->generate('list_model_by_brand', array())
+                    'path-controller' => $this->route_service->generate('admin_list_model_by_brand', array())
                     ]
                 ])
             ->add('model', 'entity', [
@@ -223,7 +223,7 @@ class ItemAdmin extends Admin
                 'empty_value' => 'Укажите размерный ряд',
                 'attr'=>[
                     'class'=>'size-type',
-                    'path-controller' => $this->route_service->generate('list_size_by_sizetype', array())
+                    'path-controller' => $this->route_service->generate('admin_list_size_by_sizetype', array())
                 ]
             ])
             ->add('size', 'entity', [

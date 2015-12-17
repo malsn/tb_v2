@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class ItemController extends ContentController
 {
     /**
-     * @Route("/item/add/{rubric_id}", name="front_item_add")
+     * @Route("/app/item/add/{rubric_id}", name="front_item_add")
      */
     public function addAction($rubric_id, Request $request)
     {
@@ -25,7 +25,7 @@ class ItemController extends ContentController
         $record->setEnabled(true);
 
         $form = $this->createForm(
-            new ItemForm(),
+            new ItemForm($this->get('router')),
             $record
         );
 

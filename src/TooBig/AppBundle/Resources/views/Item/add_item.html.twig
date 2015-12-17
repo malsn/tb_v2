@@ -20,7 +20,56 @@
     {{ flashMessage }}
 
     {% endfor %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_start(form, {'class': 'form-horizontal'}) }}
+
+    {# <input type="hidden" name="q" value=""/> хак для подстановки для смещения индекса ключей в запросе #}
+
+    <div class="form-group control-group">
+        <label for="Item_title" class="col-sm-3 control-label">{{ 'Наименование'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.title, {'attr': {'class':'form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_rubric" class="col-sm-3 control-label">{{ 'Рубрика'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.rubric, {'attr': {'class':'form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_gender" class="col-sm-3 control-label">{{ 'Пол'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.gender, {'attr': {'class':'form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_color" class="col-sm-3 control-label">{{ 'Цвет'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.color, {'attr': {'class':'form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_brand" class="col-sm-3 control-label">{{ 'Бренд'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.brand, {'attr': {'class':'brand form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_model" class="col-sm-3 control-label">{{ 'Модель'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.model, {'attr': {'class':'model form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_size_type" class="col-sm-3 control-label">{{ 'Размерный ряд'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.size_type, {'attr': {'class':'size-type form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_size" class="col-sm-3 control-label">{{ 'Размер'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.size, {'attr': {'class':'size form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_price" class="col-sm-3 control-label">{{ 'Стоимость'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.price, {'attr': {'class':'form-control'}}) }}</div>
+    </div>
+
+
     {{ form_end(form) }}
+
 {% endblock page_body %}

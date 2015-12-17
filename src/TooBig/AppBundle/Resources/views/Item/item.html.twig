@@ -41,7 +41,7 @@
     <h1>{{ content }}
         <small>{{ content.abstract}}</small>
     </h1>
-    <a href="{{ path('front_item_add', {'rubric_id': content.rubric.id}) }}">Добавить объявление в раздел "{{ content.rubric.parent }} > {{ content.rubric.title }}"</a>
+    <a href="{{ path('app_item_add', {'rubric_id': content.rubric.id}) }}">Добавить объявление в раздел "{{ content.rubric.parent }} > {{ content.rubric.title }}"</a>
 </div>
 {% else %}
 {{ parent() }}

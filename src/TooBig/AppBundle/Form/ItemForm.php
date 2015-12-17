@@ -2,15 +2,29 @@
 
 namespace TooBig\AppBundle\Form;
 
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\AbstractType;
+use TooBig\AppBundle\Form\Type\GenderType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Iphp\CoreBundle\Admin\Admin;
 use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
+use TooBig\AppBundle\Entity\Item;
 
 
 class ItemForm extends AbstractType
 {
+
+    /**
+     * @var Router
+     */
+    protected $route_service;
+
+    public function __construct(Router $route)
+    {
+        $this->route_service = $route;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -21,16 +35,57 @@ class ItemForm extends AbstractType
                 [
                     'label' => 'Название объявления ( тип вещи )',
                     'attr' => [
-                        'placeholder' => 'Название объявления ( тип вещи )'
+                        'placeholder' => 'Название объявления ( тип вещи )',
+                        'class' => 'form-group'
                     ],
                     'constraints' => [new NotBlank()]
                 ]
             )
-            ->add('rubric', 'entity', ['class'=>'Application\Iphp\CoreBundle\Entity\Rubric'])
+            ->add('rubric', 'rubricchoice')
+            ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('color')
-            ->add('brand')
+            ->add('brand', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\Brand',
+                'empty_value' => 'Укажите бренд',
+                'attr'=>[
+                    'class'=>'brand',
+                    'path-controller' => $this->route_service->generate('app_list_model_by_brand', array())
+                ]
+            ])
+            ->add('model', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\Model',
+                'empty_value' => 'Укажите модель',
+                'attr'=>[
+                    'class'=>'model',
+                    'disabled'=>''
+                ]
+            ])
+            ->add('size_type', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\SizeType',
+                'empty_value' => 'Укажите размерный ряд',
+                'attr'=>[
+                    'class'=>'size-type',
+                    'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
+                ]
+            ])
+            ->add('size', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\Size',
+                'empty_value' => 'Укажите размер',
+                'attr'=>[
+                    'class'=>'size',
+                    'disabled'=>''
+                ]
+            ])
             ->add('price')
-            ->add('redirectToFirstFile')
+            /*->add('redirectToFirstFile')*/
+            ->add('imagesMedia', 'sonata_type_collection', [
+                'required' => true,
+                'by_reference' => false
+            ], [
+                'edit' => 'inline',
+                'sortable' => 'pos',
+                'inline' => 'table',
+            ])
             ->add(
                 'save',
                 'submit',
@@ -50,6 +105,16 @@ class ItemForm extends AbstractType
      */
     public function getName()
     {
-        return 'Content';
+        return 'Item';
+    }
+
+    public function setRoutingService($routing)
+    {
+        $this->route_service = $routing;
+    }
+
+    public function getRoutingService()
+    {
+        return $this->route_service;
     }
 }
