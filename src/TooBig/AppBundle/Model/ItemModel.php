@@ -2,15 +2,15 @@
 
 namespace TooBig\AppBundle\Model;
 
-use Application\Iphp\ContentBundle\Entity\Content;
+use TooBig\AppBundle\Entity\Item;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ItemModel extends ContainerAware {
     /**
-     * @param Content $record
+     * @param Item $record
      */
-    public function save(Content $record){
+    public function save(Item $record){
         $user = $this->container->get('security.context')->getToken()->getUser();
         $record->setCreatedBy($user);
         $record->setUpdatedBy($user);

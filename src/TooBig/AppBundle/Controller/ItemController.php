@@ -29,11 +29,34 @@ class ItemController extends ContentController
             $record
         );
 
+        /* добавление в форму данных загрузчика фотографий */
+        $editId = $request->get('editId');
+        if (!preg_match('/^\d+$/', $editId))
+        {
+            $editId = sprintf('%09d', mt_rand(0, 1999999999));
+            if ($record->getId())
+            {
+                $this->get('punk_ave.file_uploader')->syncFiles(
+                    array('from_folder' => 'attachments/' . $record->getId(),
+                        'to_folder' => 'tmp/attachments/' . $editId,
+                        'create_to_folder' => true));
+            }
+        }
+
+        $isNew = true; //предварительно это новая форма
+
         if ($request->isMethod('POST')) {
+            $isNew = false; //тип сменился на отправленную форму
             $form->handleRequest($request);
             if ($form->isValid()) {
                 try {
                     $this->get('item_model')->save($record);
+                    $fileUploader = $this->get('punk_ave.file_uploader');
+                    $fileUploader->syncFiles(
+                        array('from_folder' => '/tmp/attachments/' . $editId,
+                            'to_folder' => '/attachments/' . $record->getId(),
+                            'remove_from_folder' => true,
+                            'create_to_folder' => true));
                     $this->get('session')->getFlashBag()->add(
                         'notice',
                         'Your changes were saved!'
@@ -52,8 +75,34 @@ class ItemController extends ContentController
                 );
             }
         }
-        return $this->render('TooBigAppBundle:Item:add_item.html.twig', ['rubric' => $rubric, 'form' => $form->createView() ]);
+        $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
+        return $this->render('TooBigAppBundle:Item:add_item.html.twig', [
+            'rubric' => $rubric,
+            'form' => $form->createView(),
+            'posting' => $record,
+            'editId' => $editId,
+            'isNew' => $isNew,
+            'existingFiles' => $existingFiles ]);
     }
+
+/**
+ *
+ * @Route("/app/file/upload", name="app_file_upload")
+ * @Template()
+ */
+public function uploadAction(Request $request)
+{
+    $editId = $request->get('editId');
+    if (!preg_match('/^\d+$/', $editId))
+    {
+        throw new Exception("Bad edit id");
+    }
+
+    $this->get('punk_ave.file_uploader')->handleFileUpload([
+        'folder' => 'tmp/attachments/' . $editId,
+        'allowed_extensions' => array('jpeg', 'jpg', 'png', 'gif')
+    ]);
+}
 
     /**
      * @Template("TooBigAppBundle:Item:item.html.twig")

@@ -20,9 +20,11 @@
     {{ flashMessage }}
 
     {% endfor %}
-    {{ form_start(form, {'class': 'form-horizontal'}) }}
 
-    {# <input type="hidden" name="q" value=""/> хак для подстановки для смещения индекса ключей в запросе #}
+    {# Underscore templates for the uploader #}
+    {% include "TooBigAppBundle:Item\\FileUpload:templates.html.twig" %}
+
+    <form name="Item" class="edit-form form-horizontal" action="{{ path('app_item_add', { rubric_id: rubric.id, editId: editId }) }}" method="post" {{ form_enctype(form) }}>
 
     <div class="form-group control-group">
         <label for="Item_title" class="col-sm-3 control-label">{{ 'Наименование'|trans({}, 'SonataUserBundle') }}</label>
@@ -69,7 +71,30 @@
         <div class="col-sm-9">{{ form_widget(form.price, {'attr': {'class':'form-control'}}) }}</div>
     </div>
 
+    {# Hydrated by javascript #}
+    <div class="file-uploader"></div>
+
+    {#<button class="btn btn-primary" type="submit">{{ isNew ? "Save New Listing" : "Save Changes" }}</button>
+    <a class="btn" href="{{ cancel }}">Cancel</a>
+    {% if not isNew %}
+        <a class="btn btn-danger" href="{{ path('delete', { id: posting.id } ) }}">Delete</a>
+    {% endif %}#}
 
     {{ form_end(form) }}
+
+    <script type="text/javascript">
+
+        // Enable the file uploader
+
+        $(function() {
+            new PunkAveFileUploader({
+                'uploadUrl': {{ path('app_file_upload', { editId: editId }) | json_encode | raw }},
+                'viewUrl': {{ ('/uploads/tmp/attachments/' ~ editId) | json_encode | raw }},
+                'el': '.file-uploader',
+                'existingFiles': {{ punkave_get_files('tmp/attachments/' ~ editId) | json_encode | raw }},
+                'delaySubmitWhileUploading': '.edit-form'
+            });
+        });
+    </script>
 
 {% endblock page_body %}
