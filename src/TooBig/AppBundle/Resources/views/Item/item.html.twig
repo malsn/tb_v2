@@ -76,8 +76,10 @@
 {% endblock content_content %}
 
 
-{%  if content.imagesMedia | length %}
+
 {% block content_images  %}
+
+    {%  if content.imagesMedia | length %}
 
     <div class="shopitem-img-div">
         <div class="clearfix">
@@ -98,8 +100,33 @@
         </ul>
     </div>
 
+    {% endif %}
+
+    {%  if files | length %}
+
+        <div class="shopitem-img-div">
+            <div class="clearfix">
+                <a class="jqzoom" rel='gal1' title="triumph" href="/uploads/attachments/{{ content.id }}/originals/{{ files[0] }}" rel="{{ files[0] }}">
+                    <img class="shopitem-img-main" src="/uploads/attachments/{{ content.id }}/small/{{ files[0] }}"/>
+                </a>
+            </div>
+        </div>
+        <div class="shopitem-img-list-div">
+            <ul id="thumblist" class="clearfix">
+                {% for file in files %}
+                    <li>
+                        <a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '/uploads/attachments/{{ content.id }}/small/{{ file }}',largeimage: '/uploads/attachments/{{ content.id }}/originals/{{ file }}'}">
+                            <img border="0" src="/uploads/attachments/{{ content.id }}/thumbnails/{{ file }}"/>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    {% endif %}
+
 {% endblock content_images %}
-{% endif %}
+
 
 {% if content.links| length %}
 {% block content_links %}
