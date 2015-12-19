@@ -127,13 +127,13 @@ public function editAction($item_id, Request $request)
             } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add(
                     'notice',
-                    'Your changes were not saved!'
+                    'Your changes were not saved!'.$e->getMessage()
                 );
             }
         } else {
             $this->get('session')->getFlashBag()->add(
                 'notice',
-                'Your changes were not saved!'
+                'Your changes were not saved! Form validation error!'.$form->getErrors()->next()
             );
         }
     }
