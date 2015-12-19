@@ -58,8 +58,7 @@ class ItemController extends ContentController
                         'notice',
                         'Ваше объявление успешно добавлено, оно будет опубликовано после одобрения модератором. Спасибо!'
                     );
-                    return $this->forward('TooBigAppBundle:Item:list');
-                    //return $this->render('TooBigAppBundle:Item:item.html.twig', ['content'=>$record]);
+                    return $this->redirect($this->generateUrl('app_item_edit',['item_id' => $record->getId()]));
                 } catch (\Exception $e) {
                     $this->get('session')->getFlashBag()->add(
                         'notice',
@@ -123,7 +122,7 @@ public function editAction($item_id, Request $request)
                     'notice',
                     'Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!'
                 );
-                return $this->render('TooBigAppBundle:Item:item.html.twig', ['content'=>$record]);
+                //return $this->render('TooBigAppBundle:Item:item.html.twig', ['content'=>$record]);
             } catch (\Exception $e) {
                 $this->get('session')->getFlashBag()->add(
                     'notice',
