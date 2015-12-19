@@ -101,10 +101,10 @@ public function editAction($item_id, Request $request)
         $editId = sprintf('%09d', mt_rand(0, 1999999999));
         if ($record->getId())
         {
-            /*$this->get('punk_ave.file_uploader')->syncFiles(
+            $this->get('punk_ave.file_uploader')->syncFiles(
                 array('from_folder' => 'attachments/' . $record->getId(),
                     'to_folder' => 'tmp/attachments/' . $editId,
-                    'create_to_folder' => true));*/
+                    'create_to_folder' => true));
         }
     }
 
@@ -114,11 +114,11 @@ public function editAction($item_id, Request $request)
             try {
                 $this->get('item_model')->save($record);
                 $fileUploader = $this->get('punk_ave.file_uploader');
-                /*$fileUploader->syncFiles(
+                $fileUploader->syncFiles(
                     array('from_folder' => '/tmp/attachments/' . $editId,
                         'to_folder' => '/attachments/' . $record->getId(),
                         'remove_from_folder' => true,
-                        'create_to_folder' => true));*/
+                        'create_to_folder' => true));
                 $this->get('session')->getFlashBag()->add(
                     'notice',
                     'Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!'
