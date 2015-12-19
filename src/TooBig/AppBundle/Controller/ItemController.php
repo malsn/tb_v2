@@ -29,7 +29,7 @@ class ItemController extends ContentController
             $record
         );
 
-        /* ���������� � ����� ������ ���������� ���������� */
+        /* добавление в форму данных загрузчика фотографий */
         $editId = $request->get('editId');
         if (!preg_match('/^\d+$/', $editId))
         {
@@ -43,10 +43,7 @@ class ItemController extends ContentController
             }
         }
 
-        $isNew = true; //�������������� ��� ����� �����
-
         if ($request->isMethod('POST')) {
-            $isNew = false; //��� �������� �� ������������ �����
             $form->handleRequest($request);
             if ($form->isValid()) {
                 try {
@@ -59,9 +56,10 @@ class ItemController extends ContentController
                             'create_to_folder' => true));
                     $this->get('session')->getFlashBag()->add(
                         'notice',
-                        'Your changes were saved!'
+                        'Ваше объявление успешно добавлено, оно будет опубликовано после одобрения модератором. Спасибо!'
                     );
-                    return $this->render('TooBigAppBundle:Item:item.html.twig', ['content'=>$record]);
+                    return $this->forward('TooBigAppBundle:Item:list');
+                    //return $this->render('TooBigAppBundle:Item:item.html.twig', ['content'=>$record]);
                 } catch (\Exception $e) {
                     $this->get('session')->getFlashBag()->add(
                         'notice',
@@ -81,9 +79,73 @@ class ItemController extends ContentController
             'form' => $form->createView(),
             'posting' => $record,
             'editId' => $editId,
-            'isNew' => $isNew,
             'existingFiles' => $existingFiles ]);
     }
+
+/**
+ * @Route("/app/item/{item_id}/edit", name="front_item_edit")
+ */
+public function editAction($item_id, Request $request)
+{
+    $record = $this->get('item_model')->getItemById($item_id);
+    $rubric = $record->getRubric();
+    $form = $this->createForm(
+        new ItemForm($this->get('router')),
+        $record
+    );
+
+    /* добавление в форму данных загрузчика фотографий */
+    $editId = $request->get('editId');
+    if (!preg_match('/^\d+$/', $editId))
+    {
+        $editId = sprintf('%09d', mt_rand(0, 1999999999));
+        if ($record->getId())
+        {
+            /*$this->get('punk_ave.file_uploader')->syncFiles(
+                array('from_folder' => 'attachments/' . $record->getId(),
+                    'to_folder' => 'tmp/attachments/' . $editId,
+                    'create_to_folder' => true));*/
+        }
+    }
+
+    if ($request->isMethod('POST')) {
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            try {
+                $this->get('item_model')->save($record);
+                $fileUploader = $this->get('punk_ave.file_uploader');
+                /*$fileUploader->syncFiles(
+                    array('from_folder' => '/tmp/attachments/' . $editId,
+                        'to_folder' => '/attachments/' . $record->getId(),
+                        'remove_from_folder' => true,
+                        'create_to_folder' => true));*/
+                $this->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!'
+                );
+                return $this->render('TooBigAppBundle:Item:item.html.twig', ['content'=>$record]);
+            } catch (\Exception $e) {
+                $this->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Your changes were not saved!'
+                );
+            }
+        } else {
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Your changes were not saved!'
+            );
+        }
+    }
+    $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
+    if ( count($existingFiles) === 0 ) { $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'attachments/' . $record->getId())); }
+    return $this->render('TooBigAppBundle:Item:edit_item.html.twig', [
+        'rubric' => $rubric,
+        'form' => $form->createView(),
+        'posting' => $record,
+        'editId' => $editId,
+        'existingFiles' => $existingFiles ]);
+}
 
 /**
  *
@@ -112,7 +174,7 @@ public function uploadAction(Request $request)
         $content = $this->getRubricIndex($this->getCurrentRubric());
 
         if ($content && !$content->getEnabled()) $content = null;
-        //if (!$content) throw $this->createNotFoundException('��������� �������� �� ������');
+        //if (!$content) throw $this->createNotFoundException('Индексный материал не найден');
 
         return   array('content' => $content);
     }
@@ -145,13 +207,15 @@ public function uploadAction(Request $request)
             $qb->fromRubric($rubric)->whereSlug($slug)->whereEnabled();
         })->getOneOrNullResult();
 
-        if (!$content) throw $this->createNotFoundException('���������� � ����� "' . $slug . '" �� �������');
+        if (!$content) throw $this->createNotFoundException('Объявление с кодом "' . $slug . '" не найдено');
 
         if ($content->getRedirectUrl())
             return $this->redirect($content->getRedirectUrl());
 
+        $fileUploader = $this->get('punk_ave.file_uploader');
+        $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $content->getId()));
 
-        return   array('content' => $content);
+        return   array('content' => $content, 'files' => $files);
 
     }
 

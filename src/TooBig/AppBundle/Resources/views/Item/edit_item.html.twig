@@ -9,7 +9,7 @@
 
 {% block page_header %}
         <div class="page-header">
-            <h1>Добавление объявления в раздел "{{ rubric.title }}"</h1>
+            <h1>Редактирование объявления "{{ posting.title }}"</h1>
         </div>
 {% endblock page_header %}
 
@@ -27,7 +27,7 @@
     {# Underscore templates for the uploader #}
     {% include "TooBigAppBundle:Item\\FileUpload:templates.html.twig" %}
 
-    <form name="Item" class="edit-form form-horizontal" action="{{ path('app_item_add', { rubric_id: rubric.id, editId: editId }) }}" method="post" {{ form_enctype(form) }}>
+    <form name="Item" class="edit-form form-horizontal" action="{{ path('app_item_edit', { item_id: posting.id, editId: editId }) }}" method="post" {{ form_enctype(form) }}>
 
     <div class="form-group control-group">
         <label for="Item_title" class="col-sm-3 control-label">{{ 'Наименование'|trans({}, 'SonataUserBundle') }}</label>

@@ -77,7 +77,7 @@ class ItemForm extends AbstractType
                 ]
             ])
             ->add('price')
-            ->add('redirectToFirstFile')
+            /*->add('redirectToFirstFile', 'hidden')*/
             /*->add('imagesMedia', 'sonata_type_collection', [
                 'required' => true,
                 'by_reference' => false

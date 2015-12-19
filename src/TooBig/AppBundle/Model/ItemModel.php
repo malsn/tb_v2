@@ -19,4 +19,15 @@ class ItemModel extends ContainerAware {
         $em->persist($record);
         $em->flush();
     }
+
+    /**
+     * @param $item_id
+     * @return mixed
+     */
+    public function getItemById($item_id){
+        $item = $this->container->get('doctrine')
+            ->getRepository('TooBigAppBundle:Item')
+            ->find($item_id);
+        return $item;
+    }
 }
