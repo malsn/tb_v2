@@ -63,13 +63,13 @@ class ItemController extends ContentController
                 } catch (\Exception $e) {
                     $this->get('session')->getFlashBag()->add(
                         'notice',
-                        'Your changes were not saved!'
+                        'Your changes were not saved!'.$e->getMessage()
                     );
                 }
             } else {
                 $this->get('session')->getFlashBag()->add(
                     'notice',
-                    'Your changes were not saved!'
+                    'Your changes were not saved!'.$form->getErrors()->next()
                 );
             }
         }
