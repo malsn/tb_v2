@@ -24,61 +24,70 @@ class ItemController extends ContentController
         $record->setRubric($rubric);
         $record->setEnabled(true);
 
-        $form = $this->createForm(
-            new ItemForm($this->get('router')),
-            $record
-        );
+        $user = $this->get("security.context")->getToken()->getUser();
 
-        /* добавление в форму данных загрузчика фотографий */
-        $editId = $request->get('editId');
-        if (!preg_match('/^\d+$/', $editId))
-        {
-            $editId = sprintf('%09d', mt_rand(0, 1999999999));
-            if ($record->getId())
+        if (is_object($user)) {
+
+            $form = $this->createForm(
+                new ItemForm($this->get('router')),
+                $record
+            );
+
+            /* добавление в форму данных загрузчика фотографий */
+            $editId = $request->get('editId');
+            if (!preg_match('/^\d+$/', $editId))
             {
-                $this->get('punk_ave.file_uploader')->syncFiles(
-                    array('from_folder' => 'attachments/' . $record->getId(),
-                        'to_folder' => 'tmp/attachments/' . $editId,
-                        'create_to_folder' => true));
-            }
-        }
-
-        if ($request->isMethod('POST')) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                try {
-                    $this->get('item_model')->save($record);
-                    $fileUploader = $this->get('punk_ave.file_uploader');
-                    $fileUploader->syncFiles(
-                        array('from_folder' => '/tmp/attachments/' . $editId,
-                            'to_folder' => '/attachments/' . $record->getId(),
-                            'remove_from_folder' => true,
+                $editId = sprintf('%09d', mt_rand(0, 1999999999));
+                if ($record->getId())
+                {
+                    $this->get('punk_ave.file_uploader')->syncFiles(
+                        array('from_folder' => 'attachments/' . $record->getId(),
+                            'to_folder' => 'tmp/attachments/' . $editId,
                             'create_to_folder' => true));
+                }
+            }
+
+            if ($request->isMethod('POST')) {
+                $form->handleRequest($request);
+                if ($form->isValid()) {
+                    try {
+                        $this->get('item_model')->save($record);
+                        $fileUploader = $this->get('punk_ave.file_uploader');
+                        $fileUploader->syncFiles(
+                            array('from_folder' => '/tmp/attachments/' . $editId,
+                                'to_folder' => '/attachments/' . $record->getId(),
+                                'remove_from_folder' => true,
+                                'create_to_folder' => true));
+                        $this->get('session')->getFlashBag()->add(
+                            'notice',
+                            'Ваше объявление успешно добавлено, оно будет опубликовано после одобрения модератором. Спасибо!'
+                        );
+                        return $this->redirect($this->generateUrl('app_item_edit',['item_id' => $record->getId()]));
+                    } catch (\Exception $e) {
+                        $this->get('session')->getFlashBag()->add(
+                            'notice',
+                            'Your changes were not saved!'.$e->getMessage()
+                        );
+                    }
+                } else {
                     $this->get('session')->getFlashBag()->add(
                         'notice',
-                        'Ваше объявление успешно добавлено, оно будет опубликовано после одобрения модератором. Спасибо!'
-                    );
-                    return $this->redirect($this->generateUrl('app_item_edit',['item_id' => $record->getId()]));
-                } catch (\Exception $e) {
-                    $this->get('session')->getFlashBag()->add(
-                        'notice',
-                        'Your changes were not saved!'.$e->getMessage()
+                        'Your changes were not saved!'.$form->getErrors()->next()
                     );
                 }
-            } else {
-                $this->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Your changes were not saved!'.$form->getErrors()->next()
-                );
             }
+            $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
+            return $this->render('TooBigAppBundle:Item:add_item.html.twig', [
+                'rubric' => $rubric,
+                'form' => $form->createView(),
+                'posting' => $record,
+                'editId' => $editId,
+                'existingFiles' => $existingFiles ]);
+        } else {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
-        $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
-        return $this->render('TooBigAppBundle:Item:add_item.html.twig', [
-            'rubric' => $rubric,
-            'form' => $form->createView(),
-            'posting' => $record,
-            'editId' => $editId,
-            'existingFiles' => $existingFiles ]);
+
+
     }
 
 /**
@@ -93,57 +102,115 @@ public function editAction($item_id, Request $request)
         $record
     );
 
-    /* добавление в форму данных загрузчика фотографий */
-    $editId = $request->get('editId');
-    if (!preg_match('/^\d+$/', $editId))
-    {
-        $editId = sprintf('%09d', mt_rand(0, 1999999999));
-        if ($record->getId())
-        {
-            $this->get('punk_ave.file_uploader')->syncFiles(
-                array('from_folder' => 'attachments/' . $record->getId(),
-                    'to_folder' => 'tmp/attachments/' . $editId,
-                    'create_to_folder' => true));
-        }
-    }
+    $user = $this->get("security.context")->getToken()->getUser();
 
-    if ($request->isMethod('POST')) {
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            try {
-                $this->get('item_model')->save($record);
-                $fileUploader = $this->get('punk_ave.file_uploader');
-                $fileUploader->syncFiles(
-                    array('from_folder' => '/tmp/attachments/' . $editId,
-                        'to_folder' => '/attachments/' . $record->getId(),
-                        'remove_from_folder' => true,
-                        'create_to_folder' => true));
-                $this->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!'
-                );
-                //return $this->render('TooBigAppBundle:Item:item.html.twig', ['content'=>$record]);
-            } catch (\Exception $e) {
-                $this->get('session')->getFlashBag()->add(
-                    'notice',
-                    'Your changes were not saved!'.$e->getMessage()
-                );
+    if (is_object($user)) {
+
+        if ( $user === $record->getCreatedBy()){
+
+            /* добавление в форму данных загрузчика фотографий */
+            $editId = $request->get('editId');
+            if (!preg_match('/^\d+$/', $editId))
+            {
+                $editId = sprintf('%09d', mt_rand(0, 1999999999));
+                if ($record->getId())
+                {
+                    $this->get('punk_ave.file_uploader')->syncFiles(
+                        array('from_folder' => 'attachments/' . $record->getId(),
+                            'to_folder' => 'tmp/attachments/' . $editId,
+                            'create_to_folder' => true));
+                }
             }
-        } else {
+
+            if ($request->isMethod('POST')) {
+                $form->handleRequest($request);
+                if ($form->isValid()) {
+                    try {
+                        $this->get('item_model')->save($record);
+                        $fileUploader = $this->get('punk_ave.file_uploader');
+                        $fileUploader->syncFiles(
+                            array('from_folder' => '/tmp/attachments/' . $editId,
+                                'to_folder' => '/attachments/' . $record->getId(),
+                                'remove_from_folder' => true,
+                                'create_to_folder' => true));
+                        $this->get('session')->getFlashBag()->add(
+                            'notice',
+                            'Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!'
+                        );
+                        //return $this->render('TooBigAppBundle:Item:item.html.twig', ['content'=>$record]);
+                    } catch (\Exception $e) {
+                        $this->get('session')->getFlashBag()->add(
+                            'notice',
+                            'Your changes were not saved!'.$e->getMessage()
+                        );
+                    }
+                } else {
+                    $this->get('session')->getFlashBag()->add(
+                        'notice',
+                        'Your changes were not saved! Form validation error!'.$form->getErrors()->next()
+                    );
+                }
+            }
+            $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
+            if ( count($existingFiles) === 0 ) { $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'attachments/' . $record->getId())); }
+            return $this->render('TooBigAppBundle:Item:edit_item.html.twig', [
+                'rubric' => $rubric,
+                'form' => $form->createView(),
+                'posting' => $record,
+                'editId' => $editId,
+                'existingFiles' => $existingFiles ]);
+
+    } else {
             $this->get('session')->getFlashBag()->add(
                 'notice',
-                'Your changes were not saved! Form validation error!'.$form->getErrors()->next()
+                '<div>Данное объявление создано не вами. Желаете создать объявление на основе текущего?</div>
+                 <a class="btn btn-success" href="'.$this->generateUrl('app_item_copy', ['item_id' => $record->getId()]).'">Да</a>
+                 <a class="btn btn-warning" href="'.$rubric->getFullPath().$record->getSlug().'">Нет</a>'
             );
+            $fileUploader = $this->get('punk_ave.file_uploader');
+            $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
+            return $this->render( 'TooBigAppBundle:Item:item.html.twig', [ 'content' => $record, 'files' => $files ]);
         }
+
+    } else {
+        return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
-    $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
-    if ( count($existingFiles) === 0 ) { $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'attachments/' . $record->getId())); }
-    return $this->render('TooBigAppBundle:Item:edit_item.html.twig', [
-        'rubric' => $rubric,
-        'form' => $form->createView(),
-        'posting' => $record,
-        'editId' => $editId,
-        'existingFiles' => $existingFiles ]);
+}
+/**
+ * @Route("/app/item/{item_id}/copy", name="app_item_copy")
+ */
+public function copyAction($item_id, Request $request)
+{
+    $record = $this->get('item_model')->getItemById($item_id);
+    $copy = $this->get('item_model')->makeCopy($record);
+    $rubric = $copy->getRubric();
+
+    $user = $this->get("security.context")->getToken()->getUser();
+
+    if (is_object($user)) {
+
+        $form = $this->createForm(
+            new ItemForm($this->get('router')),
+            $copy
+        );
+
+        /* добавление в форму данных загрузчика фотографий */
+        $editId = $request->get('editId');
+        if (!preg_match('/^\d+$/', $editId))
+        {
+            $editId = sprintf('%09d', mt_rand(0, 1999999999));
+        }
+
+        return $this->render('TooBigAppBundle:Item:add_item.html.twig', [
+            'rubric' => $rubric,
+            'form' => $form->createView(),
+            'posting' => $copy,
+            'editId' => $editId
+             ]);
+
+    } else {
+        return $this->redirect($this->generateUrl('fos_user_security_login'));
+    }
 }
 
 /**

@@ -41,8 +41,15 @@
     <h1>{{ content }}
         <small>{{ content.abstract}}</small>
     </h1>
-    <a class="btn btn-success" href="{{ path('app_item_add', {'rubric_id': content.rubric.id}) }}">Добавить объявление</a> в раздел "{{ content.rubric.parent }} > {{ content.rubric.title }}"
+    <a class="btn btn-success" href="{{ path('app_item_add', {'rubric_id': content.rubric.id}) }}">Добавить объявление</a> в раздел "<a href="{{ entitypath(content.rubric.parent) }}">{{ content.rubric.parent }}</a> > <a href="{{ entitypath(content.rubric) }}">{{ content.rubric.title }}</a>"
     или <a class="btn btn-success" href="{{ path('app_item_edit', {'item_id': content.id}) }}">Редакировать это объявление</a>
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+
+        {{ flashMessage | raw }}
+
+    {% endfor %}
+
 </div>
 {% else %}
 {{ parent() }}

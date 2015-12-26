@@ -6,6 +6,10 @@ use TooBig\AppBundle\Entity\Item;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
+/**
+ * Class ItemModel
+ * @package TooBig\AppBundle\Model
+ */
 class ItemModel extends ContainerAware {
     /**
      * @param Item $record
@@ -18,6 +22,29 @@ class ItemModel extends ContainerAware {
         $em = $this->container->get('doctrine.orm.entity_manager');
         $em->persist($record);
         $em->flush();
+    }
+
+    /**
+     * @param Item $record
+     * @return Item
+     */
+    public function makeCopy(Item $record){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $copy = new Item();
+        $copy->setCreatedBy($user);
+        $copy->setUpdatedBy($user);
+        $copy->setEnabled(false);
+        $copy->setTitle($record->getTitle());
+        $copy->setRubric($record->getRubric());
+        $copy->setColor($record->getColor());
+        $copy->setAbstract($record->getAbstract());
+        $copy->setContent($record->getContent());
+        $copy->setGender($record->getGender());
+        $copy->setBrand($record->getBrand());
+        $copy->setModel($record->getModel());
+        $copy->setSizeType($record->getSizeType());
+        $copy->setSize($record->getSize());
+        return $copy;
     }
 
     /**
