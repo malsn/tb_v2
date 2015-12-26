@@ -77,6 +77,9 @@
         <one-to-many field="rateComments" target-entity="TooBig\AppBundle\Entity\RateComment" mapped-by="item">
             <cascade><cascade-persist/></cascade>
         </one-to-many>
+        <one-to-many field="blueimpImages" target-entity="TooBig\AppBundle\Entity\ItemBlueimp" mapped-by="item">
+            <cascade><cascade-persist/></cascade>
+        </one-to-many>
 
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="prePersist"/>

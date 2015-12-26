@@ -90,6 +90,12 @@ class Item extends BaseItem
      */
     protected $rateComments;
 
+    /**
+     * @var ItemBlueimp[]
+     */
+    protected $blueimpImages;
+
+
     public function __construct()
     {
         parent::__construct();
