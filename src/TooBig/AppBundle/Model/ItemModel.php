@@ -2,6 +2,7 @@
 
 namespace TooBig\AppBundle\Model;
 
+use Sonata\UserBundle\Model\UserInterface;
 use TooBig\AppBundle\Entity\Item;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -56,5 +57,19 @@ class ItemModel extends ContainerAware {
             ->getRepository('TooBigAppBundle:Item')
             ->find($item_id);
         return $item;
+    }
+
+    /**
+     * @param $user
+     * @return array
+     */
+    public function getItemsByUser(UserInterface $user){
+        $items = $this->container->get('doctrine')
+            ->getRepository('TooBigAppBundle:Item')
+            ->findBy(
+                ['createdBy'=>$user],
+                ['createdAt'=>'DESC']
+            );
+        return $items;
     }
 }

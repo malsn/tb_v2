@@ -100,6 +100,7 @@ class Item extends BaseItem
     {
         parent::__construct();
         $this->rateComments = new ArrayCollection();
+        $this->blueimpImages = new ArrayCollection();
     }
 
     /**
@@ -287,6 +288,23 @@ class Item extends BaseItem
     {
         $this->gender = $gender;
     }
+
+    /**
+     * @return ItemBlueimp[]
+     */
+    public function getBlueimpImages()
+    {
+        return $this->blueimpImages;
+    }
+
+    /**
+     * @param ItemBlueimp[] $blueimpImages
+     */
+    public function setBlueimpImages($blueimpImages)
+    {
+        $this->blueimpImages = $blueimpImages;
+    }
+
 
 
 

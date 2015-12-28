@@ -275,7 +275,7 @@ public function uploadAction(Request $request)
         });
 
 
-        return  array('entities' => $this->paginate($query, 20));
+        return array('entities' => $this->paginate($query, 20));
     }
 
     /**

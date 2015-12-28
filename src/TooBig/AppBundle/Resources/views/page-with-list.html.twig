@@ -27,8 +27,8 @@
         {% block entity_list_entry_image  %}
             {% if entity.imagesMedia | length %}
                 <dt><a href="{{ entitypath(entity) }}" target="_blank"><img src="{% path entity.imagesMedia[0].media, 'preview' %}" class="img-polaroid"></a></dt>
-            {% elseif (files is defined) and files | length %}
-                <dt><a href="{{ entitypath(entity) }}" target="_blank"><img src="/uploads/attachments/{{ entity.id }}/small/{{ files[0] }}" class="img-polaroid"></a></dt>
+            {% elseif (entity.blueimpImages is defined) and entity.blueimpImages | length %}
+                <dt><a href="{{ entitypath(entity) }}" target="_blank"><img src="/uploads/attachments/{{ entity.id }}/small/{{ entity.blueimpImages[0].name }}" class="img-polaroid"></a></dt>
             {% endif %}
         {% endblock entity_list_entry_image  %}
 
