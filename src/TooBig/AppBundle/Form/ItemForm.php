@@ -76,6 +76,7 @@ class ItemForm extends AbstractType
                     'disabled'=>''
                 ]
             ])
+            ->add('content', 'ckeditor')
             ->add('price')
             /*->add('redirectToFirstFile', 'hidden')*/
             /*->add('imagesMedia', 'sonata_type_collection', [
