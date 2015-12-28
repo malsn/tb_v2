@@ -63,14 +63,12 @@ class ItemController extends ContentController
                             'Ваше объявление успешно добавлено, оно будет опубликовано после одобрения модератором. Спасибо!'
                         );
 
-                        /* TODO file insert */
+                        /* blueimp file insert */
 
                         $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
                         foreach ($files as $key => $file_name) {
                             $this->get('blueimp_model')->createFile( $record, $file_name );
                         }
-
-                        /* TODO file insert */
 
                         return $this->redirect($this->generateUrl('app_item_edit',['item_id' => $record->getId()]));
                     } catch (\Exception $e) {
@@ -147,7 +145,15 @@ public function editAction($item_id, Request $request)
                             'notice',
                             'Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!'
                         );
-                        /* TODO file insert or update */
+
+                        /* blueimp new file insert or update */
+
+                        $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
+                        foreach ($files as $key => $file_name) {
+                            if (!is_object( $this->get('blueimp_model')->getFileByItemName($record, $file_name) ))
+                                $this->get('blueimp_model')->createFile( $record, $file_name );
+                        }
+
                     } catch (\Exception $e) {
                         $this->get('session')->getFlashBag()->add(
                             'notice',
