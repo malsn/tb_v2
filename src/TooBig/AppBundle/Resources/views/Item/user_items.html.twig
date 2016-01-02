@@ -29,7 +29,7 @@
                             {% if entity.imagesMedia | length %}
                                <a href="{{ path('app_item_edit', {'item_id': entity.id}) }}"><img src="{% path entity.imagesMedia[0].media, 'small' %}"></a>
                             {% elseif (entity.blueimpImages is defined) and entity.blueimpImages | length %}
-                               <a href="{{ path('app_item_edit', {'item_id': entity.id}) }}"><img src="/uploads/attachments/{{ entity.id }}/thumbnails/{{ entity.blueimpImages[0].name }}" class="img-polaroid"></a>
+                               <a href="{{ path('app_item_edit', {'item_id': entity.id}) }}"><img src="/uploads/attachments/{{ entity.id }}/thumbnails/{{ entity.blueimpImages[0].name }}"></a>
                             {% endif %}
                         {% endblock entity_list_entry_image  %}
                         </div>
