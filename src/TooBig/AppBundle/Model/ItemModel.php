@@ -60,10 +60,10 @@ class ItemModel extends ContainerAware {
     }
 
     /**
-     * @param $user
      * @return array
      */
-    public function getItemsByUser(UserInterface $user){
+    public function getItemsByUser(){
+        $user = $this->container->get('security.context')->getToken()->getUser();
         $items = $this->container->get('doctrine')
             ->getRepository('TooBigAppBundle:Item')
             ->findBy(

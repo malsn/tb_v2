@@ -7,6 +7,9 @@ app_item_edit:
 app_item_copy:
     path:     /app/item/{item_id}/copy
     defaults: { _controller: TooBigAppBundle:Item:copy }
+app_list_user_items:
+    path:     /app/items/list
+    defaults: { _controller: TooBigAppBundle:Item:listUserItems }
 app_file_upload:
     path:     /app/file/upload/
     defaults: { _controller: TooBigAppBundle:Item:upload }

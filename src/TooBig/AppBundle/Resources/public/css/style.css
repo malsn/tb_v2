@@ -3,6 +3,9 @@
 div.list-group > ul > li { list-style: none; }
 img.img-polaroid { width: 200px; height: auto; }
 
+div#my-item-list div.row.item { min-height: 100px; padding: 5px 0; }
+div#my-item-list div.row.item:nth-child(odd) { background-color: #eeeeee; }
+
 /*ShopItem*/
 .shopitem-div { padding: 10px 30px; }
 .shopitem-img-msg-div { float: left; max-width: 20%; }

@@ -230,6 +230,19 @@ public function copyAction($item_id, Request $request)
 }
 
 /**
+ * @Template("TooBigAppBundle:Item:user_items.html.twig")
+ */
+public function listUserItemsAction (){
+
+    $user = $this->container->get('security.context')->getToken()->getUser();
+    $query = $this->getRepository()->createQuery('c', function ($qb) use ($user)
+    {
+        $qb->whereCreatedBy($user);
+    });
+    $k = array('entities' => $this->paginate($query, 20));
+    return array('entities' => $this->paginate($query, 20));
+}
+/**
  *
  * @Route("/app/file/upload", name="app_file_upload")
  * @Template()
