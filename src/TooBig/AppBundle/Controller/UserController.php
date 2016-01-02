@@ -65,6 +65,15 @@ class UserController extends Controller
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $this->get('fos_user.user_manager')->updateUser($user);
+                $this->get('fos_user.user_manager')->reloadUser($user);
+                $this->setFlash(
+                    'notice',
+                    'Ваши данные успешно обновлены!');
+            } else {
+                $this->setFlash(
+                    'notice',
+                    'Произошла ошибка при обновлении данных!'.$form->getErrors()->next()
+                );
             }
         }
 
