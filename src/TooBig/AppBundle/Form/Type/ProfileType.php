@@ -13,6 +13,8 @@
 namespace TooBig\AppBundle\Form\Type;
 
 use Sonata\UserBundle\Model\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -83,7 +85,7 @@ class ProfileType extends AbstractType
             ))
             ->add('email', null, array(
                 'label'    => 'form.label_email',
-                'required' => false,
+                'required' => true,
             ))
             ->add(
                 'save',
@@ -115,6 +117,7 @@ class ProfileType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => $this->class,
+            'cascade_validation' => true,
         ));
     }
 

@@ -70,6 +70,11 @@
     </div>
 
     <div class="form-group control-group">
+        <label for="Item_content" class="col-sm-3 control-label">{{ 'Описание'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.content, {'attr': {'class':'form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
         <label for="Item_price" class="col-sm-3 control-label">{{ 'Стоимость'|trans({}, 'SonataUserBundle') }}</label>
         <div class="col-sm-9">{{ form_widget(form.price, {'attr': {'class':'form-control'}}) }}</div>
     </div>
