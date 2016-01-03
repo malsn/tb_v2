@@ -22,30 +22,40 @@
 
 {% if entity.enabled %}
     {% block entity_list_entry %}
-    <dl>
+    <div class="item">
 
         {% block entity_list_entry_image  %}
             {% if entity.imagesMedia | length %}
-                <dt><a href="{{ entitypath(entity) }}" target="_blank"><img src="{% path entity.imagesMedia[0].media, 'preview' %}" class="img-polaroid"></a></dt>
+                <div class="item-img"><a href="{{ entitypath(entity) }}" target="_blank"><img src="{% path entity.imagesMedia[0].media, 'preview' %}" class="img-polaroid"></a></div>
             {% elseif (entity.blueimpImages is defined) and entity.blueimpImages | length %}
-                <dt><a href="{{ entitypath(entity) }}" target="_blank"><img src="/uploads/attachments/{{ entity.id }}/small/{{ entity.blueimpImages[0].name }}" class="img-polaroid"></a></dt>
+                <div class="item-img"><a href="{{ entitypath(entity) }}" target="_blank"><img src="/uploads/attachments/{{ entity.id }}/small/{{ entity.blueimpImages[0].name }}" class="img-polaroid"></a></div>
             {% endif %}
         {% endblock entity_list_entry_image  %}
 
         {% block entity_list_entry_title  %}
-        <dt><a href="{{ entitypath(entity) }}">{{ entity }}</a></dt>
+            <div class="item-title"><a href="{{ entitypath(entity) }}">{{ entity }}</a></div>
         {% endblock entity_list_entry_title  %}
 
+        {% block entity_list_entry_brand  %}
+            <div class="item-brand">{{ entity.brand }}</div>
+        {% endblock entity_list_entry_brand  %}
 
         {% block entity_list_entry_announce  %}
-        <dd>
+        <div class="item-announce">
              {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
              {{ entity.description is defined ? entity.description | raw : '' }}
              {{ entity.announce is defined ? entity.announce | raw : '' }}
-             Цена: {{ entity.price is defined ? entity.price | raw : '0' }} руб.
-        </dd>
+             {{ entity.size is defined ? 'Размер: ' ~ entity.size | raw : '' }}
+        </div>
         {% endblock entity_list_entry_announce  %}
-    </dl>
+
+        {% block entity_list_entry_price  %}
+            <div class="item-price">
+                Цена: {{ entity.price is defined ? entity.price | raw : '0' }} руб.
+            </div>
+        {% endblock entity_list_entry_price  %}
+
+    </div>
     {% endblock entity_list_entry%}
 {% endif %}
 

@@ -3,8 +3,59 @@
 div.list-group > ul > li { list-style: none; }
 img.img-polaroid { width: 200px; height: auto; }
 
+/* My items */
 div#my-item-list div.row.item { min-height: 100px; padding: 5px 0; }
 div#my-item-list div.row.item:nth-child(odd) { background-color: #eeeeee; }
+
+/* catalog item */
+div.item {
+    display: inline-block;
+    vertical-align: top;
+    width: 236px;
+    margin: 0 10px 35px 0;
+    position: relative;
+}
+div.item-img img {
+    display: block;
+    width: 236px;
+    height: auto;
+}
+div.item-brand {
+    color: #333;
+    margin: 13px 0 0;
+    position: relative;
+    z-index: 1;
+}
+div.item-type {
+    color: #aaa;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 2px;
+}
+div.item-price {
+    position: relative;
+    z-index: 1;
+    color: #222;
+}
+div.announce {
+    border: 1px solid #d6d6d6;
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);
+}
+div.announce {
+    padding-bottom: 14px;
+}
+div.announce {
+    z-index: 1;
+    position: absolute;
+    line-height: 17px;
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    padding: 0 10px 7px;
+    border: 1px solid #D8D8D8;
+    box-shadow: 0 1px 8px rgba(0,0,0,.25);
+    background: #fff;
+}
 
 /*ShopItem*/
 .shopitem-div { padding: 10px 30px; }
