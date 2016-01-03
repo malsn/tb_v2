@@ -8,7 +8,7 @@ div#my-item-list div.row.item { min-height: 100px; padding: 5px 0; }
 div#my-item-list div.row.item:nth-child(odd) { background-color: #eeeeee; }
 
 /* catalog item */
-div.item {
+div.c-item {
     display: inline-block;
     vertical-align: top;
     width: 236px;
