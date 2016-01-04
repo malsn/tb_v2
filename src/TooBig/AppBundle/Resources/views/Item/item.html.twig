@@ -26,11 +26,10 @@
         });
     </script>
 
-{% endblock %}
+{% endblock javascripts %}
 
 {% block stylesheets %}
-    <link href="/bundles/iphpcore/bootstrap/3.3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/bundles/toobigapp/css/style.css" rel="stylesheet">
+    {{ parent() }}
     <link href="/bundles/toobigapp/css/jqzoom.css" rel="stylesheet">
 {% endblock stylesheets %}
 
@@ -70,102 +69,99 @@
 {% endif %}
 {% endblock #}
 
+<div class="item-group">
+    <div class="col-sm-3">
+        {% block content_images  %}
 
-{% block content_content %}
-{{ content.content|raw}}
+            {%  if content.imagesMedia | length %}
 
-    {% block content_price %}
-    {% if content.price %}
-      {{ content.price }} рублей.
-    {% endif %}
-    {% endblock content_price %}
-
-{% endblock content_content %}
-
-
-
-{% block content_images  %}
-
-    {%  if content.imagesMedia | length %}
-
-    <div class="shopitem-img-div">
-        <div class="clearfix">
-            <a class="jqzoom" rel='gal1' title="triumph" href="{% path content.imagesMedia[0].media, 'reference' %}" rel="{{ content.imagesMedia[0].id }}">
-                <img class="shopitem-img-main" src="{% path content.imagesMedia[0].media, 'preview' %}"/>
-            </a>
-        </div>
-    </div>
-    <div class="shopitem-img-list-div">
-        <ul id="thumblist" class="clearfix">
-            {% for image in content.imagesMedia  if image.media %}
-                <li>
-                    <a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '{% path image.media, 'preview' %}',largeimage: '{% path image.media, 'reference' %}'}">
-                        <img border="0" src="{% path image.media, 'small' %}"/>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    {% endif %}
-
-    {%  if files | length %}
-
-        <div class="shopitem-img-div">
-            <div class="clearfix">
-                <a class="jqzoom" rel='gal1' title="triumph" href="/uploads/attachments/{{ content.id }}/originals/{{ files[0] }}" rel="{{ files[0] }}">
-                    <img class="shopitem-img-main" src="/uploads/attachments/{{ content.id }}/small/{{ files[0] }}"/>
-                </a>
-            </div>
-        </div>
-        <div class="shopitem-img-list-div">
-            <ul id="thumblist" class="clearfix">
-                {% for file in files %}
-                    <li>
-                        <a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '/uploads/attachments/{{ content.id }}/small/{{ file }}',largeimage: '/uploads/attachments/{{ content.id }}/originals/{{ file }}'}">
-                            <img border="0" src="/uploads/attachments/{{ content.id }}/thumbnails/{{ file }}"/>
+                <div class="shopitem-img-div">
+                    <div class="clearfix">
+                        <a class="jqzoom" rel='gal1' title="triumph" href="{% path content.imagesMedia[0].media, 'reference' %}" rel="{{ content.imagesMedia[0].id }}">
+                            <img class="shopitem-img-main" src="{% path content.imagesMedia[0].media, 'preview' %}"/>
                         </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+                    </div>
+                </div>
+                <div class="shopitem-img-list-div">
+                    <ul id="thumblist" class="clearfix">
+                        {% for image in content.imagesMedia  if image.media %}
+                            <li>
+                                <a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '{% path image.media, 'preview' %}',largeimage: '{% path image.media, 'reference' %}'}">
+                                    <img border="0" src="{% path image.media, 'small' %}"/>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
 
-    {% endif %}
+            {% endif %}
 
-{% endblock content_images %}
+            {%  if files | length %}
 
+                <div class="shopitem-img-div">
+                    <div class="clearfix">
+                        <a class="jqzoom" rel='gal1' title="triumph" href="/uploads/attachments/{{ content.id }}/originals/{{ files[0] }}" rel="{{ files[0] }}">
+                            <img class="shopitem-img-main" src="/uploads/attachments/{{ content.id }}/small/{{ files[0] }}"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="shopitem-img-list-div">
+                    <ul id="thumblist" class="clearfix">
+                        {% for file in files %}
+                            <li>
+                                <a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '/uploads/attachments/{{ content.id }}/small/{{ file }}',largeimage: '/uploads/attachments/{{ content.id }}/originals/{{ file }}'}">
+                                    <img border="0" src="/uploads/attachments/{{ content.id }}/thumbnails/{{ file }}"/>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
 
-{% if content.links| length %}
-{% block content_links %}
-<h3>Ссылки</h3>
+            {% endif %}
 
-<ul>
-    {% for link in content.links %}
-    {% block content_link %}
-    <li><a target="_blank" href="{{ link.url }}">{{ link.title}}</a></li>
-    {% endblock content_link %}
-    {% endfor %}
-</ul>
-{% endblock content_links %}
-{% endif %}
+        {% endblock content_images %}
+    </div>
+    <div class="col-sm-9">
+        {% block content_content %}
+            {{ content.content|raw}}
 
+            {% block content_price %}
+                {% if content.price %}
+                    {{ content.price }} рублей.
+                {% endif %}
+            {% endblock content_price %}
 
+        {% endblock content_content %}
 
+        {% if content.links| length %}
+            {% block content_links %}
+                <h3>Ссылки</h3>
 
-{# if content.publishedFiles| length %}
-{% block content_files %}
- <h3>Файлы</h3>
+                <ul>
+                    {% for link in content.links %}
+                        {% block content_link %}
+                            <li><a target="_blank" href="{{ link.url }}">{{ link.title}}</a></li>
+                        {% endblock content_link %}
+                    {% endfor %}
+                </ul>
+            {% endblock content_links %}
+        {% endif %}
 
- <ul>
-     {% for file in content.publishedFiles %}
-     {% block content_file %}
-     <li><a target="_blank" href="{{ file.file.path }}">{{ file }}</a></li>
-     {% endblock content_file %}
-     {% endfor %}
- </ul>
-{% endblock content_files %}
-{% endif #}
+        {# if content.publishedFiles| length %}
+        {% block content_files %}
+         <h3>Файлы</h3>
 
+         <ul>
+             {% for file in content.publishedFiles %}
+             {% block content_file %}
+             <li><a target="_blank" href="{{ file.file.path }}">{{ file }}</a></li>
+             {% endblock content_file %}
+             {% endfor %}
+         </ul>
+        {% endblock content_files %}
+        {% endif #}
+    </div>
+</div>
 
 {% endif %}
 {% endblock page_body %}

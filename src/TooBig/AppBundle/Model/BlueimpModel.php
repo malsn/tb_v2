@@ -35,7 +35,7 @@ class BlueimpModel extends ContainerAware {
         'DELETE
          FROM TooBigAppBundle:ItemBlueimp ib
          WHERE ib.item = :item_id')->setParameter('item_id', $item->getId());
-        return $query->getResult();
+        $query->getResult();
     }
 
     /**

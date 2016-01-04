@@ -146,7 +146,7 @@ public function editAction($item_id, Request $request)
                             'Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!'
                         );
 
-                        /* blueimp new file insert or update */
+                        /* blueimp new file insert or update ( delete old files and create new ) */
 
                         $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
                         if (count($files)!=0) {
