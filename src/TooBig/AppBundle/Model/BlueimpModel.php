@@ -27,6 +27,18 @@ class BlueimpModel extends ContainerAware {
     }
 
     /**
+     * @param Item $item
+     */
+    public function deleteItemFiles( Item $item ){
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $query = $em->createQuery(
+        'DELETE
+         FROM TooBigAppBundle:ItemBlueimp ib
+         WHERE ib.item = :item_id')->setParameter('item_id', $item->getId());
+        return $query->getResult();
+    }
+
+    /**
      * @param $item
      * @param $name
      * @return ItemBlueimp
@@ -34,7 +46,7 @@ class BlueimpModel extends ContainerAware {
     public function getFileByItemName($item, $name){
         $file = $this->container->get('doctrine')
             ->getRepository('TooBigAppBundle:ItemBlueimp')
-            ->findOneBy([ "item" => $item, "name" => $name ]);
+            ->findOneBy([ 'item' => $item, 'name' => $name ]);
         return $file;
     }
 }

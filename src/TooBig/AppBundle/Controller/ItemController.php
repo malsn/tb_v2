@@ -149,6 +149,9 @@ public function editAction($item_id, Request $request)
                         /* blueimp new file insert or update */
 
                         $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
+                        if (count($files)!=0) {
+                            $this->get('blueimp_model')->deleteItemFiles( $record );
+                        }
                         foreach ($files as $key => $file_name) {
                             if (!is_object( $this->get('blueimp_model')->getFileByItemName($record, $file_name) ))
                                 $this->get('blueimp_model')->createFile( $record, $file_name );
