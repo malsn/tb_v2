@@ -70,7 +70,7 @@
 {% endblock #}
 
 <div class="item-group">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         {% block content_images  %}
 
             {%  if content.imagesMedia | length %}
@@ -121,7 +121,7 @@
 
         {% endblock content_images %}
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-8">
         {% block content_content %}
             {{ content.content|raw}}
 
