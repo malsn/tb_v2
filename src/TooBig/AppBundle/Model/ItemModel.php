@@ -6,6 +6,7 @@ use Sonata\UserBundle\Model\UserInterface;
 use TooBig\AppBundle\Entity\Item;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use TooBig\AppBundle\Entity\ItemSubscribtion;
 
 /**
  * Class ItemModel
@@ -23,6 +24,23 @@ class ItemModel extends ContainerAware {
         $em = $this->container->get('doctrine.orm.entity_manager');
         $em->persist($record);
         $em->flush();
+    }
+
+    /**
+     * @param int $item_id
+     */
+    public function watch( $item_id ){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $record = $this->getItemById($item_id);
+        $watch_item = new ItemSubscribtion();
+        $watch_item->setUser($user);
+        $watch_item->setItem($record);
+        $watch_item->setCreatedAt(new \DateTime());
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $em->persist($watch_item);
+        $em->flush();
+
+        return $watch_item->getId();
     }
 
     /**

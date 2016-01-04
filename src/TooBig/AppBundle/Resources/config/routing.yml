@@ -7,6 +7,9 @@ app_item_edit:
 app_item_copy:
     path:     /app/item/{item_id}/copy
     defaults: { _controller: TooBigAppBundle:Item:copy }
+app_item_watch:
+    path:     /app/item/{item_id}/watch
+    defaults: { _controller: TooBigAppBundle:Item:watch }
 app_list_user_items:
     path:     /app/items/list
     defaults: { _controller: TooBigAppBundle:Item:listUserItems }

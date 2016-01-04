@@ -120,6 +120,10 @@
             {% endif %}
 
         {% endblock content_images %}
+
+        {% block watch_item %}
+            <a class="btn btn-warning" href="{{ path('app_item_watch', {'item_id': content.id}) }}">Подписаться на обновление</a>
+        {% endblock watch_item %}
     </div>
     <div class="col-sm-8">
         {% block content_content %}

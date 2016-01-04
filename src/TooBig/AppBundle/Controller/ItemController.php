@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use TooBig\AppBundle\Form\ItemForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -195,6 +196,25 @@ public function editAction($item_id, Request $request)
         return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
 }
+
+    /**
+     * @param $item_id
+     * response JsonResponse
+     */
+    public function watchAction( $item_id )
+    {
+        $response = new JsonResponse();
+        $watch_id = $this->get('item_model')->watch($item_id);
+        if (is_int( $watch_id )){
+            $response->setData(array(
+                'watch_id' => $watch_id
+            ));
+        }
+
+        $response->setData([]);
+
+        return $response;
+    }
 /**
  * @Route("/app/item/{item_id}/copy", name="app_item_copy")
  */
@@ -242,7 +262,6 @@ public function listUserItemsAction (){
     {
         $qb->whereCreatedBy($user);
     });
-    $k = array('entities' => $this->paginate($query, 20));
     return array('entities' => $this->paginate($query, 20));
 }
 /**
