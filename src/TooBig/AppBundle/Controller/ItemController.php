@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use TooBig\AppBundle\Form\ItemForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use TooBig\AppBundle\Model\ItemSubscribtionModel;
 
 class ItemController extends ContentController
 {
@@ -197,24 +198,54 @@ public function editAction($item_id, Request $request)
     }
 }
 
-    /**
-     * @param $item_id
-     * response JsonResponse
-     */
-    public function watchAction( $item_id )
-    {
-        $response = new JsonResponse();
-        $watch_id = $this->get('item_model')->watch($item_id);
-        if (is_int( $watch_id )){
-            $response->setData(array(
-                'watch_id' => $watch_id
-            ));
-        }
-
-        $response->setData([]);
-
-        return $response;
+/**
+ * @param $item_id
+ * response JsonResponse
+ */
+public function watchAction( $item_id )
+{
+    $response = new JsonResponse();
+    $watch = $this->get('item_subscribtion_model')->watch($item_id);
+    $watch_id = $watch->getId();
+    if (is_int( $watch_id )){
+        $response->setData(array(
+            'path' => $this->generateUrl('app_item_unwatch', array('item_id' => $item_id)),
+            'caption' => 'Отписаться от обновлений'
+        ));
+    } else {
+        $response->setData(array(
+            'path' => $this->generateUrl('app_item_watch', array('item_id' => $item_id)),
+            'error' => 'Невозможно выполнить операцию, повторите позже.',
+            'caption' => 'Подписаться на обновления'
+        ));
     }
+
+    return $response;
+}
+
+/**
+ * @param $item_id
+ * response JsonResponse
+ */
+public function unwatchAction( $item_id )
+{
+    $response = new JsonResponse();
+    $watch = $this->get('item_subscribtion_model')->unwatch($item_id);
+    if (!is_null( $watch )){
+        $response->setData(array(
+            'path' => $this->generateUrl('app_item_unwatch', array('item_id' => $item_id)),
+            'error' => 'Невозможно выполнить операцию, повторите позже.',
+            'caption' => 'Отписаться от обновлений'
+        ));
+    } else {
+        $response->setData(array(
+            'path' => $this->generateUrl('app_item_watch', array('item_id' => $item_id)),
+            'caption' => 'Подписаться на обновления'
+        ));
+    }
+
+    return $response;
+}
 /**
  * @Route("/app/item/{item_id}/copy", name="app_item_copy")
  */
@@ -332,7 +363,9 @@ public function uploadAction(Request $request)
         $fileUploader = $this->get('punk_ave.file_uploader');
         $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $content->getId()));
 
-        return   array('content' => $content, 'files' => $files);
+        $watch = $this->get('item_subscribtion_model')->getWatchByItem( $content->getId() );
+
+        return array('content' => $content, 'files' => $files, 'watch_item' => $watch );
 
     }
 

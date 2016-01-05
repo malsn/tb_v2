@@ -27,23 +27,6 @@ class ItemModel extends ContainerAware {
     }
 
     /**
-     * @param int $item_id
-     */
-    public function watch( $item_id ){
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        $record = $this->getItemById($item_id);
-        $watch_item = new ItemSubscribtion();
-        $watch_item->setUser($user);
-        $watch_item->setItem($record);
-        $watch_item->setCreatedAt(new \DateTime());
-        $em = $this->container->get('doctrine.orm.entity_manager');
-        $em->persist($watch_item);
-        $em->flush();
-
-        return $watch_item->getId();
-    }
-
-    /**
      * @param Item $record
      * @return Item
      */

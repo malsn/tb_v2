@@ -9,6 +9,7 @@
     '@IphpCoreBundle/Resources/public/js/jquery.min.js'
     '@IphpCoreBundle/Resources/public/js/jquery-ui.js'
     '@IphpCoreBundle/Resources/public/js/jquery-ui-i18n.js'
+    '@TooBigAppBundle/Resources/public/js/Item.js'
     '@IphpCoreBundle/Resources/public/bootstrap/3.3/js/bootstrap.min.js'
     '@TooBigAppBundle/Resources/public/js/jquery-1.6.4.js'
     '@TooBigAppBundle/Resources/public/js/jquery.jqzoom-core.js' %}
@@ -122,7 +123,11 @@
         {% endblock content_images %}
 
         {% block watch_item %}
-            <a class="btn btn-warning" href="{{ path('app_item_watch', {'item_id': content.id}) }}">Подписаться на обновление</a>
+            {% if watch_item.id is defined %}
+                <a class="btn btn-warning" id="app_watch_item" path-controller="{{ path('app_item_unwatch', {'item_id': content.id}) }}">Отписаться от обновлений</a>
+            {% else %}
+                <a class="btn btn-warning" id="app_watch_item" path-controller="{{ path('app_item_watch', {'item_id': content.id}) }}">Подписаться на обновления</a>
+            {% endif %}
         {% endblock watch_item %}
     </div>
     <div class="col-sm-8">
