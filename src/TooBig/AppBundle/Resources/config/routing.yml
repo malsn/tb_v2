@@ -13,6 +13,9 @@ app_item_watch:
 app_item_unwatch:
     path:     /app/item/{item_id}/unwatch
     defaults: { _controller: TooBigAppBundle:Item:unwatch }
+app_list_watch_items:
+    path:     /app/items/watchlist
+    defaults: { _controller: TooBigAppBundle:User:watchlist }
 app_list_user_items:
     path:     /app/items/list
     defaults: { _controller: TooBigAppBundle:Item:listUserItems }

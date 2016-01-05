@@ -1,0 +1,76 @@
+{% extends 'TooBigAppBundle::page-with-header.html.twig' %}
+
+{% block title %}Список наблюдаемых объявлений{% endblock %}
+
+{% block page_body %}
+
+{% if entities is defined and entities %}
+    {% block entity_list%}
+        <div id="my-item-list">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-7">
+                    Наименование
+                </div>
+                <div class="col-md-2">
+                    Статус
+                </div>
+                <div class="col-md-2">
+                    Операции
+                </div>
+            </div>
+        {% for entity in entities %}
+
+                {% block entity_list_entry %}
+                    <div class="row item">
+                        <div class="col-md-1">
+                        {% block entity_list_entry_image  %}
+                            {% if entity.item.imagesMedia | length %}
+                               <a href="{{ path('app_item_edit', {'item_id': entity.item.id}) }}"><img src="{% path entity.item.imagesMedia[0].media, 'small' %}"></a>
+                            {% elseif (entity.item.blueimpImages is defined) and entity.item.blueimpImages | length %}
+                               <a href="{{ path('app_item_edit', {'item_id': entity.item.id}) }}"><img src="/uploads/attachments/{{ entity.item.id }}/thumbnails/{{ entity.item.blueimpImages[0].name }}"></a>
+                            {% endif %}
+                        {% endblock entity_list_entry_image  %}
+                        </div>
+                        {% block entity_list_entry_title  %}
+                            <div class="col-md-7">
+                                {% block entity_list_entry_link  %}
+                                    <div>
+                                        <a href="{{ entitypath(entity.item) }}">{{ entity.item }}</a>
+                                    </div>
+                                {% endblock entity_list_entry_link  %}
+                                {% block entity_list_entry_announce  %}
+                                    <div>
+                                        {{ entity.item.abstract is defined ? entity.item.abstract | raw  : '' }}
+                                        {{ entity.item.description is defined ? entity.item.description | raw : '' }}
+                                        {{ entity.item.announce is defined ? entity.item.announce | raw : '' }}
+                                        Цена: {{ entity.item.price is defined ? entity.item.price | raw : '0' }} руб.
+                                    </div>
+                                {% endblock entity_list_entry_announce  %}
+
+                            </div>
+                        {% endblock entity_list_entry_title  %}
+                        {% block entity_list_entry_enabled  %}
+                            <div class="col-md-2">
+                                <span class="item-enabled-{{ entity.item.enabled }}">{{ entity.item.enabled ? 'Активно'  : 'Не активно' }}</span>
+                            </div>
+                        {% endblock entity_list_entry_enabled  %}
+
+                        <div class="col-md-2"><a class="btn btn-warning" href="{{ path('app_item_unwatch', {'item_id': entity.item.id}) }}">Отменить</a></div>
+
+                    </div>
+                {% endblock entity_list_entry%}
+
+        {% endfor %}
+        </div>
+    {% endblock entity_list%}
+
+
+    {% block pagination %}
+        {% include 'IphpCoreBundle::pagination.html.twig' with {'entities': entities} %}
+    {% endblock pagination %}
+
+{% endif%}
+
+{% endblock page_body %}

@@ -19,13 +19,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Iphp\CoreBundle\Controller\RubricAwareController;
 
 /**
  * This class is inspired from the FOS Profile Controller, except :
  *   - only twig is supported
  *   - separation of the user authentication form with the profile form.
  */
-class UserController extends Controller
+class UserController extends RubricAwareController
 {
     /**
      * @return Response
@@ -42,6 +44,20 @@ class UserController extends Controller
         return $this->render('TooBigAppBundle:User:edit_user_profile.html.twig', array(
             'user'   => $user
         ));
+    }
+
+    /**
+     * @Template("TooBigAppBundle:User:watch_items.html.twig")
+     */
+    public function watchlistAction (){
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $repository = $this->getDoctrine()->getRepository('TooBigAppBundle:ItemSubscribtion');
+        $query = $repository->createQueryBuilder('p')
+            ->where('p.user = :user')
+            ->setParameter('user', $user->getId());
+
+        return array('entities' => $this->paginate($query, 20));
     }
 
     /**
@@ -97,5 +113,10 @@ class UserController extends Controller
     protected function setFlash($action, $value)
     {
         $this->get('session')->getFlashBag()->set($action, $value);
+    }
+
+    protected function getRepository()
+    {
+        return $this->getDoctrine()->getRepository('TooBigAppBundle:ItemSubscribtion');
     }
 }

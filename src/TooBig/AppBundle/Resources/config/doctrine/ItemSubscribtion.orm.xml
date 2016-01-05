@@ -6,10 +6,10 @@
     </id>
     <field name="createdAt" type="datetime" column="created_at"/>
 
-    <many-to-one target-entity="TooBig\AppBundle\Entity\Item" field="item">
+    <one-to-one target-entity="TooBig\AppBundle\Entity\Item" field="item">
       <cascade><cascade-persist/></cascade>
-    </many-to-one>
-    <many-to-one target-entity="Application\Sonata\UserBundle\Entity\User" field="user">
+    </one-to-one>
+    <many-to-one target-entity="Application\Sonata\UserBundle\Entity\User" field="user" inversed-by="watchItems">
       <cascade><cascade-persist/></cascade>
     </many-to-one>
   </entity>
