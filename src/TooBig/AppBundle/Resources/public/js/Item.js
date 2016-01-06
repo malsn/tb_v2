@@ -27,4 +27,25 @@ jQuery(document).ready(function() {
             }
         });
     })
+
+    jQuery('.a-unwatch-item').click(function(){
+        var $button = jQuery(this);
+        jQuery.ajax({
+            url: $button.attr('path-controller'),
+            cache: false,
+            type: 'POST',
+            data: null ,
+            beforeSend: function () {
+
+            },
+            success: function (response) {
+                if (response !== false) {
+                    $button.parent().parent().remove();
+                }
+            },
+            error: function () {
+
+            }
+        });
+    })
 });

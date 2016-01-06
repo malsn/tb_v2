@@ -62,11 +62,11 @@
 
                         {% block entity_list_entry_updatedAt  %}
                             <div class="col-md-2">
-                                <span class="item-updatedAt">{{ entity.updatedAt | date("d.m.Y h:i:s") }}</span>
+                                <span class="item-updatedAt">{{ entity.updatedAt | date("d.m.Y H:i:s") }}</span>
                             </div>
                         {% endblock entity_list_entry_updatedAt  %}
 
-                        <div class="col-md-2"><a class="btn btn-warning" href="{{ path('app_item_unwatch', {'item_id': entity.item.id}) }}">Отменить</a></div>
+                        <div class="col-md-2"><a class="a-unwatch-item btn btn-warning" path-controller="{{ path('app_item_unwatch', {'item_id': entity.item.id}) }}">Отменить</a></div>
 
                     </div>
                 {% endblock entity_list_entry%}
