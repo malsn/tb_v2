@@ -19,15 +19,34 @@ class ItemSubscribtionModel extends ContainerAware {
     public function watch( $item_id ){
         $user = $this->container->get('security.context')->getToken()->getUser();
         $record = $this->container->get('item_model')->getItemById($item_id);
-        $watch_item = new ItemSubscribtion();
-        $watch_item->setUser($user);
-        $watch_item->setItem($record);
-        $watch_item->setCreatedAt(new \DateTime());
-        $em = $this->container->get('doctrine.orm.entity_manager');
-        $em->persist($watch_item);
-        $em->flush();
+
+        /* проверяем, что пользователь не может следить за своими же объявлениями */
+        if ($user !== $record->getCreatedBy()) {
+            $watch_item = new ItemSubscribtion();
+            $watch_item->setUser($user);
+            $watch_item->setItem($record);
+            $watch_item->setCreatedAt(new \DateTime());
+            $watch_item->setUpdatedAt(new \DateTime());
+            $em = $this->container->get('doctrine.orm.entity_manager');
+            $em->persist($watch_item);
+            $em->flush();
+        }
 
         return $this->getWatchByItem( $item_id );
+    }
+
+    /**
+     * @param int $item_id
+     */
+    public function updateTime( $item_id ){
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $query = $em->createQuery(
+        'UPDATE
+        TooBigAppBundle:ItemSubscribtion its SET its.updatedAt = :updated_at
+        WHERE its.item = :item_id')
+            ->setParameter('item_id', $item_id)
+            ->setParameter('updated_at', new \DateTime());
+        $query->getResult();
     }
 
     /**

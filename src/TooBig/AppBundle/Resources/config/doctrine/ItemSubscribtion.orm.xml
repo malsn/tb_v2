@@ -5,6 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="createdAt" type="datetime" column="created_at"/>
+    <field name="updatedAt" type="datetime" column="updated_at"/>
 
     <one-to-one target-entity="TooBig\AppBundle\Entity\Item" field="item">
       <cascade><cascade-persist/></cascade>

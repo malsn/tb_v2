@@ -15,6 +15,8 @@ use TooBig\AppBundle\Model\ItemSubscribtionModel;
 
 class ItemController extends ContentController
 {
+    protected $errors;
+
     /**
      * @Route("/app/item/add/{rubric_id}", name="front_item_add")
      */
@@ -148,16 +150,29 @@ public function editAction($item_id, Request $request)
                             'Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!'
                         );
 
-                        /* blueimp new file insert or update ( delete old files and create new ) */
+                        /* blueimp new file insert or update ( delete old files in DB and create new ) */
 
-                        $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
-                        if (count($files)!=0) {
-                            $this->get('blueimp_model')->deleteItemFiles( $record );
+                        try {
+                            $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
+                            if (count($files)!=0) {
+                                $this->get('blueimp_model')->deleteItemFiles( $record );
+                            }
+                            foreach ($files as $key => $file_name) {
+                                if (!is_object( $this->get('blueimp_model')->getFileByItemName($record, $file_name) ))
+                                    $this->get('blueimp_model')->createFile( $record, $file_name );
+                            }
+                        } catch (\Exception $e) {
+                            $this->setErrors($e->getMessage());
                         }
-                        foreach ($files as $key => $file_name) {
-                            if (!is_object( $this->get('blueimp_model')->getFileByItemName($record, $file_name) ))
-                                $this->get('blueimp_model')->createFile( $record, $file_name );
+
+                        /* make request for watch list updates */
+
+                        try {
+                            $this->get('item_subscribtion_model')->updateTime( $record->getId() );
+                        } catch (\Exception $e) {
+                            $this->setErrors($e->getMessage());
                         }
+
 
                     } catch (\Exception $e) {
                         $this->get('session')->getFlashBag()->add(
@@ -284,19 +299,6 @@ public function copyAction($item_id, Request $request)
 }
 
 /**
- * @Template("TooBigAppBundle:Item:user_items.html.twig")
- */
-public function listUserItemsAction (){
-
-    $user = $this->container->get('security.context')->getToken()->getUser();
-    $query = $this->getRepository()->createQuery('c', function ($qb) use ($user)
-    {
-        $qb->whereCreatedBy($user);
-    });
-    return array('entities' => $this->paginate($query, 20));
-}
-
-/**
  *
  * @Route("/app/file/upload", name="app_file_upload")
  * @Template()
@@ -364,9 +366,16 @@ public function uploadAction(Request $request)
         $fileUploader = $this->get('punk_ave.file_uploader');
         $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $content->getId()));
 
-        $watch = $this->get('item_subscribtion_model')->getWatchByItem( $content->getId() );
+        $response = array( 'content' => $content, 'files' => $files );
 
-        return array('content' => $content, 'files' => $files, 'watch_item' => $watch );
+        /* находим следит ли пользователь за объявлением, если оно ему не принадлежит */
+        $user = $this->get("security.context")->getToken()->getUser();
+        if ( $user !== $content->getCreatedBy()) {
+            $watch = $this->get('item_subscribtion_model')->getWatchByItem($content->getId());
+            $response['watch_item'] = $watch;
+        }
+
+        return $response;
 
     }
 
@@ -374,4 +383,22 @@ public function uploadAction(Request $request)
     {
         return $this->getDoctrine()->getRepository('TooBigAppBundle:Item');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * @param mixed $error
+     */
+    public function setErrors($error)
+    {
+        $this->errors[] = $error;
+    }
+
+
 }

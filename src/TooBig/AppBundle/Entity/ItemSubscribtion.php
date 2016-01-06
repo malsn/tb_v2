@@ -28,6 +28,11 @@ class ItemSubscribtion
      */
     private $createdAt;
 
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
 
     /**
      * Get id
@@ -110,5 +115,23 @@ class ItemSubscribtion
     {
         return $this->createdAt;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+
 }
 

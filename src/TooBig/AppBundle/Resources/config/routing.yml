@@ -18,7 +18,7 @@ app_list_watch_items:
     defaults: { _controller: TooBigAppBundle:User:watchlist }
 app_list_user_items:
     path:     /app/items/list
-    defaults: { _controller: TooBigAppBundle:Item:listUserItems }
+    defaults: { _controller: TooBigAppBundle:User:listUserItems }
 app_user_profile_edit:
     path:     /app/profile/edit
     defaults: { _controller: TooBigAppBundle:User:editProfile }

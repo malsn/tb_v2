@@ -55,8 +55,22 @@ class UserController extends RubricAwareController
         $repository = $this->getDoctrine()->getRepository('TooBigAppBundle:ItemSubscribtion');
         $query = $repository->createQueryBuilder('p')
             ->where('p.user = :user')
+            ->orderBy('p.updatedAt', 'DESC')
             ->setParameter('user', $user->getId());
 
+        return array('entities' => $this->paginate($query, 20));
+    }
+
+    /**
+     * @Template("TooBigAppBundle:User:user_items.html.twig")
+     */
+    public function listUserItemsAction (){
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $query = $this->getDoctrine()->getRepository('TooBigAppBundle:Item')->createQuery('c', function ($qb) use ($user)
+        {
+            $qb->whereCreatedBy($user);
+        });
         return array('entities' => $this->paginate($query, 20));
     }
 
@@ -113,10 +127,5 @@ class UserController extends RubricAwareController
     protected function setFlash($action, $value)
     {
         $this->get('session')->getFlashBag()->set($action, $value);
-    }
-
-    protected function getRepository()
-    {
-        return $this->getDoctrine()->getRepository('TooBigAppBundle:ItemSubscribtion');
     }
 }
