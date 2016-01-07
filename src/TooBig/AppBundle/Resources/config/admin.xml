@@ -12,6 +12,13 @@
         <parameter key="item.admin.item.group">Website</parameter>
         <parameter key="item.admin.item.title">Items</parameter>
 
+        <parameter key="item.admin.ratecomment.class">TooBig\AppBundle\Admin\RateCommentAdmin</parameter>
+        <parameter key="item.admin.ratecomment.controller">SonataAdminBundle:CRUD</parameter>
+        <parameter key="item.admin.ratecomment.entity">TooBig\AppBundle\Entity\RateComment</parameter>
+        <parameter key="item.admin.ratecomment.translation_domain">messages</parameter>
+        <parameter key="item.admin.ratecomment.group">Website</parameter>
+        <parameter key="item.admin.ratecomment.title">Rates and Comments</parameter>
+
         <parameter key="item.admin.itemfile.class">TooBig\AppBundle\Admin\ItemFileAdmin</parameter>
         <parameter key="item.admin.itemfile.controller">SonataAdminBundle:CRUD</parameter>
         <parameter key="item.admin.itemfile.entity">TooBig\AppBundle\Entity\ItemFile</parameter>
@@ -60,6 +67,15 @@
                 <argument type="service" id="sonata.formatter.pool"/>
             </call>
 -->
+
+        </service>
+
+        <service id="item.admin.ratecomment" class="%item.admin.ratecomment.class%">
+            <tag name="sonata.admin" manager_type="orm" group="%item.admin.ratecomment.group%"
+                 label="%item.admin.ratecomment.title%"/>
+            <argument/>
+            <argument>%item.admin.ratecomment.entity%</argument>
+            <argument>%item.admin.ratecomment.controller%</argument>
 
         </service>
 

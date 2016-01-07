@@ -372,7 +372,10 @@ public function uploadAction(Request $request)
         $fileUploader = $this->get('punk_ave.file_uploader');
         $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $content->getId()));
 
-        $response = array( 'content' => $content, 'files' => $files );
+        /* находим среднюю оценку по объявлению */
+        $rate = $this->get('item_ratecomment_model')->getAvgRateByItem( $content->getId() );
+
+        $response = array( 'content' => $content, 'files' => $files, 'rate' => $rate );
 
         $user = $this->get("security.context")->getToken()->getUser();
 

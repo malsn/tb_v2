@@ -161,6 +161,12 @@
                 {% endif %}
             {% endblock content_author %}
 
+            {% block content_rate %}
+                {% if rate | length %}
+                    <p>Рейтинг: {{ rate[0].avg_rate | number_format(2, '.', ',') }} из 5</p>
+                {% endif %}
+            {% endblock content_rate %}
+
         {% endblock content_content %}
 
         {% if content.links | length %}

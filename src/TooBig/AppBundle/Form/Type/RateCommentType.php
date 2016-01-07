@@ -42,7 +42,7 @@ class RateCommentType extends AbstractType
             ->add('rate', new RateType(), ['empty_value' => 'Поставьте оценку'])
             ->add(
                 'save',
-                'submit',
+                'button',
                 [
                     'label' => 'Сохранить',
                     'attr' => [

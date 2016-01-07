@@ -69,4 +69,20 @@ class RateCommentModel extends ContainerAware {
             ->findOneBy([ 'item' => $item_id, 'user' => $user->getId()]);
         return $rate_comment;
     }
+
+    /**
+     * @param $item_id
+     * @return RateComment
+     */
+    public function getAvgRateByItem( $item_id ){
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $query = $em->createQuery(
+        'SELECT AVG(rc.rate) AS avg_rate
+         FROM TooBigAppBundle:RateComment rc
+         WHERE rc.item = :item_id AND rc.enabled = :enabled')
+            ->setParameter('item_id', $item_id)
+            ->setParameter('enabled', true );
+
+        return $query->getResult();
+    }
 }

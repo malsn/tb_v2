@@ -55,7 +55,7 @@ jQuery(document).ready(function() {
             url: $button.attr('path-controller'),
             cache: false,
             type: 'POST',
-            data: jQuery("form.rate-comment").serialize() ,
+            data: null ,
             beforeSend: function () {
 
             },
