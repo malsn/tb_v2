@@ -3,6 +3,7 @@
 namespace TooBig\AppBundle\Entity;
 
 use TooBig\AppBundle\Entity\Item;
+use Sonata\UserBundle\Model\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,13 +26,6 @@ class RateComment
     /**
      * @var int
      *
-     * @ORM\Column(name="user_id", type="integer")
-     */
-    private $userId;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="rate", type="integer")
      */
     private $rate;
@@ -42,6 +36,13 @@ class RateComment
      * @ORM\Column(name="comment", type="text")
      */
     private $comment;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean")
+     */
+    private $enabled;
 
     /**
      * @var \DateTime
@@ -60,9 +61,16 @@ class RateComment
     /**
      * @var Item
      * @ORM\ManyToOne(targetEntity="TooBig\AppBundle\Entity\Item", inversedBy="rateComments")
-     * @ORM\JoinColumn(name="content_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="item_id", referencedColumnName="id")
      */
     private $item;
+
+    /**
+     * @var UserInterface
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     /**
      * Get id
@@ -72,30 +80,6 @@ class RateComment
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set userId
-     *
-     * @param int $userId
-     *
-     * @return RateComment
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return int
-     */
-    public function getUserId()
-    {
-        return $this->userId;
     }
 
     /**
@@ -203,11 +187,45 @@ class RateComment
     }
 
     /**
-     * @param Item $content
+     * @param Item $item
      */
     public function setItem($item)
     {
         $this->item = $item;
     }
+
+    /**
+     * @return UserInterface
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param UserInterface $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param boolean $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+
 }
 

@@ -9,8 +9,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use TooBig\AppBundle\Entity\RateComment;
 use TooBig\AppBundle\Form\ItemForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use TooBig\AppBundle\Form\Type\RateCommentType;
 use TooBig\AppBundle\Model\ItemSubscribtionModel;
 
 class ItemController extends ContentController
@@ -337,7 +339,9 @@ public function uploadAction(Request $request)
     {
         $rubric = $this->getCurrentRubric();
 
-        $query = $this->getRepository()->createQuery('c', function ($qb) use ($rubric)
+        $query = $this->getDoctrine()
+            ->getRepository('TooBigAppBundle:Item')
+            ->createQuery('c', function ($qb) use ($rubric)
         {
             $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true)
                 ->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
@@ -353,7 +357,9 @@ public function uploadAction(Request $request)
     public function contentBySlugAction($slug)
     {
         $rubric = $this->getCurrentRubric();
-        $content = $this->getRepository()->createQuery('c', function ($qb) use ($rubric, $slug)
+        $content = $this->getDoctrine()
+            ->getRepository('TooBigAppBundle:Item')
+            ->createQuery('c', function ($qb) use ($rubric, $slug)
         {
             $qb->fromRubric($rubric)->whereSlug($slug)->whereEnabled();
         })->getOneOrNullResult();
@@ -368,20 +374,55 @@ public function uploadAction(Request $request)
 
         $response = array( 'content' => $content, 'files' => $files );
 
-        /* находим следит ли пользователь за объявлением, если оно ему не принадлежит */
         $user = $this->get("security.context")->getToken()->getUser();
-        if ( $user !== $content->getCreatedBy()) {
+
+        if ( is_object( $user ) && $user !== $content->getCreatedBy()) {
+            /* находим следит ли пользователь за объявлением, если оно ему не принадлежит */
             $watch = $this->get('item_subscribtion_model')->getWatchByItem($content->getId());
             $response['watch_item'] = $watch;
+            /* находим комментировал ли пользователь объявление, и если оно ему не принадлежит */
+            $rate_comment = $this->get('item_ratecomment_model')->getRateCommentByItem($content->getId());
+            $response['rate_comment_item'] = $rate_comment;
         }
 
         return $response;
 
     }
 
-    protected function getRepository()
+    /**
+     * @param $item_id
+     * response JsonResponse
+     */
+    public function addcommentAction( $item_id, Request $request )
     {
-        return $this->getDoctrine()->getRepository('TooBigAppBundle:Item');
+        $response = new JsonResponse();
+
+        $rate_comment = new RateComment();
+        $form = $this->createForm(
+            new RateCommentType( $this->get('router'), $item_id ),
+            $rate_comment
+        );
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                try {
+                    $this->get('item_ratecomment_model')->save( $rate_comment, $item_id );
+                    $response->setData(array(
+                        'message' => 'Благодарим вас за ваш комментарий и вашу оценку, оно будет опубликовано после одобрения модератором.'
+                    ));
+                } catch (\Exception $e) {
+                    return $this->render('TooBigAppBundle:Item:add_rate_comment.html.twig', [ 'form' => $form->createView(), 'item_id' => $item_id ]);
+                }
+            } else {
+                try {
+                    return $this->render('TooBigAppBundle:Item:add_rate_comment.html.twig', [ 'form' => $form->createView(), 'item_id' => $item_id ]);
+                } catch (\Exception $e) {
+
+                }
+            }
+        }
+        return $response;
     }
 
     /**

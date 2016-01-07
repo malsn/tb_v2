@@ -131,6 +131,19 @@
                 {% endif %}
             {% endblock watch_item %}
         {% endif %}
+
+        {% if rate_comment_item is defined %}
+            {% block rate_comment_item %}
+                {% if rate_comment_item.id is defined %}
+                    {#<div class="app_comment_form"></div>
+                    <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_edit', {'item_id': content.id}) }}">Редактировать комментарий</a>#}
+                {% else %}
+                    <div class="app_comment_form"></div>
+                    <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_add', {'item_id': content.id}) }}">Добавить комментарий</a>
+                {% endif %}
+            {% endblock rate_comment_item %}
+        {% endif %}
+
     </div>
     <div class="col-sm-8">
         {% block content_content %}
@@ -138,13 +151,19 @@
 
             {% block content_price %}
                 {% if content.price %}
-                    {{ content.price }} рублей.
+                    <p>{{ content.price }} рублей.</p>
                 {% endif %}
             {% endblock content_price %}
 
+            {% block content_author %}
+                {% if content.createdBy %}
+                    <p>Продавец {{ content.createdBy }}</p>
+                {% endif %}
+            {% endblock content_author %}
+
         {% endblock content_content %}
 
-        {% if content.links| length %}
+        {% if content.links | length %}
             {% block content_links %}
                 <h3>Ссылки</h3>
 

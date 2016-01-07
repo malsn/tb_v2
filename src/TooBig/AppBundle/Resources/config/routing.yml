@@ -13,6 +13,12 @@ app_item_watch:
 app_item_unwatch:
     path:     /app/item/{item_id}/unwatch
     defaults: { _controller: TooBigAppBundle:Item:unwatch }
+app_item_comment_add:
+    path:     /app/item/{item_id}/comment/add
+    defaults: { _controller: TooBigAppBundle:Item:addcomment }
+app_item_comment_edit:
+    path:     /app/item/{item_id}/comment/edit
+    defaults: { _controller: TooBigAppBundle:Item:editcomment }
 app_list_watch_items:
     path:     /app/items/watchlist
     defaults: { _controller: TooBigAppBundle:User:watchlist }

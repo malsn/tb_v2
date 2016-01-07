@@ -15,6 +15,11 @@
                 <argument type="service" id="service_container" />
             </call>
         </service>
+        <service id="item_ratecomment_model" class="TooBig\AppBundle\Model\RateCommentModel">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
         <service id="blueimp_model" class="TooBig\AppBundle\Model\BlueimpModel">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
@@ -46,6 +51,9 @@
             </call>
         </service>
         <service id="front.item.form" class="TooBig\AppBundle\Form\ItemForm">
+            <argument type="service" id="router"></argument>
+        </service>
+        <service id="front.ratecomment.form" class="TooBig\AppBundle\Form\Type\RateCommentType">
             <argument type="service" id="router"></argument>
         </service>
     </services>
