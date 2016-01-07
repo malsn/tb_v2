@@ -132,18 +132,6 @@
             {% endblock watch_item %}
         {% endif %}
 
-        {% if rate_comment_item is defined %}
-            {% block rate_comment_item %}
-                {% if rate_comment_item.id is defined %}
-                    {#<div class="app_comment_form"></div>
-                    <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_edit', {'item_id': content.id}) }}">Редактировать комментарий</a>#}
-                {% else %}
-                    <div class="app_comment_form"></div>
-                    <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_add', {'item_id': content.id}) }}">Добавить комментарий</a>
-                {% endif %}
-            {% endblock rate_comment_item %}
-        {% endif %}
-
     </div>
     <div class="col-sm-8">
         {% block content_content %}
@@ -174,7 +162,22 @@
                         <div>{{ comment.user }}: {{ comment.comment }}</div>
                         <div>Оценка: {{ comment.rate | number_format(2, '.', ',') }} из 5</div>
                     {% endfor %}
+                {% else %}
+                    Комментариев нет
                 {% endif %}
+
+                {% if rate_comment_item is defined %}
+                    {% block rate_comment_item %}
+                        {% if rate_comment_item.id is defined %}
+                            {#<div class="app_comment_form"></div>
+                            <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_edit', {'item_id': content.id}) }}">Редактировать комментарий</a>#}
+                        {% else %}
+                            <div class="app_comment_form"></div>
+                            <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_add', {'item_id': content.id}) }}">Добавить комментарий</a>
+                        {% endif %}
+                    {% endblock rate_comment_item %}
+                {% endif %}
+
             {% endblock content_comments %}
 
         {% endblock content_content %}
