@@ -167,6 +167,16 @@
                 {% endif %}
             {% endblock content_rate %}
 
+            {% block content_comments %}
+                <h4>Комментарии и оценки пользователей</h4>
+                {% if comments | length %}
+                    {% for comment in comments %}
+                        <div>{{ comment.user }}: {{ comment.comment }}</div>
+                        <div>Оценка: {{ comment.rate | number_format(2, '.', ',') }} из 5</div>
+                    {% endfor %}
+                {% endif %}
+            {% endblock content_comments %}
+
         {% endblock content_content %}
 
         {% if content.links | length %}

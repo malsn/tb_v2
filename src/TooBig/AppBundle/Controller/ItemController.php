@@ -369,24 +369,25 @@ public function uploadAction(Request $request)
         if ($content->getRedirectUrl())
             return $this->redirect($content->getRedirectUrl());
 
+        /* находим файлы изображения для слайдера, TODO: необходимо заменить на БД запросы */
         $fileUploader = $this->get('punk_ave.file_uploader');
         $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $content->getId()));
-
         /* находим среднюю оценку по объявлению */
         $rate = $this->get('item_ratecomment_model')->getAvgRateByItem( $content->getId() );
+        /* находим опубликованные комментарии по объявлению */
+        $comments = $this->get('item_ratecomment_model')->getCommentsByItem( $content->getId() );
 
-        $response = array( 'content' => $content, 'files' => $files, 'rate' => $rate );
+        $response = array( 'content' => $content, 'files' => $files, 'rate' => $rate, 'comments' => $comments );
 
-        $user = $this->get("security.context")->getToken()->getUser();
-
-        if ( is_object( $user ) && $user !== $content->getCreatedBy()) {
-            /* находим следит ли пользователь за объявлением, если оно ему не принадлежит */
-            $watch = $this->get('item_subscribtion_model')->getWatchByItem($content->getId());
-            $response['watch_item'] = $watch;
-            /* находим комментировал ли пользователь объявление, и если оно ему не принадлежит */
-            $rate_comment = $this->get('item_ratecomment_model')->getRateCommentByItem($content->getId());
-            $response['rate_comment_item'] = $rate_comment;
-        }
+            $user = $this->get("security.context")->getToken()->getUser();
+            if ( is_object( $user ) && $user !== $content->getCreatedBy()) {
+                /* находим следит ли пользователь за объявлением, если оно ему не принадлежит */
+                $watch = $this->get('item_subscribtion_model')->getWatchByItem($content->getId());
+                $response['watch_item'] = $watch;
+                /* находим комментировал ли пользователь объявление, и если оно ему не принадлежит */
+                $rate_comment = $this->get('item_ratecomment_model')->getRateCommentByItem($content->getId());
+                $response['rate_comment_item'] = $rate_comment;
+            }
 
         return $response;
 

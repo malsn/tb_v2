@@ -85,4 +85,15 @@ class RateCommentModel extends ContainerAware {
 
         return $query->getResult();
     }
+
+    /**
+     * @param $item_id
+     * @return array
+     */
+    public function getCommentsByItem( $item_id ){
+        $comments = $this->container->get('doctrine')
+            ->getRepository('TooBigAppBundle:RateComment')
+            ->findBy([ 'item' => $item_id, 'enabled' => true ]);
+        return $comments;
+    }
 }
