@@ -13,7 +13,6 @@
         </id>
 
         <field name="stateId" type="integer" column="state_id" nullable="true"/>
-        <field name="endDate" type="datetime" column="end_date" nullable="true"/>
         <field name="price" type="integer" column="price" nullable="false"/>
         <field name="hits" type="integer" column="hits" nullable="true"/>
         <field name="logs" type="text" column="logs" nullable="true"/>
@@ -33,6 +32,7 @@
         <field name="slug" type="string" column="slug"/>
 
         <field name="publicationDateStart" type="datetime" column="publication_date_start" nullable="true"/>
+        <field name="publicationDateEnd" type="datetime" column="publication_date_end" nullable="true"/>
 
         <field name="commentsEnabled" type="boolean" column="comments_enabled"/>
         <field name="commentsCloseAt" type="datetime" column="comments_close_at" nullable="true"/>

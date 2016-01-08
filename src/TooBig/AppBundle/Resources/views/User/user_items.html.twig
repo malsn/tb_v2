@@ -10,11 +10,17 @@
             <div class="row">
                 <div class="col-md-1">
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     Наименование
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     Статус
+                </div>
+                <div class="col-md-1">
+                    Просмотров
+                </div>
+                <div class="col-md-1">
+                    Окончание
                 </div>
                 <div class="col-md-2">
                     Операции
@@ -34,7 +40,7 @@
                         {% endblock entity_list_entry_image  %}
                         </div>
                         {% block entity_list_entry_title  %}
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 {% block entity_list_entry_link  %}
                                     <div>
                                         <a href="{{ entitypath(entity) }}">{{ entity }}</a>
@@ -52,10 +58,23 @@
                             </div>
                         {% endblock entity_list_entry_title  %}
                         {% block entity_list_entry_enabled  %}
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <span class="item-enabled-{{ entity.enabled }}">{{ entity.enabled ? 'Активно'  : 'Не активно' }}</span>
                             </div>
                         {% endblock entity_list_entry_enabled  %}
+                        {% block entity_list_entry_hits  %}
+                            <div class="col-md-1">
+                                <span class="item-hits">{{ entity.hits }}</span>
+                            </div>
+                        {% endblock entity_list_entry_hits  %}
+
+                        {% block entity_list_entry_ends  %}
+                            <div class="col-md-1">
+                            {% if entity.publicationDateEnd is not null %}
+                                <span class="item-hits">{{ entity.publicationDateEnd | date("d.m.Y H:i:s") }}</span>
+                            {%  endif %}
+                            </div>
+                        {% endblock entity_list_entry_ends  %}
 
                         <div class="col-md-2"><a class="btn btn-success" href="{{ path('app_item_edit', {'item_id': entity.id}) }}">Редакировать</a></div>
 

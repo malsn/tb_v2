@@ -21,6 +21,11 @@ class ItemModel extends ContainerAware {
         $record->setCreatedBy($user);
         $record->setUpdatedBy($user);
         $record->setEnabled(false);
+
+        $pub_date = new \DateTime();
+        $pub_date->add(new \DateInterval('P30D'));
+
+        $record->setPublicationDateEnd($pub_date);
         $em = $this->container->get('doctrine.orm.entity_manager');
         $em->persist($record);
         $em->flush();
@@ -35,6 +40,7 @@ class ItemModel extends ContainerAware {
         $copy = new Item();
         $copy->setCreatedBy($user);
         $copy->setUpdatedBy($user);
+        $copy->setCreatedAt(new \DateTime());
         $copy->setEnabled(false);
         $copy->setTitle($record->getTitle());
         $copy->setRubric($record->getRubric());
@@ -46,6 +52,7 @@ class ItemModel extends ContainerAware {
         $copy->setModel($record->getModel());
         $copy->setSizeType($record->getSizeType());
         $copy->setSize($record->getSize());
+        $copy->setHits(0);
         return $copy;
     }
 
@@ -72,5 +79,15 @@ class ItemModel extends ContainerAware {
                 ['createdAt'=>'DESC']
             );
         return $items;
+    }
+
+    /**
+     * @param Item $record
+     */
+    public function updateHits(Item $record){
+        $record->setHits( $record->getHits()+1 );
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $em->persist($record);
+        $em->flush();
     }
 }

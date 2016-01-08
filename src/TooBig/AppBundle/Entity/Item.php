@@ -41,7 +41,7 @@ class Item extends BaseItem
     /**
      * @var \DateTime
      */
-    private $endDate;
+    private $publicationDateEnd;
 
     /**
      * @var integer
@@ -164,17 +164,17 @@ class Item extends BaseItem
     /**
      * @return \DateTime
      */
-    public function getEndDate()
+    public function getPublicationDateEnd()
     {
-        return $this->endDate;
+        return $this->publicationDateEnd;
     }
 
     /**
-     * @param \DateTime $endDate
+     * @param \DateTime $publicationDateEnd
      */
-    public function setEndDate($endDate)
+    public function setPublicationDateEnd($publicationDateEnd)
     {
-        $this->endDate = $endDate;
+        $this->publicationDateEnd = $publicationDateEnd;
     }
 
     /**

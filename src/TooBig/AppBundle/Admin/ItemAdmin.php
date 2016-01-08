@@ -133,7 +133,7 @@ class ItemAdmin extends Admin
     {
         $formMapper->with('Attributes', array('class' => 'col-md-4'))
             ->add('enabled', null, array('required' => false, 'label' => 'Show content on website'))
-            ->add('date', 'sonata_type_datetime_picker', [
+            ->add('publication_date_end', 'sonata_type_datetime_picker', [
                 'required' => false,
                 'format' => 'dd.MM.yyyy H:mm',
                 'datepicker_use_button' => false
@@ -260,7 +260,8 @@ class ItemAdmin extends Admin
             ))
             ->add('title')
             ->add('enabled')
-            ->add('id')//     ->add('date')// ->add('author')
+            ->add('id')//     ->add('date')
+            ->add('createdBy')
         ;
     }
 

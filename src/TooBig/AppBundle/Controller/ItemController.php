@@ -29,6 +29,7 @@ class ItemController extends ContentController
         $record = new Item();
         $record->setRubric($rubric);
         $record->setEnabled(true);
+        $record->setHits(0);
 
         $user = $this->get("security.context")->getToken()->getUser();
 
@@ -387,6 +388,8 @@ public function uploadAction(Request $request)
                 /* находим комментировал ли пользователь объявление, и если оно ему не принадлежит */
                 $rate_comment = $this->get('item_ratecomment_model')->getRateCommentByItem($content->getId());
                 $response['rate_comment_item'] = $rate_comment;
+                /* обновляем счетчик посещений объявления, если оно ему не принадлежит */
+                $this->get('item_model')->updateHits( $content );
             }
 
         return $response;
