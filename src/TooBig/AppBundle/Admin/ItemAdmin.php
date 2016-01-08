@@ -65,7 +65,7 @@ class ItemAdmin extends Admin
             /*       ->add('image', 'text', array(
                 'template' => 'IphpCoreBundle::image_preview.html.twig'
             ))*/
-
+            ->add('createdBy')
             ->add('updatedAt');
     }
 

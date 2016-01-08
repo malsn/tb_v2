@@ -95,6 +95,11 @@
                 <target>Показывать на сайте</target>
             </trans-unit>
 
+            <trans-unit id="Publication Date End">
+                <source>Publication Date End</source>
+                <target>Показывать до</target>
+            </trans-unit>
+
 
             <trans-unit id="Images Media">
                 <source>Images Media</source>
