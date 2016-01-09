@@ -229,7 +229,8 @@
                 {% if comments is defined and comments | length %}
                     {% for comment in comments %}
                         <div class="item-comment">
-                            <div class="comment-user-text"><span class="comment-user">{{ comment.user }}</span>: <span class="comment-text">{{ comment.comment }}</span></div>
+                            <div class="comment-user"><span class="comment-user-name">{{ comment.user }}</span> <span class="comment-user-date">{{ comment.createdAt | date("d.m.Y H:i:s") }}</span></div>
+                            <div class=""><span class="comment-text">{{ comment.comment }}</span></div>
                             <div class="comment-rate"><span class="comment-rate-title">Оценка</span>: <span class="comment-rate-text">{{ comment.rate | number_format(2, '.', ',') }} из 5</span></div>
                         </div>
                     {% endfor %}
