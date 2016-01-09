@@ -25,11 +25,13 @@
     <div class="c-item">
 
         {% block entity_list_entry_image  %}
-            {% if entity.imagesMedia | length %}
-                <div class="item-img"><a href="{{ entitypath(entity) }}" target="_blank"><img src="{% path entity.imagesMedia[0].media, 'preview' %}" class="img-polaroid"></a></div>
+            <div class="item-img"><a href="{{ entitypath(entity) }}" target="_blank">
+                <img src="{% if entity.imagesMedia | length %}
+                {% path entity.imagesMedia[0].media, 'preview' %}
             {% elseif (entity.blueimpImages is defined) and entity.blueimpImages | length %}
-                <div class="item-img"><a href="{{ entitypath(entity) }}" target="_blank"><img src="/uploads/attachments/{{ entity.id }}/small/{{ entity.blueimpImages[0].name }}" class="img-polaroid"></a></div>
-            {% endif %}
+                {{ '/uploads/attachments/' ~  entity.id ~ '/small/' ~ entity.blueimpImages[0].name }}
+            {% endif %}" class="img-polaroid">
+            </a></div>
         {% endblock entity_list_entry_image  %}
 
         {% block entity_list_entry_title  %}
@@ -45,7 +47,7 @@
              {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
              {{ entity.description is defined ? entity.description | raw : '' }}
              {{ entity.announce is defined ? entity.announce | raw : '' }}
-             {{ entity.size is defined ? 'Размер: ' ~ entity.size | raw : '' }}
+             {{ entity.size is defined and entity.size is not null ? 'Размер: ' ~ entity.size | raw : '' }}
         </div>
         {% endblock entity_list_entry_announce  %}
 

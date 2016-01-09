@@ -17,4 +17,18 @@ class RubricModel extends ContainerAware {
                     ->find($rubric_id);
         return $rubric;
     }
+
+    /**
+     * @param $rubric_id
+     * @param $rubrics
+     * @return mixed
+     */
+    public function getParentRubrics($rubric_id, $rubrics){
+        $rubric = $this->getRubricById( $rubric_id );
+        $rubrics[] = $rubric;
+        if ( $rubric->getParentId() != 1 ){
+            $rubrics = $this->getParentRubrics($rubric->getParentId(), $rubrics );
+        }
+        return $rubrics;
+    }
 }

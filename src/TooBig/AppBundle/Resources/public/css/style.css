@@ -1,5 +1,36 @@
 /* styles for TooBig */
 
+/* site breadcrumbs */
+.breadcrumbs {
+    margin: 0 0 20px 0px;
+}
+.breadcrumbs-item {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+}
+.breadcrumbs-item:after {
+    content: '/';
+    display: inline-block;
+    color: #eee;
+    margin: 0 10px;
+}
+.breadcrumbs-item:first-child {
+    margin-left: -10px;
+}
+.breadcrumbs-item-link {
+    color: #aaa;
+    padding: 0 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+.breadcrumbs-item-link .link {
+    text-decoration: none;
+    color: #777;
+    cursor: pointer;
+    transition: color .2s linear;
+}
+
 div.list-group > ul > li { list-style: none; }
 div.list-group > a.list-group-item { margin-bottom: 2px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; }
 
@@ -16,6 +47,12 @@ div.c-item {
     width: 236px;
     margin: 0 10px 35px 0;
     position: relative;
+}
+div.item-img {
+    display: block;
+    width: 236px;
+    height: 340px;
+    overflow: hidden;
 }
 div.item-img img {
     display: block;
@@ -60,6 +97,9 @@ div.announce {
 }
 
 /*ShopItem*/
+
+.item-group > .col-sm-4 { text-align: center; }
+
 .shopitem-div { padding: 10px 30px; }
 .shopitem-img-msg-div { float: left; max-width: 20%; }
 .shopitem-name-sect-desc-div { float:right; max-width: 70%; }
@@ -76,4 +116,15 @@ div.announce {
 #thumblist.clearfix {  background-color: #fff; padding: 3px; margin: 5px 0; text-align: center; }
 #thumblist.clearfix li { display: inline; padding-right: 2px; }
 #thumblist.clearfix li img { border: 1px #eee solid; }
+
+.item-group .item-title { font-weight: bolder; }
+
 /*ShopItem*/
+
+
+/* bootstrap */
+.btn {
+    padding: 3px 6px;
+    font-size: 12px;
+}
+/* bootstrap */

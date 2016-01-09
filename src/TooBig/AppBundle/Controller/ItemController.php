@@ -2,6 +2,7 @@
 
 namespace TooBig\AppBundle\Controller;
 
+use Application\Iphp\CoreBundle\Entity\Rubric;
 use TooBig\AppBundle\Entity\Item;
 use Iphp\ContentBundle\Controller\ContentController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,7 +32,7 @@ class ItemController extends ContentController
         $record->setEnabled(true);
         $record->setHits(0);
 
-        $user = $this->get("security.context")->getToken()->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
 
         if (is_object($user)) {
 
@@ -92,12 +93,14 @@ class ItemController extends ContentController
                 }
             }
             $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
+
             return $this->render('TooBigAppBundle:Item:add_item.html.twig', [
                 'rubric' => $rubric,
                 'form' => $form->createView(),
                 'posting' => $record,
                 'editId' => $editId,
-                'existingFiles' => $existingFiles ]);
+                'existingFiles' => $existingFiles,
+                'breadcrumbs' => $this->getBreadcrumbs( $rubric ) ]);
         } else {
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
@@ -117,7 +120,7 @@ public function editAction($item_id, Request $request)
         $record
     );
 
-    $user = $this->get("security.context")->getToken()->getUser();
+    $user = $this->get('security.context')->getToken()->getUser();
 
     if (is_object($user)) {
 
@@ -157,7 +160,7 @@ public function editAction($item_id, Request $request)
 
                         try {
                             $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
-                            if (count($files)!=0) {
+                            if (count( $files ) !== 0) {
                                 $this->get('blueimp_model')->deleteItemFiles( $record );
                             }
                             foreach ($files as $key => $file_name) {
@@ -192,12 +195,14 @@ public function editAction($item_id, Request $request)
             }
             $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
             if ( count($existingFiles) === 0 ) { $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'attachments/' . $record->getId())); }
+
             return $this->render('TooBigAppBundle:Item:edit_item.html.twig', [
                 'rubric' => $rubric,
                 'form' => $form->createView(),
                 'posting' => $record,
                 'editId' => $editId,
-                'existingFiles' => $existingFiles ]);
+                'existingFiles' => $existingFiles,
+                'breadcrumbs' => $this->getBreadcrumbs( $rubric ) ]);
 
     } else {
             $this->get('session')->getFlashBag()->add(
@@ -206,9 +211,36 @@ public function editAction($item_id, Request $request)
                  <a class="btn btn-success" href="'.$this->generateUrl('app_item_copy', ['item_id' => $record->getId()]).'">Да</a>
                  <a class="btn btn-warning" href="'.$rubric->getFullPath().$record->getSlug().'">Нет</a>'
             );
+
+            /* находим файлы изображения для слайдера, TODO: необходимо заменить на БД запросы */
             $fileUploader = $this->get('punk_ave.file_uploader');
             $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
-            return $this->render( 'TooBigAppBundle:Item:item.html.twig', [ 'content' => $record, 'files' => $files ]);
+
+            /* находим среднюю оценку по объявлению */
+            $rate = $this->get('item_ratecomment_model')->getAvgRateByItem( $record->getId() );
+            /* находим опубликованные комментарии по объявлению */
+            $comments = $this->get('item_ratecomment_model')->getCommentsByItem( $record->getId() );
+
+            $response = array(
+                'content' => $record,
+                'files' => $files,
+                'rate' => $rate,
+                'comments' => $comments,
+                'breadcrumbs' => $this->getBreadcrumbs( $rubric ) );
+
+            $user = $this->get('security.context')->getToken()->getUser();
+            if ( is_object( $user ) && $user !== $record->getCreatedBy()) {
+                /* находим следит ли пользователь за объявлением, если оно ему не принадлежит */
+                $watch = $this->get('item_subscribtion_model')->getWatchByItem($record->getId());
+                $response['watch_item'] = $watch;
+                /* находим комментировал ли пользователь объявление, и если оно ему не принадлежит */
+                $rate_comment = $this->get('item_ratecomment_model')->getRateCommentByItem($record->getId());
+                $response['rate_comment_item'] = $rate_comment;
+                /* обновляем счетчик посещений объявления, если оно ему не принадлежит */
+                $this->get('item_model')->updateHits( $record );
+            }
+
+            return $this->render( 'TooBigAppBundle:Item:item.html.twig', $response );
         }
 
     } else {
@@ -249,7 +281,7 @@ public function unwatchAction( $item_id )
 {
     $response = new JsonResponse();
     $watch = $this->get('item_subscribtion_model')->unwatch($item_id);
-    if (!is_null( $watch )){
+    if ( null !== $watch ){
         $response->setData(array(
             'path' => $this->generateUrl('app_item_unwatch', array('item_id' => $item_id)),
             'error' => 'Невозможно выполнить операцию, повторите позже.',
@@ -273,7 +305,7 @@ public function copyAction($item_id, Request $request)
     $copy = $this->get('item_model')->makeCopy($record);
     $rubric = $copy->getRubric();
 
-    $user = $this->get("security.context")->getToken()->getUser();
+    $user = $this->get('security.context')->getToken()->getUser();
 
     if (is_object($user)) {
 
@@ -293,8 +325,9 @@ public function copyAction($item_id, Request $request)
             'rubric' => $rubric,
             'form' => $form->createView(),
             'posting' => $copy,
-            'editId' => $editId
-             ]);
+            'editId' => $editId,
+            'breadcrumbs' => $this->getBreadcrumbs( $rubric )
+        ]);
 
     } else {
         return $this->redirect($this->generateUrl('fos_user_security_login'));
@@ -311,7 +344,7 @@ public function uploadAction(Request $request)
     $editId = $request->get('editId');
     if (!preg_match('/^\d+$/', $editId))
     {
-        throw new Exception("Bad edit id");
+        throw new Exception('Bad edit id');
     }
 
     $this->get('punk_ave.file_uploader')->handleFileUpload([
@@ -348,8 +381,10 @@ public function uploadAction(Request $request)
                 ->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
         });
 
-
-        return array('entities' => $this->paginate($query, 20));
+        return array(
+            'entities' => $this->paginate($query, 20),
+            'breadcrumbs' => $this->getBreadcrumbs( $rubric )
+        );
     }
 
     /**
@@ -378,9 +413,16 @@ public function uploadAction(Request $request)
         /* находим опубликованные комментарии по объявлению */
         $comments = $this->get('item_ratecomment_model')->getCommentsByItem( $content->getId() );
 
-        $response = array( 'content' => $content, 'files' => $files, 'rate' => $rate, 'comments' => $comments );
 
-            $user = $this->get("security.context")->getToken()->getUser();
+        $response = array(
+            'content' => $content,
+            'files' => $files,
+            'rate' => $rate,
+            'comments' => $comments,
+            'breadcrumbs' => $this->getBreadcrumbs( $rubric )
+        );
+
+            $user = $this->get('security.context')->getToken()->getUser();
             if ( is_object( $user ) && $user !== $content->getCreatedBy()) {
                 /* находим следит ли пользователь за объявлением, если оно ему не принадлежит */
                 $watch = $this->get('item_subscribtion_model')->getWatchByItem($content->getId());
@@ -448,5 +490,10 @@ public function uploadAction(Request $request)
         $this->errors[] = $error;
     }
 
-
+    /**
+     * @param Rubric $rubric
+     */
+    protected function getBreadcrumbs(Rubric $rubric){
+        return array_reverse( $this->get('rubric_model')->getParentRubrics($rubric->getId(), []) );
+    }
 }

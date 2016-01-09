@@ -71,7 +71,7 @@
                         {% block entity_list_entry_ends  %}
                             <div class="col-md-1">
                             {% if entity.publicationDateEnd is not null %}
-                                <span class="item-hits">{{ entity.publicationDateEnd | date("d.m.Y H:i:s") }}</span>
+                                <span class="item-ends">{{ entity.publicationDateEnd | date("d.m.Y H:i:s") }}</span>
                             {%  endif %}
                             </div>
                         {% endblock entity_list_entry_ends  %}

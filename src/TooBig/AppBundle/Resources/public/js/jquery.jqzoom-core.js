@@ -506,7 +506,7 @@
 
         function Stage() {
             var $obj = this;
-            this.node = $("<div class='zoomWindow'><div class='zoomWrapper'><div class='zoomWrapperTitle'></div><div class='zoomWrapperImage'></div></div></div>");
+            this.node = $("<div class='zoomWindow'><div class='zoomWrapper'><div class='zoomWrapperImage'></div></div></div>");
             this.ieframe = $('<iframe class="zoomIframe" src="javascript:\'\';" marginwidth="0" marginheight="0" align="bottom" scrolling="no" frameborder="0" ></iframe>');
             this.setposition = function () {
                 this.node.leftpos = 0;
@@ -688,9 +688,9 @@
         defaults: {
             zoomType: 'standard',
             //innerzoom/standard/reverse/drag
-            zoomWidth: 300,
+            zoomWidth: 500,
             //zoomWindow  default width
-            zoomHeight: 300,
+            zoomHeight: 500,
             //zoomWindow  default height
             xOffset: 10,
             //zoomWindow x offset, can be negative(more on the left) or positive(more on the right)
@@ -700,7 +700,7 @@
             //zoomWindow default position
             preloadImages: true,
             //image preload
-            preloadText: 'Loading zoom',
+            preloadText: 'Загрузка...',
             title: true,
             lens: true,
             imageOpacity: 0.4,

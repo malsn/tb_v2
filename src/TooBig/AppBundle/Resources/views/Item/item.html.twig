@@ -41,6 +41,7 @@
     <h1>{{ content }}
         <small>{{ content.abstract}}</small>
     </h1>
+    <div class=""><span class="item-title">Добавлено </span> <span class="item-published">{{ content.createdAt | date("d.m.Y H:i:s") }}</span></div>
     <a class="btn btn-success" href="{{ path('app_item_add', {'rubric_id': content.rubric.id}) }}">Добавить объявление</a> в раздел "<a href="{{ entitypath(content.rubric.parent) }}">{{ content.rubric.parent }}</a> > <a href="{{ entitypath(content.rubric) }}">{{ content.rubric.title }}</a>"
     или <a class="btn btn-success" href="{{ path('app_item_edit', {'item_id': content.id}) }}">Редакировать это объявление</a>
 
@@ -70,7 +71,7 @@
 {% endif %}
 {% endblock #}
 
-<div class="item-group">
+<div class="item-group row">
     <div class="col-sm-4">
         {% block content_images  %}
 
@@ -95,9 +96,7 @@
                     </ul>
                 </div>
 
-            {% endif %}
-
-            {%  if files | length %}
+            {%  elseif files | length %}
 
                 <div class="shopitem-img-div">
                     <div class="clearfix">
@@ -125,9 +124,9 @@
         {% if watch_item is defined %}
             {% block watch_item %}
                 {% if watch_item.id is defined %}
-                    <a class="btn btn-warning" id="app_watch_item" path-controller="{{ path('app_item_unwatch', {'item_id': content.id}) }}">Отписаться от обновлений</a>
+                    <a class="btn btn-primary" id="app_watch_item" path-controller="{{ path('app_item_unwatch', {'item_id': content.id}) }}">Отписаться от обновлений</a>
                 {% else %}
-                    <a class="btn btn-warning" id="app_watch_item" path-controller="{{ path('app_item_watch', {'item_id': content.id}) }}">Подписаться на обновления</a>
+                    <a class="btn btn-primary" id="app_watch_item" path-controller="{{ path('app_item_watch', {'item_id': content.id}) }}">Подписаться на обновления</a>
                 {% endif %}
             {% endblock watch_item %}
         {% endif %}
@@ -135,50 +134,58 @@
     </div>
     <div class="col-sm-8">
         {% block content_content %}
-            {{ content.content|raw}}
+
+            {% block content_brand  %}
+                <div class="item-brand">
+                    {% if content.brand is defined and content.brand is not null %}
+                        <span class="item-brand-value">{{ content.brand | raw }}</span>
+                    {% endif %}
+                </div>
+            {% endblock content_brand  %}
+
+            {% block content_model  %}
+                <div class="item-model">
+                    {% if content.model is defined and content.model is not null %}
+                        <span class="item-title">Модель:</span> <span class="item-model-value">{{ content.model | raw }}</span>
+                    {% endif %}
+                </div>
+            {% endblock content_model  %}
+
+            <div class="item-content">
+                {{ content.content | raw }}
+            </div>
+
+            {% block content_size  %}
+            <div class="item-size">
+            {% if content.size is defined and content.size is not null %}
+                <span class="item-title">Размер</span> ( <span class="item-size-type">{{ content.sizeType | raw }}</span> ): <span class="item-size-value">{{ content.size | raw }}</span>
+            {% endif %}
+            </div>
+            {% endblock content_size  %}
 
             {% block content_price %}
+            <div class="item-price">
                 {% if content.price %}
-                    <p>{{ content.price }} рублей.</p>
+                    <span class="item-title">Цена:</span> <span class="item-price-value">{{ content.price }}</span> <span class="item-price-currency">руб</span>
                 {% endif %}
+            </div>
             {% endblock content_price %}
 
             {% block content_author %}
+            <div class="item-author">
                 {% if content.createdBy %}
-                    <p>Продавец {{ content.createdBy }}</p>
+                    <span class="item-title">Продавец:</span> <span class="item-author-name">{{ content.createdBy }}</span>
                 {% endif %}
+            </div>
             {% endblock content_author %}
 
             {% block content_rate %}
-                {% if rate | length %}
-                    <p>Рейтинг: {{ rate[0].avg_rate | number_format(2, '.', ',') }} из 5</p>
+            <div class="item-rate">
+                {% if rate is defined and rate | length and rate[0].avg_rate != 0 %}
+                    <span class="item-title item-rate">Рейтинг:</span> <span class="item-rate-value">{{ rate[0].avg_rate | number_format(2, '.', ',') }} из 5</span>
                 {% endif %}
+            </div>
             {% endblock content_rate %}
-
-            {% block content_comments %}
-                <h4>Комментарии и оценки пользователей</h4>
-                {% if comments | length %}
-                    {% for comment in comments %}
-                        <div>{{ comment.user }}: {{ comment.comment }}</div>
-                        <div>Оценка: {{ comment.rate | number_format(2, '.', ',') }} из 5</div>
-                    {% endfor %}
-                {% else %}
-                    Комментариев нет
-                {% endif %}
-
-                {% if rate_comment_item is defined %}
-                    {% block rate_comment_item %}
-                        {% if rate_comment_item.id is defined %}
-                            {#<div class="app_comment_form"></div>
-                            <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_edit', {'item_id': content.id}) }}">Редактировать комментарий</a>#}
-                        {% else %}
-                            <div class="app_comment_form"></div>
-                            <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_add', {'item_id': content.id}) }}">Добавить комментарий</a>
-                        {% endif %}
-                    {% endblock rate_comment_item %}
-                {% endif %}
-
-            {% endblock content_comments %}
 
         {% endblock content_content %}
 
@@ -209,6 +216,41 @@
          </ul>
         {% endblock content_files %}
         {% endif #}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        {% block content_comments %}
+
+            <div class="item-comments">
+
+                <h4>Оставьте оценку и отзыв о товаре</h4>
+                {% if comments is defined and comments | length %}
+                    {% for comment in comments %}
+                        <div class="item-comment">
+                            <div class="comment-user-text"><span class="comment-user">{{ comment.user }}</span>: <span class="comment-text">{{ comment.comment }}</span></div>
+                            <div class="comment-rate"><span class="comment-rate-title">Оценка</span>: <span class="comment-rate-text">{{ comment.rate | number_format(2, '.', ',') }} из 5</span></div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    Пока что у этого товара нет отзывов. Поделитесь своим впечатлением о нём, и другие покупатели будут вам благодарны.
+                {% endif %}
+
+                {% if rate_comment_item is defined %}
+                    {% block rate_comment_item %}
+                        {% if rate_comment_item.id is defined %}
+                            {#<div class="app_comment_form"></div>
+                            <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_edit', {'item_id': content.id}) }}">Редактировать комментарий</a>#}
+                        {% else %}
+                            <div class="app_comment_form"></div>
+                            <a class="btn btn-success" id="app_comment_item" path-controller="{{ path('app_item_comment_add', {'item_id': content.id}) }}">Добавить комментарий</a>
+                        {% endif %}
+                    {% endblock rate_comment_item %}
+                {% endif %}
+
+            </div>
+        {% endblock content_comments %}
     </div>
 </div>
 
