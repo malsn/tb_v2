@@ -1,0 +1,9 @@
+{% block field_row %}
+    {% spaceless %}
+        <div class="filter-row">
+            {{ form_label(filterForm) }}
+            {{ form_errors(filterForm) }}
+            {{ form_widget(filterForm) }}
+        </div>
+    {% endspaceless %}
+{% endblock field_row %}

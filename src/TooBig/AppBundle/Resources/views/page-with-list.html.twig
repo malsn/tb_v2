@@ -1,5 +1,15 @@
 {% extends 'TooBigAppBundle::page-with-header.html.twig' %}
 
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="/" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
+        {% if breadcrumbs is defined %}
+            {% for rubric in breadcrumbs %}
+                <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="{{ entitypath(rubric) }}" itemprop="url" class="breadcrumbs-item-link link"><span itemprop="title">{{ rubric }}</span></a></span>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock breadcrumbs %}
 
 {% block page_body %}
 
@@ -14,6 +24,22 @@
 {% endblock search_form %}
 {% endif %}
 
+{% if filterForm is defined and filterForm %}
+{% block items_filter %}
+    <div id="ItemsFilter">
+    <form id="ItemsFilter_form" action="" method="post">
+        <div class="form-row">
+            <div class="col-sm-1 title">Фильтр:</div>
+            <div class="col-sm-1 col">{{ form_widget(filterForm.brand, {'attr': {'class':'filter-form-item brand'}}) }}</div>
+            <div class="col-sm-1 col">{{ form_widget(filterForm.size, {'attr': {'class':'filter-form-item size'}}) }}</div>
+            <div class="col-sm-1 col">{{ form_widget(filterForm.color, {'attr': {'class':'filter-form-item color'}}) }}</div>
+            <div class="col-sm-1 col">{{ form_widget(filterForm.gender, {'attr': {'class':'filter-form-item gender'}}) }}</div>
+            <div class="col-sm-7 title">Поиск</div>
+        </div>
+    </form>
+    </div>
+{% endblock items_filter %}
+{% endif %}
 
 {% if entities is defined and entities %}
 {% block entity_list%}

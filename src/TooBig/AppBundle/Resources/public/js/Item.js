@@ -93,4 +93,8 @@ jQuery(document).ready(function() {
             }
         });
     });
+
+    jQuery('.filter-form-item').on('change', function(){
+        jQuery('#ItemsFilter_form').submit();
+    });
 });

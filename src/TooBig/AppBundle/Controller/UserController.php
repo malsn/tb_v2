@@ -42,7 +42,7 @@ class UserController extends RubricAwareController
         }
 
         return $this->render('TooBigAppBundle:User:edit_user_profile.html.twig', array(
-            'user'   => $user
+            'user'   => $user, 'breadcrumbs' => []
         ));
     }
 

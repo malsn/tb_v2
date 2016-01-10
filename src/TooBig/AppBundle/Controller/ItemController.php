@@ -13,10 +13,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use TooBig\AppBundle\Entity\RateComment;
 use TooBig\AppBundle\Form\ItemForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use TooBig\AppBundle\Form\Type\ItemsFilterType;
 use TooBig\AppBundle\Form\Type\RateCommentType;
 use TooBig\AppBundle\Model\ItemSubscribtionModel;
+use Iphp\CoreBundle\Controller\RubricAwareController;
 
-class ItemController extends ContentController
+class ItemController extends RubricAwareController
 {
     protected $errors;
 
@@ -368,22 +370,42 @@ public function uploadAction(Request $request)
 
     /**
      * @Template()
+     * @param Request $request
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         $rubric = $this->getCurrentRubric();
 
+        $filter_params = [];
+        $filter_params['Brand'] = $request->request->get('ItemsFilter')['brand'];
+        $filter_params['Size'] = $request->request->get('ItemsFilter')['size'];
+        $filter_params['Color'] = $request->request->get('ItemsFilter')['color'];
+        $filter_params['Gender'] = $request->request->get('ItemsFilter')['gender'];
+
         $query = $this->getDoctrine()
             ->getRepository('TooBigAppBundle:Item')
-            ->createQuery('c', function ($qb) use ($rubric)
+            ->createQuery('c', function ($qb) use ($rubric, $filter_params)
         {
-            $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true)
-                ->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
+            $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
+            foreach ($filter_params as $key => $value) {
+                if (!empty($value)){
+                    $qb_func = 'where'.$key;
+                    $qb->$qb_func($value);
+                }
+            }
+
+            $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
         });
+
+        $filterForm = $this->createForm( new ItemsFilterType($this->get('router')) );
+        if ($request->isMethod('POST')) {
+            $filterForm->handleRequest($request);
+        }
 
         return array(
             'entities' => $this->paginate($query, 20),
-            'breadcrumbs' => $this->getBreadcrumbs( $rubric )
+            'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
+            'filterForm' => $filterForm->createView()
         );
     }
 
