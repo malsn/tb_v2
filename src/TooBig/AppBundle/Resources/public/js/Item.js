@@ -101,7 +101,9 @@ jQuery(document).ready(function() {
     jQuery('#price-slider-ui').slider({
         animate: "fast",
         range: true,
-        values: [ 0, 100 ],
+        values: [
+            jQuery('.filter-form-item.price-min').val() != '' ? jQuery('.filter-form-item.price-min').val()*100/100000 : 0,
+            jQuery('.filter-form-item.price-max').val() != '' ? jQuery('.filter-form-item.price-max').val()*100/100000 : 100 ],
         change: function( event, ui ) {
             var price_min = ui.values[0]*100000/100;
             var price_max = ui.values[1]*100000/100;
