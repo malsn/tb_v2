@@ -1,5 +1,12 @@
 {% extends 'TooBigAppBundle::page-with-header.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/bundles/toobigapp/css/jquery-ui.css" rel="stylesheet">
+    <link href="/bundles/toobigapp/css/jquery-ui.structure.css" rel="stylesheet">
+    <link href="/bundles/toobigapp/css/jquery-ui.theme.css" rel="stylesheet">
+{% endblock stylesheets %}
+
 {% block breadcrumbs %}
     <div class="breadcrumbs">
         <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="/" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
@@ -34,7 +41,13 @@
             <div class="col-sm-1 col">{{ form_widget(filterForm.size, {'attr': {'class':'filter-form-item size'}}) }}</div>
             <div class="col-sm-1 col">{{ form_widget(filterForm.color, {'attr': {'class':'filter-form-item color'}}) }}</div>
             <div class="col-sm-1 col">{{ form_widget(filterForm.gender, {'attr': {'class':'filter-form-item gender'}}) }}</div>
-            <div class="col-sm-6 title">Поиск</div>
+            <div class="col-sm-2 col">
+                <div id="price-slider-ui"></div>
+                {{ form_widget(filterForm.price_min, {'attr': {'class':'filter-form-item price-min'}}) }}
+                {{ form_widget(filterForm.price_max, {'attr': {'class':'filter-form-item price-max'}}) }}
+                <input type="submit" value="Применить"/>
+            </div>
+            <div class="col-sm-4 title">Поиск</div>
         </div>
     </form>
     </div>

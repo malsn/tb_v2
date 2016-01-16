@@ -97,4 +97,19 @@ jQuery(document).ready(function() {
     jQuery('.filter-form-item').on('change', function(){
         jQuery('#ItemsFilter_form').submit();
     });
+
+    jQuery('#price-slider-ui').slider({
+        animate: "fast",
+        range: true,
+        values: [ 0, 100 ],
+        change: function( event, ui ) {
+            var price_min = ui.values[0]*100000/100;
+            var price_max = ui.values[1]*100000/100;
+            jQuery('.ui-slider-handle:first').html(price_min);
+            jQuery('.filter-form-item.price-min').val(price_min);
+            jQuery('.ui-slider-handle:last').html(price_max);
+            jQuery('.filter-form-item.price-max').val(price_max);
+        }
+    });
+
 });

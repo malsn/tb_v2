@@ -58,6 +58,8 @@ class ItemsFilterType extends AbstractType
                     'class'=>'form-filter gender'
                 ]
             ])
+            ->add('price_min', 'hidden')
+            ->add('price_max', 'hidden')
             ->add(
                 'save',
                 'button',

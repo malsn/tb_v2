@@ -377,14 +377,17 @@ public function uploadAction(Request $request)
         $rubric = $this->getCurrentRubric();
 
         $filter_params = [];
+        $price_params = [];
         $filter_params['Brand'] = $request->request->get('ItemsFilter')['brand'];
         $filter_params['Size'] = $request->request->get('ItemsFilter')['size'];
         $filter_params['Color'] = $request->request->get('ItemsFilter')['color'];
         $filter_params['Gender'] = $request->request->get('ItemsFilter')['gender'];
+        $price_params['Min'] = $request->request->get('ItemsFilter')['price_min'] ? : 0;
+        $price_params['Max'] = $request->request->get('ItemsFilter')['price_max'] ? : 100000;
 
         $query = $this->getDoctrine()
             ->getRepository('TooBigAppBundle:Item')
-            ->createQuery('c', function ($qb) use ($rubric, $filter_params)
+            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params)
         {
             $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
             foreach ($filter_params as $key => $value) {
@@ -393,7 +396,7 @@ public function uploadAction(Request $request)
                     $qb->$qb_func($value);
                 }
             }
-
+            $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
             $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
         });
 
