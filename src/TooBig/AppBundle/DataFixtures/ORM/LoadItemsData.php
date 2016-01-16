@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use TooBig\AppBundle\Entity\Item;
 use TooBig\AppBundle\Entity\Color;
+use TooBig\AppBundle\Entity\ItemBlueimp;
 
 class LoadItemsData implements FixtureInterface, ContainerAwareInterface
 {
@@ -37,6 +38,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 2');
     $itemAdmin->setEnabled(true);
@@ -46,6 +56,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 3');
@@ -57,6 +76,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 4');
     $itemAdmin->setEnabled(true);
@@ -66,6 +94,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 5');
@@ -77,6 +114,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 6');
     $itemAdmin->setEnabled(true);
@@ -86,6 +132,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 7');
@@ -97,6 +152,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 8');
     $itemAdmin->setEnabled(true);
@@ -106,6 +170,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 9');
@@ -117,6 +190,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 10');
     $itemAdmin->setEnabled(true);
@@ -126,6 +208,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 11');
@@ -137,6 +228,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 12');
     $itemAdmin->setEnabled(true);
@@ -146,6 +246,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 13');
@@ -157,6 +266,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 14');
     $itemAdmin->setEnabled(true);
@@ -166,6 +284,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 15');
@@ -177,6 +304,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 16');
     $itemAdmin->setEnabled(true);
@@ -186,6 +322,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 17');
@@ -197,6 +342,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 18');
     $itemAdmin->setEnabled(true);
@@ -206,6 +360,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 19');
@@ -217,6 +380,15 @@ public function load(ObjectManager $manager)
     $manager->persist($itemAdmin);
     $manager->flush();
 
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
+
     $itemAdmin = $this->container->get('item_model')->makeFixtureCopy($record);
     $itemAdmin->setTitle('Happy Bee sample 20');
     $itemAdmin->setEnabled(true);
@@ -226,6 +398,15 @@ public function load(ObjectManager $manager)
 
     $manager->persist($itemAdmin);
     $manager->flush();
+
+    $blueimp = new ItemBlueimp();
+    $blueimp->setItem($itemAdmin->getId());
+    $blueimp->setName('HA014ABGTS01_1_v1.jpg');
+    $blueimp->setCreatedAt(new \DateTime());
+    $manager->persist($blueimp);
+    $manager->flush();
+
+    /* ------------------- */
 
 }
 }
