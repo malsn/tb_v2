@@ -55,6 +55,29 @@ class ItemModel extends ContainerAware {
         $copy->setHits(0);
         return $copy;
     }
+    /**
+     * @param Item $record
+     * @return Item
+     */
+    public function makeFixtureCopy(Item $record){
+        $copy = new Item();
+        $copy->setCreatedBy($record->getCreatedBy());
+        $copy->setUpdatedBy($record->getUpdatedBy());
+        $copy->setCreatedAt(new \DateTime());
+        $copy->setEnabled(true);
+        $copy->setTitle($record->getTitle());
+        $copy->setRubric($record->getRubric());
+        $copy->setColor($record->getColor());
+        $copy->setAbstract($record->getAbstract());
+        $copy->setContent($record->getContent());
+        $copy->setGender($record->getGender());
+        $copy->setBrand($record->getBrand());
+        $copy->setModel($record->getModel());
+        $copy->setSizeType($record->getSizeType());
+        $copy->setSize($record->getSize());
+        $copy->setHits(0);
+        return $copy;
+    }
 
     /**
      * @param $item_id
