@@ -63,7 +63,10 @@ div#ItemsFilter div.form-row div.title {
     vertical-align: middle;
     margin-left: 4px;
 }
-
+.filter-form-item {
+    height: 200px;
+    overflow-y: auto;
+}
 /**/
 
 div.list-group > ul > li { list-style: none; }
