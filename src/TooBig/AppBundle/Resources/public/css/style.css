@@ -47,7 +47,14 @@ div#ItemsFilter div.form-row div.title {
     cursor: pointer;
     position: relative;
 }
-.filter-title .filter-hidden { display: none; position: absolute; }
+.filter-title .filter-hidden {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    padding: 10px;
+}
 .filter-title.filter-open .filter-hidden { display: block; }
 .filter-title span:after {
     font-size: 14px;
