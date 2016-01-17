@@ -64,7 +64,7 @@ div#ItemsFilter div.form-row div.title {
     margin-left: 4px;
 }
 .filter-form-item {
-    height: 200px;
+    max-height: 200px;
     overflow-y: auto;
 }
 /**/
