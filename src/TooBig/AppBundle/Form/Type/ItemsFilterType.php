@@ -28,6 +28,8 @@ class ItemsFilterType extends AbstractType
         $builder
             ->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
+                'expanded'=>true,
+                'multiple'=>true,
                 'empty_value' => 'Бренд',
                 'required'=>false,
                 'label' => ' ',
@@ -37,7 +39,10 @@ class ItemsFilterType extends AbstractType
             ])
             ->add('size', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Size',
+                'expanded'=>true,
+                'multiple'=>true,
                 'empty_value' => 'Размер',
+                'required'=>false,
                 'label' => ' ',
                 'attr'=>[
                     'class'=>'form-filter size'
@@ -45,21 +50,35 @@ class ItemsFilterType extends AbstractType
             ])
             ->add('color', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Color',
+                'expanded'=>true,
+                'multiple'=>true,
                 'empty_value' => 'Цвет',
+                'required'=>false,
                 'label' => ' ',
                 'attr'=>[
                     'class'=>'form-filter color'
                 ]
             ])
             ->add('gender', new GenderType(), [
+                'expanded'=>true,
+                'multiple'=>true,
                 'empty_value' => 'Пол',
+                'required'=>false,
                 'label' => ' ',
                 'attr'=>[
                     'class'=>'form-filter gender'
                 ]
             ])
-            ->add('price_min', 'hidden')
-            ->add('price_max', 'hidden')
+            ->add('price_min', 'text', [
+                'attr' => [
+                    'size'=>3
+                ]
+            ])
+            ->add('price_max', 'text', [
+                'attr' => [
+                    'size'=>3
+                ]
+            ])
             ->add(
                 'save',
                 'button',

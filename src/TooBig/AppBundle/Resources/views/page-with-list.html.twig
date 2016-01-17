@@ -33,19 +33,66 @@
 
 {% if filterForm is defined and filterForm %}
 {% block items_filter %}
+    {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
     <div id="ItemsFilter">
-    <form id="ItemsFilter_form" action="" method="post">
+    <form id="ItemsFilter_form" action="" method="get">
         <div class="form-row">
             <div class="col-sm-1 title">Фильтр:</div>
-            <div class="col-sm-2 col">{{ form_widget(filterForm.brand, {'attr': {'class':'filter-form-item brand'}}) }}</div>
-            <div class="col-sm-1 col">{{ form_widget(filterForm.size, {'attr': {'class':'filter-form-item size'}}) }}</div>
-            <div class="col-sm-1 col">{{ form_widget(filterForm.color, {'attr': {'class':'filter-form-item color'}}) }}</div>
-            <div class="col-sm-1 col">{{ form_widget(filterForm.gender, {'attr': {'class':'filter-form-item gender'}}) }}</div>
-            <div class="col-sm-2 col">
-                <div id="price-slider-ui"></div>
-                {{ form_widget(filterForm.price_min, {'attr': {'class':'filter-form-item price-min'}}) }}
-                {{ form_widget(filterForm.price_max, {'attr': {'class':'filter-form-item price-max'}}) }}
-                <input type="submit" value="Применить"/>
+            <div class="col-sm-2 col filter-col">
+                <div class="filter-title"><span>Бренд</span>
+                    <div class="filter-hidden">
+                        {{ form_widget(filterForm.brand, {'attr': {'class':'filter-form-item brand'}}) }}
+                        <div class="brand-submit">
+                            <input type="submit" value="Применить"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 col filter-col">
+                <div class="filter-title"><span>Размер</span>
+                    <div class="filter-hidden">
+                        {{ form_widget(filterForm.size, {'attr': {'class':'filter-form-item size'}}) }}
+                        <div class="size-submit">
+                            <input type="submit" value="Применить"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 col filter-col">
+                <div class="filter-title"><span>Цвет</span>
+                    <div class="filter-hidden">
+                        {{ form_widget(filterForm.color, {'attr': {'class':'filter-form-item color'}}) }}
+                        <div class="color-submit">
+                            <input type="submit" value="Применить"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 col filter-col">
+                <div class="filter-title"><span>Пол</span>
+                    <div class="filter-hidden">
+                        {{ form_widget(filterForm.gender, {'attr': {'class':'filter-form-item gender'}}) }}
+                        <div class="gender-submit">
+                            <input type="submit" value="Применить"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 col filter-col">
+                <div class="filter-title"><span>Цена</span>
+                    <div class="filter-hidden">
+                        <div id="price-slider-ui"></div>
+                        <div class="price-slider-range">
+                            от {{ form_widget(filterForm.price_min, {'attr': {'class':'filter-form-item price-min'}}) }} до
+                            {{ form_widget(filterForm.price_max, {'attr': {'class':'filter-form-item price-max'}}) }}
+                            <input id="rubric-price-min" type="hidden" value="{{ rubricPriceRange['Min'] }}"/>
+                            <input id="rubric-price-max" type="hidden" value="{{ rubricPriceRange['Max'] }}"/>
+                        </div>
+                        <div class="price-slider-submit">
+                            <input type="submit" value="Применить"/>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-4 title">Поиск</div>
         </div>

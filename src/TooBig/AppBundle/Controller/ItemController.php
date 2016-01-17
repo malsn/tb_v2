@@ -378,12 +378,14 @@ public function uploadAction(Request $request)
 
         $filter_params = [];
         $price_params = [];
-        $filter_params['Brand'] = $request->request->get('ItemsFilter')['brand'];
-        $filter_params['Size'] = $request->request->get('ItemsFilter')['size'];
-        $filter_params['Color'] = $request->request->get('ItemsFilter')['color'];
-        $filter_params['Gender'] = $request->request->get('ItemsFilter')['gender'];
-        $price_params['Min'] = $request->request->get('ItemsFilter')['price_min'] ? : 0;
-        $price_params['Max'] = $request->request->get('ItemsFilter')['price_max'] ? : 100000;
+        $filter_params['Brand'] = isset($request->request->get('ItemsFilter')['brand']) ? $request->request->get('ItemsFilter')['brand'] : null;
+        $filter_params['Size'] = isset($request->request->get('ItemsFilter')['size']) ? $request->request->get('ItemsFilter')['size'] : null;
+        $filter_params['Color'] = isset($request->request->get('ItemsFilter')['color']) ? $request->request->get('ItemsFilter')['color'] : null;
+        $filter_params['Gender'] = isset($request->request->get('ItemsFilter')['gender']) ? $request->request->get('ItemsFilter')['gender'] : null;
+        $min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
+        $max = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'max');
+        $price_params['Min'] = $request->request->get('ItemsFilter')['price_min'] ? : $min[0][1];
+        $price_params['Max'] = $request->request->get('ItemsFilter')['price_max'] ? : $max[0][1];
 
         $query = $this->getDoctrine()
             ->getRepository('TooBigAppBundle:Item')
@@ -391,7 +393,7 @@ public function uploadAction(Request $request)
         {
             $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
             foreach ($filter_params as $key => $value) {
-                if (!empty($value)){
+                if ( null !== $value ){
                     $qb_func = 'where'.$key;
                     $qb->$qb_func($value);
                 }
@@ -401,14 +403,15 @@ public function uploadAction(Request $request)
         });
 
         $filterForm = $this->createForm( new ItemsFilterType($this->get('router')) );
-        if ($request->isMethod('POST')) {
+        if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
         }
 
         return array(
             'entities' => $this->paginate($query, 20),
             'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
-            'filterForm' => $filterForm->createView()
+            'filterForm' => $filterForm->createView(),
+            'rubricPriceRange' => $price_params,
         );
     }
 

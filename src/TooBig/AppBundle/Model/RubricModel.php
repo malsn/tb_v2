@@ -6,6 +6,10 @@ use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
+/**
+ * Class RubricModel
+ * @package TooBig\AppBundle\Model
+ */
 class RubricModel extends ContainerAware {
     /**
      * @param $rubric_id
@@ -30,5 +34,28 @@ class RubricModel extends ContainerAware {
             $rubrics = $this->getParentRubrics($rubric->getParentId(), $rubrics );
         }
         return $rubrics;
+    }
+
+    /**
+     * @param $rubric
+     * @param $filter_params
+     * @return mixed
+     */
+    public function getRubricPriceRange($rubric, $filter_params, $type){
+        $query = $this->container->get('doctrine')
+            ->getRepository('TooBigAppBundle:Item')
+            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $type)
+            {
+                $qb->add('select', $qb->expr()->$type('c.price'))
+                    ->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
+                foreach ($filter_params as $key => $value) {
+                    if (!empty($value)){
+                        $qb_func = 'where'.$key;
+                        $qb->$qb_func($value);
+                    }
+                }
+            });
+
+        return $query->getResult();
     }
 }

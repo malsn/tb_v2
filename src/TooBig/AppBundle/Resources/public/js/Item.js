@@ -94,22 +94,21 @@ jQuery(document).ready(function() {
         });
     });
 
-    jQuery('.filter-form-item').on('change', function(){
-        jQuery('#ItemsFilter_form').submit();
+    jQuery('.filter-title').on('click', function(){
+        jQuery('.filter-title').removeClass('filter-open');
+        jQuery(this).addClass('filter-open');
     });
 
     jQuery('#price-slider-ui').slider({
         animate: "fast",
         range: true,
         values: [
-            jQuery('.filter-form-item.price-min').val() != '' ? jQuery('.filter-form-item.price-min').val()*100/100000 : 0,
-            jQuery('.filter-form-item.price-max').val() != '' ? jQuery('.filter-form-item.price-max').val()*100/100000 : 100 ],
+            jQuery('.filter-form-item.price-min').val() != '' ? jQuery('.filter-form-item.price-min').val()/1000 : jQuery('#rubric-price-min').val()/1000,
+            jQuery('.filter-form-item.price-max').val() != '' ? jQuery('.filter-form-item.price-max').val()/1000 : jQuery('#rubric-price-max').val()/1000 ],
         change: function( event, ui ) {
-            var price_min = ui.values[0]*100000/100;
-            var price_max = ui.values[1]*100000/100;
-            jQuery('.ui-slider-handle:first').html(price_min);
+            var price_min = ui.values[0]*1000;
+            var price_max = ui.values[1]*1000;
             jQuery('.filter-form-item.price-min').val(price_min);
-            jQuery('.ui-slider-handle:last').html(price_max);
             jQuery('.filter-form-item.price-max').val(price_max);
         }
     });
