@@ -403,7 +403,9 @@ public function uploadAction(Request $request)
         });
 
         $filterForm = $this->createForm( new ItemsFilterType($this->get('router')) );
-        $filterForm->handleRequest($request);
+        if ($request->isMethod('GET')) {
+            $filterForm->handleRequest($request);
+        }
 
         return array(
             'entities' => $this->paginate($query, 20),

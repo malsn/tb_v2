@@ -26,6 +26,7 @@ class ItemsFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->setMethod('GET')
             ->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
                 'expanded'=>true,
