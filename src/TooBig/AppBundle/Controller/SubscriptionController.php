@@ -189,7 +189,7 @@ public function getSubscriptionItemsAction($subscription_id){
 
             try {
                 $items = $this->get('auto_subscription_model')->getItemsBySubscription($record);
-                return count($items);
+                return new Response(count($items));
 
             } catch (\Exception $e) {
 
