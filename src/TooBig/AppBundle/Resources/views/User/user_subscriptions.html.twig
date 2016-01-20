@@ -16,8 +16,11 @@
             <a class="btn btn-success" href="{{ path('app_subscription_add') }}">Добавить подписку</a>
             <div id="my-item-list">
                 <div class="row">
-                   <div class="col-md-8">
+                   <div class="col-md-4">
                         Наименование
+                    </div>
+                    <div class="col-md-4">
+                        Содержание подписки
                     </div>
                     <div class="col-md-1">
                         Статус
@@ -34,7 +37,7 @@
                     {% block entity_list_entry %}
                         <div class="row item">
                             {% block entity_list_entry_title  %}
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     {% block entity_list_entry_link  %}
                                         <div>
                                             <a href="{# entitypath(entity) #}">{{ entity.title }}</a>
@@ -50,6 +53,21 @@
 
                                 </div>
                             {% endblock entity_list_entry_title  %}
+                            {% block entity_list_entry_contents  %}
+                                <div class="col-md-4">
+                                    <div>
+                                        {{ entity.rubric is defined ? entity.rubric | raw : '' }}
+                                        {{ entity.gender is defined ? entity.gender | raw : '' }}
+                                        {{ entity.color is defined ? entity.color | raw : '' }}
+                                        {{ entity.brand is defined ? entity.brand | raw  : '' }}
+                                        {{ entity.model is defined ? entity.model | raw : '' }}
+                                        {{ entity.size_type is defined ? entity.size_type | raw : '' }}
+                                        {{ entity.size is defined ? entity.size | raw : '' }}
+                                        {{ entity.price_min is defined ? entity.price_min | raw : '' }} 
+                                        {{ entity.price_max is defined ? entity.price_max | raw : '' }}
+                                    </div>
+                                </div>
+                            {% endblock entity_list_entry_contents  %}
                             {% block entity_list_entry_enabled  %}
                                 <div class="col-md-1">
                                     <span class="item-enabled-{{ entity.enabled }}">{{ entity.enabled ? 'Активна'  : 'Не активна' }}</span>
