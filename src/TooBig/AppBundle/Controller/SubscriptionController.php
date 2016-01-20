@@ -173,6 +173,34 @@ public function deleteAction($subscription_id){
     }
 }
 
+    /**
+     * @param $subscription_id
+     * @return int|null
+     */
+public function getSubscriptionItemsAction($subscription_id){
+    $record = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
+    $user = $this->get('security.context')->getToken()->getUser();
+
+    if (!is_object($record)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
+
+    if (is_object($user)) {
+
+        if ( $user === $record->getCreatedBy()){
+
+            try {
+                $items = $this->get('auto_subscription_model')->getItemsBySubscription($record);
+                return count($items);
+
+            } catch (\Exception $e) {
+
+            }
+
+        } else {
+            return null;
+        }
+    }
+}
+
 /**
  * @return mixed
  */

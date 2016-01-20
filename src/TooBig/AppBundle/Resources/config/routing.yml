@@ -34,6 +34,9 @@ app_subscription_resume:
 app_subscription_delete:
     path:     /app/subscription/{subscription_id}/delete
     defaults: { _controller: TooBigAppBundle:Subscription:delete }
+app_subscription_items_count:
+    path:     /app/subscription/{subscription_id}/items/count
+    defaults: { _controller: TooBigAppBundle:Subscription:getSubscriptionItems }
 app_list_watch_items:
     path:     /app/items/watchlist
     defaults: { _controller: TooBigAppBundle:User:watchlist }
