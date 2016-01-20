@@ -41,14 +41,20 @@ class SubscriptionType extends AbstractType
                     'constraints' => [new NotBlank()]
                 ]
             )
-            ->add('rubric', 'rubricchoice')
-            ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
+            ->add('rubric', 'rubricchoice',[
+                'required' => false,
+            ])
+            ->add('gender', new GenderType(), [
+                'required' => false,
+                'empty_value' => 'Укажите пол'
+            ])
             ->add('color', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Color',
                 'required' => false,
                 'empty_value' => 'Укажите цвет'])
             ->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
+                'required' => false,
                 'empty_value' => 'Укажите бренд',
                 'attr'=>[
                     'class'=>'brand',
@@ -57,6 +63,7 @@ class SubscriptionType extends AbstractType
             ])
             ->add('model', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Model',
+                'required' => false,
                 'empty_value' => 'Укажите модель',
                 'attr'=>[
                     'class'=>'model',
@@ -65,6 +72,7 @@ class SubscriptionType extends AbstractType
             ])
             ->add('size_type', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\SizeType',
+                'required' => false,
                 'empty_value' => 'Укажите размерный ряд',
                 'attr'=>[
                     'class'=>'size-type',
@@ -73,6 +81,7 @@ class SubscriptionType extends AbstractType
             ])
             ->add('size', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Size',
+                'required' => false,
                 'empty_value' => 'Укажите размер',
                 'attr'=>[
                     'class'=>'size',
@@ -80,11 +89,13 @@ class SubscriptionType extends AbstractType
                 ]
             ])
             ->add('price_min', 'text', [
+                'required' => false,
                 'attr' => [
                     'size'=>3
                 ]
             ])
             ->add('price_max', 'text', [
+                'required' => false,
                 'attr' => [
                     'size'=>3
                 ]
