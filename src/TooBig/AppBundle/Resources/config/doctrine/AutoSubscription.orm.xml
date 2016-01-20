@@ -8,9 +8,9 @@
     <field name="enabled" type="boolean" column="enabled"/>
     <field name="createdAt" type="datetime" column="created_at"/>
     <field name="modifiedAt" type="datetime" column="modified_at"/>
-    <field name="priceMin" type="integer" column="price_min"/>
-    <field name="priceMax" type="integer" column="price_max"/>
-    <field name="gender" type="string" column="gender" length="1"/>
+    <field name="priceMin" type="integer" column="price_min" nullable="true"/>
+    <field name="priceMax" type="integer" column="price_max" nullable="true"/>
+    <field name="gender" type="string" column="gender" length="1" nullable="true"/>
 
     <many-to-one target-entity="Application\Iphp\CoreBundle\Entity\Rubric" field="rubric">
       <cascade><cascade-persist/></cascade>
