@@ -34,6 +34,7 @@ class SubscriptionType extends AbstractType
                 'text',
                 [
                     'label' => 'Название подписки',
+                    'empty_value' => 'Не указана',
                     'attr' => [
                         'placeholder' => 'Название подписки',
                         'class' => 'form-group'
