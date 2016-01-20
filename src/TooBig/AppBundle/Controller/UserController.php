@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Iphp\CoreBundle\Controller\RubricAwareController;
+use TooBig\AppBundle\Entity\AutoSubscription;
 
 /**
  * This class is inspired from the FOS Profile Controller, except :
@@ -71,6 +72,23 @@ class UserController extends RubricAwareController
         {
             $qb->whereCreatedBy($user);
         });
+        return array('entities' => $this->paginate($query, 20));
+    }
+
+    /**
+     * @Template("TooBigAppBundle:User:user_subscriptions.html.twig")
+     */
+    public function listSubscriptionsAction (){
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $query = $this->getDoctrine()
+            ->getRepository('TooBigAppBundle:AutoSubscription')
+            ->createQueryBuilder('s')
+            ->where('s.createdBy = :user')
+            ->setParameter('user',$user->getId())
+            ->orderBy('s.createdAt','DESC')
+            ->getQuery();
+
         return array('entities' => $this->paginate($query, 20));
     }
 

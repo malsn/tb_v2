@@ -99,6 +99,10 @@ jQuery(document).ready(function() {
         jQuery(this).addClass('filter-open');
     });
 
+    jQuery('.filter-form-submit').on('click', function(){
+        jQuery('#ItemsFilter_form').submit();
+    });
+
     jQuery('#price-slider-ui').slider({
         animate: "fast",
         range: true,

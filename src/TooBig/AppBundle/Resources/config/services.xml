@@ -10,6 +10,11 @@
                 <argument type="service" id="service_container" />
             </call>
         </service>
+        <service id="auto_subscription_model" class="TooBig\AppBundle\Model\SubscriptionModel">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
         <service id="item_subscribtion_model" class="TooBig\AppBundle\Model\ItemSubscribtionModel">
             <call method="setContainer">
                 <argument type="service" id="service_container" />

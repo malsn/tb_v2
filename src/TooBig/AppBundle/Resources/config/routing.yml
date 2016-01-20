@@ -19,9 +19,27 @@ app_item_comment_add:
 app_item_comment_edit:
     path:     /app/item/{item_id}/comment/edit
     defaults: { _controller: TooBigAppBundle:Item:editcomment }
+app_subscription_add:
+    path:     /app/subscription/add
+    defaults: { _controller: TooBigAppBundle:Subscription:add }
+app_subscription_edit:
+    path:     /app/subscription/{subscription_id}/edit
+    defaults: { _controller: TooBigAppBundle:Subscription:edit }
+app_subscription_stop:
+    path:     /app/subscription/{subscription_id}/stop
+    defaults: { _controller: TooBigAppBundle:Subscription:stop }
+app_subscription_resume:
+    path:     /app/subscription/{subscription_id}/resume
+    defaults: { _controller: TooBigAppBundle:Subscription:resume }
+app_subscription_delete:
+    path:     /app/subscription/{subscription_id}/delete
+    defaults: { _controller: TooBigAppBundle:Subscription:delete }
 app_list_watch_items:
     path:     /app/items/watchlist
     defaults: { _controller: TooBigAppBundle:User:watchlist }
+app_list_subscriptions:
+    path:     /app/subscription/list
+    defaults: { _controller: TooBigAppBundle:User:listSubscriptions }
 app_list_user_items:
     path:     /app/items/list
     defaults: { _controller: TooBigAppBundle:User:listUserItems }

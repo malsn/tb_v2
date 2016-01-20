@@ -37,6 +37,11 @@ class User extends BaseUser
     protected $watchItems;
 
     /**
+     * @var subscriptions[]
+     */
+    protected $subscriptions;
+
+    /**
      * Get id
      *
      * @return int $id
