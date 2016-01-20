@@ -40,7 +40,7 @@ class SubscriptionController extends Controller
                         $this->get('auto_subscription_model')->save($record);
                         $this->get('session')->getFlashBag()->add(
                             'notice',
-                            'Ваша подписка успешно создана. <!--Вы можете ее активировать из списка доступных подписок-->. Спасибо!'
+                            'Ваша подписка успешно создана. Спасибо!'
                         );
 
                         return $this->redirect($this->generateUrl('app_subscription_edit',['subscription_id' => $record->getId()]));
@@ -95,7 +95,7 @@ public function editAction($subscription_id, Request $request)
                         $this->get('auto_subscription_model')->save($record);
                         $this->get('session')->getFlashBag()->add(
                             'notice',
-                            'Ваша подписка успешно изменена. <!--Вы можете активировать ее из списка доступных подписок-->. Спасибо!'
+                            'Ваша подписка успешно изменена. Спасибо!'
                         );
 
                     } catch (\Exception $e) {
