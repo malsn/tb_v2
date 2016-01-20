@@ -46,16 +46,16 @@ class SubscriptionType extends AbstractType
             ])
             ->add('gender', new GenderType(), [
                 'required' => false,
-                'empty_value' => 'Укажите пол'
+                'empty_value' => 'Не указан'
             ])
             ->add('color', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Color',
                 'required' => false,
-                'empty_value' => 'Укажите цвет'])
+                'empty_value' => 'Не указан'])
             ->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
                 'required' => false,
-                'empty_value' => 'Укажите бренд',
+                'empty_value' => 'Не указан',
                 'attr'=>[
                     'class'=>'brand',
                     'path-controller' => $this->route_service->generate('app_list_model_by_brand', array())
@@ -64,7 +64,7 @@ class SubscriptionType extends AbstractType
             ->add('model', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Model',
                 'required' => false,
-                'empty_value' => 'Укажите модель',
+                'empty_value' => 'Не указана',
                 'attr'=>[
                     'class'=>'model',
                     'disabled'=>''
@@ -73,7 +73,7 @@ class SubscriptionType extends AbstractType
             ->add('size_type', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\SizeType',
                 'required' => false,
-                'empty_value' => 'Укажите размерный ряд',
+                'empty_value' => 'Не указан',
                 'attr'=>[
                     'class'=>'size-type',
                     'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
@@ -82,7 +82,7 @@ class SubscriptionType extends AbstractType
             ->add('size', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Size',
                 'required' => false,
-                'empty_value' => 'Укажите размер',
+                'empty_value' => 'Не указан',
                 'attr'=>[
                     'class'=>'size',
                     'disabled'=>''
