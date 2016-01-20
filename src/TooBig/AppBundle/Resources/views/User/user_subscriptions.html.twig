@@ -9,16 +9,6 @@
     </div>
 {% endblock breadcrumbs %}
 
-{% block gender_value  %}
-    {%  if entity.gender is 'm' %}
-        Мальчик
-    {%  elseif entity.gender is 'f' %}
-        Девочка
-    {%  elseif entity.gender is 'u' %}
-        Унисекс
-    {%  endif %}
-{% endblock gender_value  %}
-
 {% block page_body %}
 
     {% if entities is defined and entities %}
@@ -67,10 +57,20 @@
                                 <div class="col-md-4">
                                     <div>
                                         {{ entity.rubric is defined ? entity.rubric | raw : '' }}
-                                        {{ entity.gender is defined ? {{ block('gender_value') }} | raw : '' }}
                                         {{ entity.color is defined ? entity.color | raw : '' }}
                                         {{ entity.brand is defined ? entity.brand | raw  : '' }}
                                         {{ entity.model is defined ? entity.model | raw : '' }}
+                                        {% if entity.gender is defined %}
+
+                                            {%  if entity.gender == 'm' %}
+                                                Мальчик
+                                            {%  elseif entity.gender == 'f' %}
+                                                Девочка
+                                            {%  elseif entity.gender == 'u' %}
+                                                Унисекс
+                                            {%  endif %}
+
+                                        {%  endif %}
                                         {{ entity.size_type is defined ? entity.size_type | raw : '' }}
                                         {{ entity.size is defined ? entity.size | raw : '' }}
                                         {{ entity.price_min is defined ? entity.price_min | raw : '' }}
