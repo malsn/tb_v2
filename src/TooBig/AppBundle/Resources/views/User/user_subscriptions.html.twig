@@ -85,7 +85,7 @@
                             {% endblock entity_list_entry_enabled  %}
                             {% block entity_list_entry_items  %}
                                 <div class="col-md-1">
-                                    <span class="item-items">{{ render(controller('TooBigAppBundle:Subscription:getSubscriptionItems', {
+                                    <span class="item-items">{{ renders(controller('TooBigAppBundle:Subscription:getSubscriptionItems', {
                                             'subscription_id': entity.id
                                         })) }}</span>
                                 </div>
