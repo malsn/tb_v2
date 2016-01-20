@@ -34,7 +34,6 @@ class SubscriptionType extends AbstractType
                 'text',
                 [
                     'label' => 'Название подписки',
-                    'empty_value' => 'Не указана',
                     'attr' => [
                         'placeholder' => 'Название подписки',
                         'class' => 'form-group'
@@ -44,6 +43,7 @@ class SubscriptionType extends AbstractType
             )
             ->add('rubric', 'rubricchoice',[
                 'required' => false,
+                'empty_value' => 'Не указана',
             ])
             ->add('gender', new GenderType(), [
                 'required' => false,
