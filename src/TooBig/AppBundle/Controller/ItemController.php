@@ -424,7 +424,9 @@ public function uploadAction(Request $request)
                     $qb->$qb_func($value);
                 }
             }
-            $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
+            if (null !== $price_params['Min'] && null !== $price_params['Max']) {
+                $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
+            }
             $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
         });
 
