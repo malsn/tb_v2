@@ -3,7 +3,7 @@
  */
 
 jQuery(document).ready(function() {
-    jQuery('#app_watch_item').click(function(){
+    jQuery('.app_watch_item').click(function(){
         var $button = jQuery(this);
         jQuery.ajax({
             url: $button.attr('path-controller'),

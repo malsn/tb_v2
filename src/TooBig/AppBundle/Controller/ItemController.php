@@ -478,9 +478,6 @@ public function uploadAction(Request $request)
 
             $user = $this->get('security.context')->getToken()->getUser();
             if ( is_object( $user ) && $user !== $content->getCreatedBy()) {
-                /* находим следит ли пользователь за объявлением, если оно ему не принадлежит */
-                $watch = $this->get('item_subscribtion_model')->getWatchByItem($content->getId());
-                $response['watch_item'] = $watch;
                 /* находим комментировал ли пользователь объявление, и если оно ему не принадлежит */
                 $rate_comment = $this->get('item_ratecomment_model')->getRateCommentByItem($content->getId());
                 $response['rate_comment_item'] = $rate_comment;

@@ -1,9 +1,9 @@
 {% if watch_item is defined %}
     {% block watch_item %}
         {% if watch_item.id is defined %}
-            <a class="btn btn-primary" id="app_watch_item" path-controller="{{ path('app_item_unwatch', {'item_id': content.id}) }}">Отписаться от обновлений</a>
+            <a class="btn btn-primary" class="app_watch_item" path-controller="{{ path('app_item_unwatch', {'item_id': content.id}) }}">Отписаться от обновлений</a>
         {% else %}
-            <a class="btn btn-primary" id="app_watch_item" path-controller="{{ path('app_item_watch', {'item_id': content.id}) }}">Подписаться на обновления</a>
+            <a class="btn btn-primary" class="app_watch_item" path-controller="{{ path('app_item_watch', {'item_id': content.id}) }}">Подписаться на обновления</a>
         {% endif %}
     {% endblock watch_item %}
 {% endif %}
