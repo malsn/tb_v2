@@ -5,6 +5,7 @@ namespace TooBig\AppBundle\Model;
 use Sonata\UserBundle\Model\UserInterface;
 use TooBig\AppBundle\Entity\AutoSubscription;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Doctrine\ORM\Query;
 
 /**
  * Class SubscriptionModel
@@ -67,9 +68,9 @@ class SubscriptionModel extends ContainerAware {
 
     /**
      * @param AutoSubscription $subscription
-     * @return array
+     * @return Query
      */
-    public function getItemsBySubscription(AutoSubscription $subscription){
+    public function getItemsBySubscriptionQuery(AutoSubscription $subscription){
 
         $rubric = $subscription->getRubric();
         $filter_params = [];
@@ -85,9 +86,11 @@ class SubscriptionModel extends ContainerAware {
 
         $query = $this->container->get('doctrine')
             ->getRepository('TooBigAppBundle:Item')
-            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params)
+            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $subscription)
             {
+                $qb->andWhere($qb->expr()->neq('c.createdBy', $subscription->getCreatedBy()->getId()));
                 $qb->whereEnabled()->whereIndex(false);
+
                 if (null !== $rubric) {
                     $qb->fromRubric($rubric)->withSubrubrics(true);
                 }
@@ -103,7 +106,8 @@ class SubscriptionModel extends ContainerAware {
                 $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
             });
 
-        return $query->getResult();
+        return $query;
+
     }
 
 }

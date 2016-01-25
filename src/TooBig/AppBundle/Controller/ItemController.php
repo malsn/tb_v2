@@ -298,9 +298,35 @@ public function unwatchAction( $item_id )
 
     return $response;
 }
-/**
- * @Route("/app/item/{item_id}/copy", name="app_item_copy")
- */
+
+    /**
+     * @Template("TooBigAppBundle:Item:watch_status.html.twig")
+     * @param $item_id
+     * @return array
+     */
+    public function watchStatusAction($item_id){
+        $response = array();
+        $user = $this->get('security.context')->getToken()->getUser();
+        $content = $this->getDoctrine()
+            ->getRepository('TooBigAppBundle:Item')->find($item_id);
+
+        if (!$content) { throw $this->createNotFoundException('Объявление с идентификатором "' . $item_id . '" не найдено'); }
+        if ( is_object( $user ) && $user !== $content->getCreatedBy()) {
+            $watch = $this->get('item_subscribtion_model')->getWatchByItem($content->getId());
+            $response = array(
+                'content' => $content,
+                'watch_item' => $watch
+            );
+        }
+        return $response;
+    }
+
+    /**
+     * @Route("/app/item/{item_id}/copy", name="app_item_copy")
+     * @param $item_id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
 public function copyAction($item_id, Request $request)
 {
     $record = $this->get('item_model')->getItemById($item_id);

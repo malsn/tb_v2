@@ -7,6 +7,9 @@ app_item_edit:
 app_item_copy:
     path:     /app/item/{item_id}/copy
     defaults: { _controller: TooBigAppBundle:Item:copy }
+app_item_watch_status:
+    path:     /app/item/{item_id}/watch/status
+    defaults: { _controller: TooBigAppBundle:Item:watchStatus }
 app_item_watch:
     path:     /app/item/{item_id}/watch
     defaults: { _controller: TooBigAppBundle:Item:watch }
@@ -36,7 +39,10 @@ app_subscription_delete:
     defaults: { _controller: TooBigAppBundle:Subscription:delete }
 app_subscription_items_count:
     path:     /app/subscription/{subscription_id}/items/count
-    defaults: { _controller: TooBigAppBundle:Subscription:getSubscriptionItems }
+    defaults: { _controller: TooBigAppBundle:Subscription:getSubscriptionItemsCount }
+app_subscription_items_list:
+    path:     /app/subscription/{subscription_id}/items/list
+    defaults: { _controller: TooBigAppBundle:Subscription:getSubscriptionItemsList }
 app_list_watch_items:
     path:     /app/items/watchlist
     defaults: { _controller: TooBigAppBundle:User:watchlist }

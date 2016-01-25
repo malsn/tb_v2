@@ -13,8 +13,9 @@ use TooBig\AppBundle\Form\ItemForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use TooBig\AppBundle\Form\Type\ItemsFilterType;
 use TooBig\AppBundle\Form\Type\SubscriptionType;
+use Iphp\CoreBundle\Controller\RubricAwareController;
 
-class SubscriptionController extends Controller
+class SubscriptionController extends RubricAwareController
 {
     protected $errors;
 
@@ -177,43 +178,57 @@ public function deleteAction($subscription_id){
      * @param $subscription_id
      * @return int|null
      */
-public function getSubscriptionItemsAction($subscription_id){
-    $record = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
-    $user = $this->get('security.context')->getToken()->getUser();
+    public function getSubscriptionItemsCountAction($subscription_id){
+        $query = $this->getSubscriptionQuery($subscription_id);
+        return new Response(count($query->getResult()));
+    }
 
-    if (!is_object($record)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
+    /**
+     * @Template("TooBigAppBundle:AutoSubscription:subscription_items.html.twig")
+     */
+    public function getSubscriptionItemsListAction($subscription_id){
+        $query = $this->getSubscriptionQuery($subscription_id);
+        return array('entities' => $this->paginate($query, 20));
+    }
 
-    if (is_object($user)) {
+    /**
+     * @return mixed
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
 
-        if ( $user === $record->getCreatedBy()){
+    /**
+     * @param mixed $error
+     */
+    public function setErrors($error)
+    {
+        $this->errors[] = $error;
+    }
 
-            try {
-                $items = $this->get('auto_subscription_model')->getItemsBySubscription($record);
-                return new Response(count($items));
+    public function getSubscriptionQuery($subscription_id){
+        $record = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
+        $user = $this->get('security.context')->getToken()->getUser();
 
-            } catch (\Exception $e) {
+        if (!is_object($record)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
 
+        if (is_object($user)) {
+
+            if ( $user === $record->getCreatedBy()){
+
+                try {
+                    $query = $this->get('auto_subscription_model')->getItemsBySubscriptionQuery($record);
+                    return $query;
+
+                } catch (\Exception $e) {
+                    $this->setErrors($e->getMessage());
+                    return null;
+                }
+
+            } else {
+                return null;
             }
-
-        } else {
-            return null;
         }
     }
-}
-
-/**
- * @return mixed
- */
-public function getErrors()
-{
-    return $this->errors;
-}
-
-/**
- * @param mixed $error
- */
-public function setErrors($error)
-{
-    $this->errors[] = $error;
-}
 }
