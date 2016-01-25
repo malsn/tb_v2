@@ -88,11 +88,12 @@ class SubscriptionModel extends ContainerAware {
             ->getRepository('TooBigAppBundle:Item')
             ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $subscription)
             {
-                $qb->whereEnabled()->whereIndex(false);
-
                 if (null !== $rubric) {
                     $qb->fromRubric($rubric)->withSubrubrics(true);
                 }
+
+                $qb->whereEnabled()->whereIndex(false);
+
                 foreach ($filter_params as $key => $value) {
                     if ( null !== $value ){
                         $qb_func = 'where'.$key;
