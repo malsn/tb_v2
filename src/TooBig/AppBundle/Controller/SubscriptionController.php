@@ -179,7 +179,8 @@ public function deleteAction($subscription_id){
      * @return int|null
      */
     public function getSubscriptionItemsCountAction($subscription_id){
-        $query = $this->getSubscriptionQuery($subscription_id);
+        $subscription = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
+        $query = $this->getSubscriptionQuery($subscription);
         return new Response(count($query->getResult()));
     }
 
@@ -187,8 +188,9 @@ public function deleteAction($subscription_id){
      * @Template("TooBigAppBundle:AutoSubscription:subscription_items.html.twig")
      */
     public function getSubscriptionItemsListAction($subscription_id){
-        $query = $this->getSubscriptionQuery($subscription_id);
-        return array('entities' => $this->paginate($query, 20));
+        $subscription = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
+        $query = $this->getSubscriptionQuery($subscription);
+        return array('entities' => $this->paginate($query, 20), 'subscription' => $subscription);
     }
 
     /**
@@ -207,18 +209,22 @@ public function deleteAction($subscription_id){
         $this->errors[] = $error;
     }
 
-    public function getSubscriptionQuery($subscription_id){
-        $record = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
+    /**
+     * @param $subscription
+     * @return null
+     */
+    public function getSubscriptionQuery($subscription){
+
         $user = $this->get('security.context')->getToken()->getUser();
 
-        if (!is_object($record)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
+        if (!is_object($subscription)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
 
         if (is_object($user)) {
 
-            if ( $user === $record->getCreatedBy()){
+            if ( $user === $subscription->getCreatedBy()){
 
                 try {
-                    $query = $this->get('auto_subscription_model')->getItemsBySubscriptionQuery($record);
+                    $query = $this->get('auto_subscription_model')->getItemsBySubscriptionQuery($subscription);
                     return $query;
 
                 } catch (\Exception $e) {

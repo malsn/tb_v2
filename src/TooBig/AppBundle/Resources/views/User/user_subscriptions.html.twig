@@ -40,7 +40,7 @@
                                 <div class="col-md-4">
                                     {% block entity_list_entry_link  %}
                                         <div>
-                                            <a href="{# entitypath(entity) #}">{{ entity.title }}</a>
+                                            <a href="{{ path('app_subscription_items_list', {'subscription_id': entity.id}) }}">{{ entity.title }}</a>
                                         </div>
                                     {% endblock entity_list_entry_link  %}
                                     {% block entity_list_entry_created_at  %}
