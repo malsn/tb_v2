@@ -88,7 +88,6 @@ class SubscriptionModel extends ContainerAware {
             ->getRepository('TooBigAppBundle:Item')
             ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $subscription)
             {
-                $qb->andWhere($qb->expr()->neq('c.createdBy', $subscription->getCreatedBy()->getId()));
                 $qb->whereEnabled()->whereIndex(false);
 
                 if (null !== $rubric) {
@@ -103,6 +102,7 @@ class SubscriptionModel extends ContainerAware {
                 if (null !== $price_params['Min'] && null !== $price_params['Max']){
                     $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
                 }
+                $qb->andWhere($qb->expr()->neq('c.createdBy', $subscription->getCreatedBy()->getId()));
                 $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
             });
 
