@@ -49,9 +49,10 @@ jQuery(document).ready(function() {
     })
 
     var $blueimp = jQuery('.blueimp-item-admin');
-    if ($blueimp){
+    var $blueimp_controller = $blueimp.attr('path-controller');
+    if ($blueimp_controller != ''){
         jQuery.ajax({
-            url: $blueimp.attr('path-controller'),
+            url: $blueimp_controller,
             cache: false,
             type: 'POST',
             data: jQuery("form").serialize() ,
