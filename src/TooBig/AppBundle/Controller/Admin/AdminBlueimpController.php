@@ -25,7 +25,7 @@ class AdminBlueimpController extends Controller
         if ( null !== $item ){
             $fileUploader = $this->get('punk_ave.file_uploader');
             $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $item->getId()));
-            return $this->render('TooBigAppBundle:Admin\Blueimp:files_by_item.html.twig', [ 'existingFiles'=>$files, 'item' => $item ]);
+            return $this->render('TooBigAppBundle:Admin\Blueimp:files_by_item.html.twig', [ 'files'=>$files, 'item' => $item ]);
         } else {
             return false;
         }
