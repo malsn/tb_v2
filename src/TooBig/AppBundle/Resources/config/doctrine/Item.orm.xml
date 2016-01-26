@@ -31,6 +31,9 @@
         <field name="redirectToFirstFile" type="boolean" column="redirect_to_first_file" nullable="true"/>
         <field name="slug" type="string" column="slug"/>
 
+        <field name="model" type="integer" column="model" nullable="true"/>
+        <field name="size" type="integer" column="size" nullable="true"/>
+
         <field name="publicationDateStart" type="datetime" column="publication_date_start" nullable="true"/>
         <field name="publicationDateEnd" type="datetime" column="publication_date_end" nullable="true"/>
 
@@ -62,16 +65,10 @@
         <many-to-one target-entity="TooBig\AppBundle\Entity\Brand" field="brand">
             <cascade><cascade-persist/></cascade>
         </many-to-one>
-        <many-to-one target-entity="TooBig\AppBundle\Entity\Model" field="model">
-            <cascade><cascade-persist/></cascade>
-        </many-to-one>
         <many-to-one target-entity="TooBig\AppBundle\Entity\Color" field="color">
             <cascade><cascade-persist/></cascade>
         </many-to-one>
         <many-to-one target-entity="TooBig\AppBundle\Entity\SizeType" field="size_type">
-            <cascade><cascade-persist/></cascade>
-        </many-to-one>
-        <many-to-one target-entity="TooBig\AppBundle\Entity\Size" field="size">
             <cascade><cascade-persist/></cascade>
         </many-to-one>
         <one-to-many field="rateComments" target-entity="TooBig\AppBundle\Entity\RateComment" mapped-by="item">

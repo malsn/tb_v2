@@ -38,7 +38,7 @@ class ItemController extends RubricAwareController
         if (is_object($user)) {
 
             $form = $this->createForm(
-                new ItemForm($this->get('router')),
+                new ItemForm($this->get('doctrine'),$this->get('router'),$record->getBrand(),$record->getSizeType()),
                 $record
             );
 
@@ -117,7 +117,7 @@ public function editAction($item_id, Request $request)
     $record = $this->get('item_model')->getItemById($item_id);
     $rubric = $record->getRubric();
     $form = $this->createForm(
-        new ItemForm($this->get('router')),
+        new ItemForm($this->get('doctrine'),$this->get('router'),$record->getBrand(),$record->getSizeType()),
         $record
     );
 
@@ -337,7 +337,7 @@ public function copyAction($item_id, Request $request)
     if (is_object($user)) {
 
         $form = $this->createForm(
-            new ItemForm($this->get('router')),
+            new ItemForm($this->get('doctrine'),$this->get('router'),$record->getBrand(),$record->getSizeType()),
             $copy
         );
 
