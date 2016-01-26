@@ -49,7 +49,7 @@ jQuery(document).ready(function() {
     })
 
     var $blueimp = jQuery('.blueimp-item-admin');
-    if ("undefined" !== typeof ( $blueimp )){
+    if ($blueimp){
         jQuery.ajax({
             url: $blueimp.attr('path-controller'),
             cache: false,
