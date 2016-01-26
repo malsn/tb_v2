@@ -60,7 +60,7 @@ class Item extends BaseItem
 
 
     /**
-     * @var integer
+     * @var Model
      */
     private $model;
 
@@ -76,7 +76,7 @@ class Item extends BaseItem
     private $size_type;
 
     /**
-     * @var integer
+     * @var Size
      */
     private $size;
 
@@ -226,7 +226,7 @@ class Item extends BaseItem
     }
 
     /**
-     * @return int
+     * @return Model
      */
     public function getModel()
     {
@@ -234,13 +234,12 @@ class Item extends BaseItem
     }
 
     /**
-     * @param int $model
+     * @param Model $model
      */
     public function setModel($model)
     {
         $this->model = $model;
     }
-
 
     /**
      * @return SizeType
@@ -259,7 +258,7 @@ class Item extends BaseItem
     }
 
     /**
-     * @return int
+     * @return Size
      */
     public function getSize()
     {
@@ -267,13 +266,12 @@ class Item extends BaseItem
     }
 
     /**
-     * @param int $size
+     * @param Size $size
      */
     public function setSize($size)
     {
         $this->size = $size;
     }
-
 
     /**
      * @return string
