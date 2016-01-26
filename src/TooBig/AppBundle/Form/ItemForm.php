@@ -3,8 +3,6 @@
 namespace TooBig\AppBundle\Form;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use TooBig\AppBundle\Entity\Brand;
 use TooBig\AppBundle\Entity\SizeType;
@@ -24,22 +22,10 @@ class ItemForm extends AbstractType
      * @var Router
      */
     protected $route_service;
-    protected $doctrine;
-    protected $brand;
-    protected $size_type;
 
-    /**
-     * @param RegistryInterface $doctrine
-     * @param Router $route
-     * @param Brand $brand
-     * @param SizeType $sizeType
-     */
-    public function __construct(RegistryInterface $doctrine, Router $route, Brand $brand, SizeType $sizeType)
+    public function __construct(Router $route)
     {
         $this->route_service = $route;
-        $this->doctrine = $doctrine;
-        $this->brand = $brand;
-        $this->size_type = $sizeType;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -68,11 +54,12 @@ class ItemForm extends AbstractType
                     'path-controller' => $this->route_service->generate('app_list_model_by_brand', array())
                 ]
             ])
-            ->add('model', 'choice', [
-                'choices' => $this->getModelChoices(),
+            ->add('model', 'entity', [
+                'class' => 'TooBig\AppBundle\Entity\Model',
                 'empty_value' => 'Укажите модель',
                 'attr' => [
-                    'class'=>'model'
+                    'class'=>'model',
+                    'disabled'=>''
                 ]
             ])
             ->add('size_type', 'entity', [
@@ -83,11 +70,12 @@ class ItemForm extends AbstractType
                     'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
                 ]
             ])
-            ->add('size', 'choice', [
-                'choices' => $this->getSizeChoices(),
+            ->add('size', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\Size',
                 'empty_value' => 'Укажите размер',
                 'attr'=>[
-                    'class'=>'size'
+                    'class'=>'size',
+                    'disabled'=>''
                 ]
             ])
             ->add('content', 'ckeditor')
@@ -123,26 +111,13 @@ class ItemForm extends AbstractType
         return 'Item';
     }
 
-    /**
-     * @return array
-     */
-    private function getModelChoices()
+    public function setRoutingService($routing)
     {
-        $models = $this->doctrine->getRepository('TooBigAppBundle:Model')
-            ->findBy(['brand' => $this->brand]);
-
-        return $models;
+        $this->route_service = $routing;
     }
 
-    /**
-     * @return mixed
-     */
-    private function getSizeChoices()
+    public function getRoutingService()
     {
-        $sizes = $this->doctrine->getRepository('TooBigAppBundle:Size')
-            ->findBy(['size_type' => $this->size_type]);
-
-        return $sizes;
+        return $this->route_service;
     }
-
 }

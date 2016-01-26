@@ -38,7 +38,7 @@ class ItemController extends RubricAwareController
         if (is_object($user)) {
 
             $form = $this->createForm(
-                new ItemForm($this->get('doctrine'),$this->get('router'),$record->getBrand(),$record->getSizeType()),
+                new ItemForm($this->get('router')),
                 $record
             );
 
@@ -117,7 +117,7 @@ public function editAction($item_id, Request $request)
     $record = $this->get('item_model')->getItemById($item_id);
     $rubric = $record->getRubric();
     $form = $this->createForm(
-        new ItemForm($this->get('doctrine'),$this->get('router'),$record->getBrand(),$record->getSizeType()),
+        new ItemForm($this->get('router')),
         $record
     );
 
@@ -145,7 +145,7 @@ public function editAction($item_id, Request $request)
                 $form->handleRequest($request);
                 if ($form->isValid() && $form->isSubmitted()) {
                     try {
-                            $this->get('item_model')->save($record);
+                        $this->get('item_model')->save($record);
                         $fileUploader = $this->get('punk_ave.file_uploader');
                         $fileUploader->syncFiles(
                             array('from_folder' => '/tmp/attachments/' . $editId,
@@ -337,7 +337,7 @@ public function copyAction($item_id, Request $request)
     if (is_object($user)) {
 
         $form = $this->createForm(
-            new ItemForm($this->get('doctrine'),$this->get('router'),$record->getBrand(),$record->getSizeType()),
+            new ItemForm($this->get('router')),
             $copy
         );
 
