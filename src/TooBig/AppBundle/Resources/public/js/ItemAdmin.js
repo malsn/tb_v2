@@ -60,6 +60,12 @@ jQuery(document).ready(function() {
         success: function (response) {
             if (response !== false) {
                 $blueimp.parent().parent().after(response);
+                jQuery('.jqzoom').jqzoom({
+                    zoomType: 'standard',
+                    lens:true,
+                    preloadImages: false,
+                    alwaysOn:false
+                });
             }
         },
         error: function () {
