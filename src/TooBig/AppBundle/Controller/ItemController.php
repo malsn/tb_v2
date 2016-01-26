@@ -145,7 +145,7 @@ public function editAction($item_id, Request $request)
                 $form->handleRequest($request);
                 if ($form->isValid() && $form->isSubmitted()) {
                     try {
-                        $this->get('item_model')->save($record);
+                            $this->get('item_model')->save($record);
                         $fileUploader = $this->get('punk_ave.file_uploader');
                         $fileUploader->syncFiles(
                             array('from_folder' => '/tmp/attachments/' . $editId,

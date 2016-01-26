@@ -48,22 +48,25 @@ jQuery(document).ready(function() {
         });
     })
 
-    var $blueimp = jQuery('.blueimp');
-    jQuery.ajax({
-        url: $blueimp.attr('path-controller'),
-        cache: false,
-        type: 'POST',
-        data: jQuery("form").serialize() ,
-        beforeSend: function () {
+    var $blueimp = jQuery('.blueimp-item-admin');
+    if ("undefined" !== typeof ( $blueimp )){
+        jQuery.ajax({
+            url: $blueimp.attr('path-controller'),
+            cache: false,
+            type: 'POST',
+            data: jQuery("form").serialize() ,
+            beforeSend: function () {
 
-        },
-        success: function (response) {
-            if (response !== false) {
-                $blueimp.parent().parent().after(response);
+            },
+            success: function (response) {
+                if (response !== false) {
+                    $blueimp.parent().parent().after(response);
+                }
+            },
+            error: function () {
+
             }
-        },
-        error: function () {
+        });
+    }
 
-        }
-    });
 });

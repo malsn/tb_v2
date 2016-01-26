@@ -243,7 +243,7 @@ class ItemAdmin extends Admin
             ->add('price', 'text', [
                 'required' => true,
                 'attr'=>[
-                    'class'=>'blueimp',
+                    'class'=>'blueimp-item-admin',
                     'path-controller' => $this->route_service->generate('admin_list_blueimp_by_item', array())
                 ]
             ])
