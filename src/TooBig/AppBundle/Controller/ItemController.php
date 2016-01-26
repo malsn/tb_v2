@@ -31,7 +31,6 @@ class ItemController extends RubricAwareController
 
         $record = new Item();
         $record->setRubric($rubric);
-        $record->setEnabled(true);
         $record->setHits(0);
 
         $user = $this->get('security.context')->getToken()->getUser();
@@ -144,7 +143,7 @@ public function editAction($item_id, Request $request)
 
             if ($request->isMethod('POST')) {
                 $form->handleRequest($request);
-                if ($form->isValid()) {
+                if ($form->isValid() && $form->isSubmitted()) {
                     try {
                         $this->get('item_model')->save($record);
                         $fileUploader = $this->get('punk_ave.file_uploader');
