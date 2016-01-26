@@ -3,23 +3,18 @@
         Загруженные пользователем файлы
     </label>
     <div class="sonata-ba-field sonata-ba-field-standard-natural">
-        <div class="shopitem-img-div">
-            <div class="clearfix">
-                <a class="jqzoom" rel='gal1' title="triumph" href="/uploads/attachments/{{ item.id }}/originals/{{ files[0] }}" rel="{{ files[0] }}">
-                    <img class="shopitem-img-main" src="/uploads/attachments/{{ item.id }}/small/{{ files[0] }}"/>
-                </a>
-            </div>
-        </div>
-        <div class="shopitem-img-list-div">
-            <ul id="thumblist" class="clearfix">
-                {% for file in files %}
-                    <li>
-                        <a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '/uploads/attachments/{{ item.id }}/small/{{ file }}',largeimage: '/uploads/attachments/{{ item.id }}/originals/{{ file }}'}">
-                            <img border="0" src="/uploads/attachments/{{ item.id }}/thumbnails/{{ file }}"/>
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+        <style>
+            ul#thumblist { list-style: none; }
+            ul#thumblist > li { list-style-type: none; display: inline-block; }
+        </style>
+        <ul id="thumblist">
+            {% for file in files %}
+                <li>
+                    <a href="/uploads/attachments/{{ item.id }}/originals/{{ file }}" target="_blank">
+                        <img border="0" src="/uploads/attachments/{{ item.id }}/thumbnails/{{ file }}"/>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 </div>
