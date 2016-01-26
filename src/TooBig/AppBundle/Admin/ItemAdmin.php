@@ -238,13 +238,15 @@ class ItemAdmin extends Admin
             ->add('size_type', new SizeTypeType(), [ 'compound' => true ])*/
             ->add('color')
             ->add('gender', new GenderType(), [
-                'empty_value' => 'Укажите пол',
+                'empty_value' => 'Укажите пол'
+            ])
+            ->add('price', 'text', [
+                'required' => true,
                 'attr'=>[
                     'class'=>'blueimp',
                     'path-controller' => $this->route_service->generate('admin_list_blueimp_by_item', array())
                 ]
             ])
-            ->add('price', 'text', ['required' => true])
             ->end();
     }
 

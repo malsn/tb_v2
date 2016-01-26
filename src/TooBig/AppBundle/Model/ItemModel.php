@@ -92,12 +92,12 @@ class ItemModel extends ContainerAware {
 
     /**
      * @param $slug
-     * @return mixed
+     * @return Item
      */
     public function getItemBySlug($slug){
         $item = $this->container->get('doctrine')
             ->getRepository('TooBigAppBundle:Item')
-            ->findBySlug($slug);
+            ->findOneBySlug($slug);
         return $item;
     }
 

@@ -1,6 +1,8 @@
-{%  if existingFiles | length %}
-
-    <div class="">
+<div class="form-group ajax-blueimp" id="sonata-ba-field-container-{{ form_name }}_blueimp">
+    <label class="control-label" for="{{ form_name }}_blueimp">
+        Загруженные пользователем файлы
+    </label>
+    <div class="sonata-ba-field sonata-ba-field-standard-natural">
         <ul id="thumblist" class="">
             {% for file in existingFiles %}
                 <li>
@@ -11,5 +13,4 @@
             {% endfor %}
         </ul>
     </div>
-
-{% endif %}
+</div>
