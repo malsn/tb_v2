@@ -64,7 +64,7 @@ class ItemForm extends AbstractType
                 'class'=>'TooBig\AppBundle\Entity\Brand',
                 'empty_value' => 'Укажите бренд',
                 'attr'=>[
-                    'class'=>'brand',
+                    'class'=>'',
                     'path-controller' => $this->route_service->generate('app_list_model_by_brand', array())
                 ]
             ])
@@ -79,7 +79,7 @@ class ItemForm extends AbstractType
                 'class'=>'TooBig\AppBundle\Entity\SizeType',
                 'empty_value' => 'Укажите размерный ряд',
                 'attr'=>[
-                    'class'=>'size-type',
+                    'class'=>'',
                     'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
                 ]
             ])
