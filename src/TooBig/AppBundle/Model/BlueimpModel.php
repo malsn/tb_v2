@@ -39,14 +39,25 @@ class BlueimpModel extends ContainerAware {
     }
 
     /**
-     * @param $item
+     * @param Item $item
      * @param $name
      * @return ItemBlueimp
      */
-    public function getFileByItemName($item, $name){
+    public function getFileByItemName(Item $item, $name){
         $file = $this->container->get('doctrine')
             ->getRepository('TooBigAppBundle:ItemBlueimp')
             ->findOneBy([ 'item' => $item, 'name' => $name ]);
         return $file;
+    }
+
+    /**
+     * @param Item $item
+     * @return mixed
+     */
+    public function getFilesByItem(Item $item){
+        $files = $this->container->get('doctrine')
+            ->getRepository('TooBigAppBundle:ItemBlueimp')
+            ->findBy([ 'item' => $item->getId() ]);
+        return $files;
     }
 }

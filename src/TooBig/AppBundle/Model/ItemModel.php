@@ -91,6 +91,17 @@ class ItemModel extends ContainerAware {
     }
 
     /**
+     * @param $slug
+     * @return mixed
+     */
+    public function getItemBySlug($slug){
+        $item = $this->container->get('doctrine')
+            ->getRepository('TooBigAppBundle:Item')
+            ->findBySlug($slug);
+        return $item;
+    }
+
+    /**
      * @return array
      */
     public function getItemsByUser(){

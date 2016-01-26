@@ -151,9 +151,9 @@ class ItemAdmin extends Admin
     {
         $formMapper->with('Item', array('class' => 'col-md-12'))
 
-            ->add('content', 'ckeditor', array('label' => 'Описание объявления'))
-
-
+            ->add('content', 'ckeditor', array(
+                'label' => 'Описание объявления',
+                ))
             ->add('imagesMedia', 'sonata_type_collection', [
                 'required' => true,
                 'by_reference' => false
@@ -237,7 +237,13 @@ class ItemAdmin extends Admin
             /*->add('brand', new BrandType(), [ 'compound' => true ])
             ->add('size_type', new SizeTypeType(), [ 'compound' => true ])*/
             ->add('color')
-            ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
+            ->add('gender', new GenderType(), [
+                'empty_value' => 'Укажите пол',
+                'attr'=>[
+                    'class'=>'blueimp',
+                    'path-controller' => $this->route_service->generate('admin_list_blueimp_by_item', array())
+                ]
+            ])
             ->add('price', 'text', ['required' => true])
             ->end();
     }

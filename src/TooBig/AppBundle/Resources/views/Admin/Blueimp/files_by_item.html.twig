@@ -1,0 +1,15 @@
+{%  if existingFiles | length %}
+
+    <div class="">
+        <ul id="thumblist" class="">
+            {% for file in existingFiles %}
+                <li>
+                    <a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '/uploads/attachments/{{ item.id }}/small/{{ file }}',largeimage: '/uploads/attachments/{{ item.id }}/originals/{{ file }}'}">
+                        <img border="0" src="/uploads/attachments/{{ item.id }}/thumbnails/{{ file }}"/>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endif %}

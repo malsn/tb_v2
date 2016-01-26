@@ -47,4 +47,24 @@ jQuery(document).ready(function() {
             }
         });
     })
+    jQuery('.blueimp').on('change', function(){
+        var $blueimp = jQuery(this);
+        jQuery.ajax({
+            url: $blueimp.attr('path-controller'),
+            cache: false,
+            type: 'POST',
+            data: jQuery("form").serialize() ,
+            beforeSend: function () {
+
+            },
+            success: function (response) {
+                if (response !== false) {
+                    $blueimp.parent().parent().after(response);
+                }
+            },
+            error: function () {
+
+            }
+        });
+    })
 });
