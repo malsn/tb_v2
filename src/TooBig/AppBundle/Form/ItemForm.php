@@ -57,6 +57,7 @@ class ItemForm extends AbstractType
             ->add('model', 'entity', [
                 'class' => 'TooBig\AppBundle\Entity\Model',
                 'empty_value' => 'Укажите модель',
+                'required' => false,
                 'attr' => [
                     'class'=>'model',
                     'disabled'=>''
@@ -73,6 +74,7 @@ class ItemForm extends AbstractType
             ->add('size', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Size',
                 'empty_value' => 'Укажите размер',
+                'required' => false,
                 'attr'=>[
                     'class'=>'size',
                     'disabled'=>''
