@@ -1,71 +1,52 @@
 /**
  * Created by sergey on 24.11.2015.
  */
+
 jQuery(document).ready(function() {
-    jQuery('.brand.form-control').on('change', function(){
-        var $select = jQuery(this);
+    
+    $ajax_req = function(aj_obj){
+        jQuery.ajax({
+            url: aj_obj.attr('path-controller'),
+            cache: false,
+            type: 'POST',
+            data: jQuery("form").serialize() ,
+            beforeSend: function () {
+
+            },
+            success: function (response) {
+                if (response !== false) {
+                    aj_obj.parent().parent().after(response);
+                }
+            },
+            error: function () {
+
+            }
+        });
+    };
+
+    var $brand = jQuery('.brand.form-control');
+    $brand.on('change', function(){
         jQuery(".ajax-model").remove();
         jQuery(".form-group:has(select.model)").remove();
-        jQuery.ajax({
-            url: $select.attr('path-controller'),
-            cache: false,
-            type: 'POST',
-            data: jQuery("form").serialize() ,
-            beforeSend: function () {
+        $ajax_req(jQuery(this));
+    });    
+    if ($brand.attr('path-controller')){
+        $ajax_req($brand);
+    }
 
-            },
-            success: function (response) {
-                if (response !== false) {
-                    $select.parent().parent().after(response);
-                }
-            },
-            error: function () {
-
-            }
-        });
-    })
-    jQuery('.size-type.form-control').on('change', function(){
-        var $select = jQuery(this);
-        jQuery(".ajax-size").remove();
+    var $sizetype = jQuery('.size-type.form-control');
+    $sizetype.on('change', function(){
+        jQuery(".ajax-model").remove();
         jQuery(".form-group:has(select.size)").remove();
-        jQuery.ajax({
-            url: $select.attr('path-controller'),
-            cache: false,
-            type: 'POST',
-            data: jQuery("form").serialize() ,
-            beforeSend: function () {
-
-            },
-            success: function (response) {
-                if (response !== false) {
-                    $select.parent().parent().after(response);
-                }
-            },
-            error: function () {
-
-            }
-        });
-    })
+        $ajax_req(jQuery(this));
+    });
+    if ($sizetype.attr('path-controller')){
+        $ajax_req($sizetype);
+    }
 
     var $blueimp = jQuery('.blueimp-item-admin');
     if ($blueimp.attr('path-controller')){
-        jQuery.ajax({
-            url: $blueimp.attr('path-controller'),
-            cache: false,
-            type: 'POST',
-            data: jQuery("form").serialize() ,
-            beforeSend: function () {
-
-            },
-            success: function (response) {
-                if (response !== false) {
-                    $blueimp.parent().parent().after(response);
-                }
-            },
-            error: function () {
-
-            }
-        });
+        $ajax_req($blueimp);
     }
 
 });
