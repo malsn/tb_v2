@@ -214,8 +214,7 @@ class ItemAdmin extends Admin
                 'class'=>'TooBig\AppBundle\Entity\Model',
                 'empty_value' => 'Укажите модель',
                 'attr'=>[
-                    'class'=>'model',
-                    'disabled'=>''
+                    'class'=>'model'
                 ]
             ])
             ->add('size_type', 'entity', [
@@ -230,8 +229,7 @@ class ItemAdmin extends Admin
                 'class'=>'TooBig\AppBundle\Entity\Size',
                 'empty_value' => 'Укажите размер',
                 'attr'=>[
-                    'class'=>'size',
-                    'disabled'=>''
+                    'class'=>'size'
                 ]
             ])
             /*->add('brand', new BrandType(), [ 'compound' => true ])

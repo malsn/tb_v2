@@ -21,9 +21,19 @@ class AdminModelController extends ContentController
     public function listModelbyBrandAction( Request $request ){
         $keys = $request->request->keys();
         $brand = $this->get('brand_model')->getBrandById( $request->request->get($keys[1])['brand'] );
+        $form_array = $request->request->get($keys[1]);
+        if (array_key_exists('model',$form_array)) {
+            $item_model = $form_array['model'];
+        } else {
+            $item_model = null;
+        }
         if (!is_null($brand)){
             $models = $this->get('model_model')->getModelsByBrand( $brand );
-            return $this->render('TooBigAppBundle:Admin\Model:models_by_brand.html.twig', ['models'=>$models, 'form_name'=>$keys[1]]);
+            return $this->render('TooBigAppBundle:Admin\Model:models_by_brand.html.twig', [
+                'models'=>$models,
+                'form_name'=>$keys[1],
+                'item_model' => $item_model
+            ]);
         } else {
             return false;
         }

@@ -59,8 +59,7 @@ class ItemForm extends AbstractType
                 'empty_value' => 'Укажите модель',
                 'required' => false,
                 'attr' => [
-                    'class'=>'model',
-                    'disabled'=>''
+                    'class'=>'model'
                 ]
             ])
             ->add('size_type', 'entity', [
@@ -76,8 +75,7 @@ class ItemForm extends AbstractType
                 'empty_value' => 'Укажите размер',
                 'required' => false,
                 'attr'=>[
-                    'class'=>'size',
-                    'disabled'=>''
+                    'class'=>'size'
                 ]
             ])
             ->add('content', 'ckeditor')

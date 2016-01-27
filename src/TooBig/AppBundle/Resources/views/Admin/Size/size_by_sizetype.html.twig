@@ -6,7 +6,7 @@
         <select id="{{ form_name }}_size" name="{{ form_name }}[size]" class="form-control">
             <option value="">Укажите размер</option>
             {% for size in sizes %}
-                <option value="{{ size.id }}">{{ size.value }}</option>
+                <option value="{{ size.id }}" {{ item_size is defined and size.id == item_size ? 'selected' : '' }}>{{ size.value }}</option>
             {% endfor %}
         </select>
     </div>

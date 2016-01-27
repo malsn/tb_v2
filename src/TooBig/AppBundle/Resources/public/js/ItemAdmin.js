@@ -27,25 +27,27 @@ jQuery(document).ready(function() {
     var $brand = jQuery('.brand.form-control');
     $brand.on('change', function(){
         jQuery(".ajax-model").remove();
-        jQuery(".form-group:has(select.model)").remove();
+        //jQuery(".form-group:has(select.model)").remove();
         $ajax_req(jQuery(this));
     });
     if ($brand.attr('path-controller')){
-        jQuery(".ajax-model").remove();
-        jQuery(".form-group:has(select.model)").remove();
+        $init = jQuery(".form-group:has(select.model)");
+        $init.hide();
         $ajax_req($brand);
+        $init.remove();
     }
 
     var $sizetype = jQuery('.size-type.form-control');
     $sizetype.on('change', function(){
         jQuery(".ajax-size").remove();
-        jQuery(".form-group:has(select.size)").remove();
+        //jQuery(".form-group:has(select.size)").remove();
         $ajax_req(jQuery(this));
     });
     if ($sizetype.attr('path-controller')){
-        jQuery(".ajax-size").remove();
-        jQuery(".form-group:has(select.size)").remove();
+        $init = jQuery(".form-group:has(select.size)");
+        $init.hide();
         $ajax_req($sizetype);
+        $init.remove();
     }
 
     var $blueimp = jQuery('.blueimp-item-admin');
