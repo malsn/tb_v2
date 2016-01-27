@@ -3,7 +3,7 @@
  */
 
 jQuery(document).ready(function() {
-    
+
     $ajax_req = function(aj_obj){
         jQuery.ajax({
             url: aj_obj.attr('path-controller'),
@@ -29,18 +29,22 @@ jQuery(document).ready(function() {
         jQuery(".ajax-model").remove();
         jQuery(".form-group:has(select.model)").remove();
         $ajax_req(jQuery(this));
-    });    
+    });
     if ($brand.attr('path-controller')){
+        jQuery(".ajax-model").remove();
+        jQuery(".form-group:has(select.model)").remove();
         $ajax_req($brand);
     }
 
     var $sizetype = jQuery('.size-type.form-control');
     $sizetype.on('change', function(){
-        jQuery(".ajax-model").remove();
+        jQuery(".ajax-size").remove();
         jQuery(".form-group:has(select.size)").remove();
         $ajax_req(jQuery(this));
     });
     if ($sizetype.attr('path-controller')){
+        jQuery(".ajax-size").remove();
+        jQuery(".form-group:has(select.size)").remove();
         $ajax_req($sizetype);
     }
 
