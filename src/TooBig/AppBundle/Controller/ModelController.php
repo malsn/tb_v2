@@ -21,9 +21,10 @@ class ModelController extends ContentController
     public function listModelbyBrandAction( Request $request ){
         $keys = $request->request->keys();
         $brand = $this->get('brand_model')->getBrandById( $request->request->get($keys[0])['brand'] );
+        $item_model = $request->request->get($keys[0])['model'];
         if (!is_null($brand)){
             $models = $this->get('model_model')->getModelsByBrand( $brand );
-            return $this->render('TooBigAppBundle:Model:models_by_brand.html.twig', ['models'=>$models, 'form_name'=>$keys[0]]);
+            return $this->render('TooBigAppBundle:Model:models_by_brand.html.twig', ['models'=>$models, 'form_name'=>$keys[0], 'item_model' => $item_model]);
         } else {
             return false;
         }
