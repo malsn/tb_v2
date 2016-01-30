@@ -1,5 +1,26 @@
 /* styles for TooBig */
 
+/* bootstrap */
+.container-fluid {
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+.btn {
+    padding: 3px 6px;
+    font-size: 12px;
+}
+.page-header {
+    margin: 0px 0 20px;
+}
+.page-header > h1 {
+    margin-top: 0px;
+}
+.h1, h1 {
+    font-size: 30px;
+}
+/* bootstrap */
+
 /* site breadcrumbs */
 .breadcrumbs {
     margin: 0 0 20px 0px;
@@ -70,7 +91,12 @@ div#ItemsFilter div.form-row div.title {
 /**/
 
 div.list-group > ul > li { list-style: none; }
-div.list-group > a.list-group-item { margin-bottom: 2px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; }
+div.list-group > a.list-group-item {
+    margin-bottom: 2px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 8px 10px;
+}
 
 img.img-polaroid { width: 200px; height: auto; }
 
@@ -155,20 +181,15 @@ div.announce {
 #thumblist.clearfix li { display: inline; padding-right: 2px; }
 #thumblist.clearfix li img { border: 1px #eee solid; }
 
-.item-group .item-title { font-weight: bolder; }
+.item-feature { padding-top: 10px; }
+.item-group .item-title { font-weight: bolder; font-size: 13px; }
+.item-rate-gold-value { display: inline-block; height: 13px; }
+.item-rate-gold-value { background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zd…kxIDBsMS41MDkgNWg1bC00IDMgMiA1LTQuNS0zLTQuNSAzIDItNS00LTNoNXoiLz48L3N2Zz4=); }
+.item-rate-gray-value { background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTMiIGhlaWdodD0iMTMiIHZpZXdCb3g9IjAgMCAxMyAxMyI+PHBhdGggZmlsbD0iI0NGQ0ZDRiIgZD0iTTYuNDkxIDBsMS41MDkgNWg1bC00IDMgMiA1LTQuNS0zLTQuNSAzIDItNS00LTNoNXoiLz48L3N2Zz4=); }
+.item-rate-1 { width: 13px; }
+.item-rate-2 { width: 26px; }
+.item-rate-3 { width: 39px; }
+.item-rate-4 { width: 52px; }
+.item-rate-5 { width: 65px; }
 
 /*ShopItem*/
-
-
-/* bootstrap */
-.btn {
-    padding: 3px 6px;
-    font-size: 12px;
-}
-.page-header {
-    margin: 0px 0 20px;
-}
-.page-header > h1 {
-    margin-top: 0px;
-}
-/* bootstrap */

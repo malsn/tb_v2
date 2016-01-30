@@ -67,7 +67,7 @@
                 <div class="navbar-header pull-left">
 
                     {% block navbar_top_logo %}
-                        <a class="navbar-brand" href="{{ rpath ('/') }}">{{ block ('site_title') }}</a>
+                        <a class="navbar-brand" href="{{ rpath ('/') }}">{% block site_title %}TooBig{% endblock %}</a>
                     {% endblock navbar_top_logo %}
 
                 </div>
@@ -251,11 +251,15 @@
                 {% endblock menu_left %}
 
             </div>
-            <div class="col-md-9">
+            <div class="col-md-7">
                 {% block fos_user_content %}
                 {% endblock fos_user_content %}
                 {% block body %}
                 {% endblock body %}
+            </div>
+            <div class="col-md-2">
+                {% block info_block %}
+                {% endblock info_block %}
             </div>
         </div>
     </div>
@@ -267,7 +271,7 @@
             <footer>
 
                 {% block footer %}
-                    <p>&copy; Sergey Malyshev 2015</p>
+                    <p>&copy; TooBig 2016</p>
                 {% endblock footer %}
 
             </footer>

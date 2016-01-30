@@ -48,7 +48,7 @@
 {% block page_header %}
 {% if content %}
 <div class="page-header">
-    <h1>{{ content }}
+    <h1>{{ content }}<br/>
         <small>{{ content.abstract}}</small>
     </h1>
     <div class=""><span class="item-title">Добавлено </span> <span class="item-published">{{ content.createdAt | date("d.m.Y H:i:s") }}</span></div>
@@ -138,27 +138,29 @@
         {% block content_content %}
 
             {% block content_brand  %}
-                <div class="item-brand">
+                <div class="item-feature item-brand">
                     {% if content.brand is defined and content.brand is not null %}
-                        <span class="item-brand-value">{{ content.brand | raw }}</span>
+                        <span class="h3 item-brand-value">{{ content.brand | raw }}
+                        {% if content.model is defined and content.model is not null %} / {{ content.model | raw }}{% endif %}
+                        </span>
                     {% endif %}
                 </div>
             {% endblock content_brand  %}
 
             {% block content_model  %}
-                <div class="item-model">
+                <div class="item-feature item-model">
                     {% if content.model is defined and content.model is not null %}
                         <span class="item-title">Модель:</span> <span class="item-model-value">{{ content.model | raw }}</span>
                     {% endif %}
                 </div>
             {% endblock content_model  %}
 
-            <div class="item-content">
+            <div class="item-feature item-content">
                 {{ content.content | raw }}
             </div>
 
             {% block content_size  %}
-            <div class="item-size">
+            <div class="item-feature item-size">
             {% if content.size is defined and content.size is not null %}
                 <span class="item-title">Размер</span> ( <span class="item-size-type">{{ content.sizeType | raw }}</span> ): <span class="item-size-value">{{ content.size | raw }}</span>
             {% endif %}
@@ -166,7 +168,7 @@
             {% endblock content_size  %}
 
             {% block content_price %}
-            <div class="item-price">
+            <div class="item-feature item-price">
                 {% if content.price %}
                     <span class="item-title">Цена:</span> <span class="item-price-value">{{ content.price }}</span> <span class="item-price-currency">руб</span>
                 {% endif %}
@@ -174,7 +176,7 @@
             {% endblock content_price %}
 
             {% block content_author %}
-            <div class="item-author">
+            <div class="item-feature item-author">
                 {% if content.createdBy %}
                     <span class="item-title">Продавец:</span> <span class="item-author-name">{{ content.createdBy }}</span>
                 {% endif %}
@@ -182,9 +184,13 @@
             {% endblock content_author %}
 
             {% block content_rate %}
-            <div class="item-rate">
+            <div class="item-feature item-rate">
                 {% if rate is defined and rate | length and rate[0].avg_rate != 0 %}
-                    <span class="item-title item-rate">Рейтинг:</span> <span class="item-rate-value">{{ rate[0].avg_rate | number_format(2, '.', ',') }} из 5</span>
+                    <span class="item-title item-rate">Рейтинг:</span>
+                    <span class="item-rate-value item-rate-{{ rate[0].avg_rate | number_format }}">
+                        <span class="item-rate-gold-value item-rate-{{ rate[0].avg_rate | number_format }}"></span>
+                        <span class="item-rate-gray-value item-rate-{{ 5 - rate[0].avg_rate | number_format }}"></span>
+                    </span>
                 {% endif %}
             </div>
             {% endblock content_rate %}
