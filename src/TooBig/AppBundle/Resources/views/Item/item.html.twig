@@ -237,7 +237,13 @@
                         <div class="item-comment">
                             <div class="comment-user"><span class="comment-user-name">{{ comment.user }}</span> <span class="comment-user-date">{{ comment.createdAt | date("d.m.Y H:i:s") }}</span></div>
                             <div class=""><span class="comment-text">{{ comment.comment }}</span></div>
-                            <div class="comment-rate"><span class="comment-rate-title">Оценка</span>: <span class="comment-rate-text">{{ comment.rate | number_format(2, '.', ',') }} из 5</span></div>
+                            <div class="item-feature item-rate">
+                                {% if comment.rate is defined and comment.rate | length and comment.rate != 0 %}
+                                    <span class="item-title item-rate">Оценка:</span>
+                                    <span class="item-rate-value item-rate-gold-value item-rate-{{ comment.rate | number_format }}"></span>
+                                    <span class="item-rate-value item-rate-gray-value item-rate-{{ 5 - comment.rate | number_format }}"></span>
+                                {% endif %}
+                            </div>
                         </div>
                     {% endfor %}
                 {% else %}
