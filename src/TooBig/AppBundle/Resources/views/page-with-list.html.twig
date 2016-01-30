@@ -125,20 +125,32 @@
         {% endblock entity_list_entry_title  %}
 
         {% block entity_list_entry_brand  %}
-            <div class="item-brand">{{ entity.brand }}</div>
+            <div class="item-feature item-title item-brand">
+                <span>{{ entity.brand | raw }}
+                    {% if entity.model is defined and entity.model is not null %} / {{ entity.model | raw }}{% endif %}
+                </span>
+            </div>
         {% endblock entity_list_entry_brand  %}
 
         {% block entity_list_entry_announce  %}
-        <div class="item-announce">
-             {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
-             {{ entity.description is defined ? entity.description | raw : '' }}
-             {{ entity.announce is defined ? entity.announce | raw : '' }}
-             {{ entity.size is defined and entity.size is not null ? 'Размер: ' ~ entity.size | raw : '' }}
-        </div>
+            <div class="item-announce">
+                {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
+                {{ entity.description is defined ? entity.description | raw : '' }}
+                {{ entity.announce is defined ? entity.announce | raw : '' }}
+                {{ entity.size is defined and entity.size is not null ? 'Размер: ' ~ entity.size | raw : '' }}
+            </div>
         {% endblock entity_list_entry_announce  %}
 
+        {% block entity_list_entry_size  %}
+        <div class="item-feature item-size">
+            {% if entity.size is defined and entity.size is not null %}
+                <span class="item-title">Размер</span> ( <span class="item-size-type">{{ entity.sizeType | raw }}</span> ): <span class="item-size-value">{{ entity.size | raw }}</span>
+            {% endif %}
+        </div>
+        {% endblock entity_list_entry_size  %}
+
         {% block entity_list_entry_price  %}
-            <div class="item-price">
+            <div class="item-feature item-title item-price">
                 Цена: {{ entity.price is defined ? entity.price | raw : '0' }} руб.
             </div>
         {% endblock entity_list_entry_price  %}
