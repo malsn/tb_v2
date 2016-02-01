@@ -430,8 +430,8 @@ public function uploadAction(Request $request)
             if (null !== $search_params['Search']) {
                 $qb->andWhere(
                     $qb->expr()->orX(
-                        $qb->expr()->like('c.content', $search_params['Search']),
-                        $qb->expr()->like('c.title', $search_params['Search'])
+                        $qb->expr()->like('c.content', "'%".$search_params['Search']."%'"),
+                        $qb->expr()->like('c.title', "'%".$search_params['Search']."%'")
                     )
                 );
             }
