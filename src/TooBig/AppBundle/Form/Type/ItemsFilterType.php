@@ -80,6 +80,13 @@ class ItemsFilterType extends AbstractType
                     'size'=>3
                 ]
             ])
+            ->add('search', 'text', [
+                'attr' => [
+                    'placeholder' => 'Содержит в названии или описании',
+                    'class'=>'form-filter search',
+                    'size'=>20
+                ]
+            ])
             ->add(
                 'save',
                 'button',

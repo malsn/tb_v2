@@ -103,6 +103,12 @@ jQuery(document).ready(function() {
         jQuery('#ItemsFilter_form').submit();
     });
 
+    jQuery('.form-filter.search').keypress(function(e) {
+        if(e.which == 13) {
+            jQuery('#ItemsFilter_form').submit();
+        }
+    });
+
     jQuery('#price-slider-ui').slider({
         animate: "fast",
         range: true,

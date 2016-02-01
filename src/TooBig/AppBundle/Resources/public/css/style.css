@@ -64,6 +64,14 @@ div#ItemsFilter > form {
 div#ItemsFilter div.form-row div.title {
     font-weight: bolder;
 }
+.col-sm-1.col.filter-col {
+    padding-right: 5px;
+    padding-left: 5px;
+    width: 12%;
+}
+.col-sm-7.col.filter-col {
+    width: 40%;
+}
 .filter-title {
     cursor: pointer;
     position: relative;
@@ -75,18 +83,24 @@ div#ItemsFilter div.form-row div.title {
     background-color: #FFFFFF;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     padding: 10px;
+    min-width: 200px;
 }
 .filter-title.filter-open .filter-hidden { display: block; }
-.filter-title span:after {
-    font-size: 14px;
-    content: '\e800';
+.filter-title span i {
+    font-size: 11px;
     display: inline-block;
     vertical-align: middle;
-    margin-left: 4px;
+    margin-left: 10px;
 }
 .filter-form-item {
     max-height: 200px;
     overflow-y: auto;
+}
+input.filter-form-item.price-min, input.filter-form-item.price-max {
+    height: 25px;
+}
+input.form-filter.search {
+    width: 100%;
 }
 /**/
 
@@ -106,6 +120,7 @@ div#my-item-list div.row.item:nth-child(odd) { background-color: #eeeeee; }
 
 /* catalog item */
 div.c-item {
+    font-size: 13px;
     display: inline-block;
     vertical-align: top;
     width: 236px;
@@ -181,7 +196,16 @@ div.announce {
 #thumblist.clearfix li { display: inline; padding-right: 2px; }
 #thumblist.clearfix li img { border: 1px #eee solid; }
 
-.item-feature { padding-top: 10px; }
+.item-feature {
+    padding-top: 10px;
+}
+div.c-item .item-feature {
+    padding-top: 5px;
+}
+.item-feature .item-price, .item-feature .item-brand {
+    font-size: 15px;
+    font-weight: bold;
+}
 .item-group .item-title { font-weight: bolder; font-size: 13px; }
 .item-rate-value { display: inline-block; height: 13px; }
 .item-rate-gold-value { background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTMiIGhlaWdodD0iMTMiIHZpZXdCb3g9IjAgMCAxMyAxMyI+PHBhdGggZmlsbD0iI0ZBQjYwMCIgZD0iTTYuNDkxIDBsMS41MDkgNWg1bC00IDMgMiA1LTQuNS0zLTQuNSAzIDItNS00LTNoNXoiLz48L3N2Zz4=); }
