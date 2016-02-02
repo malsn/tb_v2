@@ -202,7 +202,7 @@ div.announce {
 div.c-item .item-feature {
     padding-top: 5px;
 }
-.item-feature .item-price, .item-feature .item-brand {
+.item-feature.item-price, .item-feature.item-brand {
     font-size: 15px;
     font-weight: bold;
 }
@@ -217,3 +217,8 @@ div.c-item .item-feature {
 .item-rate-5 { width: 65px; }
 
 /*ShopItem*/
+
+/* List Items */
+.row.heading {
+    font-weight: bold;
+}

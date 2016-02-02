@@ -14,19 +14,19 @@
 {% if entities is defined and entities %}
     {% block entity_list%}
         <div id="my-item-list">
-            <div class="row">
+            <div class="row heading">
                 <div class="col-md-1">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     Наименование
                 </div>
                 <div class="col-md-1">
                     Статус
                 </div>
                 <div class="col-md-1">
-                    Просмотров
+                    Хитов
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     Окончание
                 </div>
                 <div class="col-md-2">
@@ -47,7 +47,7 @@
                         {% endblock entity_list_entry_image  %}
                         </div>
                         {% block entity_list_entry_title  %}
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 {% block entity_list_entry_link  %}
                                     <div>
                                         <a href="{{ entitypath(entity) }}">{{ entity }}</a>
@@ -76,7 +76,7 @@
                         {% endblock entity_list_entry_hits  %}
 
                         {% block entity_list_entry_ends  %}
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                             {% if entity.publicationDateEnd is not null %}
                                 <span class="item-ends">{{ entity.publicationDateEnd | date("d.m.Y H:i:s") }}</span>
                             {%  endif %}
