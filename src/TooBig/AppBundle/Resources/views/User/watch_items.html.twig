@@ -11,7 +11,7 @@
 
 {% block page_body %}
 
-{% if entities is defined and entities %}
+{% if entities is defined and entities | length > 0 %}
     {% block entity_list%}
         <div id="my-item-list">
             <div class="row heading">
@@ -93,6 +93,8 @@
         {% include 'IphpCoreBundle::pagination.html.twig' with {'entities': entities} %}
     {% endblock pagination %}
 
-{% endif%}
+{% elseif entities is defined and entities | length == 0 %}
+    У вас еще нет в списке ни одного объявления.
+{% endif %}
 
 {% endblock page_body %}

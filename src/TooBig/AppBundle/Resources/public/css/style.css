@@ -20,6 +20,12 @@
 .h1, h1 {
     font-size: 30px;
 }
+.glyphicon.glyphicon-ok-circle {
+    color: darkgreen;
+}
+.glyphicon.glyphicon-ok-remove {
+    color: darkred;
+}
 /* bootstrap */
 
 /* site breadcrumbs */
@@ -241,12 +247,15 @@ div.c-item .item-feature {
 /* Pagination */
 .pagination {
     width: 100%;
+    text-align: center;
 }
 .pagination > span {
     border: 1px solid #bbb;
     border-radius: 1px;
     display: inline-block;
     padding: 5px;
+    min-width: 30px;
+    text-align: center;
 }
 .pagination > span > a {
     text-decoration: none;

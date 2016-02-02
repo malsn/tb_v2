@@ -11,7 +11,7 @@
 
 {% block page_body %}
 
-    {% if entities is defined and entities %}
+    {% if entities is defined and entities | length > 0 %}
         {% block entity_list%}
             <a class="btn btn-success btn-subscription-add" href="{{ path('app_subscription_add') }}">Добавить подписку</a>
             <div id="my-item-list">
@@ -19,13 +19,13 @@
                    <div class="col-md-4">
                         Наименование
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         Содержание подписки
                     </div>
                     <div class="col-md-1">
                         Статус
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                         Объявлений
                     </div>
                     <div class="col-md-2">
@@ -54,7 +54,7 @@
                                 </div>
                             {% endblock entity_list_entry_title  %}
                             {% block entity_list_entry_contents  %}
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div>
                                         {{ entity.rubric is defined ? entity.rubric | raw : '' }}
                                         {{ entity.color is defined ? entity.color | raw : '' }}
@@ -90,7 +90,7 @@
                                 </div>
                             {% endblock entity_list_entry_enabled  %}
                             {% block entity_list_entry_items  %}
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <span class="item-items">
                                         <a href="{{ path('app_subscription_items_list', {'subscription_id': entity.id}) }}">
                                         {{ render(controller('TooBigAppBundle:Subscription:getSubscriptionItemsCount', {
@@ -118,6 +118,8 @@
             {% include 'IphpCoreBundle::pagination.html.twig' with {'entities': entities} %}
         {% endblock pagination %}
 
-    {% endif%}
+    {% elseif entities is defined and entities | length == 0 %}
+        У вас еще не создано ни одной подписки.
+    {% endif %}
 
 {% endblock page_body %}
