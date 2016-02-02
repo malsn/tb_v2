@@ -21,10 +21,10 @@
     font-size: 30px;
 }
 .glyphicon.glyphicon-ok-circle {
-    color: darkgreen;
+    color: green;
 }
-.glyphicon.glyphicon-ok-remove {
-    color: darkred;
+.glyphicon.glyphicon-remove-circle {
+    color: red;
 }
 /* bootstrap */
 

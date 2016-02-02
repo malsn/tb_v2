@@ -27,10 +27,10 @@
                     Наименование
                 </div>
                 <div class="col-md-1">
-                    Бренд/Модель
+                    Бренд/<br/>Модель
                 </div>
                 <div class="col-md-1">
-                    Размер/Тип
+                    Размер/<br/>Тип
                 </div>
                 <div class="col-md-1">
                     Пол
@@ -67,7 +67,9 @@
                                         {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
                                         {{ entity.description is defined ? entity.description | raw : '' }}
                                         {{ entity.announce is defined ? entity.announce | raw : '' }}
-                                        Цена: {{ entity.price is defined ? entity.price | raw : '0' }} руб.
+                                    </div>
+                                    <div>
+                                        <strong>{{ entity.price is defined ? entity.price | raw : '0' }} руб.</strong>
                                     </div>
                                 {% endblock entity_list_entry_announce  %}
 
