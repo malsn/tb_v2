@@ -4,8 +4,6 @@
         <span class="item-rate-value item-rate-gold-value item-rate-{{ rate[0].avg_rate | number_format }}"></span>
         <span class="item-rate-value item-rate-gray-value item-rate-{{ 5 - rate[0].avg_rate | number_format }}"></span>
     {% endif %}
-</div>
-<div class="item-feature item-comments">
     {% if comments is defined and comments | length !=0 %}
         <span class="item-title item-comments">{{ comments | length }} отзывов</span>
     {% else %}
