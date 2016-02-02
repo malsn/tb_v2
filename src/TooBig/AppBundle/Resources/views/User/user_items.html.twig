@@ -70,9 +70,9 @@
                             <div class="col-md-1">
                                 <span class="item-enabled-{{ entity.enabled }}">
                                     {% if entity.enabled %}
-                                        <i class="glyphicon glyphicon-ok"></i>
+                                        <i class="glyphicon glyphicon-ok-circle"></i>
                                     {% else %}
-                                        <i class="glyphicon glyphicon-remove"></i>
+                                        <i class="glyphicon glyphicon-remove-circle"></i>
                                     {% endif %}
                                 </span>
                             </div>
@@ -93,7 +93,7 @@
 
                         <div class="col-md-2">
                             <a href="{{ path('app_item_edit', {'item_id': entity.id}) }}" title="Редактировать объявление"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a href="{{ {{ entitypath(entity) }} }}" title="Открыть объявление в новом окне"><i class="glyphicon glyphicon-new-window"></i></a>
+                            <a href="{{ entitypath(entity) }}" title="Открыть объявление в новом окне"><i class="glyphicon glyphicon-new-window"></i></a>
                         </div>
 
                     </div>

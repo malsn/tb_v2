@@ -20,10 +20,10 @@
 {% if entities is defined and entities %}
     {% block entity_list%}
         <div id="my-item-list">
-            <div class="row">
+            <div class="row heading">
                 <div class="col-md-1">
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     Наименование
                 </div>
                 <div class="col-md-1">
@@ -36,9 +36,9 @@
                     Пол
                 </div>
                 <div class="col-md-1">
-                    Стоимость
+                    Стоимость,<br/>руб.
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     Операции
                 </div>
             </div>
@@ -56,7 +56,7 @@
                         {% endblock entity_list_entry_image  %}
                         </div>
                         {% block entity_list_entry_title  %}
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 {% block entity_list_entry_link  %}
                                     <div>
                                         <a href="{{ entitypath(entity) }}">{{ entity }}</a>
@@ -76,8 +76,8 @@
                         {% block entity_list_entry_brand  %}
                             <div class="col-md-1">
                                 <span class="item-brand">
-                                {{ entity.brand is defined ? entity.brand | raw  : '' }}
-                                {{ entity.model is defined ? ' / ' ~ entity.model | raw : '' }}
+                                    {{ entity.brand is defined ? entity.brand | raw  : '' }}
+                                    {% if entity.model is defined and entity.model is not null %} / {{ entity.model | raw }}{% endif %}
                                 </span>
                             </div>
                         {% endblock entity_list_entry_brand  %}
@@ -85,7 +85,7 @@
                             <div class="col-md-1">
                                 <span class="item-size">
                                     {{ entity.size_type is defined ? entity.size_type | raw : '' }}
-                                    {{ entity.size is defined ? ' / ' ~ entity.size | raw : '' }}
+                                    {% if entity.size is defined and entity.size is not null %} / {{ entity.size | raw }}{% endif %}
                                 </span>
                             </div>
                         {% endblock entity_list_entry_size  %}
@@ -111,7 +111,7 @@
                             </div>
                         {% endblock entity_list_entry_price  %}
 
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             {{ render(controller('TooBigAppBundle:Item:watchStatus', {
                                 'item_id': entity.id
                             })) }}

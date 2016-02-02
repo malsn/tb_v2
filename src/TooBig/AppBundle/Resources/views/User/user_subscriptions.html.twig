@@ -13,9 +13,9 @@
 
     {% if entities is defined and entities %}
         {% block entity_list%}
-            <a class="btn btn-success" href="{{ path('app_subscription_add') }}">Добавить подписку</a>
+            <a class="btn btn-success btn-subscription-add" href="{{ path('app_subscription_add') }}">Добавить подписку</a>
             <div id="my-item-list">
-                <div class="row">
+                <div class="row heading">
                    <div class="col-md-4">
                         Наименование
                     </div>
@@ -80,7 +80,13 @@
                             {% endblock entity_list_entry_contents  %}
                             {% block entity_list_entry_enabled  %}
                                 <div class="col-md-1">
-                                    <span class="item-enabled-{{ entity.enabled }}">{{ entity.enabled ? 'Активна'  : 'Не активна' }}</span>
+                                    <span class="item-enabled-{{ entity.enabled }}">
+                                        {% if entity.enabled %}
+                                            <i class="glyphicon glyphicon-ok-circle"></i>
+                                    {% else %}
+                                            <i class="glyphicon glyphicon-remove-circle"></i>
+                                        {% endif %}
+                                    </span>
                                 </div>
                             {% endblock entity_list_entry_enabled  %}
                             {% block entity_list_entry_items  %}
@@ -96,8 +102,8 @@
                             {% endblock entity_list_entry_items  %}
 
                             <div class="col-md-2">
-                                <a class="btn btn-success" href="{{ path('app_subscription_edit', {'subscription_id': entity.id}) }}">Редакировать</a>
-                                <a class="btn btn-danger" href="{{ path('app_subscription_delete', {'subscription_id': entity.id}) }}">Удалить</a>
+                                <a href="{{ path('app_subscription_edit', {'subscription_id': entity.id}) }}"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="{{ path('app_subscription_delete', {'subscription_id': entity.id}) }}"><i class="glyphicon glyphicon-trash"></i></a>
                             </div>
 
                         </div>

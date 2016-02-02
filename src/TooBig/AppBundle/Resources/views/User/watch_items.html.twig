@@ -14,7 +14,7 @@
 {% if entities is defined and entities %}
     {% block entity_list%}
         <div id="my-item-list">
-            <div class="row">
+            <div class="row heading">
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-5">
@@ -63,7 +63,13 @@
                         {% endblock entity_list_entry_title  %}
                         {% block entity_list_entry_enabled  %}
                             <div class="col-md-2">
-                                <span class="item-enabled-{{ entity.item.enabled }}">{{ entity.item.enabled ? 'Активно'  : 'Не активно' }}</span>
+                                <span class="item-enabled-{{ entity.item.enabled }}">
+                                    {% if entity.item.enabled %}
+                                        <i class="glyphicon glyphicon-ok-circle"></i>
+                                    {% else %}
+                                        <i class="glyphicon glyphicon-remove-circle"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                         {% endblock entity_list_entry_enabled  %}
 
