@@ -67,8 +67,7 @@ class SubscriptionType extends AbstractType
                 'required' => false,
                 'empty_value' => 'Не указана',
                 'attr'=>[
-                    'class'=>'model',
-                    'disabled'=>''
+                    'class'=>'model'
                 ]
             ])
             ->add('size_type', 'entity', [
@@ -85,8 +84,7 @@ class SubscriptionType extends AbstractType
                 'required' => false,
                 'empty_value' => 'Не указан',
                 'attr'=>[
-                    'class'=>'size',
-                    'disabled'=>''
+                    'class'=>'size'
                 ]
             ])
             ->add('price_min', 'text', [
