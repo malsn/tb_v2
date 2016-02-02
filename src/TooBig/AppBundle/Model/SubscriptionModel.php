@@ -77,7 +77,7 @@ class SubscriptionModel extends ContainerAware {
         $price_params = [];
         $filter_params['Brand'] = $subscription->getBrand();
         $filter_params['Model'] = $subscription->getModel();
-        $filter_params['SizeType'] = $subscription->getSizeType();
+        $filter_params['size_type'] = $subscription->getSizeType();
         $filter_params['Size'] = $subscription->getSize();
         $filter_params['Color'] = $subscription->getColor();
         $filter_params['Gender'] = $subscription->getGender();
