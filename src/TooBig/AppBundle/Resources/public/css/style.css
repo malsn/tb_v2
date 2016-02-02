@@ -219,6 +219,40 @@ div.c-item .item-feature {
 /*ShopItem*/
 
 /* List Items */
+.row.item, .row.heading {
+    font-size: 13px;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
 .row.heading {
     font-weight: bold;
+    border-top: 1px solid #eee;
 }
+.row.heading > div, .row.item > div {
+    text-align: center;
+}
+.row.item > div > div {
+    text-align: left;
+}
+
+
+/* Pagination */
+.pagination {
+    width: 100%;
+}
+.pagination > span {
+    border: 1px solid #bbb;
+    border-radius: 1px;
+    display: inline-block;
+    padding: 5px;
+}
+.pagination > span > a {
+    text-decoration: none;
+    color: #555;
+}
+.pagination > span.current {
+    font-weight: bold;
+}
+
+

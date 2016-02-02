@@ -58,7 +58,9 @@
                                         {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
                                         {{ entity.description is defined ? entity.description | raw : '' }}
                                         {{ entity.announce is defined ? entity.announce | raw : '' }}
-                                        Цена: {{ entity.price is defined ? entity.price | raw : '0' }} руб.
+                                    </div>
+                                    <div>
+                                        <strong>{{ entity.price is defined ? entity.price | raw : '0' }} руб.</strong>
                                     </div>
                                 {% endblock entity_list_entry_announce  %}
 
@@ -66,7 +68,13 @@
                         {% endblock entity_list_entry_title  %}
                         {% block entity_list_entry_enabled  %}
                             <div class="col-md-1">
-                                <span class="item-enabled-{{ entity.enabled }}">{{ entity.enabled ? 'Активно'  : 'Не активно' }}</span>
+                                <span class="item-enabled-{{ entity.enabled }}">
+                                    {% if entity.enabled %}
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                    {% else %}
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    {% endif %}
+                                </span>
                             </div>
                         {% endblock entity_list_entry_enabled  %}
                         {% block entity_list_entry_hits  %}
@@ -83,7 +91,10 @@
                             </div>
                         {% endblock entity_list_entry_ends  %}
 
-                        <div class="col-md-2"><a class="btn btn-success" href="{{ path('app_item_edit', {'item_id': entity.id}) }}">Редакировать</a></div>
+                        <div class="col-md-2">
+                            <a href="{{ path('app_item_edit', {'item_id': entity.id}) }}" title="Редактировать объявление"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="{{ {{ entitypath(entity) }} }}" title="Открыть объявление в новом окне"><i class="glyphicon glyphicon-new-window"></i></a>
+                        </div>
 
                     </div>
                 {% endblock entity_list_entry%}
