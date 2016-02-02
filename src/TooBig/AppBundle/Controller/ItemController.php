@@ -321,6 +321,26 @@ public function unwatchAction( $item_id )
     }
 
     /**
+     * @Template("TooBigAppBundle:Item:item_rating.html.twig")
+     * @param $item_id
+     * @return array
+     */
+    public function getItemRatingAction($item_id){
+        $content = $this->getDoctrine()
+            ->getRepository('TooBigAppBundle:Item')->find($item_id);
+
+        if (!$content) { throw $this->createNotFoundException('Объявление с идентификатором "' . $item_id . '" не найдено'); }
+        $rate = $this->get('item_ratecomment_model')->getAvgRateByItem( $content->getId() );
+        /* находим опубликованные комментарии по объявлению */
+        $comments = $this->get('item_ratecomment_model')->getCommentsByItem( $content->getId() );
+        $response = array(
+            'rate' => $rate,
+            'comments' => $comments
+        );
+        return $response;
+    }
+
+    /**
      * @Route("/app/item/{item_id}/copy", name="app_item_copy")
      * @param $item_id
      * @param Request $request
@@ -472,16 +492,12 @@ public function uploadAction(Request $request)
         /* находим файлы изображения для слайдера, TODO: необходимо заменить на БД запросы */
         $fileUploader = $this->get('punk_ave.file_uploader');
         $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $content->getId()));
-        /* находим среднюю оценку по объявлению */
-        $rate = $this->get('item_ratecomment_model')->getAvgRateByItem( $content->getId() );
         /* находим опубликованные комментарии по объявлению */
         $comments = $this->get('item_ratecomment_model')->getCommentsByItem( $content->getId() );
-
 
         $response = array(
             'content' => $content,
             'files' => $files,
-            'rate' => $rate,
             'comments' => $comments,
             'breadcrumbs' => $this->getBreadcrumbs( $rubric )
         );

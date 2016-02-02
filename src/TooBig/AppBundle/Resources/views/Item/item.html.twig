@@ -184,13 +184,7 @@
             {% endblock content_author %}
 
             {% block content_rate %}
-            <div class="item-feature item-rate">
-                {% if rate is defined and rate | length and rate[0].avg_rate != 0 %}
-                    <span class="item-title item-rate">Рейтинг:</span>
-                    <span class="item-rate-value item-rate-gold-value item-rate-{{ rate[0].avg_rate | number_format }}"></span>
-                    <span class="item-rate-value item-rate-gray-value item-rate-{{ 5 - rate[0].avg_rate | number_format }}"></span>
-                {% endif %}
-            </div>
+                {{ render(controller('TooBigAppBundle:Item:getItemRating', { 'item_id': content.id })) }}
             {% endblock content_rate %}
 
         {% endblock content_content %}

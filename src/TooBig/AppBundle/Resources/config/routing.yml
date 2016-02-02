@@ -7,6 +7,9 @@ app_item_edit:
 app_item_copy:
     path:     /app/item/{item_id}/copy
     defaults: { _controller: TooBigAppBundle:Item:copy }
+app_item_get_rating:
+    path:     /app/item/{item_id}/rating
+    defaults: { _controller: TooBigAppBundle:Item:getItemRating }
 app_item_watch_status:
     path:     /app/item/{item_id}/watch/status
     defaults: { _controller: TooBigAppBundle:Item:watchStatus }

@@ -148,6 +148,10 @@
         </div>
         {% endblock entity_list_entry_size  %}
 
+        {% block content_rate %}
+            {{ render(controller('TooBigAppBundle:Item:getItemRating', { 'item_id': entity.id })) }}
+        {% endblock content_rate %}
+
         {% block entity_list_entry_price  %}
             <div class="item-feature item-title item-price">
                 {{ entity.price is defined ? entity.price | raw : '0' }} руб.
