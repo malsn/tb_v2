@@ -19,18 +19,7 @@
 
     <script type="application/javascript">
         $(document).ready(function() {
-            $('.jqzoom').jqzoom({
-                zoomType: 'standard',
-                lens:true,
-                preloadImages: false,
-                alwaysOn:false
-            });
-        });
-    </script>
 
-    <script>
-        $(function () {
-            $('.tTip').tooltip();
             {% set messages = app.session.flashBag.get(constant('TooBig\\AppBundle\\Service\\FlashBag::MESSAGE')) %}
             {% if messages is not empty %}
             var $alertModal = $('#alert_modal');
@@ -39,6 +28,13 @@
                     .html('{{ messages | join('<br/>') | raw }}');
             $alertModal.modal('toggle');
             {% endif %}
+
+            $('.jqzoom').jqzoom({
+                zoomType: 'standard',
+                lens:true,
+                preloadImages: false,
+                alwaysOn:false
+            });
         });
     </script>
 
