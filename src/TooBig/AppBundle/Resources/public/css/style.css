@@ -103,6 +103,21 @@ div#ItemsFilter div.form-row div.title {
     max-height: 200px;
     overflow-y: auto;
 }
+
+div#price-slider-ui {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 50%;
+}
+.filter-hidden > div#price-slider-ui {
+    margin-top: 10px;
+}
+.filter-hidden button {
+    width: 90%;
+}
+.price-slider-range {
+    padding-top: 20px;
+}
 input.filter-form-item.price-min, input.filter-form-item.price-max {
     height: 25px;
 }
@@ -268,9 +283,11 @@ div.c-item .item-feature {
 /* Forms */
 .form-group .form-buttons {
     width: 100%;
-    text-align: center;
+    text-align: right;
 }
-
+.form-group .form-buttons > button {
+    margin-left: 5px;
+}
 /* FlashBag */
 #flash-bag {
     display: none;

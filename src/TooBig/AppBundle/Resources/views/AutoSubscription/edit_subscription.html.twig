@@ -29,10 +29,14 @@
 
 {% block page_body %}
 
-<a class="btn btn-success btn-subscription-add" href="{{ path('app_subscription_add') }}">Добавить новую подписку</a>
-<a class="btn btn-success" href="{{ path('app_list_subscriptions') }}">Список подписок</a>
-
 <form name="Subscription" class="edit-form form-horizontal" action="{{ path('app_subscription_edit', { subscription_id: posting.id }) }}" method="post" {{ form_enctype(form) }}>
+
+    <div class="form-group control-group">
+        <div class="col-sm-12 form-buttons">
+            <button class="btn btn-success btn-subscription-add" href="{{ path('app_subscription_add') }}">Добавить новую подписку</button>
+            <button class="btn btn-success" href="{{ path('app_list_subscriptions') }}">Вернуться к списку подписок</button>
+        </div>
+    </div>
 
     <div class="form-group control-group">
         <label for="Subscription_title" class="col-sm-3 control-label">{{ 'Наименование'|trans({}, 'SonataUserBundle') }}</label>
@@ -80,7 +84,7 @@
             <div id="price-slider-ui"></div>
             <div class="price-slider-range">
                 от {{ form_widget(form.price_min, {'attr': {'class':'filter-form-item price-min'}}) }} до
-                {{ form_widget(form.price_max, {'attr': {'class':'filter-form-item price-max'}}) }}
+                {{ form_widget(form.price_max, {'attr': {'class':'filter-form-item price-max'}}) }} руб.
             </div>
         </div>
     </div>

@@ -67,10 +67,7 @@ class ItemController extends RubricAwareController
                                 'to_folder' => '/attachments/' . $record->getId(),
                                 'remove_from_folder' => true,
                                 'create_to_folder' => true));
-                        $this->get('session')->getFlashBag()->add(
-                            'notice',
-                            'Ваше объявление успешно добавлено, оно будет опубликовано после одобрения модератором. Спасибо!'
-                        );
+                        $this->get('flash_bag')->addMessage('Ваше объявление успешно добавлено, оно будет опубликовано после одобрения модератором. Спасибо!');
 
                         /* blueimp file insert */
 
@@ -81,16 +78,10 @@ class ItemController extends RubricAwareController
 
                         return $this->redirect($this->generateUrl('app_item_edit',['item_id' => $record->getId()]));
                     } catch (\Exception $e) {
-                        $this->get('session')->getFlashBag()->add(
-                            'notice',
-                            'Your changes were not saved!'.$e->getMessage()
-                        );
+                        $this->get('flash_bag')->addMessage('Произошла ошибка в добавлении объявления! '.$e->getMessage());
                     }
                 } else {
-                    $this->get('session')->getFlashBag()->add(
-                        'notice',
-                        'Your changes were not saved!'.$form->getErrors()->next()
-                    );
+                    $this->get('flash_bag')->addMessage('Произошла ошибка в добавлении объявления! '.$form->getErrors()->next());
                 }
             }
             $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
@@ -152,10 +143,7 @@ public function editAction($item_id, Request $request)
                                 'to_folder' => '/attachments/' . $record->getId(),
                                 'remove_from_folder' => true,
                                 'create_to_folder' => true));
-                        $this->get('session')->getFlashBag()->add(
-                            'notice',
-                            'Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!'
-                        );
+                        $this->get('flash_bag')->addMessage('Ваше объявление успешно отредактировано, оно будет опубликовано после одобрения модератором. Спасибо!');
 
                         /* blueimp new file insert or update ( delete old files in DB and create new ) */
 
@@ -182,16 +170,10 @@ public function editAction($item_id, Request $request)
 
 
                     } catch (\Exception $e) {
-                        $this->get('session')->getFlashBag()->add(
-                            'notice',
-                            'Your changes were not saved!'.$e->getMessage()
-                        );
+                        $this->get('flash_bag')->addMessage('Произошла ошибка при сохранении объявления! '.$e->getMessage());
                     }
                 } else {
-                    $this->get('session')->getFlashBag()->add(
-                        'notice',
-                        'Your changes were not saved! Form validation error!'.$form->getErrors()->next()
-                    );
+                    $this->get('flash_bag')->addMessage('Произошла ошибка при сохранении объявления! Ошибка валидации формы! '.$form->getErrors()->next());
                 }
             }
             $existingFiles = $this->get('punk_ave.file_uploader')->getFiles(array('folder' => 'tmp/attachments/' . $editId));
@@ -206,8 +188,7 @@ public function editAction($item_id, Request $request)
                 'breadcrumbs' => $this->getBreadcrumbs( $rubric ) ]);
 
     } else {
-            $this->get('session')->getFlashBag()->add(
-                'notice',
+            $this->get('flash_bag')->addMessage(
                 '<div>Данное объявление создано не вами. Желаете создать объявление на основе текущего?</div>
                  <a class="btn btn-success" href="'.$this->generateUrl('app_item_copy', ['item_id' => $record->getId()]).'">Да</a>
                  <a class="btn btn-warning" href="'.$rubric->getFullPath().$record->getSlug().'">Нет</a>'
@@ -217,8 +198,8 @@ public function editAction($item_id, Request $request)
             $fileUploader = $this->get('punk_ave.file_uploader');
             $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
 
-            /* находим среднюю оценку по объявлению */
-            $rate = $this->get('item_ratecomment_model')->getAvgRateByItem( $record->getId() );
+            /* находим среднюю оценку по объявлению убрать вроде бы
+            $rate = $this->get('item_ratecomment_model')->getAvgRateByItem( $record->getId() );*/
             /* находим опубликованные комментарии по объявлению */
             $comments = $this->get('item_ratecomment_model')->getCommentsByItem( $record->getId() );
 

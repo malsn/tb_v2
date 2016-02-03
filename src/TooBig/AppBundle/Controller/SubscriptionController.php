@@ -39,23 +39,14 @@ class SubscriptionController extends RubricAwareController
                 if ($form->isValid()) {
                     try {
                         $this->get('auto_subscription_model')->save($record);
-                        $this->get('session')->getFlashBag()->add(
-                            'notice',
-                            'Ваша подписка успешно создана. Спасибо!'
-                        );
+                        $this->get('flash_bag')->addMessage('Ваша подписка успешно создана. Спасибо!');
 
                         return $this->redirect($this->generateUrl('app_subscription_edit',['subscription_id' => $record->getId()]));
                     } catch (\Exception $e) {
-                        $this->get('session')->getFlashBag()->add(
-                            'notice',
-                            'Your changes were not saved!'.$e->getMessage()
-                        );
+                        $this->get('flash_bag')->addMessage('Your changes were not saved!'.$e->getMessage());
                     }
                 } else {
-                    $this->get('session')->getFlashBag()->add(
-                        'notice',
-                        'Your changes were not saved!'.$form->getErrors()->next()
-                    );
+                    $this->get('flash_bag')->addMessage('Your changes were not saved!'.$form->getErrors()->next());
                 }
             }
 
@@ -110,10 +101,7 @@ public function editAction($subscription_id, Request $request)
             ]);
 
     } else {
-            $this->get('session')->getFlashBag()->add(
-                'notice',
-                '<div>Данная подписка создана не вами. Если у вас есть вопросы, задайте их администратору сайта. Спасибо за понимание.</div>'
-            );
+            $this->get('flash_bag')->addMessage('<div>Данная подписка создана не вами. Если у вас есть вопросы, задайте их администратору сайта. Спасибо за понимание.</div>');
             $form = $this->createForm(
                 new SubscriptionType($this->get('router')),
                 new AutoSubscription()
@@ -139,23 +127,14 @@ public function deleteAction($subscription_id){
 
                 try {
                     $this->get('auto_subscription_model')->delete($record);
-                    $this->get('session')->getFlashBag()->add(
-                        'notice',
-                        'Ваша подписка успешно удалена!'
-                    );
+                    $this->get('flash_bag')->addMessage('Ваша подписка успешно удалена!');
 
                 } catch (\Exception $e) {
-                    $this->get('session')->getFlashBag()->add(
-                        'notice',
-                        'Your changes were not applied!'.$e->getMessage()
-                    );
+                    $this->get('flash_bag')->addMessage('Ваша подписка не удалилась!'.$e->getMessage());
                 }
 
         } else {
-            $this->get('session')->getFlashBag()->add(
-                'notice',
-                '<div>Данная подписка создана не вами. Если у вас есть вопросы, задайте их администратору сайта. Спасибо за понимание.</div>'
-            );
+            $this->get('flash_bag')->addMessage('<div>Данная подписка создана не вами. Если у вас есть вопросы, задайте их администратору сайта. Спасибо за понимание.</div>');
         }
 
         return $this->forward('TooBigAppBundle:User:listSubscriptions',[]);
