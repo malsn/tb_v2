@@ -18,8 +18,7 @@
     {% endjavascripts %}
 
     <script type="application/javascript">
-        var jQuery_1_11_2 = jQuery.noConflict();
-
+        var jQuery_1_11_2 = $.noConflict();
         (function($) {
             $(document).ready(function() {
                 $('.jqzoom').jqzoom({
@@ -29,7 +28,7 @@
                     alwaysOn:false
                 });
             });
-        })(jQuery);
+        })($);
         (function($) {
             {% set messages = app.session.flashBag.get(constant('TooBig\\AppBundle\\Service\\FlashBag::MESSAGE')) %}
             {% if messages is not empty %}
