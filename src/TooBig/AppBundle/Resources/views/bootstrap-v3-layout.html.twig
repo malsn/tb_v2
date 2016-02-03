@@ -49,6 +49,19 @@
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
+        <script>
+            $(function () {
+                $('.tTip').tooltip();
+                {% set messages = app.session.flashBag.get(constant('TooBig\\AppBundle\\Service\\FlashBag::MESSAGE')) %}
+                {% if messages is not empty %}
+                var $alertModal = $('#alert_modal');
+                $alertModal
+                        .find('div.modal-body')
+                        .html('{{ messages | join('<br/>') | raw }}');
+                $alertModal.modal('toggle');
+                {% endif %}
+            });
+        </script>
 
     {% endblock %}
 
@@ -278,8 +291,21 @@
         </div>
     {% endblock footer_all %}
 
-{% endblock body_all %}
+    {% block flash_bag %}
+        <div class="modal fade" id="alert_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock flash_bag %}
 
+{% endblock body_all %}
 
 </body>
 </html>

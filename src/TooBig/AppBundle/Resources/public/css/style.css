@@ -265,4 +265,15 @@ div.c-item .item-feature {
     font-weight: bold;
 }
 
+/* Forms */
+.form-group .form-buttons {
+    width: 100%;
+    text-align: center;
+}
+
+/* FlashBag */
+#flash-bag {
+    display: none;
+}
+
 
