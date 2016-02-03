@@ -285,12 +285,11 @@ div.c-item .item-feature {
     width: 100%;
     text-align: right;
 }
-.form-group .form-buttons > button {
-    margin-left: 5px;
+.form-group .form-buttons.center {
+    text-align: center;
 }
-/* FlashBag */
-#flash-bag {
-    display: none;
+.form-group .form-buttons > button, .form-group .form-buttons > a {
+    margin-left: 5px;
 }
 
 
