@@ -198,15 +198,12 @@ public function editAction($item_id, Request $request)
             $fileUploader = $this->get('punk_ave.file_uploader');
             $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $record->getId()));
 
-            /* находим среднюю оценку по объявлению убрать вроде бы
-            $rate = $this->get('item_ratecomment_model')->getAvgRateByItem( $record->getId() );*/
             /* находим опубликованные комментарии по объявлению */
             $comments = $this->get('item_ratecomment_model')->getCommentsByItem( $record->getId() );
 
             $response = array(
                 'content' => $record,
                 'files' => $files,
-                'rate' => $rate,
                 'comments' => $comments,
                 'breadcrumbs' => $this->getBreadcrumbs( $rubric ) );
 
