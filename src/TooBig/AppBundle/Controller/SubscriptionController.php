@@ -101,7 +101,6 @@ public function editAction($subscription_id, Request $request)
                     }
                 } else {
                     $this->get('flash_bag')->addError('Изменения не сохранены! Ошибка валидации формы. '.$form->getErrors()->next());
-                    );
                 }
             }
 
