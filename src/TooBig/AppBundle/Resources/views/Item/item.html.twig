@@ -163,14 +163,6 @@
                 </div>
             {% endblock content_brand  %}
 
-            {% block content_model  %}
-                <div class="item-feature item-model">
-                    {% if content.model is defined and content.model is not null %}
-                        <span class="item-title">Модель:</span> <span class="item-model-value">{{ content.model | raw }}</span>
-                    {% endif %}
-                </div>
-            {% endblock content_model  %}
-
             <div class="item-feature item-content">
                 {{ content.content | raw }}
             </div>

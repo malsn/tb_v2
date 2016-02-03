@@ -98,6 +98,16 @@ class ItemForm extends AbstractType
                         'class' => 'btn btn-primary'
                     ]
                 ]
+            )
+            ->add(
+                'reset',
+                'reset',
+                [
+                    'label' => 'Отменить',
+                    'attr' => [
+                        'class' => 'btn btn-warning'
+                    ]
+                ]
             );
     }
 
