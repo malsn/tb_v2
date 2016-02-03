@@ -94,21 +94,13 @@ public function editAction($subscription_id, Request $request)
                 if ($form->isValid()) {
                     try {
                         $this->get('auto_subscription_model')->save($record);
-                        $this->get('session')->getFlashBag()->add(
-                            'notice',
-                            'Ваша подписка успешно изменена. Спасибо!'
-                        );
+                        $this->get('flash_bag')->addInfo('Ваша подписка успешно изменена. Спасибо!');
 
                     } catch (\Exception $e) {
-                        $this->get('session')->getFlashBag()->add(
-                            'notice',
-                            'Your changes were not saved!'.$e->getMessage()
-                        );
+                        $this->get('flash_bag')->addError('Изменения не сохранены! '.$e->getMessage());
                     }
                 } else {
-                    $this->get('session')->getFlashBag()->add(
-                        'notice',
-                        'Your changes were not saved! Form validation error!'.$form->getErrors()->next()
+                    $this->get('flash_bag')->addError('Изменения не сохранены! Ошибка валидации формы. '.$form->getErrors()->next());
                     );
                 }
             }
