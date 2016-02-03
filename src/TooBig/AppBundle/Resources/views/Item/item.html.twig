@@ -27,6 +27,20 @@
         });
     </script>
 
+    <script>
+        $(function () {
+            $('.tTip').tooltip();
+            {% set messages = app.session.flashBag.get(constant('TooBig\\AppBundle\\Service\\FlashBag::MESSAGE')) %}
+            {% if messages is not empty %}
+            var $alertModal = $('#alert_modal');
+            $alertModal
+                    .find('div.modal-body')
+                    .html('{{ messages | join('<br/>') | raw }}');
+            $alertModal.modal('toggle');
+            {% endif %}
+        });
+    </script>
+
 {% endblock javascripts %}
 
 {% block stylesheets %}

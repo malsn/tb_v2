@@ -189,7 +189,9 @@ public function editAction($item_id, Request $request)
 
     } else {
             $this->get('flash_bag')->addMessage(
-                'Данное объявление создано не вами. Желаете создать объявление на основе текущего?'
+                '<div>Данное объявление создано не вами. Желаете создать объявление на основе текущего?</div>
+                 <a class="btn btn-success" href="'.$this->generateUrl('app_item_copy', ['item_id' => $record->getId()]).'">Да</a>
+                 <a class="btn btn-warning" href="'.$rubric->getFullPath().$record->getSlug().'">Нет</a>'
             );
 
             /* находим файлы изображения для слайдера, TODO: необходимо заменить на БД запросы */
