@@ -1,6 +1,6 @@
 <?php
 
-namespace BSS\CommunalBundle\Service;
+namespace TooBig\AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
