@@ -188,7 +188,7 @@ public function editAction($item_id, Request $request)
                 'breadcrumbs' => $this->getBreadcrumbs( $rubric ) ]);
 
     } else {
-            $this->get('flash_bag')->addMessage('<div>Данное объявление создано не вами. Желаете создать объявление на основе текущего?</div><a class="btn btn-success" href="'.$this->generateUrl('app_item_copy', ['item_id' => $record->getId()]).'">Да</a><a class="btn btn-warning" href="'.$rubric->getFullPath().$record->getSlug().'">Нет</a>');
+            $this->get('flash_bag')->addMessage('<div>Данное объявление создано не вами. Желаете создать объявление на основе текущего?</div><div class="form-group control-group"><div class="col-sm-12 form-buttons"><a class="btn btn-success" href="'.$this->generateUrl('app_item_copy', ['item_id' => $record->getId()]).'">Да</a><a class="btn btn-warning" href="'.$rubric->getFullPath().$record->getSlug().'">Нет</a></div></div>');
 
             /* находим файлы изображения для слайдера, TODO: необходимо заменить на БД запросы */
             $fileUploader = $this->get('punk_ave.file_uploader');

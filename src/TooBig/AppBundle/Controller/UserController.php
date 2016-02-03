@@ -115,20 +115,12 @@ class UserController extends RubricAwareController
                 try {
                     $this->get('fos_user.user_manager')->updateUser($user);
                     $this->get('fos_user.user_manager')->reloadUser($user);
-                    $this->setFlash(
-                        'notice',
-                        'Ваши данные успешно обновлены!');
+                    $this->get('flash_bag')->addMessage('Ваши данные успешно обновлены!');
                 } catch (\Exception $e) {
-                    $this->setFlash(
-                        'notice',
-                        'Произошла ошибка при обновлении данных!'.$e->getMessage().$form->getErrors()->next()
-                    );
+                    $this->get('flash_bag')->addMessage('Произошла ошибка при обновлении данных!'.$e->getMessage().$form->getErrors()->next());
                 }
             } else {
-                $this->setFlash(
-                    'notice',
-                    'Произошла ошибка при обновлении данных!'.$form->getErrors()->next()
-                );
+                $this->get('flash_bag')->addMessage('Произошла ошибка при обновлении данных!'.$form->getErrors()->next());
             }
         }
 
