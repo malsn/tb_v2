@@ -18,8 +18,19 @@
     {% endjavascripts %}
 
     <script type="application/javascript">
-        $(document).ready(function() {
+        var jQuery_1_11_2 = jQuery.noConflict();
 
+        (function($) {
+            $(document).ready(function() {
+                $('.jqzoom').jqzoom({
+                    zoomType: 'standard',
+                    lens:true,
+                    preloadImages: false,
+                    alwaysOn:false
+                });
+            });
+        })(jQuery);
+        (function($) {
             {% set messages = app.session.flashBag.get(constant('TooBig\\AppBundle\\Service\\FlashBag::MESSAGE')) %}
             {% if messages is not empty %}
             var $alertModal = $('#alert_modal');
@@ -28,14 +39,7 @@
                     .html('{{ messages | join('<br/>') | raw }}');
             $alertModal.modal('toggle');
             {% endif %}
-
-            jQuery('.jqzoom').jqzoom({
-                zoomType: 'standard',
-                lens:true,
-                preloadImages: false,
-                alwaysOn:false
-            });
-        });
+        })(jQuery_1_11_2);
     </script>
 
 {% endblock javascripts %}
