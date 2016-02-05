@@ -510,7 +510,7 @@ public function uploadAction(Request $request)
                 try {
                     $this->get('item_ratecomment_model')->save( $rate_comment, $item_id );
                     $response->setData(array(
-                        'message' => 'Благодарим вас за ваш комментарий и вашу оценку, оно будет опубликовано после одобрения модератором.'
+                        'message' => 'Благодарим вас за ваш комментарий и вашу оценку, он будет опубликован после проверки модератором.'
                     ));
                 } catch (\Exception $e) {
                     return $this->render('TooBigAppBundle:Item:add_rate_comment.html.twig', [ 'form' => $form->createView(), 'item_id' => $item_id ]);

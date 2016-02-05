@@ -253,7 +253,7 @@
                 {% if comments is defined and comments | length %}
                     {% for comment in comments %}
                         <div class="item-comment">
-                            <div class="comment-user"><span class="comment-user-name">{{ comment.user }}</span> <span class="comment-user-date">{{ comment.createdAt | date("d.m.Y H:i:s") }}</span></div>
+                            <div class="comment-user"><span class="comment-user-name">{{ comment.user.firstname }}</span> <span class="comment-user-date">{{ comment.createdAt | date("d.m.Y H:i:s") }}</span></div>
                             <div class=""><span class="comment-text">{{ comment.comment }}</span></div>
                             <div class="item-feature item-rate">
                                 {% if comment.rate is defined and comment.rate | length and comment.rate != 0 %}
