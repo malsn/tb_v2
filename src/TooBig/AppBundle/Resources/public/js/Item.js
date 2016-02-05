@@ -76,7 +76,11 @@ jQuery(document).ready(function() {
                             success: function (response) {
                                 if (response !== false) {
                                     if ( response.message != 'undefined' ){
-                                        jQuery('.app_comment_form').html( response.message );
+                                        var $alertModal = $('#alert_modal');
+                                        $alertModal
+                                            .find('div.modal-body')
+                                            .html(response.message);
+                                        $alertModal.modal('toggle');
                                     }
                                 }
                             },

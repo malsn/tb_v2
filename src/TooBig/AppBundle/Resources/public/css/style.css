@@ -237,7 +237,12 @@ div.c-item .item-feature {
 .item-rate-3 { width: 39px; }
 .item-rate-4 { width: 52px; }
 .item-rate-5 { width: 65px; }
-
+.item-comment {
+    margin-bottom: 10px;
+}
+.item-comment .comment-user { margin-bottom: 5px; display: block; border-bottom: 1px solid #eee; }
+.item-comment .comment-user-name { font-weight: bold; }
+.item-comment .comment-user-date { font-size: 12px; }
 /*ShopItem*/
 
 /* List Items */
