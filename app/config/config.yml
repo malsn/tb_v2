@@ -74,3 +74,4 @@ fos_user:
     registration:
         confirmation:
             enabled: true
+gregwar_captcha: ~

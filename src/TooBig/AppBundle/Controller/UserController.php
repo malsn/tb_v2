@@ -13,6 +13,7 @@ namespace TooBig\AppBundle\Controller;
 
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use TooBig\AppBundle\Form\Type\ProfileType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

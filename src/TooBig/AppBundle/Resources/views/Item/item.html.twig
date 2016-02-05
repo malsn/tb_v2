@@ -183,13 +183,29 @@
             </div>
             {% endblock content_price %}
 
-            {% block content_author %}
-            <div class="item-feature item-author">
-                {% if content.createdBy %}
-                    <span class="item-title">Продавец:</span> <span class="item-author-name">{{ content.createdBy }}</span>
+            {% if content.createdBy %}
+                {% block content_author %}
+                <div class="item-feature item-author">
+                    <span class="item-title">Продавец:</span> <span class="item-author-name">{{ content.createdBy.firstname }}</span>
+                </div>
+                {% endblock content_author %}
+
+                <div class="item-feature item-author-phone">
+                {% if app.user %}
+                    <span class="item-title">Телефон:</span> <span class="item-author-phone-value">{{ content.createdBy.phone }}</span>
+                {% else %}
+                    <span class="item-title">Телефон:</span>
+                    <span class="item-author-phone-value">
+                        <a class="show-phone-link" path-controller="{{ path('app_item_phone_view', {'item_id': content.id}) }}">показать</a>
+                    </span>
                 {% endif %}
-            </div>
-            {% endblock content_author %}
+                </div>
+
+            {% endif %}
+
+
+
+
 
             {% block content_rate %}
                 {{ render(controller('TooBigAppBundle:Item:getItemRating', { 'item_id': content.id })) }}

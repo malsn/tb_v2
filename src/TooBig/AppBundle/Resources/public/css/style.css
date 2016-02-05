@@ -292,4 +292,26 @@ div.c-item .item-feature {
     margin-left: 5px;
 }
 
+/* Captcha Form */
+a.show-phone-link {
+    cursor: pointer;
+}
+#Captcha {
+    text-align: center;
+    width: 200px;
+}
+#Captcha ul {
+    padding: 0;
+    list-style: none;
+}
+#Captcha ul > li {
+    list-style-type: none;
+    color: red;
+}
+#Captcha_captcha, #Captcha_save {
+    width: 130px;
+    padding: 5px;
+    margin: 5px;
+}
+
 

@@ -123,4 +123,33 @@ jQuery(document).ready(function() {
         }
     });
 
+    var phone_request = function ($phone_container, $button) {
+        jQuery.ajax({
+            url: $button.attr('path-controller'),
+            cache: false,
+            type: 'POST',
+            data: jQuery("form").serialize() ,
+            beforeSend: function () {
+
+            },
+            success: function (response) {
+                if (response !== false) {
+                    $phone_container.html(response);
+                    jQuery('.item-phone-captcha').click(function(){
+                        phone_request($phone_container, $button);
+                    });
+                }
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    jQuery('.show-phone-link').click(function(){
+        var $button = jQuery(this);
+        var $phone_container = jQuery('.item-author-phone-value');
+        phone_request($phone_container, $button);
+    });
+
 });

@@ -20,7 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "iphp/content-bundle": "@stable",
         "sonata-project/classification-bundle": "~2.3",
-        "punkave/symfony2-file-uploader-bundle": "^1.0@dev"
+        "punkave/symfony2-file-uploader-bundle": "^1.0@dev",
+        "gregwar/captcha-bundle": "1.*"
     },
     "minimum-stability": "dev",
     "require-dev": {

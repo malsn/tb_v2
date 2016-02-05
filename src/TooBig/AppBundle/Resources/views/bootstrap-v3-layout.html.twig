@@ -172,7 +172,7 @@
 
                                             {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_ADMIN") %}
                                                 <li><a href="{{ path ('sonata_admin_dashboard') }}">
-                                                        <span class="glyphicon glyphicon-edit"
+                                                        <span class="glyphicon glyphicon-dashboard"
                                                               aria-hidden="true"></span>Панель управления</a></li>
                                             {% endif %}
 
@@ -180,13 +180,13 @@
                                                         <span class="glyphicon glyphicon-user"
                                                               aria-hidden="true"></span>Мой профайл</a></li>
                                                 <li><a href="{{ path ('app_list_user_items') }}">
-                                                        <span class="glyphicon glyphicon-tasks"
+                                                        <span class="glyphicon glyphicon-list-alt"
                                                               aria-hidden="true"></span>Мои объявления</a></li>
                                                 <li><a href="{{ path ('app_list_watch_items') }}">
                                                         <span class="glyphicon glyphicon-tasks"
                                                               aria-hidden="true"></span>Мои подписки</a></li>
                                                 <li><a href="{{ path ('app_list_subscriptions') }}">
-                                                        <span class="glyphicon glyphicon-tasks"
+                                                        <span class="glyphicon glyphicon-bell"
                                                               aria-hidden="true"></span>Мои автоподписки</a></li>
 
                                             {% block user_top_action_logout %}

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use TooBig\AppBundle\Entity\RateComment;
+use TooBig\AppBundle\Form\Type\CaptchaForm;
 use TooBig\AppBundle\Form\ItemForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use TooBig\AppBundle\Form\Type\ItemsFilterType;
@@ -523,6 +524,30 @@ public function uploadAction(Request $request)
             }
         }
         return $response;
+    }
+
+    /**
+     * @param Request $request
+     * @param $item_id
+     * @return Response
+     */
+    public function viewItemPhoneAction(Request $request, $item_id){
+        $record = $this->get('item_model')->getItemById($item_id);
+
+        $form = $this->createForm(
+            new CaptchaForm()
+        );
+
+        if ($request->isMethod('POST')){
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                return new Response ($record->getCreatedBy()->getPhone());
+            }
+        }
+
+        return $this->render('TooBigAppBundle:Captcha:form.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**

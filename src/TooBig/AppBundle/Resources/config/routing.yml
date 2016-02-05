@@ -25,6 +25,9 @@ app_item_comment_add:
 app_item_comment_edit:
     path:     /app/item/{item_id}/comment/edit
     defaults: { _controller: TooBigAppBundle:Item:editcomment }
+app_item_phone_view:
+    path:     /app/item/{item_id}/phone/view
+    defaults: { _controller: TooBigAppBundle:Item:viewItemPhone }
 app_subscription_add:
     path:     /app/subscription/add
     defaults: { _controller: TooBigAppBundle:Subscription:add }
