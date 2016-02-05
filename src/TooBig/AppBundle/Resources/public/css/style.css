@@ -240,6 +240,10 @@ div.c-item .item-feature {
 .item-comment {
     margin-bottom: 10px;
 }
+.item-comment:nth-child(even) {
+    background-color: #FBFBFB;
+    padding: 10px;
+}
 .item-comment .comment-user { margin-bottom: 5px; display: block; border-bottom: 1px solid #eee; }
 .item-comment .comment-user-name { font-weight: bold; }
 .item-comment .comment-user-date { font-size: 12px; }
