@@ -76,6 +76,7 @@ jQuery(document).ready(function() {
                             success: function (response) {
                                 if (response !== false) {
                                     if ( response.message != 'undefined' ){
+                                        jQuery('.app_comment_form').html('');
                                         var $alertModal = jQuery('#alert_modal');
                                         $alertModal
                                             .find('div.modal-body')
