@@ -1,6 +1,9 @@
 app_item_add:
     path:     /app/item/add/{rubric_id}
     defaults: { _controller: TooBigAppBundle:Item:add }
+app_item_add_common:
+    path:     /app/item/add
+    defaults: { _controller: TooBigAppBundle:Item:addCommon }
 app_item_edit:
     path:     /app/item/{item_id}/edit
     defaults: { _controller: TooBigAppBundle:Item:edit }
@@ -64,6 +67,9 @@ app_user_profile_edit:
 app_file_upload:
     path:     /app/file/upload/
     defaults: { _controller: TooBigAppBundle:Item:upload }
+app_list_rubric_children:
+    path:     /app/rubric/children
+    defaults: { _controller: TooBigAppBundle:Item:listRubricChildren }
 app_list_model_by_brand:
     path:     /app/brand/model/
     defaults: { _controller: TooBigAppBundle:Model:listModelbyBrand }

@@ -3,6 +3,7 @@
 namespace TooBig\AppBundle\Controller;
 
 use Application\Iphp\CoreBundle\Entity\Rubric;
+use Symfony\Component\Debug\ExceptionHandler;
 use TooBig\AppBundle\Entity\Item;
 use Iphp\ContentBundle\Controller\ContentController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,7 +25,43 @@ class ItemController extends RubricAwareController
     protected $errors;
 
     /**
-     * @Route("/app/item/add/{rubric_id}", name="front_item_add")
+     * @Route("/app/item/add", name="app_item_add_common")
+     */
+    public function addCommonAction(){
+        $rubric = $this->get('rubric_model')->getRubricById(1);
+        return $this->render('TooBigAppBundle:Rubric:select_rubric.html.twig', [
+            'rubric' => $rubric
+        ]);
+
+    }
+
+    public function listRubricChildrenAction( Request $request ){
+        $rubric = $this->get('rubric_model')->getRubricById( $request->request->get('rubric') );
+        $struct = $request->request->get('struct');
+        $breadcrumbs = [];
+        if (null !== $rubric){
+            $rubric_children = $rubric->getChildren();
+            try {
+                if ($request->request->get('rubric') != 1) {
+                    $breadcrumbs = $this->getBreadcrumbs($rubric);
+                }
+            } catch (\Exception $e) {
+                $d=1;
+            }
+
+            return $this->render('TooBigAppBundle:Rubric:rubric_children.html.twig', [
+                'rubric'=>$rubric,
+                'breadcrumbs'=>$breadcrumbs,
+                'rubrics'=>$rubric_children,
+                'struct'=>$struct
+            ]);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @Route("/app/item/add/{rubric_id}", name="app_item_add")
      */
     public function addAction($rubric_id, Request $request)
     {
