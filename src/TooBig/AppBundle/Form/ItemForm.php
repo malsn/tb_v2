@@ -78,7 +78,10 @@ class ItemForm extends AbstractType
                     'class'=>'size'
                 ]
             ])
-            ->add('content', 'ckeditor')
+            ->add('content', 'textarea', [
+                'attr'=>[
+                    'rows'=>'5'
+                ]])
             ->add('price')
             /*->add('redirectToFirstFile', 'hidden')*/
             /*->add('imagesMedia', 'sonata_type_collection', [

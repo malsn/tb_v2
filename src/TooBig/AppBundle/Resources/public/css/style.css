@@ -301,6 +301,8 @@ div.c-item .item-feature {
     margin-left: 5px;
 }
 
+#Item_rubric { display: none; }
+
 /* Captcha Form */
 a.show-phone-link {
     cursor: pointer;

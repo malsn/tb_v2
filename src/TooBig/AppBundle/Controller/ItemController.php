@@ -46,7 +46,7 @@ class ItemController extends RubricAwareController
                     $breadcrumbs = $this->getBreadcrumbs($rubric);
                 }
             } catch (\Exception $e) {
-                $d=1;
+
             }
 
             return $this->render('TooBigAppBundle:Rubric:rubric_children.html.twig', [

@@ -31,7 +31,11 @@ jQuery(document).ready(function() {
         });
     };
 
-    var $struct = jQuery('#struct-1');
-    $rubric_req($struct);
+
+    if (jQuery('#Rubric_form').attr('path-controller')){
+        var $struct = jQuery('#struct-1');
+        $rubric_req($struct);
+    }
+
 
 });
