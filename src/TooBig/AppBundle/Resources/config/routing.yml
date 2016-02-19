@@ -1,3 +1,6 @@
+app_main:
+    path:     /
+    defaults: { _controller: TooBigAppBundle:Item:siteIndex }
 app_item_add:
     path:     /app/item/add/{rubric_id}
     defaults: { _controller: TooBigAppBundle:Item:add }

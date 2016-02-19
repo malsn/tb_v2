@@ -9,7 +9,7 @@
     <meta name="author" content="Sergey Malyshev">
     <link rel="icon" href="/favicon.ico">
 
-    <title>{% block title %}{{ title is defined ? title : (iphp.rubric ? iphp.rubric.title : 'Iphp') }}{% endblock %}</title>
+    <title>{% block title %}{{ title is defined ? title : (iphp.rubric ? iphp.rubric.title : 'TooBig') }}{% endblock %}</title>
 
 
 
@@ -143,7 +143,7 @@
 
                     <div class="navbar-header pull-right">
                         <form class="" style="padding-top: 9px">
-                            <a class="btn btn-primary" href="/app_dev.php/app/item/add">Подать объявление</a>
+                            <a class="btn btn-primary" href="{{ path ('app_item_add_common') }}">Подать объявление</a>
                             {% if app.user %}
 
                                 {% set userMainLink = '' %}
@@ -269,6 +269,7 @@
             <div class="col-md-7">
                 {% block fos_user_content %}
                 {% endblock fos_user_content %}
+
                 {% block body %}
                 {% endblock body %}
             </div>

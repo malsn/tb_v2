@@ -1,12 +1,21 @@
 {% block choice_widget_expanded %}
     {% spaceless %}
         <div {{ block('widget_container_attributes') }}>
-            {% for child in form %}
-                <div class="">
-                    {{ form_widget(child, {'attr': {'class': attr.widget_class|default('')}}) }}
-                    {{ child.vars.label|trans({}, translation_domain) }}
-                </div>
-            {% endfor %}
+            {% set current_type = '' %}
+
+                {% for key, choice in form.vars.choices %}
+                    {% if attribute(choice.data, 'sizeType') is defined %}
+                        {% if current_type != choice.data.sizeType.name %}
+                            {{ choice.data.sizeType.name }}
+                            {% set current_type = choice.data.sizeType.name %}
+                        {% endif %}
+                    {% endif %}
+                    <div class="">
+                        {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
+                        {{ choice.label|trans({}, translation_domain) }}
+                    </div>
+                {% endfor %}
+
         </div>
     {% endspaceless %}
 {% endblock choice_widget_expanded %}

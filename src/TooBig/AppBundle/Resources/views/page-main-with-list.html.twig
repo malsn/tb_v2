@@ -1,0 +1,158 @@
+{% extends 'TooBigAppBundle::page-with-header.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/bundles/toobigapp/css/jquery-ui.css" rel="stylesheet">
+    <link href="/bundles/toobigapp/css/jquery-ui.structure.css" rel="stylesheet">
+    <link href="/bundles/toobigapp/css/jquery-ui.theme.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block page_header %}
+
+{% endblock page_header %}
+
+{% block page_body %}
+
+{% if filterForm is defined and filterForm %}
+{% block items_filter %}
+    {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
+    <div id="ItemsFilter">
+    <form id="ItemsFilter_form" action="" method="get">
+        <div class="form-row">
+            <div class="col-sm-1 col filter-col">
+                <div class="filter-title"><span>Бренд<i class="glyphicon glyphicon-chevron-down"></i></span>
+                    <div class="filter-hidden">
+                        {{ form_widget(filterForm.brand, {'attr': {'class':'filter-form-item brand'}}) }}
+                        <div class="brand-submit">
+                            <input type="button" value="Применить" class="filter-form-submit"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 col filter-col">
+                <div class="filter-title"><span>Размер<i class="glyphicon glyphicon-chevron-down"></i></span>
+                    <div class="filter-hidden">
+                        {{ form_widget(filterForm.size, {'attr': {'class':'filter-form-item size'}}) }}
+                        <div class="size-submit">
+                            <input type="button" value="Применить" class="filter-form-submit"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 col filter-col">
+                <div class="filter-title"><span>Цвет<i class="glyphicon glyphicon-chevron-down"></i></span>
+                    <div class="filter-hidden">
+                        {{ form_widget(filterForm.color, {'attr': {'class':'filter-form-item color'}}) }}
+                        <div class="color-submit">
+                            <input type="button" value="Применить" class="filter-form-submit"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 col filter-col">
+                <div class="filter-title"><span>Пол<i class="glyphicon glyphicon-chevron-down"></i></span>
+                    <div class="filter-hidden">
+                        {{ form_widget(filterForm.gender, {'attr': {'class':'filter-form-item gender'}}) }}
+                        <div class="gender-submit">
+                            <input type="button" value="Применить" class="filter-form-submit"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 col filter-col">
+                <div class="filter-title"><span>Цена<i class="glyphicon glyphicon-chevron-down"></i></span>
+                    <div class="filter-hidden">
+                        <div id="price-slider-ui"></div>
+                        <div class="price-slider-range">
+                            от {{ form_widget(filterForm.price_min, {'attr': {'class':'filter-form-item price-min'}}) }} до
+                            {{ form_widget(filterForm.price_max, {'attr': {'class':'filter-form-item price-max'}}) }} руб.
+                            <input id="rubric-price-min" type="hidden" value="{{ rubricPriceRange['Min'] }}"/>
+                            <input id="rubric-price-max" type="hidden" value="{{ rubricPriceRange['Max'] }}"/>
+                        </div>
+                        <div class="price-slider-submit">
+                            <input type="button" value="Применить" class="filter-form-submit"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7 col filter-col">{{ form_widget(filterForm.search) }}</div>
+        </div>
+    </form>
+    </div>
+{% endblock items_filter %}
+{% endif %}
+
+{% if entities is defined and entities %}
+{% block entity_list%}
+
+{% for entity in entities %}
+
+{% if entity.enabled %}
+    {% block entity_list_entry %}
+    <div class="c-item">
+
+        {% block entity_list_entry_image  %}
+            <div class="item-img"><a href="{{ entitypath(entity) }}" target="_blank">
+                <img src="{% if entity.imagesMedia | length %}
+                {% path entity.imagesMedia[0].media, 'preview' %}
+            {% elseif (entity.blueimpImages is defined) and entity.blueimpImages | length %}
+                {{ '/uploads/attachments/' ~  entity.id ~ '/small/' ~ entity.blueimpImages[0].name }}
+            {% endif %}" class="img-polaroid">
+            </a></div>
+        {% endblock entity_list_entry_image  %}
+
+        {% block entity_list_entry_title  %}
+            <div class="item-title"><a href="{{ entitypath(entity) }}">{{ entity }}</a></div>
+        {% endblock entity_list_entry_title  %}
+
+        {% block entity_list_entry_brand  %}
+            <div class="item-feature item-title item-brand">
+                <span>{{ entity.brand | raw }}
+                    {% if entity.model is defined and entity.model is not null %} / {{ entity.model | raw }}{% endif %}
+                </span>
+            </div>
+        {% endblock entity_list_entry_brand  %}
+
+        {% block entity_list_entry_announce  %}
+            <div class="item-announce">
+                {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
+                {{ entity.description is defined ? entity.description | raw : '' }}
+                {{ entity.announce is defined ? entity.announce | raw : '' }}
+                {{ entity.size is defined and entity.size is not null ? 'Размер: ' ~ entity.size | raw : '' }}
+            </div>
+        {% endblock entity_list_entry_announce  %}
+
+        {% block entity_list_entry_size  %}
+        <div class="item-feature item-size">
+            {% if entity.size is defined and entity.size is not null %}
+                <span class="item-title">Размер</span> ( <span class="item-size-type">{{ entity.sizeType | raw }}</span> ): <span class="item-size-value">{{ entity.size | raw }}</span>
+            {% endif %}
+        </div>
+        {% endblock entity_list_entry_size  %}
+
+        {% block content_rate %}
+            {{ render(controller('TooBigAppBundle:Item:getItemRating', { 'item_id': entity.id })) }}
+        {% endblock content_rate %}
+
+        {% block entity_list_entry_price  %}
+            <div class="item-feature item-title item-price">
+                {{ entity.price is defined ? entity.price | raw : '0' }} руб.
+            </div>
+        {% endblock entity_list_entry_price  %}
+
+    </div>
+    {% endblock entity_list_entry%}
+{% endif %}
+
+{% endfor %}
+{% endblock entity_list%}
+
+
+{% block pagination %}
+{% include 'IphpCoreBundle::pagination.html.twig' with {'entities': entities} %}
+{% endblock pagination %}
+
+{% endif%}
+
+{% endblock page_body %}
+

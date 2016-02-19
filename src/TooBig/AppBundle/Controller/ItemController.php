@@ -25,6 +25,63 @@ class ItemController extends RubricAwareController
     protected $errors;
 
     /**
+     * @Route("/", name="app_main")
+     * @Template("TooBigAppBundle::page-main-with-list.html.twig")
+     */
+    public function siteIndexAction(Request $request){
+
+        $rubric = $this->get('rubric_model')->getRubricById(1);
+
+        $filter_params = [];
+        $price_params = [];
+        $filter_params['Brand'] = isset($request->query->get('ItemsFilter')['brand']) ? $request->query->get('ItemsFilter')['brand'] : null;
+        $filter_params['Size'] = isset($request->query->get('ItemsFilter')['size']) ? $request->query->get('ItemsFilter')['size'] : null;
+        $filter_params['Color'] = isset($request->query->get('ItemsFilter')['color']) ? $request->query->get('ItemsFilter')['color'] : null;
+        $filter_params['Gender'] = isset($request->query->get('ItemsFilter')['gender']) ? $request->query->get('ItemsFilter')['gender'] : null;
+        $search_params['Search'] = isset($request->query->get('ItemsFilter')['search']) ? $request->query->get('ItemsFilter')['search'] : null;
+        $min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
+        $max = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'max');
+        $price_params['Min'] = $request->query->get('ItemsFilter')['price_min'] ? : $min[0][1];
+        $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];
+
+        $query = $this->getDoctrine()
+            ->getRepository('TooBigAppBundle:Item')
+            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $search_params)
+            {
+                $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
+                foreach ($filter_params as $key => $value) {
+                    if ( null !== $value ){
+                        $qb_func = 'where'.$key;
+                        $qb->$qb_func($value);
+                    }
+                }
+                if (null !== $price_params['Min'] && null !== $price_params['Max']) {
+                    $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
+                }
+                if (null !== $search_params['Search']) {
+                    $qb->andWhere(
+                        $qb->expr()->orX(
+                            $qb->expr()->like('c.content', "'%".$search_params['Search']."%'"),
+                            $qb->expr()->like('c.title', "'%".$search_params['Search']."%'")
+                        )
+                    );
+                }
+                $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
+            });
+
+        $filterForm = $this->createForm( new ItemsFilterType($this->get('router')) );
+        if ($request->isMethod('GET')) {
+            $filterForm->handleRequest($request);
+        }
+
+        return array(
+            'entities' => $this->paginate($query, 20),
+            'filterForm' => $filterForm->createView(),
+            'rubricPriceRange' => $price_params,
+        );
+    }
+
+    /**
      * @Route("/app/item/add", name="app_item_add_common")
      */
     public function addCommonAction(){
@@ -428,6 +485,7 @@ public function uploadAction(Request $request)
     /**
      * @Template()
      * @param Request $request
+     * @return array
      */
     public function listAction(Request $request)
     {
