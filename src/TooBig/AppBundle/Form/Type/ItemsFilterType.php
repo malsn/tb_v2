@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use TooBig\AppBundle\Entity\Brand;
 use TooBig\AppBundle\Entity\Size;
 use TooBig\AppBundle\Entity\SizeType;
+use Doctrine\ORM\EntityRepository;
 
 
 class ItemsFilterType extends AbstractType
@@ -40,6 +41,10 @@ class ItemsFilterType extends AbstractType
             ])
             ->add('size', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Size',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.size_type', 'ASC');
+                },
                 'expanded'=>true,
                 'multiple'=>true,
                 'empty_value' => 'Размер',
