@@ -80,6 +80,9 @@ div#ItemsFilter div.form-row div.title {
 .col-sm-7.col.filter-col {
     width: 40%;
 }
+.filter-result-params {
+    font-weight: bold;
+}
 .filter-title {
     cursor: pointer;
     position: relative;

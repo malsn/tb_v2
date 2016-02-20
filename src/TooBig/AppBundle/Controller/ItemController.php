@@ -98,6 +98,7 @@ class ItemController extends RubricAwareController
             'entities' => $this->paginate($query, 20),
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
+            'filter_params'=>$filter_params
         );
     }
 
