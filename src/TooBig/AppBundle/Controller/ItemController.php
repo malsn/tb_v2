@@ -94,12 +94,20 @@ class ItemController extends RubricAwareController
             $filterForm->handleRequest($request);
         }
 
-        return array(
-            'entities' => $this->paginate($query, 20),
-            'filterForm' => $filterForm->createView(),
-            'rubricPriceRange' => $price_params,
-            'filter_params'=>$filter_params
-        );
+        if ( $request->query->count() ) {
+            return array(
+                'entities' => $this->paginate($query, 20),
+                'filterForm' => $filterForm->createView(),
+                'rubricPriceRange' => $price_params,
+                'filter_params'=>$filter_params
+            );
+        } else {
+            return array(
+                'filterForm' => $filterForm->createView(),
+                'rubricPriceRange' => $price_params,
+            );
+        }
+
     }
 
     /**
@@ -559,6 +567,7 @@ public function uploadAction(Request $request)
             'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
+            'filter_params'=>$filter_params
         );
     }
 

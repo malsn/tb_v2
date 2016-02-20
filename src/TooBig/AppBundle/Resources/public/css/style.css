@@ -80,6 +80,11 @@ div#ItemsFilter div.form-row div.title {
 .col-sm-7.col.filter-col {
     width: 40%;
 }
+.col-sm-12.col.filter-col {
+    padding-right: 5px;
+    padding-left: 5px;
+    margin: 20px 0;
+}
 .filter-result-params {
     font-weight: bold;
 }
@@ -126,7 +131,8 @@ input.filter-form-item.price-min, input.filter-form-item.price-max {
     height: 25px;
 }
 input.form-filter.search {
-    width: 100%;
+    padding: 8px 12px;
+    width: 80%;
 }
 /**/
 
