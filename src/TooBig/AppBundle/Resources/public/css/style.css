@@ -323,10 +323,13 @@ div.c-item .item-feature {
 }
 #Item_price,
 #Item_gender,
+#Item_color,
 #Item_brand,
 #Item_model,
 #Item_size_type,
-#Item_size {
+#Item_size,
+#Item_status,
+#Item_phone {
     width: 180px;
 }
 .fileinput-button {
@@ -334,7 +337,6 @@ div.c-item .item-feature {
     width: 256px;
     height: 128px;
     background: url('/bundles/toobigapp/images/camera_import_images_photos.png') no-repeat;
-    float: none !important;
     border: 1px dotted #bdbdbd;
     border-radius: 5px;
     margin: 0 auto;

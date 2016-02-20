@@ -57,7 +57,7 @@ class ItemForm extends AbstractType
             )
             ->add('place', 'textarea', [
                 'attr'=>[
-                    'rows'=>'5'
+                    'rows'=>'2'
                 ]])
             ->add('rubric', 'rubricchoice')
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])

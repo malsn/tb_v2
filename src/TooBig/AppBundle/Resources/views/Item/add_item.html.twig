@@ -52,7 +52,7 @@
 
     <div class="form-group control-group separator"></div>
 
-    <h2>Контактная информация</h2>
+    <h3>Контактная информация</h3>
 
     <div class="form-group control-group">
         <label for="Item_phone" class="col-sm-3 control-label">{{ 'Телефон'|trans({}, 'SonataUserBundle') }}</label>
@@ -66,6 +66,8 @@
 
     <div class="form-group control-group separator"></div>
 
+    <h3>Объявление</h3>
+
     <div class="form-group control-group">
         <label for="Item_title" class="col-sm-3 control-label">{{ 'Название объявления'|trans({}, 'SonataUserBundle') }}</label>
         <div class="col-sm-9">{{ form_widget(form.title, {'attr': {'class':'form-control'}}) }}</div>
@@ -75,6 +77,10 @@
         <label for="Item_content" class="col-sm-3 control-label">{{ 'Описание объявления'|trans({}, 'SonataUserBundle') }}</label>
         <div class="col-sm-9">{{ form_widget(form.content, {'attr': {'class':'form-control'}}) }}</div>
     </div>
+
+    <div class="form-group control-group separator"></div>
+
+    <h3>Характеристики</h3>
 
     <div class="form-group control-group">
         <label for="Item_gender" class="col-sm-3 control-label">{{ 'Пол'|trans({}, 'SonataUserBundle') }}</label>
