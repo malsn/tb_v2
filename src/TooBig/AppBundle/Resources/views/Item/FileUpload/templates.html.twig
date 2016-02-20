@@ -17,11 +17,9 @@
         <label for="Item_images" class="col-sm-3 control-label">{{ 'Изображения'|trans({}, 'SonataUserBundle') }}</label>
         <div class="col-sm-9">
             <div class="uploader" data-dropzone="1" style="margin-top: 10px; margin-bottom: 10px">
-                <div style="padding-bottom: 40px">
+                <div style="padding-bottom: 150px">
                     {# No name attribute please, that would cause it to submit with a regular form #}
-                    <span class="btn btn-success fileinput-button">
-                        <i class="glyphicon-plus glyphicon-white"></i>
-                        <span>Добавить изображения...</span>
+                    <span class="fileinput-button">
                         <input type="file" data-files="1" multiple/>
                     </span>
                   <span class="spinner" data-spinner="1" style="display: none">

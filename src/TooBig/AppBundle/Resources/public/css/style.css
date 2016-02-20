@@ -317,6 +317,12 @@ div.c-item .item-feature {
 .form-group .form-buttons > button, .form-group .form-buttons > a {
     margin-left: 5px;
 }
+.fileinput-button {
+    display: block;
+    width: 256px;
+    height: 128px;
+    background: url('/bundles/toobigapp/images/camera_import_images_photos.png') no-repeat;
+}
 
 #Item_rubric { display: none; }
 
