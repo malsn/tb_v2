@@ -39,11 +39,6 @@
     <form name="Item" class="edit-form form-horizontal" action="{{ path('app_item_add', { rubric_id: rubric.id, editId: editId }) }}" method="post" {{ form_enctype(form) }}>
 
     <div class="form-group control-group">
-        <label for="Item_title" class="col-sm-3 control-label">{{ 'Наименование'|trans({}, 'SonataUserBundle') }}</label>
-        <div class="col-sm-9">{{ form_widget(form.title, {'attr': {'class':'form-control'}}) }}</div>
-    </div>
-
-    <div class="form-group control-group">
         <label for="Item_rubric" class="col-sm-3 control-label">{{ 'Рубрика'|trans({}, 'SonataUserBundle') }}</label>
         <div class="col-sm-9">
             {{ form_widget(form.rubric, {'attr': {'class':'form-control'}}) }}
@@ -53,6 +48,32 @@
                 {% endfor %}
             {% endif %}
         </div>
+    </div>
+
+    <div class="form-group control-group separator"></div>
+
+    <h2>Контактная информация</h2>
+
+    <div class="form-group control-group">
+        <label for="Item_phone" class="col-sm-3 control-label">{{ 'Телефон'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.phone, {'attr': {'class':'form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_place" class="col-sm-3 control-label">{{ 'Местонахождение'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.place, {'attr': {'class':'form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group separator"></div>
+
+    <div class="form-group control-group">
+        <label for="Item_title" class="col-sm-3 control-label">{{ 'Название объявления'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.title, {'attr': {'class':'form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
+        <label for="Item_content" class="col-sm-3 control-label">{{ 'Описание объявления'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.content, {'attr': {'class':'form-control'}}) }}</div>
     </div>
 
     <div class="form-group control-group">
@@ -76,6 +97,11 @@
     </div>
 
     <div class="form-group control-group">
+        <label for="Item_status" class="col-sm-3 control-label">{{ 'Состояние вещи'|trans({}, 'SonataUserBundle') }}</label>
+        <div class="col-sm-9">{{ form_widget(form.status, {'attr': {'class':'status form-control'}}) }}</div>
+    </div>
+
+    <div class="form-group control-group">
         <label for="Item_size_type" class="col-sm-3 control-label">{{ 'Размерный ряд'|trans({}, 'SonataUserBundle') }}</label>
         <div class="col-sm-9">{{ form_widget(form.size_type, {'attr': {'class':'size-type form-control'}}) }}</div>
     </div>
@@ -86,17 +112,14 @@
     </div>
 
     <div class="form-group control-group">
-        <label for="Item_content" class="col-sm-3 control-label">{{ 'Описание'|trans({}, 'SonataUserBundle') }}</label>
-        <div class="col-sm-9">{{ form_widget(form.content, {'attr': {'class':'form-control'}}) }}</div>
-    </div>
-
-    <div class="form-group control-group">
         <label for="Item_price" class="col-sm-3 control-label">{{ 'Стоимость'|trans({}, 'SonataUserBundle') }}</label>
         <div class="col-sm-9">{{ form_widget(form.price, {'attr': {'class':'form-control'}}) }}</div>
     </div>
 
     {# Hydrated by javascript #}
     <div class="file-uploader"></div>
+
+    <div class="form-group control-group separator"></div>
 
     <div class="form-group control-group">
         <div class="col-sm-12 form-buttons">

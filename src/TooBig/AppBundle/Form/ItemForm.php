@@ -13,6 +13,7 @@ use Iphp\CoreBundle\Admin\Admin;
 use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use TooBig\AppBundle\Entity\Item;
+use TooBig\AppBundle\Form\Type\StatusType;
 
 
 class ItemForm extends AbstractType
@@ -43,8 +44,24 @@ class ItemForm extends AbstractType
                     'constraints' => [new NotBlank()]
                 ]
             )
+            ->add(
+                'phone',
+                'text',
+                [
+                    'label' => 'Телефон',
+                    'attr' => [
+                        'placeholder' => '',
+                        'class' => 'form-group'
+                    ]
+                ]
+            )
+            ->add('place', 'textarea', [
+                'attr'=>[
+                    'rows'=>'5'
+                ]])
             ->add('rubric', 'rubricchoice')
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
+            ->add('status', new StatusType(), ['empty_value' => 'Укажите состояние'])
             ->add('color')
             ->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',

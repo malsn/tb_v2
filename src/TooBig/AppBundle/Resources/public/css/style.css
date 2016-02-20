@@ -27,6 +27,10 @@
 .glyphicon.glyphicon-remove-circle {
     color: red;
 }
+label.control-label {
+    text-align: left;
+}
+.form-group.control-group.separator { height: 1px; border-bottom: 1px solid #eee; }
 /* bootstrap */
 
 /* site breadcrumbs */
@@ -317,12 +321,20 @@ div.c-item .item-feature {
 .form-group .form-buttons > button, .form-group .form-buttons > a {
     margin-left: 5px;
 }
+#Item_price,
+#Item_gender,
+#Item_brand,
+#Item_model,
+#Item_size_type,
+#Item_size {
+    width: 180px;
+}
 .fileinput-button {
     display: block;
     width: 256px;
     height: 128px;
     background: url('/bundles/toobigapp/images/camera_import_images_photos.png') no-repeat;
-    float: none;
+    float: none !important;
     border: 1px dotted #bdbdbd;
     border-radius: 5px;
     margin: 0 auto;

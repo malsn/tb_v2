@@ -54,6 +54,21 @@ class Item extends BaseItem
     private $logs;
 
     /**
+     * @var string
+     */
+    private $phone;
+
+    /**
+     * @var string
+     */
+    private $place;
+
+    /**
+     * @var string
+     */
+    private $status;
+
+    /**
      * @var Brand
      */
     private $brand;
