@@ -24,6 +24,10 @@ class ItemController extends RubricAwareController
 {
     protected $errors;
 
+    public function brandItemsListAction (){
+
+    }
+
     /**
      * @Template("TooBigAppBundle:Brand:list.html.twig")
      */

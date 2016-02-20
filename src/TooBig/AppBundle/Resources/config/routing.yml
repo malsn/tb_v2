@@ -5,8 +5,8 @@ app_brand_list:
     path:     /app/brand/list
     defaults: { _controller: TooBigAppBundle:Item:brandList }
 app_brand_items_list:
-    path:     /app/brand/{brand_name}
-    defaults: { _controller: TooBigAppBundle:Item:brandItemsList }
+    path:     /?ItemsFilter[brand][]={brand_id}
+    defaults: { _controller: TooBigAppBundle:Item:siteIndex }
 app_item_add:
     path:     /app/item/add/{rubric_id}
     defaults: { _controller: TooBigAppBundle:Item:add }

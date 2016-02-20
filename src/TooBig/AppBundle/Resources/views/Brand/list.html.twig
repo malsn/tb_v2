@@ -26,15 +26,15 @@
         <div class="c-item">
 
             {% block entity_list_entry_image  %}
-                <div class="item-img"><a href="{{ path('app_brand_items_list', { brand_name: entity.name }) }}" target="_blank">
+                <div class="item-img"><a href="{{ path('app_brand_items_list', { brand_id: entity.id }) }}" target="_blank">
                     {% if entity.image | length %}
-                    <img src="{{ entity.image['fileName'] }}" class="img-polaroid">
+                    <img src="{{ entity.image['path'] }}" class="img-polaroid">
                     {% endif %}
                 </a></div>
             {% endblock entity_list_entry_image  %}
 
             {% block entity_list_entry_title  %}
-                <div class="item-title"><a href="{{ path('app_brand_items_list', { brand_name: entity.name }) }}">{{ entity }}</a></div>
+                <div class="item-title"><a href="{{ path('app_brand_items_list', { brand_id: entity.id }) }}">{{ entity }}</a></div>
             {% endblock entity_list_entry_title  %}
 
         </div>
