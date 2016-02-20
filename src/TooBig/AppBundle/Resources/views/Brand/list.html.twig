@@ -28,7 +28,7 @@
             {% block entity_list_entry_image  %}
                 <div class="item-img"><a href="{{ path('app_brand_items_list', { brand_name: entity.name }) }}" target="_blank">
                     {% if entity.image | length %}
-                    <img src="{{ entity.image[0] }}" class="img-polaroid">
+                    <img src="{{ entity.image['fileName'] }}" class="img-polaroid">
                     {% endif %}
                 </a></div>
             {% endblock entity_list_entry_image  %}
