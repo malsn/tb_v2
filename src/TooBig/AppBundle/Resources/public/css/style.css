@@ -28,7 +28,7 @@
     color: red;
 }
 label.control-label {
-    text-align: left;
+    text-align: left !important;
 }
 .form-group.control-group.separator { height: 1px; border-bottom: 1px solid #eee; }
 /* bootstrap */
@@ -48,6 +48,13 @@ label.control-label {
     color: #eee;
     margin: 0 10px;
 }
+.rubric-item.breadcrumbs-item:after {
+    content: '>';
+    display: inline-block;
+    color: #3d3d3d;
+    margin: 0 5px;
+}
+
 .breadcrumbs-item:first-child {
     margin-left: -10px;
 }
@@ -56,6 +63,10 @@ label.control-label {
     padding: 0 10px;
     display: inline-block;
     vertical-align: top;
+}
+.rubric-item .breadcrumbs-item-link {
+    color: #3d3d3d;
+    vertical-align: middle;
 }
 .breadcrumbs-item-link .link {
     text-decoration: none;
@@ -330,7 +341,7 @@ div.c-item .item-feature {
 #Item_size,
 #Item_status,
 #Item_phone {
-    width: 180px;
+    width: 256px;
 }
 .fileinput-button {
     display: block;
