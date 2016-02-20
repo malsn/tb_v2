@@ -1,0 +1,54 @@
+{% extends 'TooBigAppBundle::page-with-header.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/bundles/toobigapp/css/jquery-ui.css" rel="stylesheet">
+    <link href="/bundles/toobigapp/css/jquery-ui.structure.css" rel="stylesheet">
+    <link href="/bundles/toobigapp/css/jquery-ui.theme.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="{{ path('app_main') }}" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
+        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a itemprop="url" class="breadcrumbs-item-link link"><span itemprop="title">Бренды</span></a></span>
+    </div>
+{% endblock breadcrumbs %}
+
+{% block page_body %}
+
+{% if entities is defined and entities %}
+{% block entity_list%}
+
+{% for entity in entities %}
+
+
+    {% block entity_list_entry %}
+        <div class="c-item">
+
+            {% block entity_list_entry_image  %}
+                <div class="item-img"><a href="{{ path('app_brand_items_list', { brand_name: entity.name }) }}" target="_blank">
+                    {% if entity.image | length %}
+                    <img src="{{ entity.image[0] }}" class="img-polaroid">
+                    {% endif %}
+                </a></div>
+            {% endblock entity_list_entry_image  %}
+
+            {% block entity_list_entry_title  %}
+                <div class="item-title"><a href="{{ path('app_brand_items_list', { brand_name: entity.name }) }}">{{ entity }}</a></div>
+            {% endblock entity_list_entry_title  %}
+
+        </div>
+    {% endblock entity_list_entry%}
+
+{% endfor %}
+{% endblock entity_list%}
+
+
+{% block pagination %}
+{% include 'IphpCoreBundle::pagination.html.twig' with {'entities': entities} %}
+{% endblock pagination %}
+
+{% endif%}
+
+{% endblock page_body %}
+

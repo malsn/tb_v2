@@ -25,6 +25,22 @@ class ItemController extends RubricAwareController
     protected $errors;
 
     /**
+     * @Template("TooBigAppBundle:Brand:list.html.twig")
+     */
+    public function brandListAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT p
+            FROM TooBigAppBundle:Brand p
+            ORDER BY p.name ASC'
+        );
+
+        return array(
+            'entities' => $this->paginate($query, 20)
+        );
+    }
+
+    /**
      * @Route("/", name="app_main")
      * @Template("TooBigAppBundle::page-main-with-list.html.twig")
      */

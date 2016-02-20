@@ -12,5 +12,15 @@ class BrandRepository extends EntityRepository
             ->findBy(['brand' => $this]);
         return $models;
     }
+
+    public function getBrandsQuery(){
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT b
+            FROM TooBigAppBundle:Brand b
+            ORDER BY b.name ASC'
+        );
+        return $query;
+    }
 }
 
