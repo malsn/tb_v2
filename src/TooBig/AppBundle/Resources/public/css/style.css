@@ -322,6 +322,10 @@ div.c-item .item-feature {
     width: 256px;
     height: 128px;
     background: url('/bundles/toobigapp/images/camera_import_images_photos.png') no-repeat;
+    float: none;
+    border: 1px dotted #bdbdbd;
+    border-radius: 5px;
+    margin: 0 auto;
 }
 
 #Item_rubric { display: none; }
