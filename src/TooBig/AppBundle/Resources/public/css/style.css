@@ -7,9 +7,10 @@
 }
 
 .btn {
-    padding: 3px 6px;
+    padding: 8px 12px;
     margin-bottom: 10px;
-    font-size: 12px;
+    font-size: 16px;
+    border-radius: 0px;
 }
 .page-header {
     margin: 0px 0 20px;
@@ -325,4 +326,21 @@ a.show-phone-link {
     margin: 5px;
 }
 
+/* Top Quick links */
+ul.quick-links-menu {
+    width: 450px;
+    margin-bottom: 0;
+}
+ul.quick-links-menu li {
+    display: inline-block;
+    padding: 14px 12px;
+}
+a.navbar-quick-link {
+    color: #9d9d9d;
+    text-decoration: none;
+    font-size: 15px;
+}
+a.navbar-quick-link:hover {
+    color: #fff;
+}
 
