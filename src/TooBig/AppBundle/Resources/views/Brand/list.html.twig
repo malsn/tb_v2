@@ -14,6 +14,9 @@
     </div>
 {% endblock breadcrumbs %}
 
+{% block page_header %}
+{% endblock page_header %}
+
 {% block page_body %}
 
 {% if entities is defined and entities %}
@@ -28,7 +31,7 @@
             {% block entity_list_entry_image  %}
                 <div class="item-img"><a href="{{ path('app_brand_items_list', { brand_id: entity.id }) }}" target="_blank">
                     {% if entity.image | length %}
-                    <img src="{{ entity.image['path'] }}" class="img-polaroid">
+                    <img src="{{ entity.image['path'] }}" class="img-polaroid" width="{{ entity.image['width'] }}" height="{{ entity.image['height'] }}">
                     {% endif %}
                 </a></div>
             {% endblock entity_list_entry_image  %}

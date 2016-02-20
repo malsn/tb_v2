@@ -84,6 +84,21 @@
                         <a class="navbar-brand" href="{{ rpath ('/') }}">{% block site_title %}TooBig{% endblock %}</a>
                     {% endblock navbar_top_logo %}
 
+                    <ul class="quick-links-menu">
+                        <li>
+                            <a class="navbar-quick-link" href="{{ rpath ('/odezhda/') }}">Одежда</a>
+                        </li>
+                        <li>
+                            <a class="navbar-quick-link" href="{{ rpath ('/obuv/') }}">Обувь</a>
+                        </li>
+                        <li>
+                            <a class="navbar-quick-link" href="{{ rpath ('/sportivnye-tovary/') }}">Обувь</a>
+                        </li>
+                        <li>
+                            <a class="navbar-quick-link" href="{{ path ('app_brand_list') }}">Бренды</a>
+                        </li>
+                    </ul>
+
                 </div>
 
 
