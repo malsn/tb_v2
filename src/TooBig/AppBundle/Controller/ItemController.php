@@ -667,7 +667,7 @@ public function uploadAction(Request $request)
         if ($request->isMethod('POST')){
             $form->handleRequest($request);
             if ($form->isValid()) {
-                return new Response ($record->getCreatedBy()->getPhone());
+                return new Response ($record->getPhone());
             }
         }
 
