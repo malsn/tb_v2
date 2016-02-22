@@ -73,6 +73,7 @@
                                         <span>{{ choice.label }} </span>
                                     {% endif %}
                                 {% endfor %}
+                                {% set current=0 %}
                                 {% for choice in filterForm.gender.vars.choices %}
                                     {% if choice.value in filter_params['Gender'] %}
                                         {% if current == 0 %}

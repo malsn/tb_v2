@@ -15,6 +15,7 @@ use TooBig\AppBundle\Entity\RateComment;
 use TooBig\AppBundle\Form\Type\CaptchaForm;
 use TooBig\AppBundle\Form\ItemForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use TooBig\AppBundle\Form\Type\ItemEditForm;
 use TooBig\AppBundle\Form\Type\ItemsFilterType;
 use TooBig\AppBundle\Form\Type\RateCommentType;
 use TooBig\AppBundle\Model\ItemSubscribtionModel;
@@ -232,7 +233,7 @@ public function editAction($item_id, Request $request)
     $record = $this->get('item_model')->getItemById($item_id);
     $rubric = $record->getRubric();
     $form = $this->createForm(
-        new ItemForm($this->get('router')),
+        new ItemEditForm($this->get('router')),
         $record
     );
 
