@@ -5,7 +5,13 @@
     padding-right: 100px;
     padding-left: 100px;
 }
-
+.container-fluid .jumbotron {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+.jumbotron {
+    padding: 30px 0;
+}
 .btn {
     padding: 8px 12px;
     margin-bottom: 10px;
