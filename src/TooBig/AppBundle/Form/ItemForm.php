@@ -109,8 +109,8 @@ class ItemForm extends AbstractType
                 'sortable' => 'pos',
                 'inline' => 'table',
             ])*/
-            ->add('publication_date_end', 'datetime',[
-                'data' => new \DateTime(),
+            ->add('publication_date_end', 'date',[
+                'data' => $this->getPublicationDateEnd(),
                 'required' => false,
                 'widget'   => 'single_text'
             ])
@@ -154,5 +154,11 @@ class ItemForm extends AbstractType
     public function getRoutingService()
     {
         return $this->route_service;
+    }
+
+    protected function getPublicationDateEnd(){
+        $pub_date = new \DateTime();
+        $pub_date->add(new \DateInterval('P30D'));
+        return $pub_date;
     }
 }
