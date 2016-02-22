@@ -351,7 +351,6 @@ div.c-item .item-feature {
 .form-group .form-buttons > button, .form-group .form-buttons > a {
     margin-left: 5px;
 }
-#Item_price,
 #Item_gender,
 #Item_color,
 #Item_brand,
@@ -361,6 +360,15 @@ div.c-item .item-feature {
 #Item_status,
 #Item_phone {
     width: 256px;
+}
+#Item_price {
+    width: 210px;
+    display: inline-block;
+}
+img.ico-roubles {
+    padding-left: 9px;
+    padding-bottom: 4px;
+    display: inline-block;
 }
 .fileinput-button {
     display: block;
