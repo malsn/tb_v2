@@ -3,11 +3,17 @@
 {% block title %}Список моих объявлений{% endblock %}
 
 {% block breadcrumbs %}
-    <div class="breadcrumbs">
-        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="/" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
-        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a itemprop="url" class="breadcrumbs-item-link link"><span itemprop="title">Список моих объявлений</span></a></span>
-    </div>
+
 {% endblock breadcrumbs %}
+
+{% block page_header %}
+    {% block crumbs %}
+        <div class="breadcrumbs">
+            <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="/" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
+            <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a itemprop="url" class="breadcrumbs-item-link link"><span itemprop="title">Мои объявления</span></a></span>
+        </div>
+    {% endblock crumbs %}
+{% endblock page_header %}
 
 {% block page_body %}
 

@@ -10,9 +10,12 @@
 
 
 {% block page_header %}
-        <div class="page-header">
-            <h1>Редактировать мои данные</h1>
+    {% block crumbs %}
+        <div class="breadcrumbs">
+            <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="/" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
+            <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a itemprop="url" class="breadcrumbs-item-link link"><span itemprop="title">Редактировать мои данные</span></a></span>
         </div>
+    {% endblock crumbs %}
 {% endblock page_header %}
 
 
