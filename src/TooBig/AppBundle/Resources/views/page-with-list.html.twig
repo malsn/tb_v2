@@ -66,6 +66,75 @@
                     <span>{{ choice.label }}</span>
                 {% endif %}
             {% endfor %}
+
+            {% if filterForm is defined and filterForm %}
+                {% block items_filter %}
+                    {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
+                    <div id="ItemsFilter">
+                        <form id="ItemsFilter_form" action="" method="get">
+                            <div class="form-row">
+                                <div class="col-sm-1 col filter-col">
+                                    <div class="filter-title"><span>Бренд<i class="glyphicon glyphicon-chevron-down"></i></span>
+                                        <div class="filter-hidden">
+                                            {{ form_widget(filterForm.brand, {'attr': {'class':'filter-form-item brand'}}) }}
+                                            <div class="brand-submit">
+                                                <input type="button" value="Применить" class="filter-form-submit"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col filter-col">
+                                    <div class="filter-title"><span>Размер<i class="glyphicon glyphicon-chevron-down"></i></span>
+                                        <div class="filter-hidden">
+                                            {{ form_widget(filterForm.size, {'attr': {'class':'filter-form-item size'}}) }}
+                                            <div class="size-submit">
+                                                <input type="button" value="Применить" class="filter-form-submit"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col filter-col">
+                                    <div class="filter-title"><span>Цвет<i class="glyphicon glyphicon-chevron-down"></i></span>
+                                        <div class="filter-hidden">
+                                            {{ form_widget(filterForm.color, {'attr': {'class':'filter-form-item color'}}) }}
+                                            <div class="color-submit">
+                                                <input type="button" value="Применить" class="filter-form-submit"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col filter-col">
+                                    <div class="filter-title"><span>Пол<i class="glyphicon glyphicon-chevron-down"></i></span>
+                                        <div class="filter-hidden">
+                                            {{ form_widget(filterForm.gender, {'attr': {'class':'filter-form-item gender'}}) }}
+                                            <div class="gender-submit">
+                                                <input type="button" value="Применить" class="filter-form-submit"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col filter-col">
+                                    <div class="filter-title"><span>Цена<i class="glyphicon glyphicon-chevron-down"></i></span>
+                                        <div class="filter-hidden">
+                                            <div id="price-slider-ui"></div>
+                                            <div class="price-slider-range">
+                                                от {{ form_widget(filterForm.price_min, {'attr': {'class':'filter-form-item price-min'}}) }} до
+                                                {{ form_widget(filterForm.price_max, {'attr': {'class':'filter-form-item price-max'}}) }} руб.
+                                                <input id="rubric-price-min" type="hidden" value="{{ rubricPriceRange['Min'] }}"/>
+                                                <input id="rubric-price-max" type="hidden" value="{{ rubricPriceRange['Max'] }}"/>
+                                            </div>
+                                            <div class="price-slider-submit">
+                                                <input type="button" value="Применить" class="filter-form-submit"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7 col filter-col">{{ form_widget(filterForm.search) }}</div>
+                            </div>
+                        </form>
+                    </div>
+                {% endblock items_filter %}
+            {% endif %}
         </div>
     </div>
 {% endblock page_header %}
@@ -81,75 +150,6 @@
     <input type="submit" value="Искать"/>
 </form>
 {% endblock search_form %}
-{% endif %}
-
-{% if filterForm is defined and filterForm %}
-{% block items_filter %}
-    {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
-    <div id="ItemsFilter">
-    <form id="ItemsFilter_form" action="" method="get">
-        <div class="form-row">
-            <div class="col-sm-1 col filter-col">
-                <div class="filter-title"><span>Бренд<i class="glyphicon glyphicon-chevron-down"></i></span>
-                    <div class="filter-hidden">
-                        {{ form_widget(filterForm.brand, {'attr': {'class':'filter-form-item brand'}}) }}
-                        <div class="brand-submit">
-                            <input type="button" value="Применить" class="filter-form-submit"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-1 col filter-col">
-                <div class="filter-title"><span>Размер<i class="glyphicon glyphicon-chevron-down"></i></span>
-                    <div class="filter-hidden">
-                        {{ form_widget(filterForm.size, {'attr': {'class':'filter-form-item size'}}) }}
-                        <div class="size-submit">
-                            <input type="button" value="Применить" class="filter-form-submit"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-1 col filter-col">
-                <div class="filter-title"><span>Цвет<i class="glyphicon glyphicon-chevron-down"></i></span>
-                    <div class="filter-hidden">
-                        {{ form_widget(filterForm.color, {'attr': {'class':'filter-form-item color'}}) }}
-                        <div class="color-submit">
-                            <input type="button" value="Применить" class="filter-form-submit"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-1 col filter-col">
-                <div class="filter-title"><span>Пол<i class="glyphicon glyphicon-chevron-down"></i></span>
-                    <div class="filter-hidden">
-                        {{ form_widget(filterForm.gender, {'attr': {'class':'filter-form-item gender'}}) }}
-                        <div class="gender-submit">
-                            <input type="button" value="Применить" class="filter-form-submit"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-1 col filter-col">
-                <div class="filter-title"><span>Цена<i class="glyphicon glyphicon-chevron-down"></i></span>
-                    <div class="filter-hidden">
-                        <div id="price-slider-ui"></div>
-                        <div class="price-slider-range">
-                            от {{ form_widget(filterForm.price_min, {'attr': {'class':'filter-form-item price-min'}}) }} до
-                            {{ form_widget(filterForm.price_max, {'attr': {'class':'filter-form-item price-max'}}) }} руб.
-                            <input id="rubric-price-min" type="hidden" value="{{ rubricPriceRange['Min'] }}"/>
-                            <input id="rubric-price-max" type="hidden" value="{{ rubricPriceRange['Max'] }}"/>
-                        </div>
-                        <div class="price-slider-submit">
-                            <input type="button" value="Применить" class="filter-form-submit"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-7 col filter-col">{{ form_widget(filterForm.search) }}</div>
-        </div>
-    </form>
-    </div>
-{% endblock items_filter %}
 {% endif %}
 
 {% if entities is defined and entities %}
