@@ -32,6 +32,11 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var text $place
+     */
+    protected $place;
+
+    /**
      * @var watchItems[]
      */
     protected $watchItems;
@@ -50,4 +55,21 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * @return text
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * @param text $place
+     */
+    public function setPlace($place)
+    {
+        $this->place = $place;
+    }
+
 }

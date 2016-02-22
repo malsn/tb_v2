@@ -87,6 +87,10 @@ class ProfileType extends AbstractType
                 'label'    => 'form.label_email',
                 'required' => true,
             ))
+            ->add('place', null, array(
+                'label'    => 'form.label_phone',
+                'required' => true,
+            ))
             ->add(
                 'save',
                 'submit',

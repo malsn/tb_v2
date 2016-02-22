@@ -10,6 +10,8 @@
             <generator strategy="AUTO" />
         </id>
 
+        <field name="place" type="text" column="place" nullable="true"/>
+
         <one-to-many field="watchItems" target-entity="TooBig\AppBundle\Entity\ItemSubscribtion" mapped-by="user">
             <cascade><cascade-persist/></cascade>
         </one-to-many>
