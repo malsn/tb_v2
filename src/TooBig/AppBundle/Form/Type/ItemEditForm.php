@@ -57,17 +57,16 @@ class ItemEditForm extends AbstractType
                 'attr'=>[
                     'rows'=>'2'
                 ]])
-            ->add('rubric', 'rubricchoice')
+            /*->add('rubric', 'rubricchoice')*/
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('status', new StatusType(), ['empty_value' => 'Укажите состояние'])
             ->add('color')
-            ->add('brand', 'entity', [
+            /*->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
                 'empty_value' => 'Укажите бренд',
                 'attr'=>[
                     'class'=>'brand',
-                    'path-controller' => $this->route_service->generate('app_list_model_by_brand', array()),
-                    'disabled' => ''
+                    'path-controller' => $this->route_service->generate('app_list_model_by_brand', array())
                 ]
             ])
             ->add('model', 'entity', [
@@ -75,8 +74,7 @@ class ItemEditForm extends AbstractType
                 'empty_value' => 'Укажите модель',
                 'required' => false,
                 'attr' => [
-                    'class'=>'model',
-                    'disabled' => ''
+                    'class'=>'model'
                 ]
             ])
             ->add('size_type', 'entity', [
@@ -84,8 +82,7 @@ class ItemEditForm extends AbstractType
                 'empty_value' => 'Укажите размерный ряд',
                 'attr'=>[
                     'class'=>'size-type',
-                    'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array()),
-                    'disabled' => ''
+                    'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
                 ]
             ])
             ->add('size', 'entity', [
@@ -93,10 +90,9 @@ class ItemEditForm extends AbstractType
                 'empty_value' => 'Укажите размер',
                 'required' => false,
                 'attr'=>[
-                    'class'=>'size',
-                    'disabled' => ''
+                    'class'=>'size'
                 ]
-            ])
+            ])*/
             ->add('content', 'textarea', [
                 'attr'=>[
                     'rows'=>'5'
