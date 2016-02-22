@@ -49,13 +49,19 @@
     <h3>Контактная информация</h3>
 
     <div class="form-group control-group">
-        <label for="Item_phone" class="col-sm-3 control-label">{{ 'Телефон'|trans({}, 'SonataUserBundle') }}</label>
-        <div class="col-sm-8">{{ form_widget(form.phone, {'attr': {'class':'form-control'}}) }}</div>
+        <label for="Item_phone" class="col-sm-3 control-label">Телефон</label>
+        <div class="col-sm-8">
+            <input type="text" id="Item_phone" name="Item[phone]" required="required" class="form-control"
+                   value="{% posting.phone != '' ?: app.user.phone %}">
+        </div>
     </div>
 
     <div class="form-group control-group">
         <label for="Item_place" class="col-sm-3 control-label">{{ 'Местонахождение'|trans({}, 'SonataUserBundle') }}</label>
-        <div class="col-sm-8">{{ form_widget(form.place, {'attr': {'class':'form-control'}}) }}</div>
+        <div class="col-sm-8">
+            <input type="text" id="Item_place" name="Item[place]" required="required" class="form-control"
+                   value="{% posting.place != '' ?: app.user.place %}">
+        </div>
     </div>
 
     <div class="form-group control-group separator"></div>
