@@ -24,54 +24,65 @@
     <div class="jumbotron">
         <div class="container">
 
-            {% if rubricPriceRange['Min'] != '' and rubricPriceRange['Max'] != '' %}
-                <span class="filter-result-params">Диапазон цен: </span><span>{{ rubricPriceRange['Min'] }}-{{ rubricPriceRange['Max'] }} руб.</span>
-            {% endif %}
-            {% set current=0 %}
-            {% for choice in filterForm.brand.vars.choices %}
-                {% if choice.value in filter_params['Brand'] %}
-                    {% if current == 0 %}
-                        <span class="filter-result-params">Бренды: </span>
-                        {% set current = 1 %}
-                    {% endif %}
-                    <span>{{ choice.label }} </span>
-                {% endif %}
-            {% endfor %}
-            {% set current=0 %}
-            {% for choice in filterForm.size.vars.choices %}
-                {% if choice.value in filter_params['Size'] %}
-                    {% if current == 0 %}
-                        <span class="filter-result-params">Размеры: </span>
-                        {% set current = 1 %}
-                    {% endif %}
-                    <span>{{ choice.label }} </span>
-                {% endif %}
-            {% endfor %}
-            {% set current=0 %}
-            {% for choice in filterForm.color.vars.choices %}
-                {% if choice.value in filter_params['Color'] %}
-                    {% if current == 0 %}
-                        <span class="filter-result-params">Цвета: </span>
-                        {% set current = 1 %}
-                    {% endif %}
-                    <span>{{ choice.label }} </span>
-                {% endif %}
-            {% endfor %}
-            {% for choice in filterForm.gender.vars.choices %}
-                {% if choice.value in filter_params['Gender'] %}
-                    {% if current == 0 %}
-                        <span class="filter-result-params">Пол: </span>
-                        {% set current = 1 %}
-                    {% endif %}
-                    <span>{{ choice.label }}</span>
-                {% endif %}
-            {% endfor %}
-
             {% if filterForm is defined and filterForm %}
                 {% block items_filter %}
                     {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
                     <div id="ItemsFilter">
                         <form id="ItemsFilter_form" action="" method="get">
+                            <div class="form-row">
+                                <div class="col-sm-12 col filter-col">
+                                    {{ form_widget(filterForm.search) }}
+                                    <a class="btn btn-primary filter-form-submit">Поиск</a>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-sm-12 col filter-col">
+                                {% if rubricPriceRange['Min'] != '' and rubricPriceRange['Max'] != '' %}
+                                    <span class="filter-result-params">Диапазон цен: </span><span>{{ rubricPriceRange['Min'] }}-{{ rubricPriceRange['Max'] }} руб.</span>
+                                {% endif %}
+                                {% set current=0 %}
+                                {% for choice in filterForm.brand.vars.choices %}
+                                    {% if choice.value in filter_params['Brand'] %}
+                                        {% if current == 0 %}
+                                            <span class="filter-result-params">Бренды: </span>
+                                            {% set current = 1 %}
+                                        {% endif %}
+                                        <span>{{ choice.label }} </span>
+                                    {% endif %}
+                                {% endfor %}
+                                {% set current=0 %}
+                                {% for choice in filterForm.size.vars.choices %}
+                                    {% if choice.value in filter_params['Size'] %}
+                                        {% if current == 0 %}
+                                            <span class="filter-result-params">Размеры: </span>
+                                            {% set current = 1 %}
+                                        {% endif %}
+                                        <span>{{ choice.label }} </span>
+                                    {% endif %}
+                                {% endfor %}
+                                {% set current=0 %}
+                                {% for choice in filterForm.color.vars.choices %}
+                                    {% if choice.value in filter_params['Color'] %}
+                                        {% if current == 0 %}
+                                            <span class="filter-result-params">Цвета: </span>
+                                            {% set current = 1 %}
+                                        {% endif %}
+                                        <span>{{ choice.label }} </span>
+                                    {% endif %}
+                                {% endfor %}
+                                {% for choice in filterForm.gender.vars.choices %}
+                                    {% if choice.value in filter_params['Gender'] %}
+                                        {% if current == 0 %}
+                                            <span class="filter-result-params">Пол: </span>
+                                            {% set current = 1 %}
+                                        {% endif %}
+                                        <span>{{ choice.label }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                                </div>
+                            </div>
+
                             <div class="form-row">
                                 <div class="col-sm-1 col filter-col">
                                     <div class="filter-title"><span>Бренд<i class="glyphicon glyphicon-chevron-down"></i></span>
@@ -129,7 +140,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-7 col filter-col">{{ form_widget(filterForm.search) }}</div>
+                                <div class="col-sm-7 col filter-col"></div>
                             </div>
                         </form>
                     </div>
