@@ -7,8 +7,11 @@
     <link href="/bundles/toobigapp/css/jquery-ui.theme.css" rel="stylesheet">
 {% endblock stylesheets %}
 
-{% block page_header %}
+{% block breadcrumbs %}
 
+{% endblock breadcrumbs %}
+
+{% block page_header %}
     {% block breadcrumbs %}
         <div class="breadcrumbs">
             <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="{{ path('app_main') }}" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
