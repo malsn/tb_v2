@@ -12,7 +12,7 @@
 {% endblock breadcrumbs %}
 
 {% block page_header %}
-    {% block breadcrumbs %}
+    {% block crumbs %}
         <div class="breadcrumbs">
             <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="{{ path('app_main') }}" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
             {% if breadcrumbs is defined %}
@@ -21,7 +21,7 @@
                 {% endfor %}
             {% endif %}
         </div>
-    {% endblock breadcrumbs %}
+    {% endblock crumbs %}
 
     <div class="jumbotron">
         <div class="container">
