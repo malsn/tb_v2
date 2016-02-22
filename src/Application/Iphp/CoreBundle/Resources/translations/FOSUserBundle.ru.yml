@@ -93,7 +93,7 @@ form:
     username: Имя пользователя
     email: Электронная почта
     phone: Мобильный номер
-    label_place: Место встречи
+    place: Место встречи для демонстрации товара
     current_password: Текущий пароль
     password: Пароль
     password_confirmation: Подтвердите пароль
