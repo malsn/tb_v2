@@ -50,12 +50,12 @@
 
     <div class="form-group control-group">
         <label for="Item_phone" class="col-sm-3 control-label">{{ 'Телефон'|trans({}, 'SonataUserBundle') }}</label>
-        <div class="col-sm-8">{{ form_widget(form.phone, {'value': posting.phone != '' ?: app.user.phone, 'attr': {'class':'form-control'}}) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.phone, {'value': posting.phone != '' ? posting.phone : app.user.phone, 'attr': {'class':'form-control'}}) }}</div>
     </div>
 
     <div class="form-group control-group">
         <label for="Item_place" class="col-sm-3 control-label">{{ 'Местонахождение'|trans({}, 'SonataUserBundle') }}</label>
-        <div class="col-sm-8">{{ form_widget(form.place, {'value': posting.place != '' ?: app.user.place, 'attr': {'class':'form-control'}}) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.place, {'value': posting.place != '' ? posting.place : app.user.place, 'attr': {'class':'form-control'}}) }}</div>
     </div>
 
     <div class="form-group control-group separator"></div>
