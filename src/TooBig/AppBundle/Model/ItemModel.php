@@ -23,12 +23,9 @@ class ItemModel extends ContainerAware {
         $record->setEnabled(false);
 
         $pub_date = new \DateTime();
+        $pub_date->add(new \DateInterval('P30D'));
 
-        if ($record->getPublicationDateEnd() <= $pub_date ){
-            $pub_date->add(new \DateInterval('P30D'));
-            $record->setPublicationDateEnd($pub_date);
-        }
-
+        $record->setPublicationDateEnd($pub_date);
         $em = $this->container->get('doctrine.orm.entity_manager');
         $em->persist($record);
         $em->flush();
