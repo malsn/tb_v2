@@ -385,12 +385,12 @@ public function unwatchAction( $item_id )
         $response->setData(array(
             'path' => $this->generateUrl('app_item_unwatch', array('item_id' => $item_id)),
             'error' => 'Невозможно выполнить операцию, повторите позже.',
-            'caption' => 'Отписаться от обновлений'
+            'caption' => "<i class='glyphicon glyphicon-star'></i>Отписаться от обновлений"
         ));
     } else {
         $response->setData(array(
             'path' => $this->generateUrl('app_item_watch', array('item_id' => $item_id)),
-            'caption' => 'Подписаться на обновления'
+            'caption' =>  "<i class='glyphicon glyphicon-star-empty'></i>Подписаться на обновления"
         ));
     }
 
