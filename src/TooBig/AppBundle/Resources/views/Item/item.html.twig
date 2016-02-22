@@ -201,6 +201,12 @@
                 {% endif %}
                 </div>
 
+                {% block content_place %}
+                    <div class="item-feature item-place">
+                        <span class="item-title">Можно встретиться:</span> <span class="item-place">{{ content.place }}</span>
+                    </div>
+                {% endblock content_place %}
+
             {% endif %}
 
 
