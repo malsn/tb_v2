@@ -68,7 +68,12 @@ label.control-label {
     color: #3d3d3d;
     margin: 0 5px;
 }
-
+.breadcrumbs-item:last-child:after {
+    content: '';
+}
+.rubric-item.breadcrumbs-item:last-child:after {
+    content: '';
+}
 .breadcrumbs-item:first-child {
     margin-left: -10px;
 }
