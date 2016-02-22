@@ -9,8 +9,16 @@
     padding-right: 30px;
     padding-left: 30px;
 }
+.container-fluid .jumbotron.page-inner {
+    padding-right: 10px;
+    padding-left: 10px;
+}
 .jumbotron {
     padding: 30px 0;
+    border-radius: 0;
+}
+.jumbotron.page-inner {
+    padding: 10px 0;
 }
 .btn {
     padding: 8px 12px;
@@ -106,6 +114,11 @@ div#ItemsFilter div.form-row div.title {
     padding-left: 5px;
     margin-bottom: 20px;
 }
+
+.jumbotron.page-inner .col-sm-12.col.filter-col {
+    margin-bottom: 5px;
+}
+
 .filter-result-params {
     font-weight: bold;
 }
