@@ -93,7 +93,7 @@ form:
     username: Имя пользователя
     email: Электронная почта
     phone: Мобильный номер
-    place: Место встречи
+    label_place: Место встречи
     current_password: Текущий пароль
     password: Пароль
     password_confirmation: Подтвердите пароль
