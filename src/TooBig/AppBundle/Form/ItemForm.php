@@ -109,6 +109,9 @@ class ItemForm extends AbstractType
                 'sortable' => 'pos',
                 'inline' => 'table',
             ])*/
+            ->add('publication_date_end', 'datetime',[
+                'data' => new \DateTime()
+            ])
             ->add(
                 'save',
                 'submit',
