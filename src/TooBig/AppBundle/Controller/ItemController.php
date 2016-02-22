@@ -80,12 +80,17 @@ class ItemController extends RubricAwareController
                     $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
                 }
                 if (null !== $search_params['Search']) {
-                    $qb->andWhere(
-                        $qb->expr()->orX(
-                            $qb->expr()->like('c.content', "'%".$search_params['Search']."%'"),
-                            $qb->expr()->like('c.title', "'%".$search_params['Search']."%'")
-                        )
-                    );
+                    $search_words = preg_split("/[\s,]+/", $search_params['Search']);
+                    if (count($search_words)){
+                        $orX = $qb->expr()->orX();
+                        foreach ($search_words as $word) {
+                            if (strlen($word) > 2) {
+                                $orX->add($qb->expr()->like('c.content', "'%".$word."%'"));
+                                $orX->add($qb->expr()->like('c.title', "'%".$word."%'"));
+                            }
+                        }
+                        $qb->andWhere($orX);
+                    }
                 }
                 $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
             });
@@ -552,8 +557,10 @@ public function uploadAction(Request $request)
                 if (count($search_words)){
                     $orX = $qb->expr()->orX();
                     foreach ($search_words as $word) {
-                        $orX->add($qb->expr()->like('c.content', "'%".$word."%'"));
-                        $orX->add($qb->expr()->like('c.title', "'%".$word."%'"));
+                        if (strlen($word) > 2) {
+                            $orX->add($qb->expr()->like('c.content', "'%".$word."%'"));
+                            $orX->add($qb->expr()->like('c.title', "'%".$word."%'"));
+                        }
                     }
                     $qb->andWhere($orX);
                 }
