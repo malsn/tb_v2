@@ -110,11 +110,7 @@ class ItemForm extends AbstractType
                 'inline' => 'table',
             ])*/
             ->add('publication_date_end', 'datetime',[
-                'data' => function(){
-                    $pub_date = new \DateTime();
-                    $pub_date->add(new \DateInterval('P30D'));
-                    return $pub_date;
-                },
+                'data' => new \DateTime(),
                 'required' => false,
                 'widget'   => 'single_text'
             ])
