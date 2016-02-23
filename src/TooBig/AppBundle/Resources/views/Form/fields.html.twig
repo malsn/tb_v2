@@ -10,9 +10,13 @@
                             {% set current_type = choice.data.sizeType.name %}
                         {% endif %}
                     {% endif %}
-                    <div class="{{ form.vars.name }}">
+                    <div class="">
                         {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
-                        {{ choice.label|trans({}, translation_domain) }}
+                        {% if form.vars.name != 'color' %}
+                            {{ choice.label|trans({}, translation_domain) }}
+                        {% else %}
+                            <div style="background-color: {{ choice.label }}" class="color-box"></div>
+                        {% endif %}
                     </div>
                 {% endfor %}
 

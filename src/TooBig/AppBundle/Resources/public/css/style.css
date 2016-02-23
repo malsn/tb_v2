@@ -151,6 +151,10 @@ div#ItemsFilter div.form-row div.title {
     max-height: 200px;
     overflow-y: auto;
 }
+.color-box {
+    width: 80px;
+    height: 30px;
+}
 
 div#price-slider-ui {
     margin-top: 10px;
