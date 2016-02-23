@@ -152,8 +152,11 @@ div#ItemsFilter div.form-row div.title {
     overflow-y: auto;
 }
 .color-box {
-    width: 80px;
+    width: 73px;
     height: 30px;
+    border: 1px solid #DDDDDD;
+    display: inline-block;
+    margin-left: 20px;
 }
 
 div#price-slider-ui {
