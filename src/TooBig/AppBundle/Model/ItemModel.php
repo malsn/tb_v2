@@ -2,6 +2,7 @@
 
 namespace TooBig\AppBundle\Model;
 
+use Doctrine\ORM\Query;
 use Sonata\UserBundle\Model\UserInterface;
 use TooBig\AppBundle\Entity\Item;
 use Application\Iphp\CoreBundle\Entity\Rubric;
@@ -126,5 +127,38 @@ class ItemModel extends ContainerAware {
         $em = $this->container->get('doctrine.orm.entity_manager');
         $em->persist($record);
         $em->flush();
+    }
+
+    public function getItemsFilter ( Query $query ) {
+        $collection = $query->getResult();
+
+        $filters['Brand']=[];
+        $filters['Size']=[];
+        $filters['Color']=[];
+        $filters['Gender']=[];
+
+        if (count($collection)){
+            foreach( $collection as $item ){
+                $brand = $item->getBrand();
+                if ( null !== $brand ){
+                    if ( !in_array($brand->getId(), $filters['Brand']) ) array_push($filters['Brand'],$brand->getId());
+                }
+                $size = $item->getSize();
+                if ( null !== $size ){
+                    if ( !in_array($size->getId(), $filters['Size']) ) array_push($filters['Size'],$size->getId());
+                }
+                $color = $item->getColor();
+                if ( null !== $color ){
+                    if ( !in_array($color->getId(), $filters['Color']) ) array_push($filters['Coloe'],$color->getId());
+                }
+                $gender = $item->getGender();
+                if ( null !== $gender ){
+                    if ( !in_array($gender, $filters['Gender']) ) array_push($filters['Gender'],$gender);
+                }
+            }
+        }
+
+        return [count($collection),$filters];
+
     }
 }

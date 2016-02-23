@@ -4,16 +4,41 @@
             {% set current_type = '' %}
 
                 {% for key, choice in form.vars.choices %}
-                    {% if attribute(choice.data, 'sizeType') is defined %}
-                        {% if current_type != choice.data.sizeType.name %}
-                            {{ choice.data.sizeType.name }}
-                            {% set current_type = choice.data.sizeType.name %}
-                        {% endif %}
+
+                    {% if attribute(choice.data, 'Brand') is defined and choice.value in filter_results['Brand'] %}
+                        <div class="">
+                            {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
+                            {{ choice.label|trans({}, translation_domain) }}
+                        </div>
                     {% endif %}
-                    <div class="">
-                        {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
-                        {{ choice.label|trans({}, translation_domain) }}
-                    </div>
+
+                    {% if attribute(choice.data, 'Size') is defined  and choice.value in filter_results['Size']%}
+                        {% if attribute(choice.data, 'sizeType') is defined %}
+                            {% if current_type != choice.data.sizeType.name %}
+                                {{ choice.data.sizeType.name }}
+                                {% set current_type = choice.data.sizeType.name %}
+                            {% endif %}
+                        {% endif %}
+                        <div class="">
+                            {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
+                            {{ choice.label|trans({}, translation_domain) }}
+                        </div>
+                    {% endif %}
+
+                    {% if attribute(choice.data, 'Color') is defined  and choice.value in filter_results['Color'] %}
+                        <div class="">
+                            {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
+                            {{ choice.label|trans({}, translation_domain) }}
+                        </div>
+                    {% endif %}
+
+                    {% if attribute(choice.data, 'Gender') is defined  and choice.value in filter_results['Gender'] %}
+                        <div class="">
+                            {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
+                            {{ choice.label|trans({}, translation_domain) }}
+                        </div>
+                    {% endif %}
+
                 {% endfor %}
 
         </div>

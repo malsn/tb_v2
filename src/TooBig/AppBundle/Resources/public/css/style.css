@@ -369,6 +369,7 @@ div.c-item .item-feature {
 #Item_price {
     width: 210px;
     display: inline-block;
+    text-align: right;
 }
 img.ico-roubles {
     padding-left: 9px;

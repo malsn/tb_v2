@@ -573,12 +573,17 @@ public function uploadAction(Request $request)
             $filterForm->handleRequest($request);
         }
 
+        /* получаем фильтр от всего результата */
+        list($count, $filters) = $this->get('item_model')->getItemsFilter($query);
+
         return array(
             'entities' => $this->paginate($query, 20),
             'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
-            'filter_params'=>$filter_params
+            'filter_params'=>$filter_params,
+            'count' => $count,
+            'filter_results' => $filters
         );
     }
 
