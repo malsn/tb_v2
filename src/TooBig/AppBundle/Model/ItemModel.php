@@ -8,6 +8,7 @@ use TooBig\AppBundle\Entity\Item;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use TooBig\AppBundle\Entity\ItemSubscribtion;
+use TooBig\AppBundle\Entity\Brand;
 
 /**
  * Class ItemModel
@@ -141,7 +142,9 @@ class ItemModel extends ContainerAware {
             foreach( $collection as $item ){
                 $brand = $item->getBrand();
                 if ( null !== $brand ){
-                    if ( !in_array($brand->getId(), $filters['Brand']) ) array_push($filters['Brand'],$brand->getId());
+                    if ( !in_array($brand->getId(), $filters['Brand']) ) {
+                        $filters['Brand'][$brand->getId()] = $brand->getName();
+                    }
                 }
                 $size = $item->getSize();
                 if ( null !== $size ){
@@ -149,11 +152,20 @@ class ItemModel extends ContainerAware {
                 }
                 $color = $item->getColor();
                 if ( null !== $color ){
-                    if ( !in_array($color->getId(), $filters['Color']) ) array_push($filters['Coloe'],$color->getId());
+                    if ( !in_array($color->getId(), $filters['Color']) ) {
+                        $filters['Color'][$color->getId()] = $color->getCode();
+                    }
                 }
                 $gender = $item->getGender();
                 if ( null !== $gender ){
-                    if ( !in_array($gender, $filters['Gender']) ) array_push($filters['Gender'],$gender);
+                    $choices = array(
+                        'm' => 'Мальчик',
+                        'f' => 'Девочка',
+                        'u' => 'Унисекс',
+                    );
+                    if ( !in_array($gender, $filters['Gender']) && strlen($gender) ) {
+                        $filters['Gender'][$gender] = $choices[$gender];
+                    }
                 }
             }
         }

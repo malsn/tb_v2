@@ -568,14 +568,21 @@ public function uploadAction(Request $request)
             $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
         });
 
-        $filterForm = $this->createForm( new ItemsFilterType($this->get('router')) );
+        $query_non_filter = $this->getDoctrine()
+            ->getRepository('TooBigAppBundle:Item')
+            ->createQuery('c', function ($qb) use ($rubric)
+            {
+                $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
+            });
+
+        /* получаем фильтр от всего результата $query_non_filter */
+        list($count, $filters) = $this->get('item_model')->getItemsFilter($query_non_filter);
+
+        $filterForm = $this->createForm( new ItemsFilterType($this->get('router'),$filters) );
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
         }
 
-        /* получаем фильтр от всего результата */
-        list($count, $filters) = $this->get('item_model')->getItemsFilter($query);
-        $b=1;
 
         return array(
             'entities' => $this->paginate($query, 20),

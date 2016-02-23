@@ -19,17 +19,20 @@ class ItemsFilterType extends AbstractType
      */
     protected $route_service;
 
-    public function __construct(Router $route)
+    protected $filters;
+
+    public function __construct(Router $route, $filters)
     {
         $this->route_service = $route;
+        $this->filters = $filters;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->setMethod('GET')
-            ->add('brand', 'entity', [
-                'class'=>'TooBig\AppBundle\Entity\Brand',
+            ->add('brand','choice',[
+                'choices' => $this->filters['Brand'],
                 'expanded'=>true,
                 'multiple'=>true,
                 'empty_value' => 'Бренд',
@@ -42,7 +45,12 @@ class ItemsFilterType extends AbstractType
             ->add('size', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Size',
                 'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
+                    $qb = $er->createQueryBuilder('u');
+                    $andX = $qb->expr()->andX();
+                    foreach ($this->filters['Size'] as $size) {
+                        $andX->add($qb->expr()->eq('u.id', $size));
+                    }
+                    return $qb->add('where',$andX)
                         ->orderBy('u.size_type', 'ASC');
                 },
                 'expanded'=>true,
@@ -54,8 +62,8 @@ class ItemsFilterType extends AbstractType
                     'class'=>'form-filter size'
                 ]
             ])
-            ->add('color', 'entity', [
-                'class'=>'TooBig\AppBundle\Entity\Color',
+            ->add('color', 'choice', [
+                'choices' => $this->filters['Color'],
                 'expanded'=>true,
                 'multiple'=>true,
                 'empty_value' => 'Цвет',
@@ -65,7 +73,8 @@ class ItemsFilterType extends AbstractType
                     'class'=>'form-filter color'
                 ]
             ])
-            ->add('gender', new GenderType(), [
+            ->add('gender', 'choice', [
+                'choices' => $this->filters['Gender'],
                 'expanded'=>true,
                 'multiple'=>true,
                 'empty_value' => 'Пол',
@@ -109,5 +118,9 @@ class ItemsFilterType extends AbstractType
     public function getName()
     {
         return 'ItemsFilter';
+    }
+
+    protected function sizeQueryBuilder(){
+
     }
 }
