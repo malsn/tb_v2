@@ -4,14 +4,13 @@
             {% set current_type = '' %}
 
                 {% for key, choice in form.vars.choices %}
-
                     {% if attribute(choice.data, 'sizeType') is defined %}
                         {% if current_type != choice.data.sizeType.name %}
                             {{ choice.data.sizeType.name }}
                             {% set current_type = choice.data.sizeType.name %}
                         {% endif %}
                     {% endif %}
-                    <div class="">
+                    <div class="{{ form.vars.name }}">
                         {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
                         {{ choice.label|trans({}, translation_domain) }}
                     </div>
