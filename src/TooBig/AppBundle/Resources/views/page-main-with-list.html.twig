@@ -58,7 +58,7 @@
                                                     <span class="filter-result-params">Цвета: </span>
                                                     {% set current = 1 %}
                                                 {% endif %}
-                                                <span>{{ choice.label }} </span>
+                                                <div style="background-color: {{ choice.label }}" class="selected-color-box"></div>
                                             {% endif %}
                                         {% endfor %}
                                         {% set current=0 %}
