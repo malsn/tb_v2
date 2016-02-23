@@ -575,6 +575,7 @@ public function uploadAction(Request $request)
 
         /* получаем фильтр от всего результата */
         list($count, $filters) = $this->get('item_model')->getItemsFilter($query);
+        $b=1;
 
         return array(
             'entities' => $this->paginate($query, 20),
