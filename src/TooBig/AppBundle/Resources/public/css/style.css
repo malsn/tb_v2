@@ -150,6 +150,7 @@ div#ItemsFilter div.form-row div.title {
 .filter-form-item {
     max-height: 200px;
     overflow-y: auto;
+    padding-bottom: 10px;
 }
 .filter-color-box {
     width: 73px;
@@ -157,6 +158,8 @@ div#ItemsFilter div.form-row div.title {
     border: 1px solid #DDDDDD;
     display: inline-block;
     margin-left: 20px;
+    position: relative;
+    top: 10px;
 }
 .selected-color-box {
     width: 20px;
@@ -164,6 +167,8 @@ div#ItemsFilter div.form-row div.title {
     border: 1px solid #DDDDDD;
     display: inline-block;
     margin-left: 5px;
+    top: 5px;
+    position: relative;
 }
 
 div#price-slider-ui {
