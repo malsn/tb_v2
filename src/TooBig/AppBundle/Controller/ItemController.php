@@ -601,7 +601,7 @@ public function uploadAction(Request $request)
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
             'filter_params'=>$filter_params,
-            'count' => 0,
+            'count' => count($query->getResult()),
             'filter_results' => $filters
         );
     }
