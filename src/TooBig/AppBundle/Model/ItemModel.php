@@ -170,7 +170,7 @@ class ItemModel extends ContainerAware {
             }
         }
 
-        return [count($collection),$filters];
+        return $filters;
 
     }
 }

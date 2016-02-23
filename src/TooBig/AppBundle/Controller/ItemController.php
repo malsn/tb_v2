@@ -95,7 +95,17 @@ class ItemController extends RubricAwareController
                 $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
             });
 
-        $filterForm = $this->createForm( new ItemsFilterType($this->get('router')) );
+        $query_non_filter = $this->getDoctrine()
+            ->getRepository('TooBigAppBundle:Item')
+            ->createQuery('c', function ($qb) use ($rubric)
+            {
+                $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
+            });
+
+        /* получаем фильтр от всего результата $query_non_filter */
+        $filters = $this->get('item_model')->getItemsFilter($query_non_filter);
+
+        $filterForm = $this->createForm( new ItemsFilterType($this->get('router'),$filters) );
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
         }
@@ -105,7 +115,9 @@ class ItemController extends RubricAwareController
                 'entities' => $this->paginate($query, 20),
                 'filterForm' => $filterForm->createView(),
                 'rubricPriceRange' => $price_params,
-                'filter_params'=>$filter_params
+                'filter_params'=>$filter_params,
+                'count' => count($query->getResult()),
+                'filter_results' => $filters
             );
         } else {
             return array(
@@ -576,13 +588,12 @@ public function uploadAction(Request $request)
             });
 
         /* получаем фильтр от всего результата $query_non_filter */
-        list($count, $filters) = $this->get('item_model')->getItemsFilter($query_non_filter);
+        $filters = $this->get('item_model')->getItemsFilter($query_non_filter);
 
         $filterForm = $this->createForm( new ItemsFilterType($this->get('router'),$filters) );
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
         }
-
 
         return array(
             'entities' => $this->paginate($query, 20),
@@ -590,7 +601,7 @@ public function uploadAction(Request $request)
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
             'filter_params'=>$filter_params,
-            'count' => $count,
+            'count' => count($query->getResult()),
             'filter_results' => $filters
         );
     }
