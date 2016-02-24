@@ -550,35 +550,8 @@ public function uploadAction(Request $request)
         $price_params['Min'] = $request->query->get('ItemsFilter')['price_min'] ? : $min[0][1];
         $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];
 
-        $query = $this->getDoctrine()
-            ->getRepository('TooBigAppBundle:Item')
-            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $search_params)
-        {
-            $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
-            foreach ($filter_params as $key => $value) {
-                if ( null !== $value ){
-                    $qb_func = 'where'.$key;
-                    $qb->$qb_func($value);
-                }
-            }
-            if (null !== $price_params['Min'] && null !== $price_params['Max']) {
-                $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
-            }
-            if (null !== $search_params['Search']) {
-                $search_words = preg_split("/[\s,]+/", $search_params['Search']);
-                if (count($search_words)){
-                    $orX = $qb->expr()->orX();
-                    foreach ($search_words as $word) {
-                        if (strlen($word) > 2) {
-                            $orX->add($qb->expr()->like('c.content', "'%".$word."%'"));
-                            $orX->add($qb->expr()->like('c.title', "'%".$word."%'"));
-                        }
-                    }
-                    $qb->andWhere($orX);
-                }
-            }
-            $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
-        });
+        $query = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
+        $query_filter = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
 
         $query_non_filter = $this->getDoctrine()
             ->getRepository('TooBigAppBundle:Item')
@@ -594,16 +567,14 @@ public function uploadAction(Request $request)
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
         }
-        $query->getResult();
-        $query->free();
-        $sql = $query->getSQL();
+
         return array(
             'entities' => $this->paginate($query, 20),
             'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
             'filter_params'=>$filter_params,
-            'count' => $sql,
+            'count' => count($query_filter->getResult()),
             'filter_results' => $filters
         );
     }
@@ -733,6 +704,38 @@ public function uploadAction(Request $request)
      */
     protected function getBreadcrumbs(Rubric $rubric){
         return array_reverse( $this->get('rubric_model')->getParentRubrics($rubric->getId(), []) );
+    }
+
+    protected function itemsQueryBuilder ($rubric, $filter_params, $price_params, $search_params){
+        return $this->getDoctrine()
+            ->getRepository('TooBigAppBundle:Item')
+            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $search_params)
+            {
+                $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
+                foreach ($filter_params as $key => $value) {
+                    if ( null !== $value ){
+                        $qb_func = 'where'.$key;
+                        $qb->$qb_func($value);
+                    }
+                }
+                if (null !== $price_params['Min'] && null !== $price_params['Max']) {
+                    $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
+                }
+                if (null !== $search_params['Search']) {
+                    $search_words = preg_split("/[\s,]+/", $search_params['Search']);
+                    if (count($search_words)){
+                        $orX = $qb->expr()->orX();
+                        foreach ($search_words as $word) {
+                            if (strlen($word) > 2) {
+                                $orX->add($qb->expr()->like('c.content', "'%".$word."%'"));
+                                $orX->add($qb->expr()->like('c.title', "'%".$word."%'"));
+                            }
+                        }
+                        $qb->andWhere($orX);
+                    }
+                }
+                $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
+            });
     }
 
 }
