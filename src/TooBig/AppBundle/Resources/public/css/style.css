@@ -166,7 +166,7 @@ div#ItemsFilter div.form-row div.title {
     height: 20px;
     border: 1px solid #DDDDDD;
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 0px;
     top: 5px;
     position: relative;
 }
