@@ -594,6 +594,7 @@ public function uploadAction(Request $request)
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
         }
+        $query->getResult();
         $sql = $query->getSQL();
         return array(
             'entities' => $this->paginate($query, 20),
