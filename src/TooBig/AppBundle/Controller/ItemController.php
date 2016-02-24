@@ -550,7 +550,7 @@ public function uploadAction(Request $request)
         $price_params['Min'] = $request->query->get('ItemsFilter')['price_min'] ? : $min[0][1];
         $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];
 
-        $query = $this->getDoctrine()
+        $query_filter = $query = $this->getDoctrine()
             ->getRepository('TooBigAppBundle:Item')
             ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $search_params)
         {
@@ -601,7 +601,7 @@ public function uploadAction(Request $request)
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
             'filter_params'=>$filter_params,
-            'count' => count($query->getResult()),
+            'count' => count($query_filter->getResult()),
             'filter_results' => $filters
         );
     }
