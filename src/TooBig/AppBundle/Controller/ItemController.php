@@ -594,14 +594,14 @@ public function uploadAction(Request $request)
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
         }
-
+        $sql = $query->getSQL();
         return array(
             'entities' => $this->paginate($query, 20),
             'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
             'filter_params'=>$filter_params,
-            'count' => $query->getSQL(),
+            'count' => $sql,
             'filter_results' => $filters
         );
     }
