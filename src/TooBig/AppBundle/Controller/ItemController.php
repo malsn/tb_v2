@@ -595,8 +595,10 @@ public function uploadAction(Request $request)
             $filterForm->handleRequest($request);
         }
 
+        $query_filter = $query;
+
         return array(
-            'count' => count($query->getResult()),
+            'count' => count($query_filter->getResult()),
             'entities' => $this->paginate($query, 20),
             'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
             'filterForm' => $filterForm->createView(),
