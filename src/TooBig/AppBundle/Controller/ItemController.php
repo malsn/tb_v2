@@ -595,15 +595,13 @@ public function uploadAction(Request $request)
             $filterForm->handleRequest($request);
         }
 
-        $query_filter = $query;
-
         return array(
-            'count' => count($query_filter->getResult()),
             'entities' => $this->paginate($query, 20),
             'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
             'filter_params'=>$filter_params,
+            'count' => count($query->getResult()),
             'filter_results' => $filters
         );
     }
