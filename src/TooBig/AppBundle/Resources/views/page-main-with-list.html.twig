@@ -26,6 +26,7 @@
 
                             <div class="form-row">
                                 <div class="col-sm-12 col filter-col">
+                                        <span class="filter-result-params">Всего: </span><span>{{ count }}</span>
                                     {% if rubricPriceRange['Min'] != '' and rubricPriceRange['Max'] != '' %}
                                         <span class="filter-result-params">Диапазон цен: </span><span>{{ rubricPriceRange['Min'] }}-{{ rubricPriceRange['Max'] }} руб.</span>
                                     {% endif %}
