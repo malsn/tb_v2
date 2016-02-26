@@ -13,7 +13,7 @@ jQuery(document).ready(function() {
             type: 'POST',
             data: $form.serialize() ,
             beforeSend: function () {
-                alert($form.attr('action'));
+
             },
             success: function (response) {
                 if (response !== false) {

@@ -64,21 +64,15 @@ class PreRegisterModel extends ContainerAware {
                 ]
             );
 
-            if ( null !== $soap_response ) {
-
-                if ($soap_response['id'] != ''){
-                    $record->setSms($soap_response['id']);
+                if ($soap_response->sendresult->id != ''){
+                    $record->setSms($soap_response->sendresult->id);
                     $record->setStatus(true);
-                    $record->setCost($soap_response['cost']);
+                    $record->setCost($soap_response->sendresult->cost);
                     $this->update($record);
                     return ['success' => 'Проверочный код отправлен вам на указанный номер!'];
 
                 } else {
-                    return ['error' => 'Получена ошибка отправки SMS - '.$soap_response['error'].', попробуйте позже'];
-                }
-
-            } else {
-                return ['error' => 'Произошла ошибка отправки SMS, попробуйте позже'];
+                    return ['error' => 'Получена ошибка отправки SMS - '.$soap_response['error'].', попробуйте позS, попробуйте позже'];
             }
         } catch (\Exception $e) {
             return ['error' => 'Произошла ошибка подключения к сервису SMS, попробуйте позже'];
