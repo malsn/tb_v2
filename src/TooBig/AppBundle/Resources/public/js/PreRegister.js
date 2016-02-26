@@ -11,19 +11,20 @@ jQuery(document).ready(function() {
             url: $form.attr('action'),
             cache: false,
             type: 'POST',
-            data: null ,
+            data: $form.serialize() ,
             beforeSend: function () {
 
             },
             success: function (response) {
                 if (response !== false) {
                     $check_code.html(response);
+                    var $form = jQuery("form");
                     jQuery('#sms-check-code-button').click(function(){
                         jQuery.ajax({
                             url: jQuery(this).attr('path-controller'),
                             cache: false,
                             type: 'POST',
-                            data: null ,
+                            data: $form.serialize() ,
                             beforeSend: function () {
 
                             },

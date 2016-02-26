@@ -55,7 +55,9 @@ class PreRegisterController extends Controller
                         $pre_register_model->save($record);
 
                         /* Soap отправка кода на номер телефона */
-                        return $pre_register_model->sendCodeWithSoap($record);
+                        $pre_register_model->sendCodeWithSoap($record);
+
+                        return $this->render('TooBigAppBundle:PreRegister:check_code.html.twig');
 
                     } catch (\Exception $e) {
                         return ['error' => 'Ошибка отправки SMS кода подтверждения!'];
