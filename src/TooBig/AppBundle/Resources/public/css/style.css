@@ -224,15 +224,31 @@ div.c-item {
     margin: 0 10px 35px 0;
     position: relative;
 }
+div.c-item.c-brand {
+    width: 100px;
+    margin: 0 10px 10px 0;
+    position: relative;
+}
 div.item-img {
     display: block;
     width: 236px;
     height: 340px;
     overflow: hidden;
 }
+div.item-img.img-brand {
+    display: block;
+    width: 100px;
+    height: 125px;
+    overflow: hidden;
+}
 div.item-img img {
     display: block;
     width: 236px;
+    height: auto;
+}
+div.item-img.img-brand img {
+    display: block;
+    width: auto;
     height: auto;
 }
 div.item-brand {

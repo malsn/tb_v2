@@ -1,6 +1,12 @@
 app_main:
     path:     /
     defaults: { _controller: TooBigAppBundle:Item:siteIndex }
+app_pre_register_view:
+    path:     /preregister
+    defaults: { _controller: TooBigAppBundle:PreRegister:preRegisterView }
+app_pre_register_phone:
+    path:     /preregister/{phone}
+    defaults: { _controller: TooBigAppBundle:PreRegister:preRegisterPhone }
 app_brand_list:
     path:     /app/brand/list
     defaults: { _controller: TooBigAppBundle:Item:brandList }
