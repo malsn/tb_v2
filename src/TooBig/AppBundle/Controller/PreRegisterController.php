@@ -43,7 +43,7 @@ class PreRegisterController extends Controller
      */
     public function preRegisterPhoneAction(Request $request){
         $pre_register_model = $this->get('pre_register_model');
-        $record = $pre_register_model->getPreRegisterByPhone($request->request->get('phone'));
+        $record = $pre_register_model->getPreRegisterByPhone($request->request->get('PreRegister')['phone']);
 
         if( !$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY') ){
             if ($request->isMethod('POST')) {
@@ -52,11 +52,11 @@ class PreRegisterController extends Controller
                     try {
                         $record = new PreRegister();
                         $record->setCode($sms_code);
+                        $record->setPhone($request->request->get('PreRegister')['phone']);
                         $pre_register_model->save($record);
 
                         /* Soap отправка кода на номер телефона */
                         $pre_register_model->sendCodeWithSoap($record);
-
                         return $this->render('TooBigAppBundle:PreRegister:check_code.html.twig');
 
                     } catch (\Exception $e) {
@@ -66,6 +66,9 @@ class PreRegisterController extends Controller
                     if (!$record->getStatus()){
                         $record->setCode($sms_code);
                         $pre_register_model->update($record);
+                        /* Soap отправка кода на номер телефона */
+                        $pre_register_model->sendCodeWithSoap($record);
+                        return $this->render('TooBigAppBundle:PreRegister:check_code.html.twig');
                     } else {
                         /* TODO - проверка на регистрацию пользователя с этим номером */
                         return ['error' => 'Ваш номер уже подвержден!'];
@@ -87,14 +90,14 @@ class PreRegisterController extends Controller
         if( !$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY') ){
 
             $pre_register_model = $this->get('pre_register_model');
-            $record = $pre_register_model->getPreRegisterByPhone($request->request->get('phone'));
+            $record = $pre_register_model->getPreRegisterByPhone($request->request->get('PreRegister')['phone']);
 
             if ($request->isMethod('POST')) {
                 if (null === $record) {
                     return ['error' => 'Нет такого номера'];
                 } else {
                     if (!$record->getStatus()){
-                        if ($request->request->get('check_code') === $record->getCode()){
+                        if ($request->request->get('PreRegister')['code'] === $record->getCode()){
                             $record->setStatus(true);
                             $pre_register_model->update($record);
                         } else {
