@@ -19,9 +19,8 @@ class PreRegisterController extends Controller
     public function preRegisterViewAction()
     {
         $record = new PreRegister();
-        $user = $this->get('security.context')->getToken()->getUser();
 
-        if (null === $user) {
+        if( !$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY') ){
 
             $form = $this->createForm(
                 new PreRegisterType(),
@@ -35,13 +34,18 @@ class PreRegisterController extends Controller
             $this->get('flash_bag')->addMessage('Вы уже зарегистрированы и авторизованы!');
             return $this->redirect($this->generateUrl('app_main'));
         }
+
     }
 
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function preRegisterPhoneAction(Request $request){
         $pre_register_model = $this->get('pre_register_model');
         $record = $pre_register_model->getPreRegisterByPhone($request->request->get('phone'));
-        $user = $this->get('security.context')->getToken()->getUser();
-        if (null === $user) {
+
+        if( !$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY') ){
             if ($request->isMethod('POST')) {
                 $sms_code = $pre_register_model->generatePreRegisterCode();
                 if (null === $record) {
@@ -65,6 +69,39 @@ class PreRegisterController extends Controller
                         return ['error' => 'Ваш номер уже подвержден!'];
                     }
 
+                }
+            }
+        } else {
+            return ['error' => 'Вы уже зарегистрированы и авторизованы!'];
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function preCheckPhoneAction(Request $request){
+
+        if( !$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY') ){
+
+            $pre_register_model = $this->get('pre_register_model');
+            $record = $pre_register_model->getPreRegisterByPhone($request->request->get('phone'));
+
+            if ($request->isMethod('POST')) {
+                if (null === $record) {
+                    return ['error' => 'Нет такого номера'];
+                } else {
+                    if (!$record->getStatus()){
+                        if ($request->request->get('check_code') === $record->getCode()){
+                            $record->setStatus(true);
+                            $pre_register_model->update($record);
+                        } else {
+                            return ['error' => 'Неверно указан проверочный код SMS!'];
+                        }
+                    } else {
+                        /* TODO - проверка на регистрацию пользователя с этим номером */
+                        return ['error' => 'Номер уже подвержден!'];
+                    }
                 }
             }
         } else {

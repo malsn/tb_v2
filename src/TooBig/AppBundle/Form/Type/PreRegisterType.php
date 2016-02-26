@@ -21,7 +21,10 @@ class PreRegisterType extends AbstractType
                 'save',
                 'button',
                 [
-                    'label' => 'Отправить'
+                    'label' => 'Отправить',
+                    'attr' => [
+                        'class' => 'pre-register-phone-button'
+                    ]
                 ]
             );
     }

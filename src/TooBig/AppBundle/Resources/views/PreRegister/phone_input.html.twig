@@ -1,10 +1,28 @@
 {% extends 'TooBigAppBundle::page-with-header.html.twig' %}
 
+{% block title %}
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    {% javascripts
+    '@TooBigAppBundle/Resources/public/js/PreRegister.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock javascripts %}
+
 {% block page_body %}
 
     <div class="pre-register form-phone-input">
-        {{ form_start(form) }}
+        {{ form_start(form, {'action': path('app_pre_register_phone')}) }}
         {{ form_widget(form) }}
+        <div id="sms-check-code">
+
+        </div>
         {{ form_end(form) }}
     </div>
 
