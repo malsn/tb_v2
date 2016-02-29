@@ -59,23 +59,22 @@ class PreRegisterModel extends ContainerAware {
                     'phones' => $record->getPhone(),
                     'mes' => $record->getCode(),
                     'id' => '',
-                    'sender' => '',
+                    'sender' => 'TBTest',
                     'time' => 0
                 ]
             );
 
                 if ($soap_response->sendresult->id != ''){
                     $record->setSms($soap_response->sendresult->id);
-                    $record->setStatus(true);
                     $record->setCost($soap_response->sendresult->cost);
                     $this->update($record);
-                    return ['success' => 'Проверочный код отправлен вам на указанный номер!'];
+                    return ['success' => 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!'];
 
                 } else {
-                    return ['error' => 'Получена ошибка отправки SMS - '.$soap_response['error'].', попробуйте позS, попробуйте позже'];
+                    return ['error' => 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SMS - '.$soap_response['error'].', пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ'];
             }
         } catch (\Exception $e) {
-            return ['error' => 'Произошла ошибка подключения к сервису SMS, попробуйте позже'];
+            return ['error' => 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ SMS, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ'];
         }
     }
 

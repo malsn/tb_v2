@@ -1,10 +1,11 @@
 <?php
 
 
-namespace Application\Iphp\CoreBundle\Form\Type;
+namespace Application\Sonata\UserBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
+use Symfony\Component\HttpFoundation\Session;
 
 class RegistrationFormType extends BaseType
 {
@@ -13,7 +14,11 @@ class RegistrationFormType extends BaseType
         $builder
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle', 'attr'=>array('class'=>'form-control')))
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle', 'attr'=>array('class'=>'form-control')))
-            ->add('phone', null, array('label' => 'form.phone', 'translation_domain' => 'FOSUserBundle', 'attr'=>array('class'=>'form-control')))
+            ->add('phone', 'hidden', array(
+                'label' => 'form.phone',
+                'translation_domain' => 'FOSUserBundle',
+                'attr'=>array('class'=>'form-control'),
+                'data' => ( $_SESSION['register_phone'] ? : null ) ))
             ->add('place', null, array('label' => 'form.place', 'translation_domain' => 'FOSUserBundle', 'attr'=>array('class'=>'form-control')))
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',

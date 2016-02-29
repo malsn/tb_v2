@@ -31,8 +31,10 @@ class PreRegisterController extends Controller
                 'form' => $form->createView()
             ]);
         } else {
+
             $this->get('flash_bag')->addMessage('Вы уже зарегистрированы и авторизованы!');
             return $this->redirect($this->generateUrl('app_main'));
+
         }
 
     }
@@ -42,6 +44,11 @@ class PreRegisterController extends Controller
      * @return array
      */
     public function preRegisterPhoneAction(Request $request){
+
+        if (strlen($request->request->get('PreRegister')['phone']) == 0) {
+            return new Response('Необходимо указать номер телефона в правильном формате!');
+        }
+
         $pre_register_model = $this->get('pre_register_model');
         $record = $pre_register_model->getPreRegisterByPhone($request->request->get('PreRegister')['phone']);
 
@@ -60,7 +67,7 @@ class PreRegisterController extends Controller
                         return $this->render('TooBigAppBundle:PreRegister:check_code.html.twig');
 
                     } catch (\Exception $e) {
-                        return ['error' => 'Ошибка отправки SMS кода подтверждения!'];
+                        return new Response('Ошибка отправки SMS кода подтверждения!');
                     }
                 } else {
                     if (!$record->getStatus()){
@@ -70,14 +77,18 @@ class PreRegisterController extends Controller
                         $pre_register_model->sendCodeWithSoap($record);
                         return $this->render('TooBigAppBundle:PreRegister:check_code.html.twig');
                     } else {
-                        /* TODO - проверка на регистрацию пользователя с этим номером */
-                        return ['error' => 'Ваш номер уже подвержден!'];
+                        $user = $this->container->get('fos_user.user_manager')->findUserBy(['phone' => $record->getPhone()]);
+                        if ( null !== $user){
+                            return $this->render('TooBigAppBundle:PreRegister:existing_register.html.twig');
+                        } else {
+                            $_SESSION['register_phone'] = $record->getPhone();
+                            return $this->render('TooBigAppBundle:PreRegister:continue_register.html.twig');
+                        }
                     }
-
                 }
             }
         } else {
-            return ['error' => 'Вы уже зарегистрированы и авторизованы!'];
+            return ['error' => 'Вы уже зарегистрированы и авторизованы!', 'error_code' => 101 ];
         }
     }
 
@@ -94,23 +105,25 @@ class PreRegisterController extends Controller
 
             if ($request->isMethod('POST')) {
                 if (null === $record) {
-                    return ['error' => 'Нет такого номера'];
+                    return ['error' => 'Нет такого номера', 'error_code' => 102];
                 } else {
                     if (!$record->getStatus()){
-                        if ($request->request->get('PreRegister')['code'] === $record->getCode()){
+                        if ((int)$request->request->get('PreRegister')['code'] === $record->getCode()){
                             $record->setStatus(true);
                             $pre_register_model->update($record);
+                            $_SESSION['register_phone'] = $record->getPhone();
+                            return $this->render('TooBigAppBundle:PreRegister:start_register.html.twig');
                         } else {
-                            return ['error' => 'Неверно указан проверочный код SMS!'];
+                            return new Response('Неверно указан проверочный код SMS!');
                         }
                     } else {
                         /* TODO - проверка на регистрацию пользователя с этим номером */
-                        return ['error' => 'Номер уже подвержден!'];
+                        return ['error' => 'Номер уже подвержден!', 'error_code' => 100];
                     }
                 }
             }
         } else {
-            return ['error' => 'Вы уже зарегистрированы и авторизованы!'];
+            return ['error' => 'Вы уже зарегистрированы и авторизованы!', 'error_code' => 101];
         }
 
 

@@ -9,9 +9,16 @@
 
     {% javascripts
     '@TooBigAppBundle/Resources/public/js/PreRegister.js'
+    '@TooBigAppBundle/Resources/public/js/jquery.maskedinput.min.js'
     %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    <script type="text/javascript">
+        jQuery(function($){
+            $("#PreRegister_phone").mask("+7(999) 999-99-99");
+        });
+    </script>
 
 {% endblock javascripts %}
 
@@ -19,7 +26,17 @@
 
     <div class="pre-register form-phone-input">
         {{ form_start(form, {'action': path('app_pre_register_phone')}) }}
-        {{ form_widget(form) }}
+
+
+        <div class="form-group control-group">
+            <label id="PreRegister-phone-label" for="PreRegister_phone" class="col-sm-3 control-label">{{ 'Мобильный телефон'|trans({}, 'SonataUserBundle') }}</label>
+            <div class="col-sm-5">
+                {{ form_widget(form.phone, {'attr': {'class':'form-control'}}) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.save) }}
+            </div>
+        </div>
         <div id="sms-check-code">
 
         </div>

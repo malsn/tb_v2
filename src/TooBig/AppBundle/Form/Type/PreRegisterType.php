@@ -13,6 +13,7 @@ class PreRegisterType extends AbstractType
     {
         $builder
             ->add('phone', 'text', [
+                'required' => true,
                 'attr' => [
                     'size'=>15
                 ]
@@ -21,9 +22,9 @@ class PreRegisterType extends AbstractType
                 'save',
                 'button',
                 [
-                    'label' => 'Отправить',
+                    'label' => 'Отправить SMS',
                     'attr' => [
-                        'class' => 'pre-register-phone-button'
+                        'class' => 'pre-register-phone-button btn btn-primary'
                     ]
                 ]
             );

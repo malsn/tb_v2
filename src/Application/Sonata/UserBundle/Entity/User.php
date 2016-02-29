@@ -11,7 +11,7 @@
 
 namespace Application\Sonata\UserBundle\Entity;
 
-use Sonata\UserBundle\Entity\BaseUser as BaseUser;
+use Application\Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -32,7 +32,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var text $place
+     * @var $place
      */
     protected $place;
 
@@ -57,7 +57,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return text
+     * @return
      */
     public function getPlace()
     {
@@ -65,7 +65,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param text $place
+     * @param $place
      */
     public function setPlace($place)
     {

@@ -15,16 +15,8 @@
             <argument type="service" id="service_container"/>
         </service>
 
-
-
         <service id="iphp.core.entity.router" class="Iphp\CoreBundle\Routing\EntityRouter">
             <argument type="service" id="router"/>
-
-        </service>
-
-        <service id="iphp.registration.form.type" class="Application\Iphp\CoreBundle\Form\Type\RegistrationFormType">
-            <tag name="form.type" alias="modified_fos_user_registration" />
-            <argument>%iphp.user.class%</argument>
         </service>
 
         <!--
