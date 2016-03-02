@@ -18,13 +18,18 @@ jQuery(document).ready(function() {
             success: function (response) {
                 if (response !== false) {
                     $check_code.html(response);
+                    jQuery('.finish-register-button').click(function(){
+                        finish_register();
+                    });
                     if (response.error != '') {
                         $check_code.html(response.error);
                     }
                 }
             },
             error: function () {
-
+                jQuery('.finish-register-button').click(function(){
+                    finish_register();
+                });
             }
         });
     }
