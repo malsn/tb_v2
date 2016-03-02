@@ -47,8 +47,8 @@
         '@PunkAveFileUploaderBundle/Resources/public/js/jquery.fileupload.js'
         '@PunkAveFileUploaderBundle/Resources/public/js/jquery.iframe-transport.js'
         '@PunkAveFileUploaderBundle/Resources/public/js/FileUploader.js'
-        '@TooBigAppBundle/Resources/public/js/PreRegister.js'
-        '@TooBigAppBundle/Resources/public/js/jquery.maskedinput.min.js' %}
+        '@TooBigAppBundle/Resources/public/js/jquery.maskedinput.min.js'
+        '@TooBigAppBundle/Resources/public/js/PreRegister.js' %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
@@ -65,8 +65,7 @@
                 $('.btn-ajax-to-modal').click(function(){
                     ajax_to_modal($(this));
                 });
-
-
+                
                 $alertModal.modal('toggle');
                 {% endif %}
             });
