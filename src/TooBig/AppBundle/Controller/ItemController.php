@@ -20,6 +20,7 @@ use TooBig\AppBundle\Form\Type\ItemsFilterType;
 use TooBig\AppBundle\Form\Type\RateCommentType;
 use TooBig\AppBundle\Model\ItemSubscribtionModel;
 use Iphp\CoreBundle\Controller\RubricAwareController;
+use Application\Sonata\UserBundle\Controller\SecurityFOSUser1Controller;
 
 class ItemController extends RubricAwareController
 {
@@ -105,11 +106,19 @@ class ItemController extends RubricAwareController
      * @Route("/app/item/add", name="app_item_add_common")
      */
     public function addCommonAction(){
-        $rubric = $this->get('rubric_model')->getRubricById(1);
-        return $this->render('TooBigAppBundle:Rubric:select_rubric.html.twig', [
-            'rubric' => $rubric
-        ]);
 
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        if (!is_object($user)) {
+
+            $this->getUserLoginForm();
+
+        } else {
+            $rubric = $this->get('rubric_model')->getRubricById(1);
+            return $this->render('TooBigAppBundle:Rubric:select_rubric.html.twig', [
+                'rubric' => $rubric
+            ]);
+        }
     }
 
     public function listRubricChildrenAction( Request $request ){
@@ -150,7 +159,11 @@ class ItemController extends RubricAwareController
 
         $user = $this->get('security.context')->getToken()->getUser();
 
-        if (is_object($user)) {
+        if (!is_object($user)) {
+
+            $this->getUserLoginForm();
+
+        } elseif (is_object($user)) {
 
             $form = $this->createForm(
                 new ItemForm($this->get('router')),
@@ -208,10 +221,7 @@ class ItemController extends RubricAwareController
                 'editId' => $editId,
                 'existingFiles' => $existingFiles,
                 'breadcrumbs' => $this->getBreadcrumbs( $rubric ) ]);
-        } else {
-            return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
-
 
     }
 
@@ -229,7 +239,11 @@ public function editAction($item_id, Request $request)
 
     $user = $this->get('security.context')->getToken()->getUser();
 
-    if (is_object($user)) {
+    if (!is_object($user)) {
+
+        $this->getUserLoginForm();
+
+    } elseif (is_object($user)) {
 
         if ( $user === $record->getCreatedBy()){
 
@@ -333,8 +347,6 @@ public function editAction($item_id, Request $request)
             return $this->render( 'TooBigAppBundle:Item:item.html.twig', $response );
         }
 
-    } else {
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
 }
 
@@ -443,7 +455,11 @@ public function copyAction($item_id, Request $request)
 
     $user = $this->get('security.context')->getToken()->getUser();
 
-    if (is_object($user)) {
+    if (!is_object($user)) {
+
+        $this->getUserLoginForm();
+
+    } elseif (is_object($user)) {
 
         $form = $this->createForm(
             new ItemForm($this->get('router')),
@@ -465,8 +481,6 @@ public function copyAction($item_id, Request $request)
             'breadcrumbs' => $this->getBreadcrumbs( $rubric )
         ]);
 
-    } else {
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
 }
 
@@ -709,6 +723,16 @@ public function uploadAction(Request $request)
                 }
                 $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
             });
+    }
+
+    protected function getUserLoginForm(){
+        $resp_login = $this->forward('ApplicationSonataUserBundle:SecurityFOSUser1:login');
+        $resp_login = preg_replace('/[\r\n]/i','',$resp_login->getContent());
+        $_SESSION['return_url'] = $this->get('request_stack')->getMasterRequest()->server->get('REQUEST_URI');
+        $this->get('flash_bag')->addMessage(
+            $resp_login
+        );
+        return $this->forward('TooBigAppBundle:Item:siteIndex');
     }
 
 }

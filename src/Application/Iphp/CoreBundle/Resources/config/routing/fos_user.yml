@@ -4,7 +4,7 @@ fos_user_group:
 
 
 fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    resource: "@ApplicationSonataUserBundle/Resources/config/routing/sonata_security_1.xml"
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"

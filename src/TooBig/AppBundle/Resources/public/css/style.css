@@ -49,6 +49,11 @@ label.control-label {
     font-size: 20px;
     border-radius: 0;
 }
+select.form-control {
+    padding: 0px 12px;
+    height: 40px;
+}
+
 
 .form-horizontal .control-label {
     /*padding: 7px;*/
