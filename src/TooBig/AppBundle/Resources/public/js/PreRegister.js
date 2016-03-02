@@ -48,43 +48,48 @@ var pre_register_phone = function(){
             },
             success: function (response) {
                 if (response !== false) {
-                    $check_code.html(response);
                     $after_check_code.html('');
-                    $('.finish-register-button').click(function(){
-                        finish_register();
-                    });
-                    $('.btn-ajax-to-modal').click(function(){
-                        ajax_to_modal($(this));
-                    });
-                    if (response.error != '') {
-                        $check_code.html(response.error);
-                    }
-                    var $form = $("form");
-                    $('#sms-check-code-button').click(function(){
-                        $.ajax({
-                            url: $(this).attr('path-controller'),
-                            cache: false,
-                            type: 'POST',
-                            data: $form.serialize() ,
-                            beforeSend: function () {
-                                $after_check_code.html("<img src='/bundles/toobigapp/images/loading.gif' border='0'>");
-                            },
-                            success: function (response) {
-                                if (response !== false) {
-                                    $after_check_code.html(response);
-                                    $check_code.html('');
-                                    if (response.error != '') {
-                                        $after_check_code.html(response.error);
-                                    } else if (response.success != '') {
-
-                                    }
-                                }
-                            },
-                            error: function () {
-
-                            }
+                    $check_code.html('');
+                    if (response.status == '202'){
+                        $check_code.html(response.response);
+                        $('.btn-ajax-to-modal').click(function(){
+                            ajax_to_modal($(this));
                         });
-                    });
+                        var $form = $("form");
+                        $('#sms-check-code-button').click(function(){
+                            $.ajax({
+                                url: $(this).attr('path-controller'),
+                                cache: false,
+                                type: 'POST',
+                                data: $form.serialize() ,
+                                beforeSend: function () {
+                                    $after_check_code.html("<img src='/bundles/toobigapp/images/loading.gif' border='0'>");
+                                },
+                                success: function (response) {
+                                    if (response !== false) {
+                                        $check_code.html('');
+                                        $after_check_code.html(response);
+                                        $('.finish-register-button').click(function(){
+                                            finish_register();
+                                        });
+                                        if (response.error != '') {
+
+                                        } else if (response.success != '') {
+
+                                        }
+                                    }
+                                },
+                                error: function () {
+
+                                }
+                            });
+                        });
+                    } else if (response.status == '200' || response.status == '201') {
+                        $after_check_code.html(response.response);
+                        $('.finish-register-button').click(function(){
+                            finish_register();
+                        });
+                    }
                 }
             },
             error: function () {

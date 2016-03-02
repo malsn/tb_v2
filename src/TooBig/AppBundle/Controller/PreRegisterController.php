@@ -64,7 +64,9 @@ class PreRegisterController extends Controller
 
                         /* Soap отправка кода на номер телефона */
                         $pre_register_model->sendCodeWithSoap($record);
-                        return $this->render('TooBigAppBundle:PreRegister:check_code.html.twig');
+                        $response = new JsonResponse();
+                        $response->setData(['response' => preg_replace('/[\r\n]/i','',$this->render('TooBigAppBundle:PreRegister:check_code.html.twig')->getContent()),'status'=>'202']);
+                        return $response;
 
                     } catch (\Exception $e) {
                         return new Response('Ошибка отправки SMS кода подтверждения!');
@@ -75,15 +77,22 @@ class PreRegisterController extends Controller
                         $pre_register_model->update($record);
                         /* Soap отправка кода на номер телефона */
                         $pre_register_model->sendCodeWithSoap($record);
-                        return $this->render('TooBigAppBundle:PreRegister:check_code.html.twig');
+                        $response = new JsonResponse();
+                        $response->setData(['response' => preg_replace('/[\r\n]/i','',$this->render('TooBigAppBundle:PreRegister:check_code.html.twig')->getContent()),'status'=>'202']);
+                        return $response;
                     } else {
+                        /* попадает ответ в тот же check_code, исправить */
                         $user = $this->container->get('fos_user.user_manager')->findUserBy(['phone' => $record->getPhone()]);
                         if ( null !== $user){
-                            return $this->render('TooBigAppBundle:PreRegister:existing_register.html.twig');
+                            $response = new JsonResponse();
+                            $response->setData(['response' => preg_replace('/[\r\n]/i','',$this->render('TooBigAppBundle:PreRegister:existing_register.html.twig')->getContent()),'status'=>'201']);
+                            return $response;
                         } else {
                             $_SESSION['register_phone'] = $record->getPhone();
                             $_SESSION['register_code'] = $record->getCode();
-                            return $this->render('TooBigAppBundle:PreRegister:continue_register.html.twig');
+                            $response = new JsonResponse();
+                            $response->setData(['response' => preg_replace('/[\r\n]/i','',$this->render('TooBigAppBundle:PreRegister:continue_register.html.twig')->getContent()),'status'=>'200']);
+                            return $response;
                         }
                     }
                 }
