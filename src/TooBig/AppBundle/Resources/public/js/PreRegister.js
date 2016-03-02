@@ -4,9 +4,9 @@
 
 jQuery(document).ready(function() {
 
-    jQuery('.pre-register-phone-button').click(function(){
+    var pre_register_phone = function(){
         if (jQuery("#PreRegister_phone").val()!=''){
-            var $form = jQuery("form");
+            var $form = jQuery("form[name='PreRegister']");
             var $check_code = jQuery("#sms-check-code");
             jQuery.ajax({
                 url: $form.attr('action'),
@@ -56,6 +56,41 @@ jQuery(document).ready(function() {
         } else {
             alert('Требуется заполнить поле телефонного номера!');
         }
+    }
+
+    var ajax_to_modal = function($button){
+        jQuery.ajax({
+            url: $button.attr('path-controller'),
+            cache: false,
+            type: 'POST',
+            data: null ,
+            beforeSend: function () {
+
+            },
+            success: function (response) {
+                if (response !== false) {
+                    var $alertModal = jQuery('#alert_modal');
+                    $alertModal
+                        .find('div.modal-body')
+                        .html(response);
+                    jQuery('.btn-ajax-to-modal').click(function(){
+                        ajax_to_modal(jQuery(this));
+                    });
+                    jQuery('.pre-register-phone-button').click(function(){
+                        pre_register_phone();
+                    });
+                    jQuery("#PreRegister_phone").mask("+7(999) 999-99-99");
+                    $alertModal.modal({show: true});
+                }
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    jQuery('.btn-ajax-to-modal').click(function(){
+        ajax_to_modal(jQuery(this));
     });
 
 });

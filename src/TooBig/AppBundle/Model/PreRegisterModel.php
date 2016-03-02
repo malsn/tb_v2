@@ -49,32 +49,34 @@ class PreRegisterModel extends ContainerAware {
     }
 
     public function sendCodeWithSoap(PreRegister $record){
-        try {
-            $soap = $this->container->get('soap.smsc')->getClient();
-
-            $soap_response = $soap->send_sms(
-                [
-                    'login' => $this->container->getParameter('soap.smsc.user'),
-                    'psw' => $this->container->getParameter('soap.smsc.password'),
-                    'phones' => $record->getPhone(),
-                    'mes' => $record->getCode(),
-                    'id' => '',
-                    'sender' => 'TBTest',
-                    'time' => 0
-                ]
-            );
-
+        if ( $this->container->getParameter('soap.smsc.on') === true ){
+            try {
+                $soap = $this->container->get('soap.smsc')->getClient();
+                $soap_response = $soap->send_sms(
+                    [
+                        'login' => $this->container->getParameter('soap.smsc.user'),
+                        'psw' => $this->container->getParameter('soap.smsc.password'),
+                        'phones' => $record->getPhone(),
+                        'mes' => $record->getCode(),
+                        'id' => '',
+                        'sender' => 'TBTest',
+                        'time' => 0
+                    ]
+                );
                 if ($soap_response->sendresult->id != ''){
                     $record->setSms($soap_response->sendresult->id);
                     $record->setCost($soap_response->sendresult->cost);
                     $this->update($record);
-                    return ['success' => '����������� ��� ��������� ��� �� ��������� �����!'];
+                    return ['success' => 'Ваш номер подтвержден, вы можете продолжить регистрацию!'];
 
                 } else {
-                    return ['error' => '�������� ������ �������� SMS - '.$soap_response['error'].', ���������� �����'];
+                    return ['error' => 'Произошла ошибка отправки SMS - '.$soap_response['error'].', попробуйте позднее'];
+                }
+            } catch (\Exception $e) {
+                return ['error' => 'Произошла ошибка отправки SMS, попробуйте позднее'];
             }
-        } catch (\Exception $e) {
-            return ['error' => '��������� ������ ����������� � ������� SMS, ���������� �����'];
+        } else {
+            return ['success' => 'Сервис подтверждения номера через SMS временно отключен, введите код '.$record->getCode().', чтобы продолжить регистрацию!'];
         }
     }
 

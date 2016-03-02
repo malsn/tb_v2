@@ -46,7 +46,9 @@
         '@IphpCoreBundle/Resources/public/bootstrap/3.3/js/bootstrap.min.js'
         '@PunkAveFileUploaderBundle/Resources/public/js/jquery.fileupload.js'
         '@PunkAveFileUploaderBundle/Resources/public/js/jquery.iframe-transport.js'
-        '@PunkAveFileUploaderBundle/Resources/public/js/FileUploader.js' %}
+        '@PunkAveFileUploaderBundle/Resources/public/js/FileUploader.js'
+        '@TooBigAppBundle/Resources/public/js/PreRegister.js'
+        '@TooBigAppBundle/Resources/public/js/jquery.maskedinput.min.js' %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
@@ -223,13 +225,13 @@
 
                             {% else %}
 
-                                <a class="btn btn-primary"
-                                   href="{{ path_exists ('fos_user_security_login') ? path ('fos_user_security_login') : '#' }}"
+                                <div class="btn btn-primary btn-ajax-to-modal"
+                                   path-controller="{{ path_exists ('fos_user_security_login') ? path ('fos_user_security_login') : '#' }}"
                                    class="btn btn-primary">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                     {{ path_exists ('fos_user_security_login') ?
                                        "layout.login"| trans ({}, 'FOSUserBundle') : 'Login'}}
-                                </a>
+                                </div>
 
                             {% endif %}
                     </div>

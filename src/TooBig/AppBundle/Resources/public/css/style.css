@@ -44,6 +44,15 @@
 label.control-label {
     text-align: left !important;
 }
+.form-control {
+    padding: 20px 12px;
+    font-size: 20px;
+    border-radius: 0;
+}
+
+.form-horizontal .control-label {
+    padding: 7px;
+}
 .form-group.control-group.separator { height: 1px; border-bottom: 1px solid #eee; }
 /* bootstrap */
 
@@ -464,6 +473,11 @@ a.navbar-quick-link:hover {
 }
 
 /* Preregister */
+
+.btn-ajax-to-modal {
+    cursor: pointer;
+}
+
 #PreRegister-phone-label, #PreRegister-code-label {
     display: inline-block;
     vertical-align: middle;
