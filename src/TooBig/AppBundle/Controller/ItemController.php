@@ -111,7 +111,7 @@ class ItemController extends RubricAwareController
 
         if (!is_object($user)) {
 
-            $this->getUserLoginForm();
+           return $this->getUserLoginForm();
 
         } else {
             $rubric = $this->get('rubric_model')->getRubricById(1);
@@ -161,7 +161,7 @@ class ItemController extends RubricAwareController
 
         if (!is_object($user)) {
 
-            $this->getUserLoginForm();
+           return $this->getUserLoginForm();
 
         } elseif (is_object($user)) {
 
@@ -241,7 +241,7 @@ public function editAction($item_id, Request $request)
 
     if (!is_object($user)) {
 
-        $this->getUserLoginForm();
+       return $this->getUserLoginForm();
 
     } elseif (is_object($user)) {
 
@@ -457,7 +457,7 @@ public function copyAction($item_id, Request $request)
 
     if (!is_object($user)) {
 
-        $this->getUserLoginForm();
+        return $this->getUserLoginForm();
 
     } elseif (is_object($user)) {
 
