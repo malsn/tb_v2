@@ -37,28 +37,32 @@ class RegistrationFOSUser1Controller extends ContainerAware
         $formHandler = $this->container->get('fos_user.registration.form.handler');
         $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
 
-        $process = $formHandler->process($confirmationEnabled);
-        if ($process) {
-            $user = $form->getData();
+        $pre_register_record = $this->container->get('pre_register_model')->getPreRegisterByPhone($_SESSION['register_phone']);
+        if ((int)$_SESSION['register_code'] === $pre_register_record->getCode()){
+            $process = $formHandler->process($confirmationEnabled);
+            if ($process) {
+                $user = $form->getData();
+                $authUser = false;
+                if ($confirmationEnabled) {
+                    $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
+                    $route = 'fos_user_registration_check_email';
+                } else {
+                    $authUser = true;
+                    $route = 'fos_user_registration_confirmed';
+                }
 
-            $authUser = false;
-            if ($confirmationEnabled) {
-                $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
-                $route = 'fos_user_registration_check_email';
-            } else {
-                $authUser = true;
-                $route = 'fos_user_registration_confirmed';
+                $this->setFlash('fos_user_success', 'registration.flash.user_created');
+                $url = $this->container->get('router')->generate($route);
+                $response = new RedirectResponse($url);
+
+                if ($authUser) {
+                    $this->authenticateUser($user, $response);
+                }
+
+                return $response;
             }
+        } else {
 
-            $this->setFlash('fos_user_success', 'registration.flash.user_created');
-            $url = $this->container->get('router')->generate($route);
-            $response = new RedirectResponse($url);
-
-            if ($authUser) {
-                $this->authenticateUser($user, $response);
-            }
-
-            return $response;
         }
 
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(

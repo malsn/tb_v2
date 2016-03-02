@@ -122,6 +122,7 @@ class PreRegisterController extends Controller
                             $record->setStatus(true);
                             $pre_register_model->update($record);
                             $_SESSION['register_phone'] = $record->getPhone();
+                            $_SESSION['register_code'] = $record->getCode();
                             return $this->render('TooBigAppBundle:PreRegister:start_register.html.twig');
                         } else {
                             return $this->render('TooBigAppBundle:PreRegister:check_code_error.html.twig');
