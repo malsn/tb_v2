@@ -84,7 +84,7 @@ class ItemController extends RubricAwareController
             $filterForm->handleRequest($request);
         }
 
-        if ( $request->query->count() ) {
+        //if ( $request->query->count() ) {
             return array(
                 'entities' => $this->paginate($query, 20),
                 'filterForm' => $filterForm->createView(),
@@ -93,12 +93,12 @@ class ItemController extends RubricAwareController
                 'count' => count($query_filter->getResult()),
                 'filter_results' => $filters
             );
-        } else {
+        /*} else {
             return array(
                 'filterForm' => $filterForm->createView(),
                 'rubricPriceRange' => $price_params,
             );
-        }
+        }*/
 
     }
 
