@@ -52,6 +52,9 @@ jQuery(document).ready(function() {
                         jQuery('.finish-register-button').click(function(){
                             finish_register();
                         });
+                        jQuery('.pre-register-phone-button').click(function(){
+                            pre_register_phone();
+                        });
                         if (response.error != '') {
                             $check_code.html(response.error);
                         }
