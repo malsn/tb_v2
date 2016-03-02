@@ -48,6 +48,7 @@ var pre_register_phone = function(){
             success: function (response) {
                 if (response !== false) {
                     $check_code.html(response);
+                    $after_check_code.html('');
                     $('.finish-register-button').click(function(){
                         finish_register();
                     });
