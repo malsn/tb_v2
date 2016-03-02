@@ -1,13 +1,11 @@
-<div class="form-group control-group">
-    <div class="col-sm-3">
 
-    </div>
-    <div class="col-sm-5 col-pre-register">
-        <div class="row">
-            <a id="sms-check-code-button" class="btn btn-primary" href="{{ path('fos_user_registration_register') }}">Продолжить</a>
+<div class="col-sm-12">
+    <div class="row">
+        <div class="panel-heading">
+            <h2 class="panel-title"> Ваш номер успешно подтвержден, заполните следующие поля регистрации</h2>
         </div>
     </div>
-    <div class="col-sm-3">
-
+    <div class="row">
+        {{ render(controller('FOSUserBundle:Registration:register')) }}
     </div>
 </div>

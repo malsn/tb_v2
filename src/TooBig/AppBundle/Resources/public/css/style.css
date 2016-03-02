@@ -22,9 +22,9 @@
 }
 .btn {
     padding: 8px 12px;
-    margin: 10px;
     font-size: 16px;
     border-radius: 0px;
+    margin: 10px 0 10px 20px;
 }
 .page-header {
     margin: 0px 0 20px;
@@ -203,6 +203,7 @@ input.form-filter.search {
 }
 a.btn.btn-primary.filter-form-submit {
     margin-bottom: 3px;
+    margin-top: 0;
 }
 input.btn.btn-primary.filter-form-submit {
     margin-bottom: 3px;
