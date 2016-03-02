@@ -4,6 +4,31 @@
 
 jQuery(document).ready(function() {
 
+    var finish_register = function(){
+        var $form = jQuery("form[name='FinishRegister']");
+        var $check_code = jQuery("#sms-check-code");
+        jQuery.ajax({
+            url: $form.attr('action'),
+            cache: false,
+            type: 'POST',
+            data: $form.serialize() ,
+            beforeSend: function () {
+                $check_code.html("<img src='/bundles/toobigapp/images/loading.gif' border='0'>");
+            },
+            success: function (response) {
+                if (response !== false) {
+                    $check_code.html(response);
+                    if (response.error != '') {
+                        $check_code.html(response.error);
+                    }
+                }
+            },
+            error: function () {
+
+            }
+        });
+    }
+
     var pre_register_phone = function(){
         if (jQuery("#PreRegister_phone").val()!=''){
             var $form = jQuery("form[name='PreRegister']");
@@ -35,6 +60,9 @@ jQuery(document).ready(function() {
                                 success: function (response) {
                                     if (response !== false) {
                                         $check_code.html(response);
+                                        jQuery('.finish-register-button').click(function(){
+                                            finish_register();
+                                        });
                                         if (response.error != '') {
                                             $check_code.html(response.error);
                                         } else if (response.success != '') {
@@ -58,31 +86,6 @@ jQuery(document).ready(function() {
         }
     }
 
-    var finish_register = function(){
-        var $form = jQuery("form[name='FinishRegister']");
-        var $check_code = jQuery("#sms-check-code");
-        jQuery.ajax({
-            url: $form.attr('action'),
-            cache: false,
-            type: 'POST',
-            data: $form.serialize() ,
-            beforeSend: function () {
-                $check_code.html("<img src='/bundles/toobigapp/images/loading.gif' border='0'>");
-            },
-            success: function (response) {
-                if (response !== false) {
-                    $check_code.html(response);
-                    if (response.error != '') {
-                        $check_code.html(response.error);
-                    }
-                }
-            },
-            error: function () {
-
-            }
-        });
-    }
-
     var ajax_to_modal = function($button){
         jQuery.ajax({
             url: $button.attr('path-controller'),
@@ -103,9 +106,6 @@ jQuery(document).ready(function() {
                     });
                     jQuery('.pre-register-phone-button').click(function(){
                         pre_register_phone();
-                    });
-                    jQuery('.finish-register-button').click(function(){
-                        finish_register();
                     });
                     jQuery("#PreRegister_phone").mask("+7(999) 999-99-99");
                     $alertModal.modal({show: true});
