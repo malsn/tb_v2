@@ -51,7 +51,7 @@ label.control-label {
 }
 
 .form-horizontal .control-label {
-    padding: 7px;
+    /*padding: 7px;*/
 }
 .form-group.control-group.separator { height: 1px; border-bottom: 1px solid #eee; }
 /* bootstrap */
