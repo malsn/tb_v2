@@ -59,6 +59,7 @@ var pre_register_phone = function(){
                     }
                     var $form = $("form");
                     $('#sms-check-code-button').click(function(){
+                        var $after_check_code = $("#after-check-code");
                         $.ajax({
                             url: $(this).attr('path-controller'),
                             cache: false,
@@ -69,9 +70,9 @@ var pre_register_phone = function(){
                             },
                             success: function (response) {
                                 if (response !== false) {
-                                    $check_code.html(response);
+                                    $after_check_code.html(response);
                                     if (response.error != '') {
-                                        $check_code.html(response.error);
+                                        $after_check_code.html(response.error);
                                     } else if (response.success != '') {
 
                                     }
@@ -95,23 +96,23 @@ var pre_register_phone = function(){
 
 var finish_register = function(){
     var $form = $("form[name='FinishRegister']");
-    var $check_code = $("#sms-check-code");
+    var $after_check_code = $("#after-check-code");
     $.ajax({
         url: $form.attr('action'),
         cache: false,
         type: 'POST',
         data: $form.serialize() ,
         beforeSend: function () {
-            $check_code.html("<img src='/bundles/toobigapp/images/loading.gif' border='0'>");
+            $after_check_code.html("<img src='/bundles/toobigapp/images/loading.gif' border='0'>");
         },
         success: function (response) {
             if (response !== false) {
-                $check_code.html(response);
+                $after_check_code.html(response);
                 $('.finish-register-button').click(function(){
                     finish_register();
                 });
                 if (response.error != '') {
-                    $check_code.html(response.error);
+                    $after_check_code.html(response.error);
                 }
             }
         },
