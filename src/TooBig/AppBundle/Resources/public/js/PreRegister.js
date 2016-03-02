@@ -5,7 +5,6 @@
 jQuery(document).ready(function() {
 
     var finish_register = function(){
-        alert(7);
         var $form = jQuery("form[name='FinishRegister']");
         var $check_code = jQuery("#sms-check-code");
         jQuery.ajax({
@@ -45,6 +44,9 @@ jQuery(document).ready(function() {
                 success: function (response) {
                     if (response !== false) {
                         $check_code.html(response);
+                        jQuery('.finish-register-button').click(function(){
+                            finish_register();
+                        });
                         if (response.error != '') {
                             $check_code.html(response.error);
                         }
@@ -61,11 +63,6 @@ jQuery(document).ready(function() {
                                 success: function (response) {
                                     if (response !== false) {
                                         $check_code.html(response);
-                                        alert(5);
-                                        jQuery('.finish-register-button').click(function(){
-                                            alert(6);
-                                            finish_register();
-                                        });
                                         if (response.error != '') {
                                             $check_code.html(response.error);
                                         } else if (response.success != '') {
