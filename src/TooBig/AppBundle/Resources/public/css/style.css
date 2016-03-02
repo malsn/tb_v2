@@ -511,9 +511,19 @@ a.navbar-quick-link:hover {
 div#sms-check-code-button {
     margin-left: 0px;
 }
-div#sms-check-code img {
+div#sms-check-code, div#after-check-code {
+    text-align: center;
+}
+div#sms-check-code img, div#after-check-code img {
     margin-right: 50px;
 }
 .col-sm-5.col-pre-register {
     text-align: center;
+}
+.error ul{
+    padding-left: 10px;
+}
+.error ul li {
+    color: red;
+    list-style: none;
 }

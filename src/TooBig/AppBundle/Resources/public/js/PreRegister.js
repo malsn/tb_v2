@@ -86,6 +86,9 @@ var pre_register_phone = function(){
                         });
                     } else if (response.status == '200' || response.status == '201') {
                         $after_check_code.html(response.response);
+                        $('.btn-ajax-to-modal').click(function(){
+                            ajax_to_modal($(this));
+                        });
                         $('.finish-register-button').click(function(){
                             finish_register();
                         });
