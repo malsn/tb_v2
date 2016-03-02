@@ -486,6 +486,7 @@ a.navbar-quick-link:hover {
 }
 #PreRegister-code-label {
     float: none;
+    text-align: center !important;
 }
 #PreRegister_phone, #PreRegister_code {
     padding: 20px 12px;
@@ -500,6 +501,10 @@ a.navbar-quick-link:hover {
 
 #PreRegister_save {
     margin-top: 0px;
+}
+
+div#sms-check-code-button {
+    margin-left: 0px;
 }
 
 .col-sm-5.col-pre-register {
