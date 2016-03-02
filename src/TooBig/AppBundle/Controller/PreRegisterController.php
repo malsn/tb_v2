@@ -115,7 +115,7 @@ class PreRegisterController extends Controller
                             $_SESSION['register_phone'] = $record->getPhone();
                             return $this->render('TooBigAppBundle:PreRegister:start_register.html.twig');
                         } else {
-                            return new Response('Неверно указан проверочный код SMS!');
+                            return $this->render('TooBigAppBundle:PreRegister:check_code_error.html.twig');
                         }
                     } else {
                         /* TODO - проверка на регистрацию пользователя с этим номером */

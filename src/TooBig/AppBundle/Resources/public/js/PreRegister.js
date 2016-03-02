@@ -66,11 +66,12 @@ var pre_register_phone = function(){
                             type: 'POST',
                             data: $form.serialize() ,
                             beforeSend: function () {
-
+                                $after_check_code.html("<img src='/bundles/toobigapp/images/loading.gif' border='0'>");
                             },
                             success: function (response) {
                                 if (response !== false) {
                                     $after_check_code.html(response);
+                                    $check_code.html('');
                                     if (response.error != '') {
                                         $after_check_code.html(response.error);
                                     } else if (response.success != '') {
