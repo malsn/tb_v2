@@ -37,6 +37,7 @@ var pre_register_phone = function(){
     if ($("#PreRegister_phone").val()!=''){
         var $form = $("form[name='PreRegister']");
         var $check_code = $("#sms-check-code");
+        var $after_check_code = $("#after-check-code");
         $.ajax({
             url: $form.attr('action'),
             cache: false,
@@ -60,7 +61,6 @@ var pre_register_phone = function(){
                     }
                     var $form = $("form");
                     $('#sms-check-code-button').click(function(){
-                        var $after_check_code = $("#after-check-code");
                         $.ajax({
                             url: $(this).attr('path-controller'),
                             cache: false,
