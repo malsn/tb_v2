@@ -59,10 +59,16 @@ select.form-control {
 }
 
 .form-horizontal .control-label {
-    /*padding: 7px;*/
+    padding: 0px !important;
     margin: 10px 0;
     font-size: 16px;
 }
+.form-horizontal.form-2-section .control-label {
+    padding: 0 7px !important;
+    margin: 0px 0;
+    font-size: 16px;
+}
+
 .form-group.control-group.separator { height: 1px; border-bottom: 1px solid #eee; }
 /* bootstrap */
 
@@ -430,6 +436,7 @@ img.ico-roubles {
     padding-left: 9px;
     padding-bottom: 4px;
     display: inline-block;
+    vertical-align: initial;
 }
 .fileinput-button {
     display: block;
@@ -484,7 +491,12 @@ a.navbar-quick-link:hover {
 }
 
 /* Preregister */
-
+div.pre-register.form-phone-input {
+    height: 40px;
+}
+.col-sm-12 {
+    text-align: left;
+}
 .btn-ajax-to-modal {
     cursor: pointer;
 }
@@ -492,7 +504,8 @@ a.navbar-quick-link:hover {
 #PreRegister-phone-label, #PreRegister-code-label {
     display: inline-block;
     vertical-align: middle;
-    padding-top: 5px;
+    padding-top: 0px;
+    font-size: 16px;
 }
 #PreRegister-code-label {
     float: none;
@@ -525,10 +538,13 @@ div#sms-check-code img, div#after-check-code img {
 .col-sm-5.col-pre-register {
     text-align: center;
 }
-.error ul{
+div.error ul{
     padding-left: 10px;
 }
-.error ul li {
+div.error ul li {
     color: red;
     list-style: none;
+}
+div.error input, div.error textarea {
+    border: 1px solid #dd1144;
 }

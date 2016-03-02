@@ -5,19 +5,19 @@
 
                     <div class="form-group">
                         <label for="fos_user_registration_form_email" class="col-sm-12 control-label">{{ 'form.email'|trans({}, 'FOSUserBundle') }}</label>
-                        <div class="col-sm-12">{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}</div>
+                        <div class="col-sm-12 {% if form_errors(form.email)  %}error{% endif %}">{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}</div>
                         <div class='error'>{{ form_errors(form.email) }}</div>
                     </div>
 
                     <div class="form-group">
                         <label for="fos_user_registration_form_username" class="col-sm-12 control-label">{{ 'form.username'|trans({}, 'FOSUserBundle') }}</label>
-                        <div class="col-sm-12">{{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}</div>
+                        <div class="col-sm-12 {% if form_errors(form.username)  %}error{% endif %}">{{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}</div>
                         <div class='error'>{{ form_errors(form.username) }}</div>
                     </div>
 
                     <div class="form-group">
                         <label for="fos_user_registration_form_place" class="col-sm-12 control-label">{{ 'form.place'|trans({}, 'FOSUserBundle') }}</label>
-                        <div class="col-sm-12">{{ form_widget(form.place, {'attr': {'class': 'form-control'}}) }}</div>
+                        <div class="col-sm-12 {% if form_errors(form.place)  %}error{% endif %}">{{ form_widget(form.place, {'attr': {'class': 'form-control'}}) }}</div>
                         <div class='error'>{{ form_errors(form.place) }}</div>
                     </div>
 
