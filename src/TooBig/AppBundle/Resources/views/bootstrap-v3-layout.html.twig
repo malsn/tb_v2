@@ -61,6 +61,12 @@
                 $alertModal
                         .find('div.modal-body')
                         .html('{{ messages | join('<br/>') | raw }}');
+
+                $('.btn-ajax-to-modal').click(function(){
+                    ajax_to_modal($(this));
+                });
+
+
                 $alertModal.modal('toggle');
                 {% endif %}
             });
