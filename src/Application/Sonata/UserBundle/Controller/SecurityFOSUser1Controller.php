@@ -56,7 +56,7 @@ class SecurityFOSUser1Controller extends SecurityController
      * @param array $data
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginFormAction($form_data)
+    public function loginFormAction($form_data = array())
     {
         $template = sprintf('FOSUserBundle:Security:login.html.%s', $this->container->getParameter('fos_user.template.engine'));
         return $this->container->get('templating')->renderResponse($template, $form_data);
