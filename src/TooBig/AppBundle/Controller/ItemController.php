@@ -735,7 +735,7 @@ public function uploadAction(Request $request)
     }
 
     protected function getUserLoginForm(){
-        $resp_login = $this->forward('ApplicationSonataUserBundle:SecurityFOSUser1:loginForm', array());
+        $resp_login = $this->forward('ApplicationSonataUserBundle:SecurityFOSUser1:loginForm');
         $resp_login = preg_replace('/[\r\n]/i','',$resp_login->getContent());
         $_SESSION['return_url'] = $this->get('request_stack')->getMasterRequest()->server->get('REQUEST_URI');
         $this->get('flash_bag')->addMessage(

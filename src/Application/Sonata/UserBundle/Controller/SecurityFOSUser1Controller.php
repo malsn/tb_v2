@@ -56,7 +56,11 @@ class SecurityFOSUser1Controller extends SecurityController
      * @param array $data
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginFormAction($form_data = array())
+    public function loginFormAction($form_data = array(
+        'last_username' => '',
+        'error'         => null,
+        'csrf_token' => $this->container->has('form.csrf_provider') ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate') : null,
+    ))
     {
         $template = sprintf('FOSUserBundle:Security:login.html.%s', $this->container->getParameter('fos_user.template.engine'));
         return $this->container->get('templating')->renderResponse($template, $form_data);
