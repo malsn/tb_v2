@@ -48,7 +48,7 @@ class SecurityFOSUser1Controller extends SecurityController
         $this->container->get('flash_bag')->addMessage(
             $resp_login
         );
-        return $this->container->get('templating')->renderResponse('TooBigAppBundle:Item:siteIndex');
+        return $this->container->get('templating')->renderResponse('TooBigAppBundle:Item:siteIndex.html.twig');
     }
 
     /**
