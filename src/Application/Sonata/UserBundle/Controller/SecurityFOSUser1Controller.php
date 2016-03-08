@@ -62,8 +62,8 @@ class SecurityFOSUser1Controller extends SecurityController
         'csrf_token' => null,
     ))
     {
-        if (null === $form_data['csrfToken']){
-            $form_data['csrfToken'] = $this->container->has('form.csrf_provider') ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate') : null;
+        if (null === $form_data['csrf_token']){
+            $form_data['csrf_token'] = $this->container->has('form.csrf_provider') ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate') : null;
         }
 
         $template = sprintf('FOSUserBundle:Security:login.html.%s', $this->container->getParameter('fos_user.template.engine'));
