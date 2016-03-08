@@ -12,8 +12,9 @@
 namespace Application\Sonata\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\SecurityController;
-use Application\Sonata\UserBundle\Model\UserInterface;
+use Sonata\UserBundle\Model\UserInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
  * Class SecurityFOSUser1Controller.
@@ -32,11 +33,38 @@ class SecurityFOSUser1Controller extends SecurityController
 
         if ($user instanceof UserInterface) {
             $this->container->get('session')->getFlashBag()->set('sonata_user_error', 'sonata_user_already_authenticated');
-            $url = $this->container->get('router')->generate('app_brand_list');
+            $url = $this->container->get('router')->generate('app_main');
 
             return new RedirectResponse($url);
         }
 
         return parent::loginAction();
+    }
+
+    protected function renderLogin(array $data)
+    {
+        $resp_login = $this->loginFormAction();
+        $resp_login = preg_replace('/[\r\n]/i','',$resp_login->getContent());
+        $this->container->get('flash_bag')->addMessage(
+            $resp_login
+        );
+        return $this->container->get('templating')->renderResponse('TooBigAppBundle:Item:siteIndex');
+    }
+
+    /**
+     * @param array $data
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function loginFormAction()
+    {
+        $csrfToken = $this->container->has('form.csrf_provider') ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate') : null;
+        $data = array(
+            'last_username' => '',
+            'error'         => null,
+            'csrf_token' => $csrfToken,
+        );
+
+        $template = sprintf('FOSUserBundle:Security:login.html.%s', $this->container->getParameter('fos_user.template.engine'));
+        return $this->container->get('templating')->renderResponse($template, $data);
     }
 }

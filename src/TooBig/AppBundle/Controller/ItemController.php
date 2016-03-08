@@ -21,6 +21,7 @@ use TooBig\AppBundle\Form\Type\RateCommentType;
 use TooBig\AppBundle\Model\ItemSubscribtionModel;
 use Iphp\CoreBundle\Controller\RubricAwareController;
 use Application\Sonata\UserBundle\Controller\SecurityFOSUser1Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ItemController extends RubricAwareController
 {
@@ -82,6 +83,14 @@ class ItemController extends RubricAwareController
         $filterForm = $this->createForm( new ItemsFilterType($this->get('router'),$filters) );
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
+        }
+
+        /* redirect after success authentication */
+        $user = $this->get('security.context')->getToken()->getUser();
+        if (is_object($user) && isset($_SESSION['return_url'])) {
+            $redirect_url = $_SESSION['return_url'];
+            unset($_SESSION['return_url']);
+            return new RedirectResponse($redirect_url);
         }
 
         //if ( $request->query->count() ) {
@@ -726,7 +735,7 @@ public function uploadAction(Request $request)
     }
 
     protected function getUserLoginForm(){
-        $resp_login = $this->forward('ApplicationSonataUserBundle:SecurityFOSUser1:login');
+        $resp_login = $this->forward('ApplicationSonataUserBundle:SecurityFOSUser1:loginForm');
         $resp_login = preg_replace('/[\r\n]/i','',$resp_login->getContent());
         $_SESSION['return_url'] = $this->get('request_stack')->getMasterRequest()->server->get('REQUEST_URI');
         $this->get('flash_bag')->addMessage(
