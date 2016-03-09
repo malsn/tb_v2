@@ -19,6 +19,9 @@ var ajax_to_modal = function($button){
                 $('.btn-ajax-to-modal').click(function(){
                     ajax_to_modal($(this));
                 });
+                $('.finish-resetting-button').click(function(){
+                    finish_resetting();
+                });
                 $('.pre-register-phone-button').click(function(){
                     pre_register_phone();
                 });
@@ -128,6 +131,35 @@ var finish_register = function(){
         error: function () {
             $('.finish-register-button').click(function(){
                 finish_register();
+            });
+        }
+    });
+}
+
+var finish_resetting = function(){
+    var $form = $("form[name='FinishResetting']");
+    var $alertModal = $('#alert_modal');
+    $.ajax({
+        url: $form.attr('action'),
+        cache: false,
+        type: 'POST',
+        data: $form.serialize() ,
+        beforeSend: function () {
+            $alertModal.find('div.modal-body').html("<img src='/bundles/toobigapp/images/loading.gif' border='0'>");
+        },
+        success: function (response) {
+            if (response !== false) {
+                $alertModal
+                    .find('div.modal-body')
+                    .html(response);
+                $('.finish-resetting-button').click(function(){
+                    finish_resetting();
+                });
+            }
+        },
+        error: function () {
+            $('.finish-resetting-button').click(function(){
+                finish_resetting();
             });
         }
     });
