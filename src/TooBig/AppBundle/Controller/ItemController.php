@@ -135,8 +135,6 @@ class ItemController extends RubricAwareController
 
     public function listRubricChildrenAction( Request $request ){
 
-        $this->setReturnUrl();
-
         $rubric = $this->get('rubric_model')->getRubricById( $request->request->get('rubric') );
         $struct = $request->request->get('struct');
         $breadcrumbs = [];
