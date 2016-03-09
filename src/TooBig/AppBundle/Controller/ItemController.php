@@ -756,7 +756,10 @@ protected function getUserLoginForm(){
 }
 
 protected function setReturnUrl(){
-    $_SESSION['return_url'] = $this->get('request_stack')->getMasterRequest()->server->get('REQUEST_URI');
+    $user = $this->get('security.context')->getToken()->getUser();
+    if (!is_object($user) && !isset($_SESSION['return_url'])) {
+        $_SESSION['return_url'] = $this->get('request_stack')->getMasterRequest()->server->get('REQUEST_URI');
+    }
 }
 
 protected function unsetReturnUrl(){
