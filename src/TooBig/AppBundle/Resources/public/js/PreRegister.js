@@ -6,7 +6,7 @@ var ajax_to_modal = function($button){
     $.ajax({
         url: $button.attr('path-controller'),
         cache: false,
-        type: 'POST',
+        type: $button.attr('method') || 'POST',
         data: null ,
         beforeSend: function () {
         },
