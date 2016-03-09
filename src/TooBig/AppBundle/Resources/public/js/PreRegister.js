@@ -134,7 +134,9 @@ var finish_register = function(){
     });
 }
 
-$('.btn-ajax-to-modal').click(function(){
-    alert(7);
-    ajax_to_modal($(this));
-});
+$(document).ready(function(){
+    $('.btn-ajax-to-modal').click(function(){
+        alert(7);
+        ajax_to_modal($(this));
+    });
+})
