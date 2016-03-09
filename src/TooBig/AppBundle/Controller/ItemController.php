@@ -35,6 +35,9 @@ class ItemController extends RubricAwareController
      * @Template("TooBigAppBundle:Brand:list.html.twig")
      */
     public function brandListAction(){
+
+        $this->setReturnUrl();
+
         $em = $this->getDoctrine()->getEntityManager();
         $query = $em->createQuery(
             'SELECT p
@@ -52,6 +55,14 @@ class ItemController extends RubricAwareController
      * @Template("TooBigAppBundle::page-main-with-list.html.twig")
      */
     public function siteIndexAction(Request $request){
+
+        /* redirect after success authentication if it happened */
+        $user = $this->get('security.context')->getToken()->getUser();
+        if (is_object($user) && isset($_SESSION['return_url'])) {
+            $redirect_url = $_SESSION['return_url'];
+            $this->unsetReturnUrl();
+            return new RedirectResponse($redirect_url);
+        }
 
         $rubric = $this->get('rubric_model')->getRubricById(1);
 
@@ -83,14 +94,6 @@ class ItemController extends RubricAwareController
         $filterForm = $this->createForm( new ItemsFilterType($this->get('router'),$filters) );
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
-        }
-
-        /* redirect after success authentication */
-        $user = $this->get('security.context')->getToken()->getUser();
-        if (is_object($user) && isset($_SESSION['return_url'])) {
-            $redirect_url = $_SESSION['return_url'];
-            unset($_SESSION['return_url']);
-            return new RedirectResponse($redirect_url);
         }
 
         //if ( $request->query->count() ) {
@@ -131,6 +134,9 @@ class ItemController extends RubricAwareController
     }
 
     public function listRubricChildrenAction( Request $request ){
+
+        $this->setReturnUrl();
+
         $rubric = $this->get('rubric_model')->getRubricById( $request->request->get('rubric') );
         $struct = $request->request->get('struct');
         $breadcrumbs = [];
@@ -172,7 +178,7 @@ class ItemController extends RubricAwareController
 
            return $this->getUserLoginForm();
 
-        } elseif (is_object($user)) {
+        } else {
 
             $form = $this->createForm(
                 new ItemForm($this->get('router')),
@@ -252,7 +258,7 @@ public function editAction($item_id, Request $request)
 
        return $this->getUserLoginForm();
 
-    } elseif (is_object($user)) {
+    } else {
 
         if ( $user === $record->getCreatedBy()){
 
@@ -468,7 +474,7 @@ public function copyAction($item_id, Request $request)
 
         return $this->getUserLoginForm();
 
-    } elseif (is_object($user)) {
+    } else {
 
         $form = $this->createForm(
             new ItemForm($this->get('router')),
@@ -512,236 +518,249 @@ public function uploadAction(Request $request)
     ]);
 }
 
-    /**
-     * @Template("TooBigAppBundle:Item:item.html.twig")
-     */
-    public function indexAction()
-    {
-        $content = $this->getRubricIndex($this->getCurrentRubric());
+/**
+ * @Template("TooBigAppBundle:Item:item.html.twig")
+ */
+public function indexAction()
+{
+    $this->setReturnUrl();
 
-        if ($content && !$content->getEnabled()) $content = null;
-        //if (!$content) throw $this->createNotFoundException('Индексный материал не найден');
+    $content = $this->getRubricIndex($this->getCurrentRubric());
 
-        return   array('content' => $content);
-    }
+    if ($content && !$content->getEnabled()) $content = null;
+    //if (!$content) throw $this->createNotFoundException('Индексный материал не найден');
 
-    /**
-     * @Template()
-     * @param Request $request
-     * @return array
-     */
-    public function listAction(Request $request)
-    {
-        $rubric = $this->getCurrentRubric();
+    return   array('content' => $content);
+}
 
-        $filter_params = [];
-        $price_params = [];
-        $filter_params['Brand'] = isset($request->query->get('ItemsFilter')['brand']) ? $request->query->get('ItemsFilter')['brand'] : null;
-        $filter_params['Size'] = isset($request->query->get('ItemsFilter')['size']) ? $request->query->get('ItemsFilter')['size'] : null;
-        $filter_params['Color'] = isset($request->query->get('ItemsFilter')['color']) ? $request->query->get('ItemsFilter')['color'] : null;
-        $filter_params['Gender'] = isset($request->query->get('ItemsFilter')['gender']) ? $request->query->get('ItemsFilter')['gender'] : null;
-        $search_params['Search'] = isset($request->query->get('ItemsFilter')['search']) ? $request->query->get('ItemsFilter')['search'] : null;
-        $min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
-        $max = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'max');
-        $price_params['Min'] = $request->query->get('ItemsFilter')['price_min'] ? : $min[0][1];
-        $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];
+/**
+ * @Template()
+ * @param Request $request
+ * @return array
+ */
+public function listAction(Request $request)
+{
+    $rubric = $this->getCurrentRubric();
 
-        $query = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
-        $query_filter = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
+    $filter_params = [];
+    $price_params = [];
+    $filter_params['Brand'] = isset($request->query->get('ItemsFilter')['brand']) ? $request->query->get('ItemsFilter')['brand'] : null;
+    $filter_params['Size'] = isset($request->query->get('ItemsFilter')['size']) ? $request->query->get('ItemsFilter')['size'] : null;
+    $filter_params['Color'] = isset($request->query->get('ItemsFilter')['color']) ? $request->query->get('ItemsFilter')['color'] : null;
+    $filter_params['Gender'] = isset($request->query->get('ItemsFilter')['gender']) ? $request->query->get('ItemsFilter')['gender'] : null;
+    $search_params['Search'] = isset($request->query->get('ItemsFilter')['search']) ? $request->query->get('ItemsFilter')['search'] : null;
+    $min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
+    $max = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'max');
+    $price_params['Min'] = $request->query->get('ItemsFilter')['price_min'] ? : $min[0][1];
+    $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];
 
-        $query_non_filter = $this->getDoctrine()
-            ->getRepository('TooBigAppBundle:Item')
-            ->createQuery('c', function ($qb) use ($rubric)
-            {
-                $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
-            });
+    $query = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
+    $query_filter = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
 
-        /* получаем фильтр от всего результата $query_non_filter */
-        $filters = $this->get('item_model')->getItemsFilter($query_non_filter);
-
-        $filterForm = $this->createForm( new ItemsFilterType($this->get('router'),$filters) );
-        if ($request->isMethod('GET')) {
-            $filterForm->handleRequest($request);
-        }
-
-        return array(
-            'entities' => $this->paginate($query, 20),
-            'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
-            'filterForm' => $filterForm->createView(),
-            'rubricPriceRange' => $price_params,
-            'filter_params'=>$filter_params,
-            'count' => count($query_filter->getResult()),
-            'filter_results' => $filters
-        );
-    }
-
-    /**
-     * @Template("TooBigAppBundle:Item:item.html.twig")
-     */
-    public function contentBySlugAction($slug)
-    {
-        $rubric = $this->getCurrentRubric();
-        $content = $this->getDoctrine()
-            ->getRepository('TooBigAppBundle:Item')
-            ->createQuery('c', function ($qb) use ($rubric, $slug)
+    $query_non_filter = $this->getDoctrine()
+        ->getRepository('TooBigAppBundle:Item')
+        ->createQuery('c', function ($qb) use ($rubric)
         {
-            $qb->fromRubric($rubric)->whereSlug($slug)->whereEnabled();
-        })->getOneOrNullResult();
+            $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
+        });
 
-        if (!$content) throw $this->createNotFoundException('Объявление с кодом "' . $slug . '" не найдено');
+    /* получаем фильтр от всего результата $query_non_filter */
+    $filters = $this->get('item_model')->getItemsFilter($query_non_filter);
 
-        if ($content->getRedirectUrl())
-            return $this->redirect($content->getRedirectUrl());
-
-        /* находим файлы изображения для слайдера, TODO: необходимо заменить на БД запросы */
-        $fileUploader = $this->get('punk_ave.file_uploader');
-        $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $content->getId()));
-        /* находим опубликованные комментарии по объявлению */
-        $comments = $this->get('item_ratecomment_model')->getCommentsByItem( $content->getId() );
-
-        $response = array(
-            'content' => $content,
-            'files' => $files,
-            'comments' => $comments,
-            'breadcrumbs' => $this->getBreadcrumbs( $rubric )
-        );
-
-            $user = $this->get('security.context')->getToken()->getUser();
-            if ( is_object( $user ) && $user !== $content->getCreatedBy()) {
-                /* находим комментировал ли пользователь объявление, и если оно ему не принадлежит */
-                $rate_comment = $this->get('item_ratecomment_model')->getRateCommentByItem($content->getId());
-                $response['rate_comment_item'] = $rate_comment;
-                /* обновляем счетчик посещений объявления, если оно ему не принадлежит */
-                $this->get('item_model')->updateHits( $content );
-            }
-
-        return $response;
-
+    $filterForm = $this->createForm( new ItemsFilterType($this->get('router'),$filters) );
+    if ($request->isMethod('GET')) {
+        $filterForm->handleRequest($request);
     }
 
-    /**
-     * @param $item_id
-     * response JsonResponse
-     */
-    public function addcommentAction( $item_id, Request $request )
+    return array(
+        'entities' => $this->paginate($query, 20),
+        'breadcrumbs' => $this->getBreadcrumbs( $rubric ),
+        'filterForm' => $filterForm->createView(),
+        'rubricPriceRange' => $price_params,
+        'filter_params'=>$filter_params,
+        'count' => count($query_filter->getResult()),
+        'filter_results' => $filters
+    );
+}
+
+/**
+ * @Template("TooBigAppBundle:Item:item.html.twig")
+ */
+public function contentBySlugAction($slug)
+{
+    $this->setReturnUrl();
+
+    $rubric = $this->getCurrentRubric();
+    $content = $this->getDoctrine()
+        ->getRepository('TooBigAppBundle:Item')
+        ->createQuery('c', function ($qb) use ($rubric, $slug)
     {
-        $response = new JsonResponse();
+        $qb->fromRubric($rubric)->whereSlug($slug)->whereEnabled();
+    })->getOneOrNullResult();
 
-        $rate_comment = new RateComment();
-        $form = $this->createForm(
-            new RateCommentType( $this->get('router'), $item_id ),
-            $rate_comment
-        );
+    if (!$content) throw $this->createNotFoundException('Объявление с кодом "' . $slug . '" не найдено');
 
-        if ($request->isMethod('POST')) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                try {
-                    $this->get('item_ratecomment_model')->save( $rate_comment, $item_id );
-                    $response->setData(array(
-                        'message' => 'Благодарим вас за ваш комментарий и вашу оценку, он будет опубликован после проверки модератором.'
-                    ));
-                } catch (\Exception $e) {
-                    return $this->render('TooBigAppBundle:Item:add_rate_comment.html.twig', [ 'form' => $form->createView(), 'item_id' => $item_id ]);
-                }
-            } else {
-                try {
-                    return $this->render('TooBigAppBundle:Item:add_rate_comment.html.twig', [ 'form' => $form->createView(), 'item_id' => $item_id ]);
-                } catch (\Exception $e) {
+    if ($content->getRedirectUrl())
+        return $this->redirect($content->getRedirectUrl());
 
-                }
-            }
-        }
-        return $response;
-    }
+    /* находим файлы изображения для слайдера, TODO: необходимо заменить на БД запросы */
+    $fileUploader = $this->get('punk_ave.file_uploader');
+    $files = $fileUploader->getFiles(array('folder' => 'attachments/' . $content->getId()));
+    /* находим опубликованные комментарии по объявлению */
+    $comments = $this->get('item_ratecomment_model')->getCommentsByItem( $content->getId() );
 
-    /**
-     * @param Request $request
-     * @param $item_id
-     * @return Response
-     */
-    public function viewItemPhoneAction(Request $request, $item_id){
-        $record = $this->get('item_model')->getItemById($item_id);
+    $response = array(
+        'content' => $content,
+        'files' => $files,
+        'comments' => $comments,
+        'breadcrumbs' => $this->getBreadcrumbs( $rubric )
+    );
 
-        $form = $this->createForm(
-            new CaptchaForm()
-        );
-
-        if ($request->isMethod('POST')){
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                return new Response ($record->getPhone());
-            }
+        $user = $this->get('security.context')->getToken()->getUser();
+        if ( is_object( $user ) && $user !== $content->getCreatedBy()) {
+            /* находим комментировал ли пользователь объявление, и если оно ему не принадлежит */
+            $rate_comment = $this->get('item_ratecomment_model')->getRateCommentByItem($content->getId());
+            $response['rate_comment_item'] = $rate_comment;
+            /* обновляем счетчик посещений объявления, если оно ему не принадлежит */
+            $this->get('item_model')->updateHits( $content );
         }
 
-        return $this->render('TooBigAppBundle:Captcha:form.html.twig', array(
-            'form' => $form->createView()
-        ));
+    return $response;
+
+}
+
+/**
+ * @param $item_id
+ * response JsonResponse
+ */
+public function addcommentAction( $item_id, Request $request )
+{
+    $response = new JsonResponse();
+
+    $rate_comment = new RateComment();
+    $form = $this->createForm(
+        new RateCommentType( $this->get('router'), $item_id ),
+        $rate_comment
+    );
+
+    if ($request->isMethod('POST')) {
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            try {
+                $this->get('item_ratecomment_model')->save( $rate_comment, $item_id );
+                $response->setData(array(
+                    'message' => 'Благодарим вас за ваш комментарий и вашу оценку, он будет опубликован после проверки модератором.'
+                ));
+            } catch (\Exception $e) {
+                return $this->render('TooBigAppBundle:Item:add_rate_comment.html.twig', [ 'form' => $form->createView(), 'item_id' => $item_id ]);
+            }
+        } else {
+            try {
+                return $this->render('TooBigAppBundle:Item:add_rate_comment.html.twig', [ 'form' => $form->createView(), 'item_id' => $item_id ]);
+            } catch (\Exception $e) {
+
+            }
+        }
+    }
+    return $response;
+}
+
+/**
+ * @param Request $request
+ * @param $item_id
+ * @return Response
+ */
+public function viewItemPhoneAction(Request $request, $item_id){
+    $record = $this->get('item_model')->getItemById($item_id);
+
+    $form = $this->createForm(
+        new CaptchaForm()
+    );
+
+    if ($request->isMethod('POST')){
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            return new Response ($record->getPhone());
+        }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getErrors()
-    {
-        return $this->errors;
-    }
+    return $this->render('TooBigAppBundle:Captcha:form.html.twig', array(
+        'form' => $form->createView()
+    ));
+}
 
-    /**
-     * @param mixed $error
-     */
-    public function setErrors($error)
-    {
-        $this->errors[] = $error;
-    }
+/**
+ * @return mixed
+ */
+public function getErrors()
+{
+    return $this->errors;
+}
 
-    /**
-     * @param Rubric $rubric
-     */
-    protected function getBreadcrumbs(Rubric $rubric){
-        return array_reverse( $this->get('rubric_model')->getParentRubrics($rubric->getId(), []) );
-    }
+/**
+ * @param mixed $error
+ */
+public function setErrors($error)
+{
+    $this->errors[] = $error;
+}
 
-    protected function itemsQueryBuilder ($rubric, $filter_params, $price_params, $search_params){
-        return $this->getDoctrine()
-            ->getRepository('TooBigAppBundle:Item')
-            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $search_params)
-            {
-                $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
-                foreach ($filter_params as $key => $value) {
-                    if ( null !== $value ){
-                        $qb_func = 'where'.$key;
-                        $qb->$qb_func($value);
-                    }
+/**
+ * @param Rubric $rubric
+ * @return array
+ */
+protected function getBreadcrumbs(Rubric $rubric){
+    return array_reverse( $this->get('rubric_model')->getParentRubrics($rubric->getId(), []) );
+}
+
+protected function itemsQueryBuilder ($rubric, $filter_params, $price_params, $search_params){
+    return $this->getDoctrine()
+        ->getRepository('TooBigAppBundle:Item')
+        ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $search_params)
+        {
+            $qb->fromRubric($rubric)->whereEnabled()->whereIndex(false)->withSubrubrics(true);
+            foreach ($filter_params as $key => $value) {
+                if ( null !== $value ){
+                    $qb_func = 'where'.$key;
+                    $qb->$qb_func($value);
                 }
-                if (null !== $price_params['Min'] && null !== $price_params['Max']) {
-                    $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
-                }
-                if (null !== $search_params['Search']) {
-                    $search_words = preg_split("/[\s,]+/", $search_params['Search']);
-                    if (count($search_words)){
-                        $orX = $qb->expr()->orX();
-                        foreach ($search_words as $word) {
-                            if (strlen($word) > 2) {
-                                $orX->add($qb->expr()->like('c.content', "'%".$word."%'"));
-                                $orX->add($qb->expr()->like('c.title', "'%".$word."%'"));
-                            }
+            }
+            if (null !== $price_params['Min'] && null !== $price_params['Max']) {
+                $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
+            }
+            if (null !== $search_params['Search']) {
+                $search_words = preg_split("/[\s,]+/", $search_params['Search']);
+                if (count($search_words)){
+                    $orX = $qb->expr()->orX();
+                    foreach ($search_words as $word) {
+                        if (strlen($word) > 2) {
+                            $orX->add($qb->expr()->like('c.content', "'%".$word."%'"));
+                            $orX->add($qb->expr()->like('c.title', "'%".$word."%'"));
                         }
-                        $qb->andWhere($orX);
                     }
+                    $qb->andWhere($orX);
                 }
-                $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
-            });
-    }
+            }
+            $qb->addOrderBy ('c.date','DESC')->addOrderBy ('c.updatedAt','DESC');
+        });
+}
 
-    protected function getUserLoginForm(){
-        $resp_login = $this->forward('ApplicationSonataUserBundle:SecurityFOSUser1:loginForm');
-        $resp_login = preg_replace('/[\r\n]/i','',$resp_login->getContent());
-        $_SESSION['return_url'] = $this->get('request_stack')->getMasterRequest()->server->get('REQUEST_URI');
-        $this->get('flash_bag')->addMessage(
-            $resp_login
-        );
-        return $this->forward('TooBigAppBundle:Item:siteIndex');
-    }
+protected function getUserLoginForm(){
+    $resp_login = $this->forward('ApplicationSonataUserBundle:SecurityFOSUser1:loginForm');
+    $resp_login = preg_replace('/[\r\n]/i','',$resp_login->getContent());
+    $this->setReturnUrl();
+    $this->get('flash_bag')->addMessage(
+        $resp_login
+    );
+    return $this->forward('TooBigAppBundle:Item:siteIndex');
+}
+
+protected function setReturnUrl(){
+    $_SESSION['return_url'] = $this->get('request_stack')->getMasterRequest()->server->get('REQUEST_URI');
+}
+
+protected function unsetReturnUrl(){
+    unset($_SESSION['return_url']);
+}
 
 }
