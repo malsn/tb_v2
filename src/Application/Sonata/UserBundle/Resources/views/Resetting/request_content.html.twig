@@ -1,5 +1,5 @@
 <div class="panel-body">
-    <form action="{{ path('sonata_user_resetting_send_email') }}" name="FinishResseting" method="POST" class="fos_user_resetting_request">
+    <form action="{{ path('sonata_user_resetting_send_email') }}" name="FinishResetting" method="POST" class="fos_user_resetting_request">
        <div class="form-group">
             <label for="username" class="col-sm-offset-2 col-sm-8 control-label" style="text-align: center !important;">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
             <div class="col-sm-offset-2 col-sm-8 {% if invalid_username is defined  %}error{% endif %}"><input type="text" id="username" name="username" required="required" size="10" class="form-control"></div>
