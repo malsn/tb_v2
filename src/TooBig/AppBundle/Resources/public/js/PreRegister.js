@@ -9,7 +9,7 @@ var ajax_to_modal = function($button){
         type: 'POST',
         data: null ,
         beforeSend: function () {
-
+            alert(0);
         },
         success: function (response) {
             if (response !== false) {
@@ -135,5 +135,6 @@ var finish_register = function(){
 }
 
 $('.btn-ajax-to-modal').click(function(){
+    alert(7);
     ajax_to_modal($(this));
 });
