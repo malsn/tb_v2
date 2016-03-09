@@ -540,6 +540,8 @@ public function indexAction()
  */
 public function listAction(Request $request)
 {
+    $this->setReturnUrl();
+
     $rubric = $this->getCurrentRubric();
 
     $filter_params = [];
