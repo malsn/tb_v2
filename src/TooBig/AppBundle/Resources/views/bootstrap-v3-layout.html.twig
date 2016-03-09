@@ -231,10 +231,10 @@
                             {% else %}
 
                                 <div class="btn btn-primary btn-ajax-to-modal"
-                                   path-controller="{{ path_exists ('fos_user_security_login') ? path ('fos_user_security_login') : '#' }}"
+                                   path-controller="{{ path_exists ('fos_user_security_login_form') ? path ('fos_user_security_login_form') : '#' }}"
                                    class="btn btn-primary">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                    {{ path_exists ('fos_user_security_login') ?
+                                    {{ path_exists ('fos_user_security_login_form') ?
                                        "layout.login"| trans ({}, 'FOSUserBundle') : 'Login'}}
                                 </div>
 
