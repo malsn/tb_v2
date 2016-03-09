@@ -245,7 +245,7 @@ protected function getSubscriptionQuery($subscription){
 protected function getUserLoginForm(){
     $resp_login = $this->forward('ApplicationSonataUserBundle:SecurityFOSUser1:loginForm');
     $resp_login = preg_replace('/[\r\n]/i','',$resp_login->getContent());
-    $this->setReturnUrl();
+    $_SESSION['return_url'] = $this->get('request_stack')->getMasterRequest()->server->get('REQUEST_URI');
     $this->get('flash_bag')->addMessage(
         $resp_login
     );
