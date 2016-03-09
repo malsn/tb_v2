@@ -22,12 +22,17 @@ class SubscriptionController extends RubricAwareController
     /**
      * @Route("/app/subscription/add", name="app_subscribtion_add")
      */
-    public function addAction(Request $request)
-    {
-        $record = new AutoSubscription();
+public function addAction(Request $request)
+{
         $user = $this->get('security.context')->getToken()->getUser();
 
-        if (is_object($user)) {
+        if (!is_object($user)) {
+
+            return $this->getUserLoginForm();
+
+        } else {
+
+            $record = new AutoSubscription();
 
             $form = $this->createForm(
                 new SubscriptionType($this->get('router')),
@@ -53,25 +58,27 @@ class SubscriptionController extends RubricAwareController
             return $this->render('TooBigAppBundle:AutoSubscription:add_subscription.html.twig', [
                 'form' => $form->createView()
             ]);
-        } else {
-            return $this->redirect($this->generateUrl('fos_user_security_login'));
-        }
-
 
     }
+}
 
 /**
  * @Route("/app/subscription/{subscription_id}/edit", name="app_subscription_edit")
  */
 public function editAction($subscription_id, Request $request)
 {
-    $record = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
-
-    if (!is_object($record)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
 
     $user = $this->get('security.context')->getToken()->getUser();
 
-    if (is_object($user)) {
+    if (!is_object($user)) {
+
+        return $this->getUserLoginForm();
+
+    } else {
+
+        $record = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
+
+        if (!is_object($record)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
 
         if ( $user === $record->getCreatedBy()){
 
@@ -100,7 +107,7 @@ public function editAction($subscription_id, Request $request)
                 'posting' => $record
             ]);
 
-    } else {
+        } else {
             $this->get('flash_bag')->addMessage('<div>Данная подписка создана не вами. Если у вас есть вопросы, задайте их администратору сайта. Спасибо за понимание.</div>');
             $form = $this->createForm(
                 new SubscriptionType($this->get('router')),
@@ -109,29 +116,33 @@ public function editAction($subscription_id, Request $request)
             return $this->render( 'TooBigAppBundle:AutoSubscription:edit_subscription.html.twig', ['form' => $form->createView()] );
         }
 
-    } else {
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
+
 }
 
 public function deleteAction($subscription_id){
 
-    $record = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
     $user = $this->get('security.context')->getToken()->getUser();
 
-    if (!is_object($record)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
+    if (!is_object($user)) {
 
-    if (is_object($user)) {
+        return $this->getUserLoginForm();
+
+    } else {
+
+        $record = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
+
+        if (!is_object($record)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
 
         if ( $user === $record->getCreatedBy()){
 
-                try {
-                    $this->get('auto_subscription_model')->delete($record);
-                    $this->get('flash_bag')->addMessage('Ваша подписка успешно удалена!');
+            try {
+                $this->get('auto_subscription_model')->delete($record);
+                $this->get('flash_bag')->addMessage('Ваша подписка успешно удалена!');
 
-                } catch (\Exception $e) {
-                    $this->get('flash_bag')->addMessage('Ваша подписка не удалилась!'.$e->getMessage());
-                }
+            } catch (\Exception $e) {
+                $this->get('flash_bag')->addMessage('Ваша подписка не удалилась!'.$e->getMessage());
+            }
 
         } else {
             $this->get('flash_bag')->addMessage('<div>Данная подписка создана не вами. Если у вас есть вопросы, задайте их администратору сайта. Спасибо за понимание.</div>');
@@ -139,72 +150,106 @@ public function deleteAction($subscription_id){
 
         return $this->forward('TooBigAppBundle:User:listSubscriptions',[]);
 
-    } else {
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
+
 }
 
-    /**
-     * @param $subscription_id
-     * @return int|null
-     */
-    public function getSubscriptionItemsCountAction($subscription_id){
+/**
+ * @param $subscription_id
+ * @return int|null
+ */
+public function getSubscriptionItemsCountAction($subscription_id){
+
+    $user = $this->get('security.context')->getToken()->getUser();
+
+    if (!is_object($user)) {
+
+        return new Response(0);
+
+    } else {
+
         $subscription = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
         $query = $this->getSubscriptionQuery($subscription);
         return new Response(count($query->getResult()));
+
     }
 
-    /**
-     * @Template("TooBigAppBundle:AutoSubscription:subscription_items.html.twig")
-     */
-    public function getSubscriptionItemsListAction($subscription_id){
+}
+
+/**
+ * @Template("TooBigAppBundle:AutoSubscription:subscription_items.html.twig")
+ */
+public function getSubscriptionItemsListAction($subscription_id){
+
+    $user = $this->get('security.context')->getToken()->getUser();
+
+    if (!is_object($user)) {
+
+        return $this->getUserLoginForm();
+
+    } else {
+
         $subscription = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
         $query = $this->getSubscriptionQuery($subscription);
         return array('entities' => $this->paginate($query, 20), 'subscription' => $subscription);
+
     }
 
-    /**
-     * @return mixed
-     */
-    public function getErrors()
-    {
-        return $this->errors;
-    }
+}
 
-    /**
-     * @param mixed $error
-     */
-    public function setErrors($error)
-    {
-        $this->errors[] = $error;
-    }
+/**
+ * @return mixed
+ */
+public function getErrors()
+{
+    return $this->errors;
+}
 
-    /**
-     * @param $subscription
-     * @return null
-     */
-    public function getSubscriptionQuery($subscription){
+/**
+ * @param mixed $error
+ */
+public function setErrors($error)
+{
+    $this->errors[] = $error;
+}
 
-        $user = $this->get('security.context')->getToken()->getUser();
+/**
+ * @param $subscription
+ * @return null
+ */
+protected function getSubscriptionQuery($subscription){
 
-        if (!is_object($subscription)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
+    $user = $this->get('security.context')->getToken()->getUser();
 
-        if (is_object($user)) {
+    if (!is_object($subscription)) { throw $this->createNotFoundException('Подписки по указанному адресу не существует'); }
 
-            if ( $user === $subscription->getCreatedBy()){
+    if (is_object($user)) {
 
-                try {
-                    $query = $this->get('auto_subscription_model')->getItemsBySubscriptionQuery($subscription);
-                    return $query;
+        if ( $user === $subscription->getCreatedBy()){
 
-                } catch (\Exception $e) {
-                    $this->setErrors($e->getMessage());
-                    return null;
-                }
+            try {
+                $query = $this->get('auto_subscription_model')->getItemsBySubscriptionQuery($subscription);
+                return $query;
 
-            } else {
+            } catch (\Exception $e) {
+                $this->setErrors($e->getMessage());
                 return null;
             }
+
+        } else {
+            return null;
         }
     }
+}
+
+protected function getUserLoginForm(){
+    $resp_login = $this->forward('ApplicationSonataUserBundle:SecurityFOSUser1:loginForm');
+    $resp_login = preg_replace('/[\r\n]/i','',$resp_login->getContent());
+    $this->setReturnUrl();
+    $this->get('flash_bag')->addMessage(
+        $resp_login
+    );
+    return $this->forward('TooBigAppBundle:Item:siteIndex');
+}
+
 }
