@@ -21,4 +21,11 @@ use FOS\UserBundle\Controller\ResettingController;
  */
 class ResettingFOSUser1Controller extends ResettingController
 {
+    /**
+     * Request reset user password: show form
+     */
+    public function requestAction()
+    {
+        return $this->container->get('templating')->renderResponse('ApplicationSonataUserBundle:Resetting:request.html.'.$this->getEngine());
+    }
 }
