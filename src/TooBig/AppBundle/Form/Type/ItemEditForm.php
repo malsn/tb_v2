@@ -12,7 +12,8 @@ use Iphp\CoreBundle\Admin\Admin;
 use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use TooBig\AppBundle\Entity\Item;
-use Application\Oh\ColorPickerTypeBundle\Form\Type\ColorPickerType;
+use Oh\ColorPickerTypeBundle\Form\Type\ColorPickerType;
+use Doctrine\ORM\EntityRepository;
 
 
 class ItemEditForm extends AbstractType
@@ -138,6 +139,17 @@ class ItemEditForm extends AbstractType
     public function getName()
     {
         return 'Item';
+    }
+
+    protected function getColorArray(EntityRepository $er) {
+
+        $qb = $er->createQueryBuilder('c');
+        $qb->select('c.id')
+            ->addSelect('c.code')
+            ->from('TooBigAppBundle:Color','c')
+            ->addOrderBy('c.code');
+
+        return $qb->getQuery()->getResult();
     }
 
     public function setRoutingService($routing)
