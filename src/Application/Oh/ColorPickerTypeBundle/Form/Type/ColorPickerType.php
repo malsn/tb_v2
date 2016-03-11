@@ -37,15 +37,7 @@ class ColorPickerType extends ChoiceType {
             'multiple'          => false,
             'expanded'          => false,
             'choice_list'       => $choiceList,
-            'choices'          => function(EntityRepository $er){
-                $qb = $er->createQueryBuilder('c');
-                $qb->select('c.id')
-                    ->addSelect('c.code')
-                    ->from('TooBigAppBundle:Color','c')
-                    ->addOrderBy('c.code');
-
-                return $qb->getQuery()->getResult();
-                                },
+            'callback'          => 'getColorArray',
             'preferred_choices' => array(),
             'empty_data'        => null,
             'empty_value'       => null,
@@ -75,8 +67,16 @@ class ColorPickerType extends ChoiceType {
         $view->vars['picker'] = $options['picker'];
         
     }
-    
-    
+
+    protected function getColorArray(EntityRepository $er) {
+        $qb = $er->createQueryBuilder('c');
+        $qb->select('c.id')
+            ->addSelect('c.code')
+            ->from('TooBigAppBundle:Color','c')
+            ->addOrderBy('c.code');
+
+        return $qb->getQuery()->getResult();
+    }
     /**
      * {@inheritdoc}
      */
