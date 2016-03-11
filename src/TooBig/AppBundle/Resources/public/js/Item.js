@@ -157,10 +157,18 @@ jQuery(document).ready(function() {
         phone_request($phone_container, $button);
     });
 
-    jQuery(".filter-color-box").on('click', function(){
-        jQuery(this).toggleClass('glyphicon glyphicon-ok');
-        sibcheckbox = jQuery(this).siblings("input");
-        sibcheckbox.prop("checked", !sibcheckbox.prop("checked"));
-    });
+    /* Items Filter */
+
+    jQuery(".filter-color-box")
+        .each(function(){
+            sibcheckbox = jQuery(this).siblings("input");
+            sibcheckbox.prop("checked") ? jQuery(this).addClass('glyphicon glyphicon-ok') : null;
+        })
+        .on('click', function(){
+            jQuery(this).toggleClass('glyphicon glyphicon-ok');
+            sibcheckbox = jQuery(this).siblings("input");
+            sibcheckbox.prop("checked", !sibcheckbox.prop("checked"));
+        });
+
 
 });
