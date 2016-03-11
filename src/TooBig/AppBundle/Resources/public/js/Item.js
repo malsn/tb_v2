@@ -157,4 +157,10 @@ jQuery(document).ready(function() {
         phone_request($phone_container, $button);
     });
 
+    jQuery(".filter-color-box").on('click', function(){
+        jQuery(this).toggleClass('checked');
+        sibcheckbox = jQuery(this).siblings("input");
+        sibcheckbox.prop("checked", !sibcheckbox.prop("checked"));
+    });
+
 });

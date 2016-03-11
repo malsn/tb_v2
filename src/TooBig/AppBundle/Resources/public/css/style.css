@@ -174,14 +174,32 @@ div#ItemsFilter div.form-row div.title {
     overflow-y: auto;
     padding-bottom: 10px;
 }
+div#ItemsFilter_color > div {
+    display: inline-block;
+    width: 30px;
+}
+div#ItemsFilter_color input[type=checkbox] {
+    display: none;
+}
 .filter-color-box {
-    width: 73px;
+    width: 30px;
     height: 30px;
     border: 1px solid #DDDDDD;
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 0px;
     position: relative;
     top: 10px;
+}
+.filter-color-box:hover {
+    border: 1px solid #777777;
+}
+.filter-color-box.checked:after {
+    content: "C";
+    color: #fff;
+}
+.filter-color-box.checked {
+    border: 1px solid rgb(34, 34, 34);
+    box-sizing: border-box;
 }
 .selected-color-box {
     width: 20px;
