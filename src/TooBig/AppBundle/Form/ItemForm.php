@@ -14,7 +14,7 @@ use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use TooBig\AppBundle\Entity\Item;
 use TooBig\AppBundle\Form\Type\StatusType;
-use Oh\ColorPickerTypeBundle\Form\Type\ColorPickerType;
+use Application\Oh\ColorPickerTypeBundle\Form\Type\ColorPickerType;
 
 
 class ItemForm extends AbstractType

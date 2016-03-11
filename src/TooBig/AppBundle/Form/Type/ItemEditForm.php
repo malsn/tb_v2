@@ -12,7 +12,7 @@ use Iphp\CoreBundle\Admin\Admin;
 use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use TooBig\AppBundle\Entity\Item;
-use Oh\ColorPickerTypeBundle\Form\Type\ColorPickerType;
+use Application\Oh\ColorPickerTypeBundle\Form\Type\ColorPickerType;
 
 
 class ItemEditForm extends AbstractType
@@ -61,8 +61,7 @@ class ItemEditForm extends AbstractType
             /*->add('rubric', 'rubricchoice')*/
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('status', new StatusType(), ['empty_value' => 'Укажите состояние'])
-            ->add('color')
-            ->add('colorpicker', new ColorPickerType())
+            ->add('color', new ColorPickerType())
             /*->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
                 'empty_value' => 'Укажите бренд',

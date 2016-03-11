@@ -80,7 +80,8 @@ class RegisterBundles
             '\\Application\\Sonata\\ClassificationBundle\\ApplicationSonataClassificationBundle',
 
             '\\JMS\\SecurityExtraBundle\\JMSSecurityExtraBundle',
-            '\\JMS\\SerializerBundle\\JMSSerializerBundle'
+            '\\JMS\\SerializerBundle\\JMSSerializerBundle',
+            '\\Application\\Oh\\ColorPickerTypeBundle\\ApplicationOhColorPickerTypeBundle'
         );
     }
 }
