@@ -12,8 +12,6 @@ use Iphp\CoreBundle\Admin\Admin;
 use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use TooBig\AppBundle\Entity\Item;
-use Oh\ColorPickerTypeBundle\Form\Type\ColorPickerType;
-use Doctrine\ORM\EntityRepository;
 
 
 class ItemEditForm extends AbstractType
@@ -62,11 +60,7 @@ class ItemEditForm extends AbstractType
             /*->add('rubric', 'rubricchoice')*/
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('status', new StatusType(), ['empty_value' => 'Укажите состояние'])
-            ->add('color', new ColorPickerType(), [
-                'choices' => array(
-                    1 => '#ffffff',
-                    2 => '#000000')
-            ])
+            ->add('color')
             /*->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
                 'empty_value' => 'Укажите бренд',
@@ -143,17 +137,6 @@ class ItemEditForm extends AbstractType
     public function getName()
     {
         return 'Item';
-    }
-
-    protected function getColorArray(EntityRepository $er) {
-
-        $qb = $er->createQueryBuilder('c');
-        $qb->select('c.id')
-            ->addSelect('c.code')
-            ->from('TooBigAppBundle:Color','c')
-            ->addOrderBy('c.code');
-
-        return $qb->getQuery()->getResult();
     }
 
     public function setRoutingService($routing)
