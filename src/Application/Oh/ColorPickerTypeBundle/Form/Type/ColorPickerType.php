@@ -37,7 +37,7 @@ class ColorPickerType extends ChoiceType {
             'multiple'          => false,
             'expanded'          => false,
             'choice_list'       => $choiceList,
-            'callback'          => function(EntityRepository $er){
+            'choices'          => function(EntityRepository $er){
                 $qb = $er->createQueryBuilder('c');
                 $qb->select('c.id')
                     ->addSelect('c.code')
