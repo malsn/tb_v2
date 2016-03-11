@@ -158,7 +158,7 @@ jQuery(document).ready(function() {
     });
 
     jQuery(".filter-color-box").on('click', function(){
-        jQuery(this).toggleClass('checked');
+        jQuery(this).toggleClass('glyphicon glyphicon-ok');
         sibcheckbox = jQuery(this).siblings("input");
         sibcheckbox.prop("checked", !sibcheckbox.prop("checked"));
     });

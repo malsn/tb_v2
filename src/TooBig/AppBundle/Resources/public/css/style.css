@@ -193,11 +193,11 @@ div#ItemsFilter_color input[type=checkbox] {
 .filter-color-box:hover {
     border: 1px solid #777777;
 }
-.filter-color-box.checked:after {
-    content: "C";
-    color: #fff;
+.filter-color-box.glyphicon-ok:before {
+    content: "\e013";
+    position: absolute;
 }
-.filter-color-box.checked {
+.filter-color-box.glyphicon-ok {
     border: 1px solid rgb(34, 34, 34);
     box-sizing: border-box;
 }
