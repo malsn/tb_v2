@@ -35,6 +35,7 @@
 
     {# Underscore templates for the uploader #}
     {% include "TooBigAppBundle:Item\\FileUpload:templates.html.twig" %}
+    {% form_theme form 'TooBigAppBundle:Form:colorpicker_fields.html.twig' %}
 
     <form name="Item" class="edit-form form-horizontal form-2-section" action="{{ path('app_item_add', { rubric_id: rubric.id, editId: editId }) }}" method="post" {{ form_enctype(form) }}>
 
