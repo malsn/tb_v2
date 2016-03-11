@@ -64,8 +64,8 @@ class ItemEditForm extends AbstractType
             ->add('status', new StatusType(), ['empty_value' => 'Укажите состояние'])
             ->add('color', new ColorPickerType(), [
                 'choices' => array(
-                    '#ffffff' =>'White',
-                    '#000000' =>'Black')
+                    1 => '#ffffff',
+                    2 => '#000000')
             ])
             /*->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
