@@ -37,7 +37,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ SonataUserBundle, TooBigAppBundle, SonataAdminBundle, FOSUserBundle ]
+    bundles:        [ SonataUserBundle, TooBigAppBundle, SonataAdminBundle, FOSUserBundle, OhColorPickerTypeBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

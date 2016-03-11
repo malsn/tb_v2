@@ -21,7 +21,8 @@
         "iphp/content-bundle": "@stable",
         "sonata-project/classification-bundle": "~2.3",
         "punkave/symfony2-file-uploader-bundle": "^1.0@dev",
-        "gregwar/captcha-bundle": "1.*"
+        "gregwar/captcha-bundle": "1.*",
+        "oh/color-picker-type-bundle": "dev-master"
     },
     "minimum-stability": "dev",
     "require-dev": {
@@ -61,5 +62,18 @@
         "branch-alias": {
             "dev-master": "2.5-dev"
         }
+    },
+    "repositories" : [{
+        "type": "package",
+        "package": {
+            "version": "master",
+            "name": "tkrotoff/jquery-simplecolorpicker",
+            "source": {
+                "url": "https://github.com/tkrotoff/jquery-simplecolorpicker.git",
+                "type": "git",
+                "reference": "master"
+            }
+        }
     }
+    ]
 }

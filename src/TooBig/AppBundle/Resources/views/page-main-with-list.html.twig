@@ -15,6 +15,7 @@
             {% if filterForm is defined and filterForm %}
                 {% block items_filter %}
                     {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
+                    {% form_theme filterForm 'OhColorPickerTypeBundle:Form:fields.html.twig' %}
                     <div id="ItemsFilter">
                         <form id="ItemsFilter_form" action="" method="get">
                             <div class="form-row">
@@ -101,6 +102,16 @@
                                     <div class="filter-title"><span>Цвет<i class="glyphicon glyphicon-chevron-down"></i></span>
                                         <div class="filter-hidden">
                                             {{ form_widget(filterForm.color, {'attr': {'class':'filter-form-item color'}}) }}
+                                            <div class="color-submit">
+                                                <input type="button" value="Применить" class="btn btn-primary filter-form-submit"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col filter-col">
+                                    <div class="filter-title"><span>Цвета<i class="glyphicon glyphicon-chevron-down"></i></span>
+                                        <div class="filter-hidden">
+                                            {{ form_widget(filterForm.colorpicker, {'attr': {'class':'filter-form-item color'}}) }}
                                             <div class="color-submit">
                                                 <input type="button" value="Применить" class="btn btn-primary filter-form-submit"/>
                                             </div>

@@ -1,6 +1,6 @@
 <?php
 
-use Iphp\CoreBundle\Kernel\AppKernel as IphpKernel;
+use Application\Iphp\CoreBundle\Kernel\AppKernel as IphpKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 date_default_timezone_set('Europe/Moscow');

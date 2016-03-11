@@ -103,7 +103,7 @@ class ItemController extends RubricAwareController
                 'rubricPriceRange' => $price_params,
                 'filter_params'=>$filter_params,
                 'count' => count($query_filter->getResult()),
-                'filter_results' => $filters
+                'filter_results' => $filters,
             );
         /*} else {
             return array(

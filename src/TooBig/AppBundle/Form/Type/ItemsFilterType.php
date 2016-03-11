@@ -9,6 +9,7 @@ use TooBig\AppBundle\Entity\Brand;
 use TooBig\AppBundle\Entity\Size;
 use TooBig\AppBundle\Entity\SizeType;
 use Doctrine\ORM\EntityRepository;
+use Oh\ColorPickerTypeBundle\Form\Type\ColorPickerType;
 
 
 class ItemsFilterType extends AbstractType
@@ -75,6 +76,7 @@ class ItemsFilterType extends AbstractType
                     'class'=>'form-filter color'
                 ]
             ])
+            ->add('colorpicker', new ColorPickerType())
             ->add('gender', 'choice', [
                 'choices' => $this->filters['Gender'],
                 'expanded'=>true,

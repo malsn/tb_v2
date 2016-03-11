@@ -1,19 +1,25 @@
+# This file is auto-generated during the composer install
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
-
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
-
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
-
-    debug_toolbar:          true
-    debug_redirects:        false
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: toobig_v2
+    database_user: user_tb
+    database_password: 5X4rrcbg
+    mailer_transport: sendmail
+    mailer_host: old-stuff.spbeta.ru
+    mailer_user: null
+    mailer_password: null
+    locale: ru
+    secret: ThisTokenIsNotSoSecretChangeIt
+    debug_toolbar: true
+    debug_redirects: false
     use_assetic_controller: true
+    soap.smsc.url: 'https://smsc.ru/sys/soap.php?wsdl'
+    soap.smsc.user: 'malsn'
+    soap.smsc.password: 'malsntoobig'
+    soap.smsc.options:
+        trace: 0
+        exception: 1
+        features: 1 #SOAP_SINGLE_ELEMENT_ARRAYS
+        connection_timeout: 3
