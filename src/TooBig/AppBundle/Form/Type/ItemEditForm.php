@@ -63,7 +63,9 @@ class ItemEditForm extends AbstractType
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('status', new StatusType(), ['empty_value' => 'Укажите состояние'])
             ->add('color', new ColorPickerType(), [
-                'callback' => 'getColorArray'
+                'choices' => array(
+                    '#ffffff' =>'White',
+                    '#000000' =>'Black')
             ])
             /*->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
