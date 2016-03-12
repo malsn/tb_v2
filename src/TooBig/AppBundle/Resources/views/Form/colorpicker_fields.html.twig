@@ -6,7 +6,7 @@
                     {% if form.vars.name != 'color' %}
                         {{ choice.label|trans({}, translation_domain) }}
                     {% else %}
-                        <input type="radio" value="{{ choice.value }}" name="Item[color][]"/>
+                        <input type="radio" value="{{ choice.value }}" name="Item[color]"/>
                         <div style="background-color: {{ choice.label }}" class="filter-color-box"></div>
                     {% endif %}
                 </div>
