@@ -35,7 +35,7 @@
                     {% if form.vars.name != 'color' %}
                         {{ choice.label|trans({}, translation_domain) }}
                     {% else %}
-                        {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
+                        {# form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) #}
                         <div style="background-color: {{ choice.label }}" class="filter-color-box"></div>
                     {% endif %}
                 </div>
