@@ -189,7 +189,7 @@ div#Item_color input[type=radio]{
     display: inline-block;
     margin-left: 0px;
     position: relative;
-    top: 10px;
+    /*top: 10px;*/
 }
 .filter-color-box:hover {
     border: 1px solid #777777;
@@ -442,6 +442,11 @@ div.c-item .item-feature {
 #Item_status,
 #Item_phone {
     width: 256px;
+}
+#Item_color {
+    height: auto;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 #Item_price {
     width: 210px;
