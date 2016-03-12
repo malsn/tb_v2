@@ -19,13 +19,13 @@
     {% endblock %}
 
     {% block oh_colorpicker_stylesheets %}
-        {%  if include_css %}
+
             {% stylesheets
                     '../vendor/tkrotoff/jquery-simplecolorpicker/jquery.simplecolorpicker.css'
             %}
             <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
             {% endstylesheets %}
-        {% endif %}
+
     {% endblock %}
 
     {{ block('entity_widget') }}
