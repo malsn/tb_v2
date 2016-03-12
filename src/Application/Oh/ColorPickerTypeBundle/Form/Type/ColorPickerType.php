@@ -2,12 +2,13 @@
 
 namespace Application\Oh\ColorPickerTypeBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\Extension\Core\ChoiceList\SimpleChoiceList;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 class ColorPickerType extends ChoiceType {
     
@@ -17,12 +18,27 @@ class ColorPickerType extends ChoiceType {
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
 
+        $choiceList = function (Options $options) use (&$choiceListCache) {
+            // Harden against NULL values (like in EntityType and ModelType)
+            $choices = null !== $options['choices'] ? $options['choices'] : array();
+
+            // Reuse existing choice lists in order to increase performance
+            $hash = md5(json_encode(array($choices, $options['preferred_choices'])));
+
+            if (!isset($choiceListCache[$hash])) {
+                $choiceListCache[$hash] = new SimpleChoiceList($choices, $options['preferred_choices']);
+            }
+
+            return $choiceListCache[$hash];
+        };
+
         $resolver->setDefaults(array(
             'multiple'          => false,
             'expanded'          => false,
-            'choice_list'       => array(),
+            'choice_list'       => $choiceList,
+            'choices'           => 
+               array(),
             'preferred_choices' => array(),
-            'choices'           => array(),
             'empty_data'        => null,
             'empty_value'       => null,
             'error_bubbling'    => false,
