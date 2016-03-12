@@ -30,19 +30,16 @@
 
     {% spaceless %}
         <div {{ block('widget_container_attributes') }}>
-            {% set current_type = '' %}
-
             {% for key, choice in form.vars.choices %}
                 <div class="">
-                    {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
                     {% if form.vars.name != 'color' %}
                         {{ choice.label|trans({}, translation_domain) }}
                     {% else %}
+                        {{ form_widget(form[key], {'attr': {'class': attr.widget_class|default('')}}) }}
                         <div style="background-color: {{ choice.label }}" class="filter-color-box"></div>
                     {% endif %}
                 </div>
             {% endfor %}
-
         </div>
     {% endspaceless %}
              
