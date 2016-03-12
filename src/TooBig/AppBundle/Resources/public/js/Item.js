@@ -166,7 +166,7 @@ jQuery(document).ready(function() {
         })
         .on('click', function(){
             sibcheckbox = jQuery(this).siblings("input");
-            jQuery("#Item_color .filter-color-box")
+            jQuery("#Item_color .filter-color-box, #Subscription_color .filter-color-box")
                 .removeClass('glyphicon glyphicon-ok')
                 .siblings("input[type=radio]")
                 .attr("checked",false);
