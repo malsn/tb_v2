@@ -36,8 +36,12 @@ class ColorPickerType extends ChoiceType {
             'multiple'          => false,
             'expanded'          => false,
             'choice_list'       => $choiceList,
-            'choices'           => 
-               array(),
+            'choices'           =>
+               array(
+                    1 =>'White',
+                    2 =>'Light Grey',
+                    3 =>'Grey',
+                    ),
             'preferred_choices' => array(),
             'empty_data'        => null,
             'empty_value'       => null,
