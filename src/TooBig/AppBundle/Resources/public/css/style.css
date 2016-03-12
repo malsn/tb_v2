@@ -174,11 +174,12 @@ div#ItemsFilter div.form-row div.title {
     overflow-y: auto;
     padding-bottom: 10px;
 }
-div#ItemsFilter_color > div {
+div#ItemsFilter_color > div, div#Item_color > div  {
     display: inline-block;
     width: 30px;
 }
-div#ItemsFilter_color input[type=checkbox] {
+div#ItemsFilter_color input[type=checkbox],
+div#Item_color input[type=radio]{
     display: none;
 }
 .filter-color-box {
