@@ -29,7 +29,7 @@
 
 {% block page_body %}
 
-    {% form_theme form.color 'TooBigAppBundle:Form:colorpicker_fields.html.twig' %}
+    {% form_theme form.color 'TooBigAppBundle:Form:subscription_colorpicker_fields.html.twig' %}
 
 <form name="Subscription" class="edit-form form-horizontal" action="{{ path('app_subscription_edit', { subscription_id: posting.id }) }}" method="post" {{ form_enctype(form) }}>
 
