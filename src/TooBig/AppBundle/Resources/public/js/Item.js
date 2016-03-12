@@ -162,12 +162,12 @@ jQuery(document).ready(function() {
     jQuery(".filter-color-box")
         .each(function(){
             sibcheckbox = jQuery(this).siblings("input");
-            sibcheckbox.prop("checked") ? jQuery(this).addClass('glyphicon glyphicon-ok') : null;
+            sibcheckbox.attr("checked") ? jQuery(this).addClass('glyphicon glyphicon-ok'): null;
         })
         .on('click', function(){
             jQuery(this).toggleClass('glyphicon glyphicon-ok');
             sibcheckbox = jQuery(this).siblings("input");
-            sibcheckbox.prop("checked", !sibcheckbox.prop("checked"));
+            sibcheckbox.attr("checked", !sibcheckbox.attr("checked"));
         });
 
 
