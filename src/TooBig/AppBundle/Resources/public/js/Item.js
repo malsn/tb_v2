@@ -166,10 +166,10 @@ jQuery(document).ready(function() {
         })
         .on('click', function(){
             sibcheckbox = jQuery(this).siblings("input");
-            if (sibcheckbox.attr('type') == 'radio'){
-                sibcheckbox.attr("checked",false);
-                jQuery(this).removeClass('glyphicon glyphicon-ok');
-            }
+            jQuery(".Item_color .filter-color-box")
+                .removeClass('glyphicon glyphicon-ok')
+                .siblings("input[type=radio]")
+                .attr("checked",false);
             jQuery(this).toggleClass('glyphicon glyphicon-ok');
             sibcheckbox.attr("checked", !sibcheckbox.attr("checked"));
         });
