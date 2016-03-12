@@ -165,13 +165,12 @@ jQuery(document).ready(function() {
             sibcheckbox.attr("checked") ? jQuery(this).addClass('glyphicon glyphicon-ok'): null;
         })
         .on('click', function(){
-            if (jQuery(this).attr('type') == 'radio'){
+            sibcheckbox = jQuery(this).siblings("input");
+            if (sibcheckbox.attr('type') == 'radio'){
                 sibcheckbox.attr("checked",false);
                 jQuery(this).removeClass('glyphicon glyphicon-ok');
-                alert(8);
             }
             jQuery(this).toggleClass('glyphicon glyphicon-ok');
-            sibcheckbox = jQuery(this).siblings("input");
             sibcheckbox.attr("checked", !sibcheckbox.attr("checked"));
         });
 
