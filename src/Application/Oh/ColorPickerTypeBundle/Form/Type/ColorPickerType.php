@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\Options;
 
-class ColorPickerType extends AbstractType {
+class ColorPickerType extends ChoiceType {
     
     /**
      * {@inheritdoc}

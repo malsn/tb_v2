@@ -3,7 +3,6 @@
 namespace TooBig\AppBundle\Form\Type;
 
 use Application\Oh\ColorPickerTypeBundle\Form\Type\ColorPickerType;
-use Oh\ColorPickerTypeBundle\OhColorPickerTypeBundle;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\AbstractType;
 use TooBig\AppBundle\Entity\Brand;
@@ -14,8 +13,6 @@ use Iphp\CoreBundle\Admin\Admin;
 use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use TooBig\AppBundle\Entity\Item;
-use Application\Oh\ColorPickerTypeBundle\ApplicationOhColorPickerTypeBundle;
-use Doctrine\Common\Persistence\ManagerRegistry as ManagerRegistry;
 
 class ItemEditForm extends AbstractType
 {
