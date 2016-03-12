@@ -168,6 +168,7 @@ jQuery(document).ready(function() {
             if (jQuery(this).attr('type') == 'radio'){
                 sibcheckbox.attr("checked",false);
                 jQuery(this).removeClass('glyphicon glyphicon-ok');
+                alert(8);
             }
             jQuery(this).toggleClass('glyphicon glyphicon-ok');
             sibcheckbox = jQuery(this).siblings("input");
