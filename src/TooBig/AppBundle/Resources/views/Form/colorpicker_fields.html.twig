@@ -1,5 +1,5 @@
 {% extends 'form_div_layout.html.twig' %}
-{% block my_entity_widget %}
+{% block entity_widget %}
     {% block oh_colorpicker_javascripts %}
 
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
@@ -27,7 +27,5 @@
             {% endstylesheets %}
 
     {% endblock %}
-
-    {{ block('choice_widget') }}
              
 {% endblock %}
