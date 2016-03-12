@@ -59,7 +59,9 @@ class ItemEditForm extends AbstractType
             /*->add('rubric', 'rubricchoice')*/
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('status', new StatusType(), ['empty_value' => 'Укажите состояние'])
-            ->add('color')
+            ->add('color', 'choice', [
+
+            ])
             /*->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
                 'empty_value' => 'Укажите бренд',
