@@ -95,7 +95,7 @@ class Color
     }
 
     public function __toString(){
-        return $this->getName();
+        return $this->getCode();
     }
 }
 
