@@ -20,6 +20,7 @@ class ColorPickerType extends ChoiceType {
         $resolver->setDefaults(array(
             'multiple'          => false,
             'expanded'          => false,
+            'choice_list'       => array(),
             'preferred_choices' => array(),
             'empty_data'        => null,
             'empty_value'       => null,
