@@ -1,16 +1,14 @@
 {% block entity_widget %}
     {% spaceless %}
+        {% if form.vars.name == 'color' %}
         <div {{ block('widget_container_attributes') }}>
             {% for choice in form.vars.choices %}
                 <div class="">
-                    {% if form.vars.name != 'color' %}
-                        {{ choice.label|trans({}, translation_domain) }}
-                    {% else %}
-                        <input type="radio" value="{{ choice.value }}" name="Item[color]" {% if choice is selectedchoice(value) %} checked="checked"{% endif %}/>
-                        <div style="background-color: {{ choice.label }}" class="filter-color-box"></div>
-                    {% endif %}
+                    <input type="radio" value="{{ choice.value }}" name="Item[color]" {% if choice is selectedchoice(value) %} checked="checked"{% endif %}/>
+                    <div style="background-color: {{ choice.label }}" class="filter-color-box"></div>
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
     {% endspaceless %}
 {% endblock %}
