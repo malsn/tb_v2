@@ -1,33 +1,4 @@
-{% extends 'form_div_layout.html.twig' %}
 {% block entity_widget %}
-    {% block oh_colorpicker_javascripts %}
-
-            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-
-
-            {% javascripts
-                    '../vendor/tkrotoff/jquery-simplecolorpicker/jquery.simplecolorpicker.js'
-            %}
-                <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-
-        <script type="text/javascript">
-            $(function(){
-               $('#{{id}}').simplecolorpicker({picker: false});
-            });
-        </script>
-    {% endblock %}
-
-    {% block oh_colorpicker_stylesheets %}
-
-            {% stylesheets
-                    '../vendor/tkrotoff/jquery-simplecolorpicker/jquery.simplecolorpicker.css'
-            %}
-            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-            {% endstylesheets %}
-
-    {% endblock %}
-
     {% spaceless %}
         <div {{ block('widget_container_attributes') }}>
             {% for choice in form.vars.choices %}
@@ -42,5 +13,4 @@
             {% endfor %}
         </div>
     {% endspaceless %}
-             
 {% endblock %}
