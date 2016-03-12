@@ -2,6 +2,7 @@
 
 namespace TooBig\AppBundle\Form\Type;
 
+use Oh\ColorPickerTypeBundle\OhColorPickerTypeBundle;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\AbstractType;
 use TooBig\AppBundle\Entity\Brand;
@@ -12,6 +13,7 @@ use Iphp\CoreBundle\Admin\Admin;
 use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use TooBig\AppBundle\Entity\Item;
+use Application\Oh\ColorPickerTypeBundle\ApplicationOhColorPickerTypeBundle;
 
 
 class ItemEditForm extends AbstractType
@@ -60,7 +62,7 @@ class ItemEditForm extends AbstractType
             /*->add('rubric', 'rubricchoice')*/
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('status', new StatusType(), ['empty_value' => 'Укажите состояние'])
-            ->add('color')
+            ->add('color', new OhColorPickerTypeBundle())
             /*->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
                 'empty_value' => 'Укажите бренд',
