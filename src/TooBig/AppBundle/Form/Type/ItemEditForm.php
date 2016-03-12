@@ -15,7 +15,7 @@ use Application\Iphp\ContentBundle\Entity\Content;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use TooBig\AppBundle\Entity\Item;
 use Application\Oh\ColorPickerTypeBundle\ApplicationOhColorPickerTypeBundle;
-
+use Doctrine\Common\Persistence\ManagerRegistry as ManagerRegistry;
 
 class ItemEditForm extends AbstractType
 {
