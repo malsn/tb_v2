@@ -22,6 +22,7 @@ class ColorPickerType extends ChoiceType {
             'expanded'          => false,
             'choice_list'       => array(),
             'preferred_choices' => array(),
+            'choices'           => array(),
             'empty_data'        => null,
             'empty_value'       => null,
             'error_bubbling'    => false,
