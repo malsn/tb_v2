@@ -174,7 +174,7 @@ div#ItemsFilter div.form-row div.title {
     overflow-y: auto;
     padding-bottom: 10px;
 }
-div#ItemsFilter_color > div, div#Item_color > div  {
+div#ItemsFilter_color > div, div#Item_color > div, div#Subscription_color > div  {
     display: inline-block;
     width: 30px;
     height: 30px;
