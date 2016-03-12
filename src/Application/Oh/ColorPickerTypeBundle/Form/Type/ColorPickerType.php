@@ -2,13 +2,14 @@
 
 namespace Application\Oh\ColorPickerTypeBundle\Form\Type;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\Options;
 
-class ColorPickerType extends ChoiceType {
+class ColorPickerType extends EntityType {
     
     /**
      * {@inheritdoc}
