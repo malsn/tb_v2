@@ -31,7 +31,7 @@
 
     {% form_theme form.color 'TooBigAppBundle:Form:subscription_colorpicker_fields.html.twig' %}
 
-<form name="Subscription" class="edit-form form-horizontal" action="{{ path('app_subscription_edit', { subscription_id: posting.id }) }}" method="post" {{ form_enctype(form) }} path-controller="{{ path('app_list_rubric_children') }}">
+<form name="Subscription" id="Subscription" class="edit-form form-horizontal" action="{{ path('app_subscription_edit', { subscription_id: posting.id }) }}" method="post" {{ form_enctype(form) }} path-controller="{{ path('app_list_rubric_children') }}">
 
     <div class="form-group control-group">
         <div class="col-sm-12 form-buttons">
