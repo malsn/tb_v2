@@ -96,8 +96,12 @@ class SubscriptionModel extends ContainerAware {
 
                 foreach ($filter_params as $key => $value) {
                     if ( null !== $value ){
-                        $qb_func = 'where'.$key;
-                        $qb->$qb_func($value);
+                        if ( null !== $value && !is_array($value) ){
+                            $qb_func = 'where'.$key;
+                            $qb->$qb_func($value);
+                        } else {
+                            $qb->expr()->in('c.color_id',$value);
+                        }
                     }
                 }
                 if (null !== $price_params['Min'] && null !== $price_params['Max']){
