@@ -63,7 +63,11 @@
                                 <div class="col-md-3">
                                     <div>
                                         {{ entity.rubric is defined ? entity.rubric | raw : '' }}
-                                        {{ entity.color is defined ? entity.color | raw : '' }}
+                                        {% if entity.color is defined %}
+                                            {% for color_selection in color %}
+                                                {{ color_selection }}
+                                            {% endfor %}
+                                        {% endif %}
                                         {{ entity.brand is defined ? entity.brand | raw  : '' }}
                                         {{ entity.model is defined ? entity.model | raw : '' }}
                                         {% if entity.gender is defined %}
