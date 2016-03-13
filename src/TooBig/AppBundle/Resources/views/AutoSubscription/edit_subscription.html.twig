@@ -48,7 +48,7 @@
     <div class="form-group control-group">
         <label for="Subscription_rubric" class="col-sm-3 control-label">{{ 'Рубрика'|trans({}, 'SonataUserBundle') }}</label>
         <div class="col-sm-9">{{ form_widget(form.rubric, {'attr': {'class':'form-control'}}) }}
-            <input id="rubric" type="hidden" name="rubric" value="{{ podting.rubric }}"/>
+            <input id="rubric" type="hidden" name="rubric" value="{{ posting.rubric.id }}"/>
             <input id="struct" type="hidden" name="struct" value="1"/>
             <div id="struct-1">
             </div>
