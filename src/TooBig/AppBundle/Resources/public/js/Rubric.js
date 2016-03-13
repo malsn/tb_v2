@@ -16,7 +16,7 @@ jQuery(document).ready(function() {
             success: function (response) {
                 if (response !== false) {
                     $struct_obj.html(response);
-                    var $select = jQuery('.form-control');
+                    var $select = jQuery('.form-rubric.form-control');
                     $select.on('change', function(){
                         jQuery('#rubric').val(jQuery(this).val());
                         jQuery('#struct').val(jQuery(this).attr('data-struct'));

@@ -1,5 +1,5 @@
 {% if rubrics | length %}
-<select class="form-group form-control" data-struct="{{ struct + 1 }}">
+<select class="form-rubric form-group form-control" data-struct="{{ struct + 1 }}">
     <option>Выбрать</option>
     {% for rubric in rubrics %}
         <option class="rubric" value="{{ rubric.id }}">{{ rubric.title }}</option>
