@@ -2,6 +2,7 @@
 
 namespace TooBig\AppBundle\Entity;
 use Application\Iphp\CoreBundle\Entity\Rubric;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\UserBundle\Model\UserInterface;
 
 /**
@@ -71,7 +72,7 @@ class AutoSubscription
     private $model;
 
     /**
-     * @var Color
+     * @var ArrayCollection
      */
 
     private $color;
@@ -314,7 +315,7 @@ class AutoSubscription
     }
 
     /**
-     * @return Color
+     * @return ArrayCollection
      */
     public function getColor()
     {
@@ -322,7 +323,7 @@ class AutoSubscription
     }
 
     /**
-     * @param Color $color
+     * @param ArrayCollection $color
      */
     public function setColor($color)
     {
