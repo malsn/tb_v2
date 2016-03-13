@@ -60,6 +60,10 @@ label.control-label {
     margin: 10px 0;
     font-size: 16px;
 }
+.form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
+}
 .form-horizontal.form-2-section .control-label {
     padding: 0 7px !important;
     margin: 0px 0;

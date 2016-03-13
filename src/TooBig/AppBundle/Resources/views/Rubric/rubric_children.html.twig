@@ -1,5 +1,5 @@
 {% if rubrics | length %}
-<select class="form-rubric form-control" data-struct="{{ struct + 1 }}">
+<select class="form-rubric form-group form-control" data-struct="{{ struct + 1 }}">
     <option>Выбрать</option>
     {% for rubric in rubrics %}
         <option class="rubric" value="{{ rubric.id }}">{{ rubric.title }}</option>
@@ -8,14 +8,14 @@
 {% endif %}
 <div id="struct-{{ struct + 1 }}">
     {% if struct != 1 %}
-        <div class="">
+        <div class="form-group">
             {% if breadcrumbs is defined %}
                 {% for rub in breadcrumbs %}
                     <span class="breadcrumbs-item"><a href="{{ entitypath(rub) }}" class="breadcrumbs-item-link link"><span>{{ rub }}</span></a></span>
                 {% endfor %}
             {% endif %}
         </div>
-        <div class="">
+        <div class="form-group">
             <a class="btn btn-primary btn-rubric" href="{{ path('app_item_add', {'rubric_id': rubric.id}) }}">Продолжить</a>
         </div>
     {% endif %}
