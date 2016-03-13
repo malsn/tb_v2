@@ -2,6 +2,7 @@
 
 namespace TooBig\AppBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\UserBundle\Model\UserInterface;
 use TooBig\AppBundle\Entity\AutoSubscription;
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -96,7 +97,7 @@ class SubscriptionModel extends ContainerAware {
 
                 foreach ($filter_params as $key => $value) {
                     if ( null !== $value ){
-                        if ( null !== $value && !is_array($value) ){
+                        if ( !$value instanceof ArrayCollection ){
                             $qb_func = 'where'.$key;
                             $qb->$qb_func($value);
                         } else {
