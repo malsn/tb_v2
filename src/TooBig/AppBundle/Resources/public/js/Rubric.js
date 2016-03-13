@@ -49,9 +49,11 @@ jQuery(document).ready(function() {
             success: function (response) {
                 if (response !== false) {
                     $struct_obj.html(response);
+                    jQuery('a.btn-rubric').remove();
                     var $select = jQuery('.form-rubric.form-control');
                     $select.on('change', function(){
                         jQuery('#rubric').val(jQuery(this).val());
+                        jQuery('#Subscription_rubric').val(jQuery(this).val());
                         jQuery('#struct').val(jQuery(this).attr('data-struct'));
                         var $struct = jQuery('#struct-'+jQuery('#struct').val());
                         $rubric_subscription_req($struct);

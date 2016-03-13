@@ -474,7 +474,7 @@ img.ico-roubles {
     margin: 0 auto;
 }
 
-#Item_rubric { display: none; }
+#Item_rubric, #Subscription_rubric { display: none; }
 
 /* Captcha Form */
 a.show-phone-link {
