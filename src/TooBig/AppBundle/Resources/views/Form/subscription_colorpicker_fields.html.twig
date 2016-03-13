@@ -4,7 +4,7 @@
         <div {{ block('widget_container_attributes') }}>
             {% for choice in form.vars.choices %}
                 <div class="">
-                    <input type="radio" value="{{ choice.value }}" name="Subscription[color]" {% if choice is selectedchoice(value) %} checked="checked"{% endif %}/>
+                    <input type="checkbox" value="{{ choice.value }}" name="Subscription[color]" {% if choice is selectedchoice(value) %} checked="checked"{% endif %}/>
                     <div style="background-color: {{ choice.label }}" class="filter-color-box"></div>
                 </div>
             {% endfor %}

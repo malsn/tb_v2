@@ -26,9 +26,9 @@
     <many-to-one target-entity="TooBig\AppBundle\Entity\Model" field="model">
       <cascade><cascade-persist/></cascade>
     </many-to-one>
-    <many-to-one target-entity="TooBig\AppBundle\Entity\Color" field="color">
+    <many-to-many target-entity="TooBig\AppBundle\Entity\Color" field="color">
       <cascade><cascade-persist/></cascade>
-    </many-to-one>
+    </many-to-many>
     <many-to-one target-entity="TooBig\AppBundle\Entity\SizeType" field="size_type">
       <cascade><cascade-persist/></cascade>
     </many-to-one>
