@@ -52,6 +52,7 @@ class SubscriptionType extends AbstractType
             ->add('color', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Color',
                 'required' => false,
+                'multiple'=>true,
                 'empty_value' => 'Не указан'])
             ->add('brand', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Brand',
