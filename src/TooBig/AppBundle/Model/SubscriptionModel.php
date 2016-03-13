@@ -3,6 +3,7 @@
 namespace TooBig\AppBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\PersistentCollection;
 use Sonata\UserBundle\Model\UserInterface;
 use TooBig\AppBundle\Entity\AutoSubscription;
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -97,11 +98,11 @@ class SubscriptionModel extends ContainerAware {
 
                 foreach ($filter_params as $key => $value) {
                     if ( null !== $value ){
-                        if ( !$value instanceof ArrayCollection ){
+                        if ( !$value instanceof PersistentCollection ){
                             $qb_func = 'where'.$key;
                             $qb->$qb_func($value);
                         } else {
-                            $qb->expr()->in('c.color_id',$value);
+                            $qb->expr()->in('c.color_id',$value->getSnapshot());
                         }
                     }
                 }
