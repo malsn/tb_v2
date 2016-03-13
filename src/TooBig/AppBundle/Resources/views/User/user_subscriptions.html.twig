@@ -65,7 +65,7 @@
                                         {{ entity.rubric is defined ? entity.rubric | raw : '' }}
                                         {% if entity.color is defined %}
                                             {% for color_selection in entity.color %}
-                                                {{ color_selection }}
+                                                <div style="background-color: {{ color_selection }}" class="selected-color-box"></div>
                                             {% endfor %}
                                         {% endif %}
                                         {{ entity.brand is defined ? entity.brand | raw  : '' }}

@@ -102,7 +102,11 @@ class SubscriptionModel extends ContainerAware {
                             $qb_func = 'where'.$key;
                             $qb->$qb_func($value);
                         } else {
-                            $qb->expr()->in('c.color_id',$value->getSnapshot());
+                            switch($key){
+                                case 'Color':
+                                    $qb->expr()->in('c.color_id',$value->getSnapshot());
+                                default:
+                            }
                         }
                     }
                 }
