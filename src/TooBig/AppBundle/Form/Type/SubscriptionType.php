@@ -88,7 +88,7 @@ class SubscriptionType extends AbstractType
                     'class'=>'size'
                 ]
             ])
-            ->add('price_min', 'text', [
+            /*->add('price_min', 'text', [
                 'required' => false,
                 'attr' => [
                     'size'=>3
@@ -99,7 +99,7 @@ class SubscriptionType extends AbstractType
                 'attr' => [
                     'size'=>3
                 ]
-            ])
+            ])*/
             ->add(
                 'save',
                 'submit',

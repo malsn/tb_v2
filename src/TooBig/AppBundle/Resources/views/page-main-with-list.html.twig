@@ -27,9 +27,9 @@
                             <div class="form-row">
                                 <div class="col-sm-12 col filter-col">
                                         <span class="filter-result-params">Всего: </span><span>{{ count | default(0) }}</span>
-                                    {% if rubricPriceRange['Min'] != '' and rubricPriceRange['Max'] != '' %}
+                                    {# if rubricPriceRange['Min'] != '' and rubricPriceRange['Max'] != '' %}
                                         <span class="filter-result-params">Диапазон цен: </span><span>{{ rubricPriceRange['Min'] }}-{{ rubricPriceRange['Max'] }} руб.</span>
-                                    {% endif %}
+                                    {% endif #}
 
                                     {% if filter_params is defined %}
                                         {% set current=0 %}
@@ -117,7 +117,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-1 col filter-col">
+                                {#<div class="col-sm-1 col filter-col">
                                     <div class="filter-title"><span>Цена<i class="glyphicon glyphicon-chevron-down"></i></span>
                                         <div class="filter-hidden">
                                             <div id="price-slider-ui"></div>
@@ -132,7 +132,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>#}
                                 <div class="col-sm-7 col filter-col"></div>
                             </div>
                         </form>

@@ -86,7 +86,7 @@ class ItemsFilterType extends AbstractType
                     'class'=>'form-filter gender'
                 ]
             ])
-            ->add('price_min', 'text', [
+            /*->add('price_min', 'text', [
                 'attr' => [
                     'size'=>3
                 ]
@@ -95,7 +95,7 @@ class ItemsFilterType extends AbstractType
                 'attr' => [
                     'size'=>3
                 ]
-            ])
+            ])*/
             ->add('search', 'text', [
                 'attr' => [
                     'placeholder' => 'Начните поиск с указания того, что хотите...',

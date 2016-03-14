@@ -709,7 +709,7 @@ public function setErrors($error)
  * @param Rubric $rubric
  * @return array
  */
-protected function getBreadcrumbs(Rubric $rubric){
+public function getBreadcrumbs(Rubric $rubric){
     return array_reverse( $this->get('rubric_model')->getParentRubrics($rubric->getId(), []) );
 }
 
