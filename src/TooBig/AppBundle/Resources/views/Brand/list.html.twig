@@ -29,7 +29,7 @@
         <div class="c-item c-brand">
 
             {% block entity_list_entry_image  %}
-                <div class="item-img img-brand"><a href="{{ rpath('/') }}/?ItemsFilter[brand][]={{ entity.id }}12345" target="_blank">
+                <div class="item-img img-brand"><a href="{{ rpath('/') }}?ItemsFilter[brand][]={{ entity.id }}" target="_blank">
                     {% if entity.image | length %}
                     <img src="{{ entity.image['path'] }}" class="img-polaroid" width="{{ entity.image['width'] }}" height="{{ entity.image['height'] }}">
                     {% endif %}
@@ -37,7 +37,7 @@
             {% endblock entity_list_entry_image  %}
 
             {% block entity_list_entry_title  %}
-                <div class="item-title"><a href="{{ path('app_brand_items_list', { brand_id: entity.id }) }}">{{ entity }}</a></div>
+                <div class="item-title"><a href="{{ rpath('/') }}?ItemsFilter[brand][]={{ entity.id }}">{{ entity }}</a></div>
             {% endblock entity_list_entry_title  %}
 
         </div>
