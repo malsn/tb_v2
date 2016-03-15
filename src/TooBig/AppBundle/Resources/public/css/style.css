@@ -479,6 +479,17 @@ img.ico-roubles {
 }
 
 #Item_rubric, #Subscription_rubric { display: none; }
+#Subscription .breadcrumbs-item-link {
+    color: #337AB7;
+    font-weight: bold;
+}
+#Subscription .breadcrumbs-item-link:hover {
+    text-decoration: none;
+}
+#Subscription .breadcrumbs-item:after {
+    color: #337ab7;
+    font-weight: bold;
+}
 
 /* Captcha Form */
 a.show-phone-link {
