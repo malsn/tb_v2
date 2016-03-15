@@ -453,7 +453,7 @@ div.c-item .item-feature {
 #Subscription_brand,
 #Subscription_model,
 #Subscription_size_type,
-#Subscription_size, {
+#Subscription_size {
     width: 256px;
 }
 #Item_color, #Subscription_color  {
