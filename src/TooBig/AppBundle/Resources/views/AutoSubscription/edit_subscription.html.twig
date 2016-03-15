@@ -50,12 +50,13 @@
         <div class="col-sm-9">{{ form_widget(form.rubric, {'attr': {'class':'form-control'}}) }}
             <input id="rubric" type="hidden" name="rubric" value="1"/>
             <input id="struct" type="hidden" name="struct" value="1"/>
-            <div id="struct-1">
-
-            </div>
             {{ render(controller('TooBigAppBundle:Subscription:getBreadcrumbs', {
                 'rubric_id': posting.rubric
             })) }}
+            <div>или</div>
+            <div id="struct-1">
+
+            </div>
         </div>
     </div>
 
