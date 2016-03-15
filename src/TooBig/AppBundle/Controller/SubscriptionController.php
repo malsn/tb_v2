@@ -244,11 +244,10 @@ protected function getSubscriptionQuery($subscription){
 }
 
     /**
-     * @param Rubric $rubric
      * @return Response
      */
-public function getBreadcrumbsAction(Rubric $rubric){
-    return $this->render('TooBigAppBundle::AutoSubscription:breadcrumbs.html.twig', array_reverse( $this->get('rubric_model')->getParentRubrics($rubric->getId(), []) ));
+public function getBreadcrumbsAction( $rubric_id ){
+    return $this->render('TooBigAppBundle::AutoSubscription:breadcrumbs.html.twig', array_reverse( $this->get('rubric_model')->getParentRubrics($rubric_id), []) ));
 }
 
 protected function getUserLoginForm(){
