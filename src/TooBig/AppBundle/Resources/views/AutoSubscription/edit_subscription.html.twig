@@ -51,8 +51,8 @@
             <input id="rubric" type="hidden" name="rubric" value="1"/>
             <input id="struct" type="hidden" name="struct" value="1"/>
             <div id="struct-1">
-                {{ render(controller('TooBigAppBundle:Item:getSubscriptionItemsCount', {
-                    'subscription_id': entity.id
+                {{ render(controller('TooBigAppBundle:Subscription:getBreadcrumbs', {
+                    'rubric_id': posting.rubric.id
                 })) }}
             </div>
         </div>
