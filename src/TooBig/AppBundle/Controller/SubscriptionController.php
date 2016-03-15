@@ -248,8 +248,10 @@ protected function getSubscriptionQuery($subscription){
      */
 public function getBreadcrumbsAction( $rubric_id ){
     return $this->render(
-        'TooBigAppBundle:AutoSubscription:breadcrumbs.html.twig',
-        array_reverse( $this->get('rubric_model')->getParentRubrics($rubric_id, []) ));
+        'TooBigAppBundle:AutoSubscription:breadcrumbs.html.twig',[
+        'breadcrumbs' => array_reverse( $this->get('rubric_model')->getParentRubrics($rubric_id, []) )
+        ]
+    );
 }
 
 protected function getUserLoginForm(){
