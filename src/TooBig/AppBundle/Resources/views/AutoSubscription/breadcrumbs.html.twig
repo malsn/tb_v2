@@ -1,0 +1,7 @@
+<div class="form-group">
+    {% if breadcrumbs is defined %}
+        {% for rub in breadcrumbs %}
+            <span class="breadcrumbs-item"><a href="{{ entitypath(rub) }}" class="breadcrumbs-item-link link"><span>{{ rub }}</span></a></span>
+        {% endfor %}
+    {% endif %}
+</div>

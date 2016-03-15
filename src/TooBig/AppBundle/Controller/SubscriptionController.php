@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use TooBig\AppBundle\Form\Type\ItemsFilterType;
 use TooBig\AppBundle\Form\Type\SubscriptionType;
 use Iphp\CoreBundle\Controller\RubricAwareController;
+use Application\Iphp\CoreBundle\Entity\Rubric;
 
 class SubscriptionController extends RubricAwareController
 {
@@ -240,6 +241,14 @@ protected function getSubscriptionQuery($subscription){
             return null;
         }
     }
+}
+
+    /**
+     * @param Rubric $rubric
+     * @return Response
+     */
+public function getBreadcrumbsAction(Rubric $rubric){
+    return $this->render('TooBigAppBundle::AutoSubscription:breadcrumbs.html.twig', array_reverse( $this->get('rubric_model')->getParentRubrics($rubric->getId(), []) ));
 }
 
 protected function getUserLoginForm(){

@@ -70,6 +70,9 @@ app_subscription_items_count:
 app_subscription_items_list:
     path:     /app/subscription/{subscription_id}/items/list
     defaults: { _controller: TooBigAppBundle:Subscription:getSubscriptionItemsList }
+app_subscription_breadcrumbs:
+    path:     /app/subscription/breadcrumbs
+    defaults: { _controller: TooBigAppBundle:Subscription:getBreadcrumbs }
 app_list_watch_items:
     path:     /app/items/watchlist
     defaults: { _controller: TooBigAppBundle:User:watchlist }
