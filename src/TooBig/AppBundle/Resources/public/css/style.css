@@ -447,7 +447,13 @@ div.c-item .item-feature {
 #Item_size_type,
 #Item_size,
 #Item_status,
-#Item_phone {
+#Item_phone,
+#Subscription_gender,
+#Subscription_color,
+#Subscription_brand,
+#Subscription_model,
+#Subscription_size_type,
+#Subscription_size, {
     width: 256px;
 }
 #Item_color, #Subscription_color  {
