@@ -53,8 +53,9 @@
             <div id="struct-1">
 
             </div>
+            {{ posting.rubric }}
             {{ render(controller('TooBigAppBundle:Subscription:getBreadcrumbs', {
-                'rubric_id': posting.rubric.id
+                'rubric_id': posting.rubric
             })) }}
         </div>
     </div>
