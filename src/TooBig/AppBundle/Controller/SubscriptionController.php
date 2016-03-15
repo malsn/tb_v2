@@ -247,7 +247,9 @@ protected function getSubscriptionQuery($subscription){
      * @return Response
      */
 public function getBreadcrumbsAction( $rubric_id ){
-    return $this->render('TooBigAppBundle::AutoSubscription:breadcrumbs.html.twig', array_reverse( $this->get('rubric_model')->getParentRubrics($rubric_id, []) ));
+    return $this->render(
+        'TooBigAppBundle:AutoSubscription:breadcrumbs.html.twig',
+        array_reverse( $this->get('rubric_model')->getParentRubrics($rubric_id, []) ));
 }
 
 protected function getUserLoginForm(){
