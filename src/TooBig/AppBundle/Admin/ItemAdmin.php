@@ -154,14 +154,14 @@ class ItemAdmin extends Admin
             ->add('content', 'ckeditor', array(
                 'label' => 'Описание объявления',
                 ))
-            ->add('imagesMedia', 'sonata_type_collection', [
+            /*->add('imagesMedia', 'sonata_type_collection', [
                 'required' => true,
                 'by_reference' => false
             ], [
                 'edit' => 'inline',
                 'sortable' => 'pos',
                 'inline' => 'table',
-            ])
+            ])*/
 
 
             /*->add('filesMedia', 'sonata_type_collection',
@@ -234,7 +234,7 @@ class ItemAdmin extends Admin
             ])
             /*->add('brand', new BrandType(), [ 'compound' => true ])
             ->add('size_type', new SizeTypeType(), [ 'compound' => true ])*/
-            ->add('color')
+            /*->add('color')*/
             ->add('gender', new GenderType(), [
                 'empty_value' => 'Укажите пол'
             ])
