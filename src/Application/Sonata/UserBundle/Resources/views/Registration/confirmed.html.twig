@@ -1,9 +1,10 @@
-{% extends "TooBigAppBundle::base.html.twig" %}
-
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
-    {% if app.session is not empty %}
-        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
-        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a></p>{% endif %}
-    {% endif %}
-{% endblock fos_user_content %}
+<div id="existing_register" class="col-sm-12">
+    <div class="row">
+        <div class="panel-heading">
+            <h2 class="panel-title">{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        {{ render(controller('FOSUserBundle:Security:login')) }}
+    </div>
+</div>
