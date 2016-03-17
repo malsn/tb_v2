@@ -65,7 +65,7 @@ class PreRegisterController extends Controller
                         /* Soap отправка кода на номер телефона */
                         $pre_register_model->sendCodeWithSoap($record);
                         $response = new JsonResponse();
-                        $response->setData(['response' => preg_replace('/[\r\n]/i','',$this->render('TooBigAppBundle:PreRegister:check_code.html.twig')->getContent()),'status'=>'202']);
+                        $response->setData(['response' => preg_replace('/[\r\n]/i','',$this->render('TooBigAppBundle:PreRegister:check_code.html.twig', ['test_code' => $sms_code])->getContent()),'status'=>'202']);
                         return $response;
 
                     } catch (\Exception $e) {
@@ -78,7 +78,7 @@ class PreRegisterController extends Controller
                         /* Soap отправка кода на номер телефона */
                         $pre_register_model->sendCodeWithSoap($record);
                         $response = new JsonResponse();
-                        $response->setData(['response' => preg_replace('/[\r\n]/i','',$this->render('TooBigAppBundle:PreRegister:check_code.html.twig')->getContent()),'status'=>'202']);
+                        $response->setData(['response' => preg_replace('/[\r\n]/i','',$this->render('TooBigAppBundle:PreRegister:check_code.html.twig', ['test_code' => $sms_code])->getContent()),'status'=>'202']);
                         return $response;
                     } else {
                         /* попадает ответ в тот же check_code, исправить */
