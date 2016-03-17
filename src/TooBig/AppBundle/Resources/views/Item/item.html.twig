@@ -52,7 +52,7 @@
 
 {% block breadcrumbs %}
     <div class="breadcrumbs">
-        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="/" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
+        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="{{ rpath ('/') }}" class="breadcrumbs-item-link link" itemprop="url"><span itemprop="title">Главная</span></a></span>
         {% if breadcrumbs is defined %}
             {% for rubric in breadcrumbs %}
                 <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumbs-item"><a href="{{ entitypath(rubric) }}" itemprop="url" class="breadcrumbs-item-link link"><span itemprop="title">{{ rubric }}</span></a></span>
