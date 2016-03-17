@@ -151,7 +151,7 @@ class ItemAdmin extends Admin
     {
         $formMapper->with('Item', array('class' => 'col-md-12'))
 
-            ->add('content', 'ckeditor', array(
+            ->add('content', 'textarea', array(
                 'label' => 'Описание объявления',
                 ))
             /*->add('imagesMedia', 'sonata_type_collection', [
