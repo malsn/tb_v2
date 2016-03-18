@@ -1,2 +1,11 @@
 {% extends 'TooBigAppBundle::page-with-header.html.twig' %}
 
+{% block page_body %}
+<div id="existing_register" class="col-sm-12">
+    <div class="row">
+        <div class="panel-heading">
+            <h2 class="panel-title">{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</h2>
+        </div>
+    </div>
+</div>
+{% endblock page_body %}
