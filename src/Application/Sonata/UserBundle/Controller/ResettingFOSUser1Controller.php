@@ -12,6 +12,7 @@
 namespace Application\Sonata\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\ResettingController;
+use Sonata\UserBundle\Model\UserInterface;
 
 /**
  * Class ResettingFOSUser1Controller.
@@ -21,4 +22,8 @@ use FOS\UserBundle\Controller\ResettingController;
  */
 class ResettingFOSUser1Controller extends ResettingController
 {
+    protected function getRedirectionUrl(UserInterface $user)
+    {
+        return $this->container->get('router')->generate('app_main');
+    }
 }
