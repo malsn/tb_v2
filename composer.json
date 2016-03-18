@@ -22,7 +22,8 @@
         "sonata-project/classification-bundle": "~2.3",
         "punkave/symfony2-file-uploader-bundle": "^1.0@dev",
         "gregwar/captcha-bundle": "1.*",
-        "oh/color-picker-type-bundle": "dev-master"
+        "oh/color-picker-type-bundle": "dev-master",
+        "jmose/command-scheduler-bundle": "1.1.x"
     },
     "minimum-stability": "dev",
     "require-dev": {
