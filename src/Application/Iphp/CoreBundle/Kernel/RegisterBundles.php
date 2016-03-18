@@ -57,6 +57,7 @@ class RegisterBundles
             new \PunkAve\FileUploaderBundle\PunkAveFileUploaderBundle(),
             new \Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new \Oh\ColorPickerTypeBundle\OhColorPickerTypeBundle(),
+            new \JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
         );
     }
 
