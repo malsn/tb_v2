@@ -12,7 +12,7 @@
 namespace Application\Sonata\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\ResettingController;
-use Sonata\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * Class ResettingFOSUser1Controller.
