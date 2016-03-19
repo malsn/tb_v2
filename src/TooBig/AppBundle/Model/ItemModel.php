@@ -22,6 +22,7 @@ class ItemModel extends ContainerAware {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $record->setCreatedBy($user);
         $record->setUpdatedBy($user);
+        $record->setEditedAt(new \DateTime());
         $record->setEnabled(false);
 
         $pub_date = new \DateTime();
@@ -46,6 +47,7 @@ class ItemModel extends ContainerAware {
         $copy->setCreatedBy($user);
         $copy->setUpdatedBy($user);
         $copy->setCreatedAt(new \DateTime());
+        $copy->setEditedAt(new \DateTime());
         $copy->setEnabled(false);
         $copy->setTitle($record->getTitle());
         $copy->setRubric($record->getRubric());
@@ -69,6 +71,7 @@ class ItemModel extends ContainerAware {
         $copy->setCreatedBy($record->getCreatedBy());
         $copy->setUpdatedBy($record->getUpdatedBy());
         $copy->setCreatedAt(new \DateTime());
+        $copy->setEditedAt(new \DateTime());
         $copy->setEnabled(true);
         $copy->setTitle($record->getTitle());
         $copy->setRubric($record->getRubric());
