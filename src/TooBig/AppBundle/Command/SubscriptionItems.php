@@ -14,7 +14,7 @@ class SubscriptionItems extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('toobig:subscription:new-offer')
+            ->setName('toobig:subscription:offer')
             ->setDescription('Offering new items on Users auto_subscriptions')
             ->addArgument(
                 'exec',
@@ -32,7 +32,7 @@ class SubscriptionItems extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        
+
 
     }
 }
