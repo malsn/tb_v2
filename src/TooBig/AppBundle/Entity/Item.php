@@ -41,6 +41,10 @@ class Item extends BaseItem
     /**
      * @var \DateTime
      */
+    protected $editedAt;
+    /**
+     * @var \DateTime
+     */
     private $publicationDateEnd;
 
     /**
@@ -222,6 +226,22 @@ class Item extends BaseItem
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEditedAt()
+    {
+        return $this->editedAt;
+    }
+
+    /**
+     * @param \DateTime $editedAt
+     */
+    public function setEditedAt($editedAt)
+    {
+        $this->editedAt = $editedAt;
     }
 
     /**

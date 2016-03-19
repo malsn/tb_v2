@@ -44,6 +44,7 @@
 
         <field name="date" type="datetime" column="date" nullable="true"/>
         <field name="createdAt" type="datetime" column="created_at"/>
+        <field name="editedAt" type="datetime" column="edited_at"/>
         <field name="updatedAt" type="datetime" column="updated_at"/>
 
         <one-to-many field="filesMedia" target-entity="TooBig\AppBundle\Entity\ItemFileMedia" mapped-by="item">
