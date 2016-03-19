@@ -73,10 +73,10 @@ class ItemController extends RubricAwareController
         $filter_params['Color'] = isset($request->query->get('ItemsFilter')['color']) ? $request->query->get('ItemsFilter')['color'] : null;
         $filter_params['Gender'] = isset($request->query->get('ItemsFilter')['gender']) ? $request->query->get('ItemsFilter')['gender'] : null;
         $search_params['Search'] = isset($request->query->get('ItemsFilter')['search']) ? $request->query->get('ItemsFilter')['search'] : null;
-        $min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
+        /*$min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
         $max = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'max');
         $price_params['Min'] = $request->query->get('ItemsFilter')['price_min'] ? : $min[0][1];
-        $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];
+        $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];*/
 
         $query = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
         $query_filter = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
@@ -551,10 +551,10 @@ public function listAction(Request $request)
     $filter_params['Color'] = isset($request->query->get('ItemsFilter')['color']) ? $request->query->get('ItemsFilter')['color'] : null;
     $filter_params['Gender'] = isset($request->query->get('ItemsFilter')['gender']) ? $request->query->get('ItemsFilter')['gender'] : null;
     $search_params['Search'] = isset($request->query->get('ItemsFilter')['search']) ? $request->query->get('ItemsFilter')['search'] : null;
-    $min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
+    /*$min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
     $max = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'max');
     $price_params['Min'] = $request->query->get('ItemsFilter')['price_min'] ? : $min[0][1];
-    $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];
+    $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];*/
 
     $query = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
     $query_filter = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
