@@ -117,7 +117,7 @@ class SubscriptionModel extends ContainerAware {
                         } else {
                             switch($key){
                                 case 'Color':
-                                    $qb->andWhere($qb->expr()->in('c.color_id',$value->getSnapshot()));
+                                    //$qb->andWhere($qb->expr()->in('c.color_id',$value->getSnapshot()));
                                 default:
                             }
                         }
