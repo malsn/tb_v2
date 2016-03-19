@@ -117,10 +117,11 @@ class SubscriptionModel extends ContainerAware {
                         } else {
                             switch($key){
                                 case 'Color':
-                                    /*$qb->andWhere($qb->expr()->in('c.color',array_map(
+                                    $value->initialize();
+                                    $qb->andWhere($qb->expr()->in('c.color',array_map(
                                         function ($collection) {
                                             return $collection->getId();
-                                        }, $value->getSnapshot())));*/
+                                        }, $value->getSnapshot())));
                                 default:
                             }
                         }

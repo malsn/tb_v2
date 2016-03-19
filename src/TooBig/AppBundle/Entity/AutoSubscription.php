@@ -92,7 +92,9 @@ class AutoSubscription
      */
     private $size;
 
-
+    public function __construct(){
+        $this->color = new ArrayCollection();
+    }
     /**
      * Get id
      *
