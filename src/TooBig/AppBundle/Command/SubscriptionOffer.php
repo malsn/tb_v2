@@ -15,27 +15,16 @@ class SubscriptionOffer extends ContainerAwareCommand
     {
         $this
             ->setName('toobig:subscription:offer')
-            ->setDescription('Offering new items on Users auto_subscriptions')
-            ->addArgument(
-                'exec',
-                InputArgument::REQUIRED,
-                'What is the last execution datetime?'
-            )
-            ->addOption(
-                'yell',
-                null,
-                InputOption::VALUE_NONE,
-                'If set, the task will yell in uppercase letters'
-            )
-        ;
+            ->setDescription('Offering new items on Users auto_subscriptions');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $subscriptions = $this->getContainer()->get('doctrine')->getRepository('TooBigAppBundle:AutoSubscription')->findAll();
         foreach ( $subscriptions as $subscription){
+            $viewed_at = $subscription->getViewedAt();
             $user = $subscription->getCreatedBy();
-            $query = $this->getContainer()->get('auto_subscription_model')->getItemsBySubscriptionQuery($subscription);
+            $query = $this->getContainer()->get('auto_subscription_model')->getItemsBySubscriptionQuery($subscription, 'new');
             $count = count($query->getResult());
             if ($count > 0) {
                 // получаем 'mailer' (обязателен для инициализации Swift Mailer)

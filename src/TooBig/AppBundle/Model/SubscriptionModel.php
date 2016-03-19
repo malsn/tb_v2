@@ -82,7 +82,7 @@ class SubscriptionModel extends ContainerAware {
      * @param AutoSubscription $subscription
      * @return Query
      */
-    public function getItemsBySubscriptionQuery(AutoSubscription $subscription){
+    public function getItemsBySubscriptionQuery(AutoSubscription $subscription, $type){
 
         $rubric = $subscription->getRubric();
         $filter_params = [];
@@ -98,13 +98,14 @@ class SubscriptionModel extends ContainerAware {
 
         $query = $this->container->get('doctrine')
             ->getRepository('TooBigAppBundle:Item')
-            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $subscription)
+            ->createQuery('c', function ($qb) use ($rubric, $filter_params, $price_params, $subscription, $type)
             {
                 if (null !== $rubric) {
                     $qb->fromRubric($rubric)->withSubrubrics(true);
                 }
 
                 $qb->whereEnabled()->whereIndex(false);
+                $type === 'new' ? $qb->expr()->gt('c.updated_at', $subscription->getViewedAt()) : null;
 
                 foreach ($filter_params as $key => $value) {
                     if ( null !== $value ){
