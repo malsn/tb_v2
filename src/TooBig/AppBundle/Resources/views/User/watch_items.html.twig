@@ -79,11 +79,11 @@
                             </div>
                         {% endblock entity_list_entry_enabled  %}
 
-                        {% block entity_list_entry_editedAt  %}
+                        {% block entity_list_entry_updatedAt  %}
                             <div class="col-md-2">
-                                <span class="item-editedAt">{{ entity.editedAt | date("d.m.Y H:i:s") }}</span>
+                                <span class="item-updatedAt">{{ entity.updatedAt | date("d.m.Y H:i:s") }}</span>
                             </div>
-                        {% endblock entity_list_entry_editedAt  %}
+                        {% endblock entity_list_entry_updatedAt  %}
 
                         <div class="col-md-2"><a class="a-unwatch-item btn btn-warning" path-controller="{{ path('app_item_unwatch', {'item_id': entity.item.id}) }}">Отменить</a></div>
 
