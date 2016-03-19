@@ -52,7 +52,11 @@ class DisableItems extends ContainerAwareCommand
                     ->setSubject('Публикация вашего объявления на площадке TooBig')
                     ->setFrom('admin@old-stuff.spbeta.ru')
                     ->setTo($user->getEmail())
-                    ->setBody($this->renderView('TooBigAppBundle:Mail:expired', array('user' => $user, 'item' => $item)))
+                    ->setBody(sprintf("Уважаемый(ая), %s. Срок публикации вашего объявления %s закончился. Для его дальнейшего показа, перейдите в раздел <a href='%s'>Мои объявления</a> и активируйте его снова.",
+                            $user->getFirstName(),
+                            $item->getTitle(),
+                            $this->getContainer()->get('router')->generateUrl('app_list_user_items'))
+                    )
                 ;
                 $mailer->send($message);
                 /**/
