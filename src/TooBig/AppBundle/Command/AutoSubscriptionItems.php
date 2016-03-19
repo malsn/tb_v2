@@ -15,8 +15,8 @@ class DisableItems extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('toobig:items:disable')
-            ->setDescription('Disabling items on publication_date_end')
+            ->setName('toobig:subscription:new-offer')
+            ->setDescription('Offering new items on Users auto_subscriptions')
             ->addArgument(
                 'name',
                 InputArgument::OPTIONAL,
@@ -52,7 +52,7 @@ class DisableItems extends ContainerAwareCommand
                     ->setSubject('Публикация вашего объявления на площадке TooBig')
                     ->setFrom('admin@old-stuff.spbeta.ru')
                     ->setTo($user->getEmail())
-                    ->setContentType('text/html')
+                    ->setContentType('html')
                     ->setBody(sprintf("Уважаемый(ая), %s. Срок публикации вашего объявления %s закончился. Для его дальнейшего показа, перейдите в раздел <a href='%s'>Мои объявления</a> и активируйте его снова.",
                             $user->getFirstName(),
                             $item->getTitle(),
