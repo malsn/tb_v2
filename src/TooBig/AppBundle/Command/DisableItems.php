@@ -52,6 +52,7 @@ class DisableItems extends ContainerAwareCommand
                     ->setSubject('Публикация вашего объявления на площадке TooBig')
                     ->setFrom('admin@old-stuff.spbeta.ru')
                     ->setTo($user->getEmail())
+                    ->setContentType('html')
                     ->setBody(sprintf("Уважаемый(ая), %s. Срок публикации вашего объявления %s закончился. Для его дальнейшего показа, перейдите в раздел <a href='%s'>Мои объявления</a> и активируйте его снова.",
                             $user->getFirstName(),
                             $item->getTitle(),
