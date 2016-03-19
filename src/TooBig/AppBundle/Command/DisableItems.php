@@ -43,8 +43,18 @@ class DisableItems extends ContainerAwareCommand
                 $em = $this->getContainer()->get('doctrine.orm.entity_manager');
                 $em->persist($item);
                 $em->flush();
-                /* ��������� ��������� ������������ */
+                /* отправить сообщение пользователю */
                 $user = $item->getCreatedBy();
+                // получаем 'mailer' (обязателен для инициализации Swift Mailer)
+                $mailer = $this->getContainer()->get('mailer');
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Публикация вашего объявления на площадке TooBig')
+                    ->setFrom('admin@old-stuff.spbeta.ru')
+                    ->setTo($user->getEmail())
+                    ->setBody($this->renderView('TooBigAppBundle:Mail:expired', array('user' => $user, 'item' => $item)))
+                ;
+                $mailer->send($message);
                 /**/
                 $output->writeln($item->getId());
             }
