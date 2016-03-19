@@ -50,10 +50,10 @@
         <div class="col-sm-9">{{ form_widget(form.rubric, {'attr': {'class':'form-control'}}) }}
             <input id="rubric" type="hidden" name="rubric" value="1"/>
             <input id="struct" type="hidden" name="struct" value="1"/>
-            {% if posting.rubric is defined %}
-                render(controller('TooBigAppBundle:Subscription:getBreadcrumbs', {
+            {% if posting.rubric is defined and posting.rubric is not null %}
+                {{ render(controller('TooBigAppBundle:Subscription:getBreadcrumbs', {
                     'rubric_id': posting.rubric
-                }))
+                })) }}
             {% endif %}
             <div class="form-group control-group">или изменить</div>
             <div id="struct-1">
