@@ -106,7 +106,7 @@ class SubscriptionModel extends ContainerAware {
 
                 $qb->whereEnabled()->whereIndex(false);
                 if ( $type === 'new' ) {
-                    $qb->expr()->gt('c.updated_at', $subscription->getViewedAt()->format('Y-m-d H:i:s'));
+                    $qb->andWhere($qb->expr()->gt('c.updated_at', $subscription->getViewedAt()->format('Y-m-d H:i:s')));
                 };
 
                 foreach ($filter_params as $key => $value) {
@@ -117,7 +117,7 @@ class SubscriptionModel extends ContainerAware {
                         } else {
                             switch($key){
                                 case 'Color':
-                                    $qb->expr()->in('c.color_id',$value->getSnapshot());
+                                    $qb->andWhere($qb->expr()->in('c.color_id',$value->getSnapshot()));
                                 default:
                             }
                         }
