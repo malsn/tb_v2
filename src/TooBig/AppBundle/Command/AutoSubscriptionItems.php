@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Sonata\UserBundle\Model\UserInterface;
 use Doctrine\ORM\Query;
 
-class DisableItems extends ContainerAwareCommand
+class AutoSubscriptionItems extends ContainerAwareCommand
 {
     protected function configure()
     {
