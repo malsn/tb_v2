@@ -7,7 +7,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Sonata\UserBundle\Model\UserInterface;
 use Doctrine\ORM\Query;
 
 class SubscriptionItems extends ContainerAwareCommand
@@ -54,7 +53,7 @@ class SubscriptionItems extends ContainerAwareCommand
                     );
                 $mailer->send($message);
                 /**/
-                $output->writeln($item->getId());
+                $output->writeln($subscription->getId());
             }
         }
 
