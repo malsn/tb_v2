@@ -83,6 +83,9 @@
         <service id="app.command.disableitems" class="TooBig\AppBundle\Command\DisableItems">
             <tag name="console.command" />
         </service>
+        <service id="app.command.subscription.offer" class="TooBig\AppBundle\Command\SubscriptionItems">
+            <tag name="console.command" />
+        </service>
     </services>
 
 </container>
