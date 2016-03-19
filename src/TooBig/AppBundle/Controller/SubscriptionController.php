@@ -230,7 +230,7 @@ protected function getSubscriptionQuery($subscription){
         if ( $user === $subscription->getCreatedBy()){
 
             try {
-                $query = $this->get('auto_subscription_model')->getItemsBySubscriptionQuery($subscription, 'all');
+                $query = $this->get('auto_subscription_model')->getItemsBySubscriptionQuery($subscription, 'new');
                 return $query;
 
             } catch (\Exception $e) {
