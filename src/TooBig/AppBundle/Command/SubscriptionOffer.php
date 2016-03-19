@@ -22,7 +22,6 @@ class SubscriptionOffer extends ContainerAwareCommand
     {
         $subscriptions = $this->getContainer()->get('doctrine')->getRepository('TooBigAppBundle:AutoSubscription')->findAll();
         foreach ( $subscriptions as $subscription){
-            $viewed_at = $subscription->getViewedAt();
             $user = $subscription->getCreatedBy();
             $query = $this->getContainer()->get('auto_subscription_model')->getItemsBySubscriptionQuery($subscription, 'new');
             $count = count($query->getResult());
