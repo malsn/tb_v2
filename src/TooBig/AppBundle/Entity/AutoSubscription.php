@@ -33,6 +33,11 @@ class AutoSubscription
     /**
      * @var \DateTime
      */
+    private $viewedAt;
+
+    /**
+     * @var \DateTime
+     */
     private $modifiedAt;
 
     /**
@@ -152,6 +157,22 @@ class AutoSubscription
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getViewedAt()
+    {
+        return $this->viewedAt;
+    }
+
+    /**
+     * @param \DateTime $viewedAt
+     */
+    public function setViewedAt($viewedAt)
+    {
+        $this->viewedAt = $viewedAt;
     }
 
     /**

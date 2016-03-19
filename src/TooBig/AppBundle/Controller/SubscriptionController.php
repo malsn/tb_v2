@@ -192,6 +192,7 @@ public function getSubscriptionItemsListAction($subscription_id){
 
         $subscription = $this->get('auto_subscription_model')->getSubscriptionById($subscription_id);
         $query = $this->getSubscriptionQuery($subscription);
+        $this->get('auto_subscription_model')->updateViewed($subscription);
         return array('entities' => $this->paginate($query, 20), 'subscription' => $subscription);
 
     }

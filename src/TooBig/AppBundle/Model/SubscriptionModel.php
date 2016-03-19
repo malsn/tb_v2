@@ -37,6 +37,16 @@ class SubscriptionModel extends ContainerAware {
     /**
      * @param AutoSubscription $record
      */
+    public function updateViewed(AutoSubscription $record){
+        $record->setViewedAt(new \DateTime());
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $em->persist($record);
+        $em->flush();
+    }
+
+    /**
+     * @param AutoSubscription $record
+     */
     public function delete(AutoSubscription $record){
         $em = $this->container->get('doctrine.orm.entity_manager');
         $em->remove($record);
