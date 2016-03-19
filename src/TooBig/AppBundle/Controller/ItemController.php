@@ -729,9 +729,9 @@ protected function itemsQueryBuilder ($rubric, $filter_params, $price_params, $s
                     $qb->$qb_func($value);
                 }
             }
-            if (null !== $price_params['Min'] && null !== $price_params['Max']) {
+            /*if (null !== $price_params['Min'] && null !== $price_params['Max']) {
                 $qb->andWhere($qb->expr()->between('c.price', $price_params['Min'], $price_params['Max']));
-            }
+            }*/
             if (null !== $search_params['Search']) {
                 $search_words = preg_split("/[\s,]+/", $search_params['Search']);
                 if (count($search_words)){
