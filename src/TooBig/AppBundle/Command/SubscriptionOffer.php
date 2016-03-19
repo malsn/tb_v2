@@ -34,7 +34,7 @@ class SubscriptionOffer extends ContainerAwareCommand
                     ->setFrom('admin@old-stuff.spbeta.ru')
                     ->setTo($user->getEmail())
                     ->setContentType('text/html')
-                    ->setBody(sprintf("Уважаемый(ая), %s. По вашей подписке \"%s\" для вас появилось %d новых объявлений. Чтобы их посмотреть, перейдите в раздел <a href='http://old-stuff.spbeta.ru/%s'>Мои подписки</a>.",
+                    ->setBody(sprintf("Уважаемый(ая), %s. По вашей подписке \"%s\" для вас появилось %d новых объявлений. Чтобы их посмотреть, перейдите в раздел <a href='http://old-stuff.spbeta.ru/%s'>Мои подписки</a>.".$query->getSQL(),
                         $user->getFirstName(),
                         $subscription->getTitle(),
                         $count,
