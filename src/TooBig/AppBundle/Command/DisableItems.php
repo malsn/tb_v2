@@ -53,7 +53,7 @@ class DisableItems extends ContainerAwareCommand
                     ->setFrom('admin@old-stuff.spbeta.ru')
                     ->setTo($user->getEmail())
                     ->setContentType('text/html')
-                    ->setBody(sprintf("Уважаемый(ая), %s. Срок публикации вашего объявления %s закончился. Для его дальнейшего показа, перейдите в раздел <a href='http://old-stuff.spbeta.ru/%s'>Мои объявления</a> и активируйте его снова.",
+                    ->setBody(sprintf("Уважаемый(ая), %s. Срок публикации вашего объявления %s закончился. Для его дальнейшего показа, перейдите в раздел <a href='http://old-stuff.spbeta.ru%s'>Мои объявления</a> и активируйте его снова.",
                             $user->getFirstName(),
                             $item->getTitle(),
                             $this->getContainer()->get('router')->generate('app_list_user_items'))
