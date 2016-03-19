@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Sonata\UserBundle\Model\UserInterface;
 use Doctrine\ORM\Query;
 
-class AutoSubscriptionItems extends ContainerAwareCommand
+class SubscriptionItems extends ContainerAwareCommand
 {
     protected function configure()
     {
@@ -21,6 +21,12 @@ class AutoSubscriptionItems extends ContainerAwareCommand
                 'exec',
                 InputArgument::REQUIRED,
                 'What is the last execution datetime?'
+            )
+            ->addOption(
+                'yell',
+                null,
+                InputOption::VALUE_NONE,
+                'If set, the task will yell in uppercase letters'
             )
         ;
     }
