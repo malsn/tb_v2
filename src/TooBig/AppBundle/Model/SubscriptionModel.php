@@ -106,7 +106,7 @@ class SubscriptionModel extends ContainerAware {
 
                 $qb->whereEnabled()->whereIndex(false);
                 if ( $type === 'new' ) {
-                    $qb->andWhere($qb->expr()->gt('c.updated_at', "'".$subscription->getViewedAt()->format('Y-m-d H:i:s')."'"));
+                    $qb->andWhere($qb->expr()->gt('c.updatedAt', "'".$subscription->getViewedAt()->format('Y-m-d H:i:s')."'"));
                 };
 
                 foreach ($filter_params as $key => $value) {
