@@ -118,10 +118,13 @@ class SubscriptionModel extends ContainerAware {
                             switch($key){
                                 case 'Color':
                                     $value->initialize();
-                                    $qb->andWhere($qb->expr()->in('c.color',array_map(
-                                        function ($collection) {
-                                            return $collection->getId();
-                                        }, $value->getSnapshot())));
+                                    $colors = $value->getSnapshot();
+                                    if (count($colors)){
+                                        $qb->andWhere($qb->expr()->in('c.color',array_map(
+                                            function ($collection) {
+                                                return $collection->getId();
+                                            }, $colors)));
+                                    }
                                 default:
                             }
                         }
