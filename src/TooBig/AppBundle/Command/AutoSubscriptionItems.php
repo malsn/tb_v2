@@ -48,6 +48,7 @@ class AutoSubscriptionItems extends ContainerAwareCommand
                     );
                 $mailer->send($message);
                 /**/
+                $output->writeln($item->getId());
             }
         }
 
