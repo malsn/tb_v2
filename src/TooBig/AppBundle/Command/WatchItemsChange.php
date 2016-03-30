@@ -63,6 +63,9 @@ class WatchItemsChange extends ContainerAwareCommand
                             $this->getContainer()->get('router')->generate('app_list_watch_items'))
                     );
                 $mailer->send($message);
+
+                $output->writeln($items_table);
+
             }
 
         }
