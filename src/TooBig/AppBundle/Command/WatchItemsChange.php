@@ -68,7 +68,7 @@ class WatchItemsChange extends ContainerAwareCommand
                 $output->writeln($items_table);
 
             }
-
+            $output->writeln($user->getId());
         }
 
     }
