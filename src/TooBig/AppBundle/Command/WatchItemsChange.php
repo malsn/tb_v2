@@ -37,6 +37,7 @@ class WatchItemsChange extends ContainerAwareCommand
                 $this->getContainer()->get('item_subscribtion_model')->updateTaskTime($watch_item);
 
                 if ($item->getEditedAt() < $watch_item->getTaskedAt() || !$item->getEnabled()) {
+                    $output->writeln('?'.$item->getEditedAt().'<'.$watch_item->getTaskedAt().'EN'.$item->getEnabled());
                     unset($watch_items[$key]);
                 }
             }
