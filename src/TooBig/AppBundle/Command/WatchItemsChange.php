@@ -40,6 +40,8 @@ class WatchItemsChange extends ContainerAwareCommand
                 }
             }
 
+            $output->writeln('--'.count($watch_items));
+
             if (count($watch_items) > 0) {
                 $items_table = '<table><tr><th>№</th><th>Наименование</th></tr>';
                 $i=0;
