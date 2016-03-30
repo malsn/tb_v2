@@ -31,6 +31,7 @@ class WatchItemsChange extends ContainerAwareCommand
                 ->setParameter('user', $user->getId())
                 ->getQuery();
             $watch_items = $query->getResult();
+            $output->writeln('!'.count($watch_items));
             foreach ($watch_items as $key => $watch_item) {
                 $item = $watch_item->getItem();
                 $this->getContainer()->get('item_subscribtion_model')->updateTaskTime($watch_item);
