@@ -33,6 +33,10 @@ class ItemSubscribtion
      */
     private $updatedAt;
 
+    /**
+     * @var \DateTime
+     */
+    private $taskedAt;
 
     /**
      * Get id
@@ -130,6 +134,22 @@ class ItemSubscribtion
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTaskedAt()
+    {
+        return $this->taskedAt;
+    }
+
+    /**
+     * @param \DateTime $taskedAt
+     */
+    public function setTaskedAt($taskedAt)
+    {
+        $this->taskedAt = $taskedAt;
     }
 
 

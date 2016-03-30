@@ -50,6 +50,16 @@ class ItemSubscribtionModel extends ContainerAware {
     }
 
     /**
+     * @param ItemSubscribtion $watch_item
+     */
+    public function updateTaskTime( ItemSubscribtion $watch_item ){
+        $watch_item->setTaskedAt(new \DateTime());
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $em->persist($watch_item);
+        $em->flush();
+    }
+
+    /**
      * @param int $item_id
      * return ItemSubscribtion
      */

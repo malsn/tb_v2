@@ -6,6 +6,7 @@
     </id>
     <field name="createdAt" type="datetime" column="created_at"/>
     <field name="updatedAt" type="datetime" column="updated_at"/>
+    <field name="taskedAt"  type="datetime" column="tasked_at"/>
 
     <one-to-one target-entity="TooBig\AppBundle\Entity\Item" field="item">
       <cascade><cascade-persist/></cascade>

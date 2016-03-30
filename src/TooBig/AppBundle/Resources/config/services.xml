@@ -86,6 +86,9 @@
         <service id="app.command.subscription.offer" class="TooBig\AppBundle\Command\SubscriptionOffer">
             <tag name="console.command" />
         </service>
+        <service id="app.command.watchitems.change" class="TooBig\AppBundle\Command\WatchItemsChange">
+            <tag name="console.command" />
+        </service>
     </services>
 
 </container>
