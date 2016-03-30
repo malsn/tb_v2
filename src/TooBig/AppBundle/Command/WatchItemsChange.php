@@ -34,12 +34,12 @@ class WatchItemsChange extends ContainerAwareCommand
             $output->writeln('!'.count($watch_items));
             foreach ($watch_items as $key => $watch_item) {
                 $item = $watch_item->getItem();
-                $this->getContainer()->get('item_subscribtion_model')->updateTaskTime($watch_item);
-
                 if ($item->getEditedAt() < $watch_item->getTaskedAt() || !$item->getEnabled()) {
                     $output->writeln('?'.$item->getEditedAt()->format('Y-m-d H:i:s').'<'.$watch_item->getTaskedAt()->format('Y-m-d H:i:s').'EN'.$item->getEnabled());
-                    unset($watch_items[$key]);
+                    $watch_unset_key = $key;
                 }
+                $this->getContainer()->get('item_subscribtion_model')->updateTaskTime($watch_item);
+                if (isset($watch_unset_key)){ unset($watch_items[$watch_unset_key],$watch_unset_key); }
             }
 
             $output->writeln('--'.count($watch_items));
