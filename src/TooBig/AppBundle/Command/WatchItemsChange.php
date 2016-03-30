@@ -31,7 +31,7 @@ class WatchItemsChange extends ContainerAwareCommand
                 ->setParameter('user', $user->getId())
                 ->getQuery();
             $watch_items = $query->getResult();
-            $output->writeln('!'.count($watch_items));
+            //$output->writeln('!'.count($watch_items));
             foreach ($watch_items as $key => $watch_item) {
                 $item = $watch_item->getItem();
                 if ($item->getEditedAt() < $watch_item->getTaskedAt() || !$item->getEnabled()) {
@@ -42,7 +42,7 @@ class WatchItemsChange extends ContainerAwareCommand
                 if (isset($watch_unset_key)){ unset($watch_items[$watch_unset_key],$watch_unset_key); }
             }
 
-            $output->writeln('--'.count($watch_items));
+            //$output->writeln('--'.count($watch_items));
 
             if (count($watch_items) > 0) {
                 $items_table = '<table><tr><th>№</th><th>Наименование</th></tr>';
@@ -69,10 +69,10 @@ class WatchItemsChange extends ContainerAwareCommand
                     );
                 $mailer->send($message);
 
-                $output->writeln($items_table);
+                //$output->writeln($items_table);
 
             }
-            $output->writeln($user->getId());
+            //$output->writeln($user->getId());
         }
 
     }
