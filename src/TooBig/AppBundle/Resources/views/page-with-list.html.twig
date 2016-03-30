@@ -203,7 +203,7 @@
                 {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
                 {{ entity.description is defined ? entity.description | raw : '' }}
                 {{ entity.announce is defined ? entity.announce | raw : '' }}
-                {{ entity.size is defined and entity.size is not null ? 'Размер: ' ~ entity.size | raw : '' }}
+                {# entity.size is defined and entity.size is not null ? 'Размер: ' ~ entity.size | raw : '' #}
             </div>
         {% endblock entity_list_entry_announce  %}
 
