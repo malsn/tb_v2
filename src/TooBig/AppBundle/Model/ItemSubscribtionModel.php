@@ -27,6 +27,7 @@ class ItemSubscribtionModel extends ContainerAware {
             $watch_item->setItem($record);
             $watch_item->setCreatedAt(new \DateTime());
             $watch_item->setUpdatedAt(new \DateTime());
+            $watch_item->setTaskedAt(new \DateTime());
             $em = $this->container->get('doctrine.orm.entity_manager');
             $em->persist($watch_item);
             $em->flush();
