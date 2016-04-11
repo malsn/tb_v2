@@ -241,3 +241,11 @@
 
 {% endblock page_body %}
 
+{% block info_block %}
+    {% for block in blocks %}
+        <div class="sonata-block">
+            {{ sonata_block_render(block) }}
+        </div>
+    {% endfor %}
+{% endblock info_block %}
+
