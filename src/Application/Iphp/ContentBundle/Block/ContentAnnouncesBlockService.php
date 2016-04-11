@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
+use Sonata\CoreBundle\Validator\ErrorElement;
 
 use Sonata\BlockBundle\Model\BlockInterface;
 
@@ -52,6 +52,7 @@ class ContentAnnouncesBlockService extends ContentBlockService
     /**
      * {@inheritdoc}
      */
+
     public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
     {
         // TODO: Implement validateBlock() method.

@@ -9,7 +9,8 @@ imports:
 assetic:
    bundles: [ IphpCoreBundle ]
 
-
+parameters:
+    iphp.content.block.announces.class: Application\Iphp\ContentBundle\Block\ContentAnnouncesBlockService
 
 twig:
    form:

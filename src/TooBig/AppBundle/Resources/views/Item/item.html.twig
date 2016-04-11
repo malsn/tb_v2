@@ -84,8 +84,13 @@
 {% endblock page_header %}
 
 
-
-
+{% block info_block %}
+    {% for block in blocks %}
+        <div class="sonata-block">
+            {{ sonata_block_render(block) }}
+        </div>
+    {% endfor %}
+{% endblock info_block %}
 
 {% block page_body %}
 {% if content %}

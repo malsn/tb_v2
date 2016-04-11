@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Iphp\ContentBundle\Block;
+namespace Application\Iphp\ContentBundle\Block;
 
 use Symfony\Component\HttpFoundation\Response;
 

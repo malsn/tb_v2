@@ -2,6 +2,7 @@
 
 namespace TooBig\AppBundle\Controller;
 
+use Application\Iphp\CoreBundle\Entity\Block;
 use Application\Iphp\CoreBundle\Entity\Rubric;
 use Symfony\Component\Debug\ExceptionHandler;
 use TooBig\AppBundle\Entity\Item;
@@ -639,6 +640,10 @@ class ItemController extends RubricAwareController
 
         $rubric = $this->getCurrentRubric();
 
+        $blocks = $this->getDoctrine()
+            ->getRepository('ApplicationIphpCoreBundle:Block')
+            ->findBy(['rubric' => $rubric->getId(), 'enabled' => true]);
+
         $filter_params = [];
         $price_params = [];
         $filter_params['Brand'] = isset($request->query->get('ItemsFilter')['brand']) ? $request->query->get(
@@ -691,6 +696,7 @@ class ItemController extends RubricAwareController
             'filter_params' => $filter_params,
             'count' => count($query_filter->getResult()),
             'filter_results' => $filters,
+            'blocks' => $blocks,
         );
     }
 
@@ -702,6 +708,11 @@ class ItemController extends RubricAwareController
         $this->setReturnUrl();
 
         $rubric = $this->getCurrentRubric();
+
+        $blocks = $this->getDoctrine()
+            ->getRepository('ApplicationIphpCoreBundle:Block')
+            ->findBy(['rubric' => $rubric->getId(), 'enabled' => true]);
+
         $content = $this->getDoctrine()
             ->getRepository('TooBigAppBundle:Item')
             ->createQuery(
@@ -730,6 +741,7 @@ class ItemController extends RubricAwareController
             'files' => $files,
             'comments' => $comments,
             'breadcrumbs' => $this->getBreadcrumbs($rubric),
+            'blocks' => $blocks,
         );
 
         $user = $this->get('security.context')->getToken()->getUser();
