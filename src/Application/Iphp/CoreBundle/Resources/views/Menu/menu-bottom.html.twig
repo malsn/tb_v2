@@ -1,0 +1,5 @@
+<span class="footer-menu-list">
+    {% for rubric in rubrics %}
+        <a href="{{ entitypath(rubric) }}" class="{{ rubric.isActive ? 'active ':'' }}">{{ rubric }}</a>
+    {% endfor %}
+</span>

@@ -309,7 +309,12 @@
             <footer>
 
                 {% block footer %}
-                    <p>&copy; TooBig 2016</p>
+                    <p>&copy; TooBig 2016
+                        {% block menu_bottom %}
+                            {% set controller = 'Iphp\\ContentBundle\\Module\\ContentIndexModule' %}
+                            {{ render(controller('ApplicationIphpCoreBundle:Menu:Menu',{ 'template': 'menu-bottom.html.twig', 'rubric' : iphp.rubric, 'controller' : controller })) }}
+                        {% endblock menu_bottom %}
+                    </p>
                 {% endblock footer %}
 
             </footer>
