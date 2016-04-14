@@ -283,7 +283,8 @@
             <div class="col-md-3">
 
                 {% block menu_left %}
-                    {{ render(controller('IphpCoreBundle:Menu:Menu',{ 'template': 'menu-left.html.twig', 'rubric' : iphp.rubric })) }}
+                    {% set controller = 'Application\\Iphp\\ContentBundle\\Module\\ItemListModule' %}
+                    {{ render(controller('ApplicationIphpCoreBundle:Menu:Menu',{ 'template': 'menu-left.html.twig', 'rubric' : iphp.rubric, 'controller' : controller })) }}
                 {% endblock menu_left %}
 
             </div>
