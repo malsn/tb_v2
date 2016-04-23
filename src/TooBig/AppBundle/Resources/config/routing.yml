@@ -11,91 +11,91 @@ app_pre_register_check:
     path:     /preregister/check
     defaults: { _controller: TooBigAppBundle:PreRegister:preCheckPhone }
 app_brand_list:
-    path:     /appl/brand/list
+    path:     /brand/list
     defaults: { _controller: TooBigAppBundle:Item:brandList }
 app_brand_items_list:
     path:     /?ItemsFilter[brand][]={brand_id}
     defaults: { _controller: TooBigAppBundle:Item:siteIndex }
 app_item_add:
-    path:     /appl/item/add/{rubric_id}
+    path:     /item/add/{rubric_id}
     defaults: { _controller: TooBigAppBundle:Item:add }
 app_item_add_common:
-    path:     /appl/item/add
+    path:     /item/add
     defaults: { _controller: TooBigAppBundle:Item:addCommon }
 app_item_edit:
-    path:     /appl/item/{item_id}/edit
+    path:     /item/{item_id}/edit
     defaults: { _controller: TooBigAppBundle:Item:edit }
 app_item_copy:
-    path:     /appl/item/{item_id}/copy
+    path:     /item/{item_id}/copy
     defaults: { _controller: TooBigAppBundle:Item:copy }
 app_item_get_rating:
-    path:     /appl/item/{item_id}/rating
+    path:     /item/{item_id}/rating
     defaults: { _controller: TooBigAppBundle:Item:getItemRating }
 app_item_watch_status:
-    path:     /appl/item/{item_id}/watch/status
+    path:     /item/{item_id}/watch/status
     defaults: { _controller: TooBigAppBundle:Item:watchStatus }
 app_item_watch:
-    path:     /appl/item/{item_id}/watch
+    path:     /item/{item_id}/watch
     defaults: { _controller: TooBigAppBundle:Item:watch }
 app_item_unwatch:
-    path:     /appl/item/{item_id}/unwatch
+    path:     /item/{item_id}/unwatch
     defaults: { _controller: TooBigAppBundle:Item:unwatch }
 app_item_comment_add:
-    path:     /appl/item/{item_id}/comment/add
+    path:     /item/{item_id}/comment/add
     defaults: { _controller: TooBigAppBundle:Item:addcomment }
 app_item_comment_edit:
-    path:     /appl/item/{item_id}/comment/edit
+    path:     /item/{item_id}/comment/edit
     defaults: { _controller: TooBigAppBundle:Item:editcomment }
 app_item_phone_view:
-    path:     /appl/item/{item_id}/phone/view
+    path:     /item/{item_id}/phone/view
     defaults: { _controller: TooBigAppBundle:Item:viewItemPhone }
 app_subscription_add:
-    path:     /appl/subscription/add
+    path:     /subscription/add
     defaults: { _controller: TooBigAppBundle:Subscription:add }
 app_subscription_edit:
-    path:     /appl/subscription/{subscription_id}/edit
+    path:     /subscription/{subscription_id}/edit
     defaults: { _controller: TooBigAppBundle:Subscription:edit }
 app_subscription_stop:
-    path:     /appl/subscription/{subscription_id}/stop
+    path:     /subscription/{subscription_id}/stop
     defaults: { _controller: TooBigAppBundle:Subscription:stop }
 app_subscription_resume:
-    path:     /appl/subscription/{subscription_id}/resume
+    path:     /subscription/{subscription_id}/resume
     defaults: { _controller: TooBigAppBundle:Subscription:resume }
 app_subscription_delete:
-    path:     /appl/subscription/{subscription_id}/delete
+    path:     /subscription/{subscription_id}/delete
     defaults: { _controller: TooBigAppBundle:Subscription:delete }
 app_subscription_items_count:
-    path:     /appl/subscription/{subscription_id}/items/count
+    path:     /subscription/{subscription_id}/items/count
     defaults: { _controller: TooBigAppBundle:Subscription:getSubscriptionItemsCount }
 app_subscription_items_list:
-    path:     /appl/subscription/{subscription_id}/items/list
+    path:     /subscription/{subscription_id}/items/list
     defaults: { _controller: TooBigAppBundle:Subscription:getSubscriptionItemsList }
 app_subscription_breadcrumbs:
-    path:     /appl/subscription/breadcrumbs/{rubric_id}
+    path:     /subscription/breadcrumbs/{rubric_id}
     defaults: { _controller: TooBigAppBundle:Subscription:getBreadcrumbs }
 app_list_watch_items:
-    path:     /appl/items/watchlist
+    path:     /items/watchlist
     defaults: { _controller: TooBigAppBundle:User:watchlist }
 app_list_subscriptions:
-    path:     /appl/subscription/list
+    path:     /subscription/list
     defaults: { _controller: TooBigAppBundle:User:listSubscriptions }
 app_list_user_items:
-    path:     /appl/items/list
+    path:     /items/list
     defaults: { _controller: TooBigAppBundle:User:listUserItems }
 app_user_profile_edit:
-    path:     /appl/profile/edit
+    path:     /profile/edit
     defaults: { _controller: TooBigAppBundle:User:editProfile }
 app_file_upload:
-    path:     /appl/file/upload/
+    path:     /file/upload/
     defaults: { _controller: TooBigAppBundle:Item:upload }
 app_list_rubric_children:
-    path:     /appl/rubric/children
+    path:     /rubric/children
     defaults: { _controller: TooBigAppBundle:Item:listRubricChildren }
 app_list_model_by_brand:
-    path:     /appl/brand/model/
+    path:     /brand/model/
     defaults: { _controller: TooBigAppBundle:Model:listModelbyBrand }
 app_list_size_by_sizetype:
-    path:     /appl/size/type/
+    path:     /size/type/
     defaults: { _controller: TooBigAppBundle:Size:listSizebySizeType }
 admin_list_model_by_brand:
     path:     /admin/brand/model/
