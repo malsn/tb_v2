@@ -25,7 +25,7 @@ var ajax_to_modal = function($button){
                 $('.pre-register-phone-button').click(function(){
                     pre_register_phone();
                 });
-                //$("#PreRegister_phone").mask("+7(999) 999-99-99");
+                $("#PreRegister_phone").mask("+7(999) 999-99-99");
                 $alertModal.modal({show: true});
             }
         },
