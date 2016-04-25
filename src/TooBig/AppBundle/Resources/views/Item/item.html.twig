@@ -38,6 +38,7 @@
                         .find('div.modal-body')
                         .html('{{ messages | join('<br/>') | raw }}');
                 $alertModal.modal('toggle');
+                alert(5);
                 {% endif %}
             });
         })(jQuery_1_11_2);
