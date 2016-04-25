@@ -12,10 +12,10 @@ class BrandAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text', array('label' => 'Name'))
-            ->add('description', null, array('label' => 'Description')) //if no type is specified, SonataAdminBundle tries to guess it
+            ->add('name', 'text', array('label' => 'Наименование'))
+            ->add('description', null, array('label' => 'Описание')) //if no type is specified, SonataAdminBundle tries to guess it
             ->add('imageUpload', 'file', ['required' => false])
-            ->add('image', 'iphp_file',['upload' => false])
+            //->add('image', 'iphp_file',['upload' => false])
         ;
     }
 
