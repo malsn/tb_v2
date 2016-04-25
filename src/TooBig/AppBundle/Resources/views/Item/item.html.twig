@@ -14,7 +14,7 @@
     '@TooBigAppBundle/Resources/public/js/Item.js'
     '@IphpCoreBundle/Resources/public/bootstrap/3.3/js/bootstrap.min.js'
     '@TooBigAppBundle/Resources/public/js/jquery.maskedinput.min.js'
-    '@TooBigAppBundle/Resources/public/js/PreRegister.js'
+    '@TooBigAppBundle/Resources/public/js/PreRegister1.js'
      %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -34,7 +34,11 @@
         (function($) {
             $(document).ready(function() {
 
-                alert(4);
+                alert(45);
+
+                $('.btn-ajax-to-modal').click(function(){
+                    ajax_to_modal($(this));
+                });
 
                 {% set messages = app.session.flashBag.get(constant('TooBig\\AppBundle\\Service\\FlashBag::MESSAGE')) %}
                 {% if messages is not empty %}
