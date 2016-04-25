@@ -21,8 +21,8 @@
     {% endjavascripts %}
 
     <script type="application/javascript">
-
-
+        var jQuery_1_11_2 = jQuery.noConflict();
+        (function($) {
             $(document).ready(function() {
                 $('.jqzoom').jqzoom({
                     zoomType: 'standard',
@@ -30,6 +30,10 @@
                     preloadImages: false,
                     alwaysOn:false
                 });
+            });
+        })($);
+        (function($) {
+            $(document).ready(function() {
                 {% set messages = app.session.flashBag.get(constant('TooBig\\AppBundle\\Service\\FlashBag::MESSAGE')) %}
                 {% if messages is not empty %}
                 var $alertModal = $('#alert_modal');
@@ -39,6 +43,7 @@
                 $alertModal.modal('toggle');
                 {% endif %}
             });
+        })(jQuery_1_11_2);
     </script>
 
 {% endblock javascripts %}
