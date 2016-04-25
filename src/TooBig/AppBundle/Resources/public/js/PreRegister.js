@@ -164,9 +164,3 @@ var finish_resetting = function(){
         }
     });
 }
-
-$(document).ready(function(){
-    $('.btn-ajax-to-modal').click(function(){
-        ajax_to_modal($(this));
-    });
-})
