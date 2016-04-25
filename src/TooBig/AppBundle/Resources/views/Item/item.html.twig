@@ -13,14 +13,16 @@
     '@IphpCoreBundle/Resources/public/js/jquery-ui-i18n.js'
     '@TooBigAppBundle/Resources/public/js/Item.js'
     '@IphpCoreBundle/Resources/public/bootstrap/3.3/js/bootstrap.min.js'
+    '@TooBigAppBundle/Resources/public/js/jquery-migrate-1.3.0.min.js'
+    '@TooBigAppBundle/Resources/public/js/jquery.maskedinput.min.js'
     '@TooBigAppBundle/Resources/public/js/PreRegister.js'
      %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
     <script type="application/javascript">
-        var jQuery_1_11_2 = jQuery.noConflict();
-        (function($) {
+
+
             $(document).ready(function() {
                 $('.jqzoom').jqzoom({
                     zoomType: 'standard',
@@ -28,10 +30,6 @@
                     preloadImages: false,
                     alwaysOn:false
                 });
-            });
-        })($);
-        (function($) {
-            $(document).ready(function() {
                 {% set messages = app.session.flashBag.get(constant('TooBig\\AppBundle\\Service\\FlashBag::MESSAGE')) %}
                 {% if messages is not empty %}
                 var $alertModal = $('#alert_modal');
@@ -41,7 +39,6 @@
                 $alertModal.modal('toggle');
                 {% endif %}
             });
-        })(jQuery_1_11_2);
     </script>
 
 {% endblock javascripts %}
