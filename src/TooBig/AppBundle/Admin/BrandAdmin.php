@@ -14,8 +14,8 @@ class BrandAdmin extends Admin
         $formMapper
             ->add('name', 'text', array('label' => 'Наименование'))
             ->add('description', null, array('label' => 'Описание')) //if no type is specified, SonataAdminBundle tries to guess it
-            ->add('imageUpload', 'file', ['required' => false])
-            ->add('image', 'iphp_file',['upload' => false])
+            /*->add('imageUpload', 'file', ['required' => false])
+            ->add('image', 'iphp_file',['upload' => false])*/
         ;
     }
 

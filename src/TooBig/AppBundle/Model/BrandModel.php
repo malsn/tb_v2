@@ -17,4 +17,10 @@ class BrandModel extends ContainerAware {
             ->find($brand_id);
         return $brand;
     }
+
+    public function add($a, $b)
+    {
+        return $a + $b;
+    }
+
 }
