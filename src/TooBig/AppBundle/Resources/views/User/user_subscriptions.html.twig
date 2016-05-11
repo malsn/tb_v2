@@ -16,10 +16,9 @@
 {% endblock page_header %}
 
 {% block page_body %}
-
+    <a class="btn btn-success btn-subscription-add" href="{{ path('app_subscription_add') }}">Добавить подписку</a>
     {% if entities is defined and entities | length > 0 %}
         {% block entity_list%}
-            <a class="btn btn-success btn-subscription-add" href="{{ path('app_subscription_add') }}">Добавить подписку</a>
             <div id="my-item-list">
                 <div class="row heading">
                    <div class="col-md-4">
