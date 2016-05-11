@@ -49,7 +49,7 @@ class ItemController extends RubricAwareController
         );
 
         return array(
-            'entities' => $this->paginate($query, 20),
+            'entities' => $this->paginate($query, 100),
         );
     }
 
