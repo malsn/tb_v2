@@ -252,7 +252,7 @@
             </trans-unit>
             <trans-unit id="form.label_locale">
                 <source>form.label_locale</source>
-                <target>Локаль</target>
+                <target>Язык</target>
             </trans-unit>
             <trans-unit id="form.label_timezone">
                 <source>form.label_timezone</source>
@@ -336,7 +336,7 @@
             </trans-unit>
             <trans-unit id="show.label_locale">
                 <source>show.label_locale</source>
-                <target>Локаль</target>
+                <target>Язык</target>
             </trans-unit>
             <trans-unit id="show.label_timezone">
                 <source>show.label_timezone</source>
@@ -444,7 +444,7 @@
             </trans-unit>
             <trans-unit id="label_profile_locale">
                 <source>label_profile_locale</source>
-                <target>Локаль</target>
+                <target>Язык</target>
             </trans-unit>
             <trans-unit id="label_profile_timezone">
                 <source>label_profile_timezone</source>
