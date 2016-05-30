@@ -1,6 +1,7 @@
 imports:
     - { resource: bundle/sonata_admin.yml }
     - { resource: bundle/sonata_block.yml }
+    - { resource: bundle/sonata_user.yml }
     - { resource: bundle/genemu_form.yml }
     - { resource: bundle/fos_user.yml }
     - { resource: bundle/stof_doctrineextensions.yml }
