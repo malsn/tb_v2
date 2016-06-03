@@ -55,10 +55,15 @@ class ItemForm extends AbstractType
                     ]
                 ]
             )
-            ->add('place', 'textarea', [
-                'attr'=>[
-                    'rows'=>'2'
-                ]])
+            ->add('place', null, [
+                'required' => true
+            ])
+            ->add('place_geo_lat', 'hidden', array(
+                'required' => false,
+            ))
+            ->add('place_geo_lon', 'hidden', array(
+                'required' => false,
+            ))
             ->add('rubric', 'rubricchoice')
             ->add('gender', new GenderType(), ['empty_value' => 'Укажите пол'])
             ->add('status', new StatusType(), ['empty_value' => 'Укажите состояние'])

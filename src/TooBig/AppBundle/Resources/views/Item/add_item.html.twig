@@ -53,6 +53,26 @@
 
     <div class="form-group control-group separator"></div>
 
+    <link href="https://cdn.jsdelivr.net/jquery.suggestions/16.2.2/css/suggestions.css" type="text/css" rel="stylesheet" />
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <!--[if lt IE 10]>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.suggestions/16.2.2/js/jquery.suggestions.min.js"></script>
+    <script type="text/javascript">
+        $("#sonata_user_profile_place").suggestions({
+            serviceUrl: "https://suggestions.dadata.ru/suggestions/api/4_1/rs",
+            token: "d12783ba3618826d3096e6ceecf7290c90f56092",
+            type: "ADDRESS",
+            count: 5,
+            /* Вызывается, когда пользователь выбирает одну из подсказок */
+            onSelect: function(suggestion) {
+                $("#sonata_user_profile_place_geo_lat").val(suggestion.data.geo_lat);
+                $("#sonata_user_profile_place_geo_lon").val(suggestion.data.geo_lon);
+            }
+        });
+    </script>
+
     <h3>Контактная информация</h3>
 
     <div class="form-group control-group">

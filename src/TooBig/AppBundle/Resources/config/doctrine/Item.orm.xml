@@ -18,6 +18,8 @@
         <field name="logs" type="text" column="logs" nullable="true"/>
         <field name="phone" type="text" column="phone" nullable="true"/>
         <field name="place" type="text" column="place" nullable="true"/>
+        <field name="place_geo_lat" type="text" column="place_geo_lat" nullable="true"/>
+        <field name="place_geo_lon" type="text" column="place_geo_lon" nullable="true"/>
         <field name="status" type="text" column="status" nullable="true"/>
         <field name="gender" type="string" column="gender" nullable="false"/>
 

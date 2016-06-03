@@ -68,6 +68,16 @@ class Item extends BaseItem
     private $place;
 
     /**
+     * @var $place_geo_lat
+     */
+    protected $place_geo_lat;
+
+    /**
+     * @var $place_geo_lon
+     */
+    protected $place_geo_lon;
+
+    /**
      * @var string
      */
     private $status;
