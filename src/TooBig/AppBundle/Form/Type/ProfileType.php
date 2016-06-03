@@ -91,6 +91,12 @@ class ProfileType extends AbstractType
                 'label'    => 'form.label_phone',
                 'required' => true,
             ))
+            ->add('place_geo_lat', 'hidden', array(
+                'required' => false,
+            ))
+            ->add('place_geo_lon', 'hidden', array(
+                'required' => false,
+            ))
             ->add(
                 'save',
                 'submit',

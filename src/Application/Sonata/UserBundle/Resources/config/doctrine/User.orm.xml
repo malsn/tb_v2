@@ -11,6 +11,8 @@
         </id>
 
         <field name="place" type="text" column="place" nullable="true"/>
+        <field name="place_geo_lat" type="text" column="place_geo_lat" nullable="true"/>
+        <field name="place_geo_lon" type="text" column="place_geo_lon" nullable="true"/>
 
         <one-to-many field="watchItems" target-entity="TooBig\AppBundle\Entity\ItemSubscribtion" mapped-by="user">
             <cascade><cascade-persist/></cascade>

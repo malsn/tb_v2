@@ -37,6 +37,16 @@ class User extends BaseUser
     protected $place;
 
     /**
+     * @var $place_geo_lat
+     */
+    protected $place_geo_lat;
+
+    /**
+     * @var $place_geo_lon
+     */
+    protected $place_geo_lon;
+
+    /**
      * @var watchItems[]
      */
     protected $watchItems;
@@ -70,6 +80,38 @@ class User extends BaseUser
     public function setPlace($place)
     {
         $this->place = $place;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlaceGeoLat()
+    {
+        return $this->place_geo_lat;
+    }
+
+    /**
+     * @param mixed $place_geo_lat
+     */
+    public function setPlaceGeoLat($place_geo_lat)
+    {
+        $this->place_geo_lat = $place_geo_lat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlaceGeoLon()
+    {
+        return $this->place_geo_lon;
+    }
+
+    /**
+     * @param mixed $place_geo_lon
+     */
+    public function setPlaceGeoLon($place_geo_lon)
+    {
+        $this->place_geo_lon = $place_geo_lon;
     }
 
 }
