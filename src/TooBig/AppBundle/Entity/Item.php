@@ -223,6 +223,38 @@ class Item extends BaseItem
     }
 
     /**
+     * @return mixed
+     */
+    public function getPlaceGeoLat()
+    {
+        return $this->place_geo_lat;
+    }
+
+    /**
+     * @param mixed $place_geo_lat
+     */
+    public function setPlaceGeoLat($place_geo_lat)
+    {
+        $this->place_geo_lat = $place_geo_lat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlaceGeoLon()
+    {
+        return $this->place_geo_lon;
+    }
+
+    /**
+     * @param mixed $place_geo_lon
+     */
+    public function setPlaceGeoLon($place_geo_lon)
+    {
+        $this->place_geo_lon = $place_geo_lon;
+    }
+
+    /**
      * @return string
      */
     public function getStatus()
