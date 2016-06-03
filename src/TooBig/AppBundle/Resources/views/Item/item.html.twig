@@ -392,12 +392,12 @@
 
                         function init () {
                             var myMap = new ymaps.Map("ymap", {
-                                center: [{{ content.place_geo_lat }},{{ content.place_geo_lon }}],
+                                center: [{{ content.placeGeoLat }},{{ content.placeGeoLon }}],
                                 zoom: 16,
                                 controls: ['zoomControl','typeSelector','fullscreenControl']
                                 //,type: "yandex#satellite" // загрузка спутник
                             });
-                            myPlacemark0 = new ymaps.Placemark([{{ content.place_geo_lat }},{{ content.place_geo_lon }}], {
+                            myPlacemark0 = new ymaps.Placemark([{{ content.placeGeoLat }},{{ content.placeGeoLon }}], {
                                 balloonContent: '{{ content.place }}'}, {
                                 iconLayout: 'default#image',
                                 iconImageHref: 'http://g12spb.ru/images/logo/marker.png',
