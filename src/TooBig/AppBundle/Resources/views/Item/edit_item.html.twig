@@ -56,15 +56,15 @@
     <![endif]-->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.suggestions/16.2.2/js/jquery.suggestions.min.js"></script>
     <script type="text/javascript">
-        $("#sonata_user_profile_place").suggestions({
+        $("#Item_place").suggestions({
             serviceUrl: "https://suggestions.dadata.ru/suggestions/api/4_1/rs",
             token: "d12783ba3618826d3096e6ceecf7290c90f56092",
             type: "ADDRESS",
             count: 5,
             /* Вызывается, когда пользователь выбирает одну из подсказок */
             onSelect: function(suggestion) {
-                $("#sonata_user_profile_place_geo_lat").val(suggestion.data.geo_lat);
-                $("#sonata_user_profile_place_geo_lon").val(suggestion.data.geo_lon);
+                $("#Item_place_geo_lat").val(suggestion.data.geo_lat);
+                $("#Item_place_geo_lon").val(suggestion.data.geo_lon);
             }
         });
     </script>
@@ -162,6 +162,7 @@
         </div>
     </div>
 
+    {{ form_rest(form) }}
     {{ form_end(form) }}
 
     <script type="text/javascript">
