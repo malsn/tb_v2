@@ -52,7 +52,7 @@ class ItemEditForm extends AbstractType
                     ]
                 ]
             )
-            ->add('place', null, [
+            ->add('place', 'text', [
                 'required' => true
             ])
             ->add('place_geo_lat', 'hidden', array(
