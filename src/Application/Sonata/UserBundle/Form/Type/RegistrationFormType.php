@@ -19,7 +19,7 @@ class RegistrationFormType extends BaseType
                 'translation_domain' => 'FOSUserBundle',
                 'attr'=>array('class'=>'form-control'),
                 'data' => ( $_SESSION['register_phone'] ? : null ) ))
-            ->add('place', null, array('label' => 'form.place', 'translation_domain' => 'FOSUserBundle', 'attr'=>array('class'=>'form-control')))
+            ->add('place', 'text', array('label' => 'form.place', 'translation_domain' => 'FOSUserBundle', 'attr'=>array('class'=>'form-control')))
             ->add('place_geo_lat', 'hidden', array(
                 'required' => false,
             ))
