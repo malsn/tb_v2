@@ -54,9 +54,8 @@
                     <div class='error'>{{ form_errors(form.plainPassword) }}</div>
 
                     {{ form_widget(form.phone) }}
-                    {{ form_widget(form.placeGeoLat) }}
-                    {{ form_widget(form.placeGeoLon) }}
                     {{ form_widget(form._token) }}
+                    {{ form_rest(form) }}
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
