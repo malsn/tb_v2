@@ -20,6 +20,12 @@ class RegistrationFormType extends BaseType
                 'attr'=>array('class'=>'form-control'),
                 'data' => ( $_SESSION['register_phone'] ? : null ) ))
             ->add('place', null, array('label' => 'form.place', 'translation_domain' => 'FOSUserBundle', 'attr'=>array('class'=>'form-control')))
+            ->add('place_geo_lat', 'hidden', array(
+                'required' => false,
+            ))
+            ->add('place_geo_lon', 'hidden', array(
+                'required' => false,
+            ))
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
                 'options' => array('translation_domain' => 'FOSUserBundle'),
