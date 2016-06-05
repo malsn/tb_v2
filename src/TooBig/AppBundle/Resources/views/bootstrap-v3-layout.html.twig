@@ -176,7 +176,7 @@
 
                                 {% set userMainLink = '' %}
 
-                                {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_ADMIN")  %}
+                                {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_SONATA_ADMIN")  %}
                                     {% set userMainLink = path ('sonata_admin_dashboard') %}
                                 {% else %}
                                     {% set userMainLink = '#' %}
@@ -202,7 +202,7 @@
 
                                         {% block user_top_actions %}
 
-                                            {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_ADMIN") %}
+                                            {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_SONATA_ADMIN") %}
                                                 <li><a href="{{ path ('sonata_admin_dashboard') }}">
                                                         <span class="glyphicon glyphicon-dashboard"
                                                               aria-hidden="true"></span>Панель управления</a></li>
