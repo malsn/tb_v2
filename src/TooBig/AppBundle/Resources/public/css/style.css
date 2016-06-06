@@ -316,6 +316,7 @@ div.item-img {
     height: auto;
     overflow: hidden;
     float: left;
+    margin-right: 10px;
 }
 div.item-img.img-brand {
     display: block;
@@ -332,6 +333,9 @@ div.item-img.img-brand img {
     display: block;
     width: auto;
     height: auto;
+}
+div.item-title {
+    font-size: 20px;
 }
 div.item-brand {
     color: #333;
