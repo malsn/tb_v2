@@ -8,12 +8,20 @@ a.site-logo {
 .modal-backdrop {
     position: fixed;
 }
-.btn-primary, .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+.btn-primary, .list-group-item.active {
     background-color: #8d9ed1;
     border-color: #004994;
 }
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #7c8bb6;
+    border-color: #004994;
+}
 .btn-success {
-    background-color: #5cb85c;
+    background-color: #bad36c;
+    border-color: #004994;
+}
+.btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open>.dropdown-toggle.btn-success {
+    background-color: #9db25b;
     border-color: #004994;
 }
 .navbar-inverse {
