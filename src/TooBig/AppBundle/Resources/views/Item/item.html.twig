@@ -383,39 +383,6 @@
                     </div>
                 {% endblock content_place %}
 
-                <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-                <script type="text/javascript">
-
-                        var myMap;
-                        // Дождёмся загрузки API и готовности DOM.
-                        ymaps.ready(init);
-
-                        function init () {
-                            var myMap = new ymaps.Map("ymap", {
-                                center: [{{ content.placeGeoLat }},{{ content.placeGeoLon }}],
-                                zoom: 16,
-                                controls: ['zoomControl','typeSelector','fullscreenControl']
-                                //,type: "yandex#satellite" // загрузка спутник
-                            });
-                            myPlacemark0 = new ymaps.Placemark([{{ content.placeGeoLat }},{{ content.placeGeoLon }}], {
-                                balloonContent: '{{ content.place }}'}, {
-                                iconLayout: 'default#image',
-                                iconImageHref: 'http://g12spb.ru/images/logo/marker.png',
-                                iconImageSize: [70, 70],
-                                iconImageOffset: [-20, -70]
-                            });
-
-
-
-
-                            myMap.geoObjects
-                                    .add(myPlacemark0)
-
-                        }
-
-                    </script>
-                    <div id="ymap" style="width:100%; height:400px;"></div>
-
             {% endif %}
 
 
@@ -457,6 +424,43 @@
         {% endif #}
     </div>
 </div>
+
+{% if content.createdBy and content.placeGeoLat != '' and content.placeGeoLon != '' %}
+    <div class="row">
+        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            var myMap;
+            // Дождёмся загрузки API и готовности DOM.
+            ymaps.ready(init);
+
+            function init () {
+                var myMap = new ymaps.Map("ymap", {
+                    center: [{{ content.placeGeoLat }},{{ content.placeGeoLon }}],
+                    zoom: 16,
+                    controls: ['zoomControl','typeSelector','fullscreenControl']
+                    //,type: "yandex#satellite" // загрузка спутник
+                });
+                myPlacemark0 = new ymaps.Placemark([{{ content.placeGeoLat }},{{ content.placeGeoLon }}], {
+                    balloonContent: '{{ content.place }}'}, {
+                    iconLayout: 'default#image',
+                    iconImageHref: 'http://g12spb.ru/images/logo/marker.png',
+                    iconImageSize: [70, 70],
+                    iconImageOffset: [-20, -70]
+                });
+
+
+
+
+                myMap.geoObjects
+                        .add(myPlacemark0)
+
+            }
+
+        </script>
+        <div id="ymap" style="width:100%; height:300px;"></div>
+    </div>
+{% endif %}
 
 <div class="row">
     <div class="col-sm-12">
