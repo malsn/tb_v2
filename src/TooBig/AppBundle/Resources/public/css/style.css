@@ -16,15 +16,11 @@ a.site-logo {
     padding-right: 100px;
     padding-left: 100px;
     background: #fff;
-    border-top: 1px solid #eee;
     color: #777;
 }
 .container-fluid.menu {
-    padding-right: 100px;
-    padding-left: 100px;
     background: #fafafa;
     border-top: 1px solid #eee;
-    color: #777;
 }
 .container-fluid.top {
     background: #fff;
@@ -167,7 +163,7 @@ div#ItemsFilter div.form-row div.title {
 .col-sm-1.col.filter-col {
     padding-right: 5px;
     padding-left: 5px;
-    width: 13%;
+    width: 20%;
 }
 .col-sm-7.col.filter-col {
     width: 30%;
@@ -175,7 +171,7 @@ div#ItemsFilter div.form-row div.title {
 .col-sm-12.col.filter-col {
     padding-right: 5px;
     padding-left: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
 }
 
 .jumbotron.page-inner .col-sm-12.col.filter-col {
