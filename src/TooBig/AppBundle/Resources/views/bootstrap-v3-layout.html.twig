@@ -89,13 +89,95 @@
 
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid top">
+
                 <div class="navbar-header pull-left">
                     {% block navbar_top_logo %}
-                        <a class="navbar-brand" href="{{ rpath ('/') }}">
+                        <a class="site-logo" href="{{ rpath ('/') }}">
                             <img src="{{ asset('bundles/toobigapp/images/toobig-logo.png') }}" width="156"/>
                         </a>
                     {% endblock navbar_top_logo %}
                 </div>
+
+                <div class="navbar-header pull-right">
+
+                    <a class="btn btn-primary" href="{{ path ('app_item_add_common') }}">Подать объявление</a>
+                    {% if app.user %}
+
+                        {% set userMainLink = '' %}
+
+                        {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_SONATA_ADMIN")  %}
+                            {% set userMainLink = path ('sonata_admin_dashboard') %}
+                        {% else %}
+                            {% set userMainLink = '#' %}
+                        {% endif %}
+
+
+                        <div class="btn-group">
+
+                            {% block use_top_showlogin %}
+                                <a class="btn btn-primary" href="{{ userMainLink }}">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    {{ app.user.username }}
+                                </a>
+                            {% endblock %}
+
+
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="true">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+
+                                {% block user_top_actions %}
+
+                                    {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_SONATA_ADMIN") %}
+                                        <li><a href="{{ path ('sonata_admin_dashboard') }}">
+                                                        <span class="glyphicon glyphicon-dashboard"
+                                                              aria-hidden="true"></span>Панель управления</a></li>
+                                    {% endif %}
+
+                                    <li><a href="{{ path ('app_user_profile_edit') }}">
+                                                        <span class="glyphicon glyphicon-user"
+                                                              aria-hidden="true"></span>Мой профайл</a></li>
+                                    <li><a href="{{ path ('app_list_user_items') }}">
+                                                        <span class="glyphicon glyphicon-list-alt"
+                                                              aria-hidden="true"></span>Мои объявления</a></li>
+                                    <li><a href="{{ path ('app_list_watch_items') }}">
+                                                        <span class="glyphicon glyphicon-star"
+                                                              aria-hidden="true"></span>Избранное</a></li>
+                                    <li><a href="{{ path ('app_list_subscriptions') }}">
+                                                        <span class="glyphicon glyphicon-bell"
+                                                              aria-hidden="true"></span>Мои автоподписки</a></li>
+
+                                    {% block user_top_action_logout %}
+
+                                        {% if path_exists ('fos_user_security_logout') %}
+                                            <li class="divider"></li>
+
+                                            <li><a href="{{ path ('fos_user_security_logout') }}"> <span
+                                                            class="glyphicon glyphicon-log-out"
+                                                            aria-hidden="true"></span> {{   "layout.logout" | trans ({}, 'FOSUserBundle') }}</a></li>
+                                        {% endif %}
+
+                                    {% endblock user_top_action_logout %}
+                                {% endblock user_top_actions %}
+                            </ul>
+                        </div>
+
+                    {% else %}
+
+                        <div class="btn btn-primary btn-ajax-to-modal"
+                             path-controller="{{ path_exists ('fos_user_security_login_form') ? path ('fos_user_security_login_form') : '#' }}"
+                             class="btn btn-primary">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            {{ path_exists ('fos_user_security_login_form') ?
+                            "layout.login"| trans ({}, 'FOSUserBundle') : 'Login'}}
+                        </div>
+
+                    {% endif %}
+                </div>
+
             </div>
             <div class="container-fluid">
 
@@ -171,86 +253,6 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                    </div>
-
-                    <div class="navbar-header pull-right">
-
-                            <a class="btn btn-primary" href="{{ path ('app_item_add_common') }}">Подать объявление</a>
-                            {% if app.user %}
-
-                                {% set userMainLink = '' %}
-
-                                {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_SONATA_ADMIN")  %}
-                                    {% set userMainLink = path ('sonata_admin_dashboard') %}
-                                {% else %}
-                                    {% set userMainLink = '#' %}
-                                {% endif %}
-
-
-                                <div class="btn-group">
-
-                                    {% block use_top_showlogin %}
-                                        <a class="btn btn-primary" href="{{ userMainLink }}">
-                                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                            {{ app.user.username }}
-                                        </a>
-                                    {% endblock %}
-
-
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                            aria-expanded="true">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-
-                                        {% block user_top_actions %}
-
-                                            {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_SONATA_ADMIN") %}
-                                                <li><a href="{{ path ('sonata_admin_dashboard') }}">
-                                                        <span class="glyphicon glyphicon-dashboard"
-                                                              aria-hidden="true"></span>Панель управления</a></li>
-                                            {% endif %}
-
-                                                <li><a href="{{ path ('app_user_profile_edit') }}">
-                                                        <span class="glyphicon glyphicon-user"
-                                                              aria-hidden="true"></span>Мой профайл</a></li>
-                                                <li><a href="{{ path ('app_list_user_items') }}">
-                                                        <span class="glyphicon glyphicon-list-alt"
-                                                              aria-hidden="true"></span>Мои объявления</a></li>
-                                                <li><a href="{{ path ('app_list_watch_items') }}">
-                                                        <span class="glyphicon glyphicon-star"
-                                                              aria-hidden="true"></span>Избранное</a></li>
-                                                <li><a href="{{ path ('app_list_subscriptions') }}">
-                                                        <span class="glyphicon glyphicon-bell"
-                                                              aria-hidden="true"></span>Мои автоподписки</a></li>
-
-                                            {% block user_top_action_logout %}
-
-                                                {% if path_exists ('fos_user_security_logout') %}
-                                                    <li class="divider"></li>
-
-                                                    <li><a href="{{ path ('fos_user_security_logout') }}"> <span
-                                                                    class="glyphicon glyphicon-log-out"
-                                                                    aria-hidden="true"></span> {{   "layout.logout" | trans ({}, 'FOSUserBundle') }}</a></li>
-                                                {% endif %}
-
-                                            {% endblock user_top_action_logout %}
-                                        {% endblock user_top_actions %}
-                                    </ul>
-                                </div>
-
-                            {% else %}
-
-                                <div class="btn btn-primary btn-ajax-to-modal"
-                                   path-controller="{{ path_exists ('fos_user_security_login_form') ? path ('fos_user_security_login_form') : '#' }}"
-                                   class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                    {{ path_exists ('fos_user_security_login_form') ?
-                                       "layout.login"| trans ({}, 'FOSUserBundle') : 'Login'}}
-                                </div>
-
-                            {% endif %}
                     </div>
 
                 </div>
