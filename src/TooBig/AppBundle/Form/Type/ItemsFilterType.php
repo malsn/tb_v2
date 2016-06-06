@@ -31,7 +31,10 @@ class ItemsFilterType extends AbstractType
     {
         $builder
             ->setMethod('GET')
-            ->add('brand','choice',[
+
+        if ( null !== $this->filters ){
+            $builder
+                ->add('brand','choice',[
                 'choices' => $this->filters['Brand'],
                 'expanded'=>true,
                 'multiple'=>true,
@@ -42,50 +45,52 @@ class ItemsFilterType extends AbstractType
                     'class'=>'form-filter brand',
                 ]
             ])
-            ->add('size', 'entity', [
-                'class'=>'TooBig\AppBundle\Entity\Size',
-                'query_builder' => function(EntityRepository $er) {
-                    $qb = $er->createQueryBuilder('u');
-                    $orX = $qb->expr()->orX();
-                    foreach ($this->filters['Size'] as $size) {
-                        $orX->add($qb->expr()->eq('u.id', $size));
-                    }
-                    if ( $orX->count() ){
-                        $qb->add('where',$orX);
-                    }
-                    return $qb->orderBy('u.size_type', 'ASC');
-                },
-                'expanded'=>true,
-                'multiple'=>true,
-                'empty_value' => 'Размер',
-                'required'=>false,
-                'label' => ' ',
-                'attr'=>[
-                    'class'=>'form-filter size'
-                ]
-            ])
-            ->add('color', 'choice', [
-                'choices' => $this->filters['Color'],
-                'expanded'=>true,
-                'multiple'=>true,
-                'empty_value' => 'Цвет',
-                'required'=>false,
-                'label' => ' ',
-                'attr'=>[
-                    'class'=>'form-filter color'
-                ]
-            ])
-            ->add('gender', 'choice', [
-                'choices' => $this->filters['Gender'],
-                'expanded'=>true,
-                'multiple'=>true,
-                'empty_value' => 'Пол',
-                'required'=>false,
-                'label' => ' ',
-                'attr'=>[
-                    'class'=>'form-filter gender'
-                ]
-            ])
+                ->add('size', 'entity', [
+                    'class'=>'TooBig\AppBundle\Entity\Size',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('u');
+                        $orX = $qb->expr()->orX();
+                        foreach ($this->filters['Size'] as $size) {
+                            $orX->add($qb->expr()->eq('u.id', $size));
+                        }
+                        if ( $orX->count() ){
+                            $qb->add('where',$orX);
+                        }
+                        return $qb->orderBy('u.size_type', 'ASC');
+                    },
+                    'expanded'=>true,
+                    'multiple'=>true,
+                    'empty_value' => 'Размер',
+                    'required'=>false,
+                    'label' => ' ',
+                    'attr'=>[
+                        'class'=>'form-filter size'
+                    ]
+                ])
+                ->add('color', 'choice', [
+                    'choices' => $this->filters['Color'],
+                    'expanded'=>true,
+                    'multiple'=>true,
+                    'empty_value' => 'Цвет',
+                    'required'=>false,
+                    'label' => ' ',
+                    'attr'=>[
+                        'class'=>'form-filter color'
+                    ]
+                ])
+                ->add('gender', 'choice', [
+                    'choices' => $this->filters['Gender'],
+                    'expanded'=>true,
+                    'multiple'=>true,
+                    'empty_value' => 'Пол',
+                    'required'=>false,
+                    'label' => ' ',
+                    'attr'=>[
+                        'class'=>'form-filter gender'
+                    ]
+                ]);
+        }
+
             /*->add('price_min', 'text', [
                 'attr' => [
                     'size'=>3
@@ -96,6 +101,7 @@ class ItemsFilterType extends AbstractType
                     'size'=>3
                 ]
             ])*/
+        $builder
             ->add('search', 'text', [
                 'attr' => [
                     'placeholder' => 'Начните поиск с указания того, что хотите...',
