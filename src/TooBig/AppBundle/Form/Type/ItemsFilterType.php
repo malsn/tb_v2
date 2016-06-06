@@ -30,7 +30,7 @@ class ItemsFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->setMethod('GET')
+            ->setMethod('GET');
 
         if ( null !== $this->filters ){
             $builder
