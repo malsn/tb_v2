@@ -15,6 +15,13 @@ a.site-logo {
 .container-fluid {
     padding-right: 100px;
     padding-left: 100px;
+    background: #fff;
+    border-top: 1px solid #eee;
+    color: #777;
+}
+.container-fluid.menu {
+    padding-right: 100px;
+    padding-left: 100px;
     background: #fafafa;
     border-top: 1px solid #eee;
     color: #777;
