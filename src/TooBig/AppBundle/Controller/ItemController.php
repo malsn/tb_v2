@@ -709,6 +709,8 @@ class ItemController extends RubricAwareController
 
         $rubric = $this->getCurrentRubric();
 
+        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), null));
+
         $blocks = $this->getDoctrine()
             ->getRepository('ApplicationIphpCoreBundle:Block')
             ->findBy(['rubric' => $rubric->getId(), 'enabled' => true]);
@@ -741,6 +743,7 @@ class ItemController extends RubricAwareController
             'files' => $files,
             'comments' => $comments,
             'breadcrumbs' => $this->getBreadcrumbs($rubric),
+            'filterForm' => $filterForm->createView(),
             'blocks' => $blocks,
         );
 
