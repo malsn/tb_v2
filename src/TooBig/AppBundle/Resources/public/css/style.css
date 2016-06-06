@@ -309,8 +309,9 @@ div.c-item.c-brand {
 div.item-img {
     display: block;
     width: 236px;
-    height: 340px;
+    height: auto;
     overflow: hidden;
+    float: left;
 }
 div.item-img.img-brand {
     display: block;
@@ -562,7 +563,7 @@ a.navbar-quick-link {
     font-size: 15px;
 }
 a.navbar-quick-link:hover {
-    color: #fff;
+    color: #222;
 }
 
 /* Preregister */
