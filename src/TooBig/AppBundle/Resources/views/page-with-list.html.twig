@@ -183,7 +183,7 @@
         {% endblock entity_list_entry_image  %}
 
         {% block entity_list_entry_title  %}
-            <div class="item-title"><a href="{{ entitypath(entity) }}">{{ entity }}</a></div>
+            <div class="item-feature item-title"><a href="{{ entitypath(entity) }}">{{ entity }}</a></div>
         {% endblock entity_list_entry_title  %}
 
         {% block entity_list_entry_brand  %}
@@ -195,7 +195,7 @@
         {% endblock entity_list_entry_brand  %}
 
         {% block entity_list_entry_announce  %}
-            <div class="item-announce">
+            <div class="item-feature item-announce">
                 {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
                 {{ entity.description is defined ? entity.description | raw : '' }}
                 {{ entity.announce is defined ? entity.announce | raw : '' }}

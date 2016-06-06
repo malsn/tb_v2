@@ -400,6 +400,7 @@ div.announce {
 }
 div.c-item .item-feature {
     padding-top: 5px;
+    margin-left: 245px;
 }
 .item-feature.item-price, .item-feature.item-brand {
     font-size: 15px;
