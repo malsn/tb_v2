@@ -330,7 +330,7 @@ div.c-item {
 div.c-item:nth-child(odd) {
     background-color: #fafafa;
 }
-div.c-item:hover, div.c-item:nth-child(odd) {
+div.c-item:hover, div.c-item:nth-child(odd):hover {
     background-color: #eee;
 }
 div.c-item.c-brand {
