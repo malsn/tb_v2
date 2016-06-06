@@ -301,6 +301,9 @@ div.c-item {
     margin: 0 10px 35px 0;
     position: relative;
 }
+div.c-item:nth-child(even) {
+    background-color: #fafafa;
+}
 div.c-item.c-brand {
     width: 100px;
     margin: 0 10px 10px 0;
