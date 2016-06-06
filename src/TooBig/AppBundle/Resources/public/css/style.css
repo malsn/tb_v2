@@ -294,9 +294,11 @@ input.btn.btn-primary.filter-form-submit {
 }
 /**/
 
-div.list-group > ul > li { list-style: none; }
+div.list-group > ul > li { list-style: none; margin-bottom: -1px; }
 div.list-group > a.list-group-item {
     padding: 8px 10px;
+    -webkit-transition: color .7s ease, border-color .7s ease, background-color .7s ease;
+    transition: color .7s ease, border-color .7s ease, background-color .7s ease;
 }
 .list-group-item:last-child {
     margin-bottom: 0;
