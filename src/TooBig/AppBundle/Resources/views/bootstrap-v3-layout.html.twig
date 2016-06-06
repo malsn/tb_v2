@@ -99,19 +99,21 @@
                 </div>
 
                 <div class="navbar-header pull-left">
-                    {% if filterForm is defined and filterForm %}
-                        {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
-                        <div id="ItemsFilter">
-                            <form id="ItemsFilter_form" action="" method="get">
-                                <div class="form-row">
-                                    <div class="col-sm-12 col filter-col">
-                                        {{ form_widget(filterForm.search) }}
-                                        <a class="btn btn-primary filter-form-submit">Поиск</a>
+                    <div class="row">
+                        {% if filterForm is defined and filterForm %}
+                            {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
+                            <div id="ItemsFilter">
+                                <form id="ItemsFilter_form" action="" method="get">
+                                    <div class="form-row">
+                                        <div class="col-sm-12 col filter-col">
+                                            {{ form_widget(filterForm.search) }}
+                                            <a class="btn btn-primary filter-form-submit">Поиск</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                    {% endif %}
+                                </form>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
 
                 <div class="navbar-header pull-right">
