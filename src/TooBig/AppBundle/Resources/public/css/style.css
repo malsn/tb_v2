@@ -324,6 +324,11 @@ div.c-item {
     margin: 0;
     position: relative;
     padding: 10px;
+    -webkit-transition: color .7s ease, border-color .7s ease, background-color .7s ease;
+    transition: color .7s ease, border-color .7s ease, background-color .7s ease;
+}
+div.c-item:hover {
+    background-color: #eee;
 }
 div.c-item:nth-child(odd) {
     background-color: #fafafa;
