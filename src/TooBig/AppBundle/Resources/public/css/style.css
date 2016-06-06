@@ -327,11 +327,11 @@ div.c-item {
     -webkit-transition: color .7s ease, border-color .7s ease, background-color .7s ease;
     transition: color .7s ease, border-color .7s ease, background-color .7s ease;
 }
-div.c-item:hover {
-    background-color: #eee;
-}
 div.c-item:nth-child(odd) {
     background-color: #fafafa;
+}
+div.c-item:hover, div.c-item:nth-child(odd) {
+    background-color: #eee;
 }
 div.c-item.c-brand {
     width: 100px;
