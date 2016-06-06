@@ -297,7 +297,7 @@ div.c-item {
     font-size: 13px;
     display: inline-block;
     vertical-align: top;
-    width: 236px;
+    width: 100%;
     margin: 0 10px 35px 0;
     position: relative;
 }
