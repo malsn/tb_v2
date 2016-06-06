@@ -8,6 +8,14 @@ a.site-logo {
 .modal-backdrop {
     position: fixed;
 }
+.btn-primary, .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #8d9ed1;
+    border-color: #004994;
+}
+.btn-success {
+    background-color: #5cb85c;
+    border-color: #004994;
+}
 .navbar-inverse {
     background-color: #fff;
     border-color: #eee;
