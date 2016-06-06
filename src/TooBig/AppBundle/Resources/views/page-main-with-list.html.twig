@@ -7,7 +7,7 @@
     <link href="/bundles/toobigapp/css/jquery-ui.theme.css" rel="stylesheet">
 {% endblock stylesheets %}
 
-{% block page_header %}
+{# block page_header %}
 
     <div class="jumbotron">
         <div class="container">
@@ -31,7 +31,7 @@
                                         <span class="filter-result-params">Диапазон цен: </span><span>{{ rubricPriceRange['Min'] }}-{{ rubricPriceRange['Max'] }} руб.</span>
                                     {% endif #}
 
-                                    {% if filter_params is defined %}
+                                    {# if filter_params is defined %}
                                         {% set current=0 %}
                                         {% for choice in filterForm.brand.vars.choices %}
                                             {% if choice.value in filter_params['Brand'] %}
@@ -133,7 +133,7 @@
                                         </div>
                                     </div>
                                 </div>#}
-                                <div class="col-sm-7 col filter-col"></div>
+                                {#<div class="col-sm-7 col filter-col"></div>
                             </div>
                         </form>
                     </div>
@@ -143,7 +143,7 @@
         </div>
     </div>
 
-{% endblock page_header %}
+{% endblock page_header #}
 
 {% block page_body %}
 
