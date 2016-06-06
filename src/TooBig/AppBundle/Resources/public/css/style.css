@@ -27,7 +27,8 @@ a.site-logo {
 .container-fluid.search {
     background: #fff;
     border-top: 0px;
-    width: 450px;
+    width: 760px;
+    margin-top: 10px;
 }
 .container-fluid .jumbotron {
     padding-right: 30px;
