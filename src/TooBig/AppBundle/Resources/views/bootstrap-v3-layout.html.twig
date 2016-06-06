@@ -102,7 +102,21 @@
                     <div class="jumbotron">
                         <div class="container">
 
-
+                            {% if filterForm is defined and filterForm %}
+                                {% block items_filter %}
+                                    {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
+                                    <div id="ItemsFilter">
+                                        <form id="ItemsFilter_form" action="" method="get">
+                                            <div class="form-row">
+                                                <div class="col-sm-12 col filter-col">
+                                                    {{ form_widget(filterForm.search) }}
+                                                    <a class="btn btn-primary filter-form-submit">Поиск</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                {% endblock items_filter %}
+                            {% endif %}
 
                         </div>
                     </div>
