@@ -8,6 +8,10 @@ a.site-logo {
 .modal-backdrop {
     position: fixed;
 }
+.navbar-inverse {
+    background-color: #fff;
+    border-color: #eee;
+}
 .container-fluid {
     padding-right: 100px;
     padding-left: 100px;
