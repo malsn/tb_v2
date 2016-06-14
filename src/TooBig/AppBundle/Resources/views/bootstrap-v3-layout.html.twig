@@ -320,17 +320,17 @@
     {% endblock navbar_top %}
 
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+    {% block content_body %}
 
-                {% block breadcrumbs %}{% endblock breadcrumbs %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
 
+                    {% block breadcrumbs %}{% endblock breadcrumbs %}
+
+                </div>
             </div>
-        </div>
-        <div class="row">
-
-            {% block content_body %}
+            <div class="row">
 
                 <div class="col-md-3">
 
@@ -352,11 +352,10 @@
                     {% endblock info_block %}
                 </div>
 
-            {% endblock content_body %}
-
+            </div>
         </div>
-    </div>
 
+    {% endblock content_body %}
 
     {% block footer_all %}
         <div class="container-fluid">

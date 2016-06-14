@@ -24,6 +24,11 @@ a.site-logo {
     background-color: #9db25b;
     border-color: #004994;
 }
+
+.navbar {
+    margin-bottom: 0px;
+}
+
 .navbar-inverse {
     background-color: #fff;
     border-color: #eee;
@@ -31,6 +36,7 @@ a.site-logo {
 .container-fluid {
     padding-right: 100px;
     padding-left: 100px;
+    padding-top: 20px;
     background: #fff;
     color: #777;
 }
@@ -722,6 +728,9 @@ div.error input, div.error textarea {
 }
 
 /* user account blocks */
+.oZ {
+    background-color: rgba(245,245,245,.4);
+}
 
 @media only screen and (min-width: 1240px){
     .RG {
