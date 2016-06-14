@@ -101,7 +101,8 @@
                 <div class="navbar-header pull-left">
                     {% block items_filter %}
                         <div class="search container-fluid">
-                            {% if filterForm is defined and filterForm %}
+                            {{ render(controller('TooBigAppBundle:Item:showSearchForm')) }}
+                            {# if filterForm is defined and filterForm %}
                                 {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
                                 <div id="ItemsFilter">
                                     <form id="ItemsFilter_form" action="" method="get">
@@ -113,7 +114,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            {% endif %}
+                            {% endif #}
                         </div>
                     {% endblock %}
                 </div>
