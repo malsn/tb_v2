@@ -667,6 +667,9 @@ div.error input, div.error textarea {
 
 
 /* user header profile */
+.dropdown-menu-profile {
+    min-width: 400px;
+}
 
 .gb_jb {
     margin: 20px;
@@ -686,7 +689,7 @@ div.error input, div.error textarea {
     vertical-align: top;
 }
 .gbip {
-    background-image: url(//lh3.googleusercontent.com/-64lM1Qefg8Y/AAAAAAAAAAI/AAAAAAAAAAA/AOtt-yHy80hEDCG2lkHYykzTI7YFuwRfKg/s96-c-mo/photo.jpg);
+    background-image: url(/bundles/toobigapp/images/no-profile-photo.jpg);
 }
 .gb_nb {
     -webkit-background-size: 96px 96px;
