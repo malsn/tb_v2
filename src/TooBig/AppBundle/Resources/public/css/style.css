@@ -342,7 +342,7 @@ div.c-item.c-brand {
 }
 div.item-img {
     display: block;
-    width: 236px;
+    width: 100px;
     height: auto;
     overflow: hidden;
     float: left;
@@ -356,7 +356,7 @@ div.item-img.img-brand {
 }
 div.item-img img {
     display: block;
-    width: 236px;
+    width: 100px;
     height: auto;
 }
 div.item-img.img-brand img {
