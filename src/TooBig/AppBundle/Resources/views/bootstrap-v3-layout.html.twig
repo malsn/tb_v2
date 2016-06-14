@@ -147,9 +147,24 @@
                                 <span class="caret"></span>
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
 
-                                {% block user_top_actions %}
+                                <div class="gb_jb">
+                                    <a class="gb_kb gb_Ie gb_mb" aria-label="Изменить картинку профиля" href="#">
+                                        <div class="gb_nb gbip" title="Фото профиля"></div>
+                                        <span class="gb_ob">Изменить</span>
+                                    </a>
+                                    <div class="gb_lb">
+                                        <div class="gb_pb">{{ app.user.firstname }} {{ app.user.lastname }}</div>
+                                        <div class="gb_qb">{{ app.user.email }}</div>
+                                        <a class="btn btn-primary" href="{{ path ('app_user_profile_edit') }}">Мой аккаунт</a>
+                                    </div>
+                                </div>
+
+
+
+
+                                {# block user_top_actions %}
 
                                     {% if path_exists ('sonata_admin_dashboard') and is_granted("ROLE_SONATA_ADMIN") %}
                                         <li><a href="{{ path ('sonata_admin_dashboard') }}">
@@ -181,8 +196,8 @@
                                         {% endif %}
 
                                     {% endblock user_top_action_logout %}
-                                {% endblock user_top_actions %}
-                            </ul>
+                                {% endblock user_top_actions #}
+                            </div>
                         </div>
 
                     {% else %}
