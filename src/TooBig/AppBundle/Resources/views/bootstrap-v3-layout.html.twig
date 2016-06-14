@@ -329,25 +329,31 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
 
-                {% block menu_left %}
-                    {% set controller = 'Application\\Iphp\\ContentBundle\\Module\\ItemListModule' %}
-                    {{ render(controller('ApplicationIphpCoreBundle:Menu:Menu',{ 'template': 'menu-left.html.twig', 'rubric' : iphp.rubric, 'controller' : controller })) }}
-                {% endblock menu_left %}
+            {% block content_body %}
 
-            </div>
-            <div class="col-md-6">
-                {% block fos_user_content %}
-                {% endblock fos_user_content %}
+                <div class="col-md-3">
 
-                {% block body %}
-                {% endblock body %}
-            </div>
-            <div class="col-md-3">
-                {% block info_block %}
-                {% endblock info_block %}
-            </div>
+                    {% block menu_left %}
+                        {% set controller = 'Application\\Iphp\\ContentBundle\\Module\\ItemListModule' %}
+                        {{ render(controller('ApplicationIphpCoreBundle:Menu:Menu',{ 'template': 'menu-left.html.twig', 'rubric' : iphp.rubric, 'controller' : controller })) }}
+                    {% endblock menu_left %}
+
+                </div>
+                <div class="col-md-6">
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+
+                    {% block body %}
+                    {% endblock body %}
+                </div>
+                <div class="col-md-3">
+                    {% block info_block %}
+                    {% endblock info_block %}
+                </div>
+
+            {% endblock content_body %}
+
         </div>
     </div>
 

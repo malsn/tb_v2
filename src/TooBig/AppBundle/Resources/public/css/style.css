@@ -691,6 +691,7 @@ div.error input, div.error textarea {
 .gbip {
     background-image: url(/bundles/toobigapp/images/no-profile-photo.jpg);
 }
+.gb_pb { font-weight: bold; }
 .gb_nb {
     -webkit-background-size: 96px 96px;
     background-size: 96px 96px;
