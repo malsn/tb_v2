@@ -129,6 +129,12 @@ class UserController extends RubricAwareController
 
     }
 
+    public function showAccountAction(){
+
+        return $this->render('TooBigAppBundle:User:show_user_account.html.twig', array(
+        ));
+    }
+
     /**
      * @return Response|RedirectResponse
      *
