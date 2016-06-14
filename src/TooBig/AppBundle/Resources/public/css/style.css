@@ -369,7 +369,7 @@ div.item-title {
 }
 div.item-brand {
     color: #333;
-    margin: 13px 0 0;
+    margin: 0;
     position: relative;
     z-index: 1;
 }
@@ -430,7 +430,7 @@ div.announce {
 }
 div.c-item .item-feature {
     padding-top: 5px;
-    margin-left: 245px;
+    margin-left: 109px;
 }
 .item-feature.item-price, .item-feature.item-brand {
     font-size: 15px;
