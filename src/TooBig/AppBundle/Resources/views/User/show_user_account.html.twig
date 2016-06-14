@@ -53,7 +53,7 @@
                             <div class="NZ">
                                 <div class="lS">Здесь вы можете заполнить свой профиль, поменять пароль.</div>
                                 <div class="lS">
-                                    <a href="#" class="jS">
+                                    <a href="{{ path('app_user_profile_edit') }}" class="jS">
                                         Профиль
                                     </a>
                                     <a href="#" class="jS">
@@ -83,16 +83,16 @@
                             <div class="NZ">
                                 <div class="lS">Здесь вы можете подать объявление, управлять списком своих объявлений, просмотреть список понравившихся вам объявлений, создать подписку на объявления пользователей.</div>
                                 <div class="lS">
-                                    <a href="#" class="jS">
+                                    <a href="{{ rpath('/') }}" class="jS">
                                         Каталог объявлений
                                     </a>
-                                    <a href="#" class="jS">
+                                    <a href="{{ path ('app_item_add_common') }}" class="jS">
                                         Подать объявление
                                     </a>
-                                    <a href="#" class="jS">
+                                    <a href="{{ path ('app_list_user_items') }}" class="jS">
                                         Управление объявлениями
                                     </a>
-                                    <a href="#" class="jS">
+                                    <a href="{{ path ('app_list_watch_items') }}" class="jS">
                                         Просмотреть список понравившихся
                                     </a>
                                 </div>
@@ -116,10 +116,10 @@
                             <div class="NZ">
                                 <div class="lS">Здесь вы можете создать подписку на объявления пользователей, управлять подписками.</div>
                                 <div class="lS">
-                                    <a href="#" class="jS">
+                                    <a href="{{ path ('app_subscription_add') }}" class="jS">
                                         Создать подписку
                                     </a>
-                                    <a href="#" class="jS">
+                                    <a href="{{ path ('app_list_subscriptions') }}" class="jS">
                                         Управление/просмотр подписок
                                     </a>
                                 </div>
