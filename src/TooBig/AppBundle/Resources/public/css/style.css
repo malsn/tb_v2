@@ -729,7 +729,7 @@ div.error input, div.error textarea {
 /* user account blocks */
 .oZ {
     background-color: rgba(245,245,245,.4);
-    padding-top: 20px;
+    padding: 20px 0;
 }
 
 @media only screen and (min-width: 1240px){
