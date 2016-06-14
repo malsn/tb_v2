@@ -733,7 +733,7 @@ div.error input, div.error textarea {
         box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
         background-color: white;
         display: inline-block;
-        width: 390px;
+        width: 380px;
     }
     .WG {
         border-bottom: 1px solid #e0e0e0;
@@ -753,6 +753,12 @@ div.error input, div.error textarea {
     vertical-align: top;
 }
 a.Yna {
+    text-decoration: none;
+}
+a.jS {
+    color: #3c80f6;
+    display: block;
+    margin: 8px 0;
     text-decoration: none;
 }
 .WG {
