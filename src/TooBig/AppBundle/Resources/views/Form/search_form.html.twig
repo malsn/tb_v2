@@ -1,7 +1,7 @@
 {% if filterForm is defined and filterForm %}
     {% form_theme filterForm 'TooBigAppBundle:Form:fields.html.twig' %}
     <div id="ItemsFilter">
-        <form id="ItemsFilter_form" action="" method="get">
+        <form id="ItemsFilter_form" action="{{ rpath('/') }}" method="get">
             <div class="form-row">
                 <div class="col-sm-12 col filter-col">
                     {{ form_widget(filterForm.search) }}
