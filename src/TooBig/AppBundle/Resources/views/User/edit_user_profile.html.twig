@@ -20,104 +20,114 @@
 
 
 {% block content_body %}
+    <div class="container-fluid oZ">
+        <div class="row">
+            <div class="col-md-12">
 
-    <div class="col-md-12">
+                {% block breadcrumbs %}{% endblock breadcrumbs %}
 
-        {% block page_body %}
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-
-            {{ flashMessage }}
-
-            {% endfor %}
-
-            {# Underscore templates for the uploader
-            {% include "TooBigAppBundle:Item\\FileUpload:templates.html.twig" %}#}
-
-            <form name="User" class="edit-form form-horizontal" action="{{ path('app_user_profile_edit') }}" method="post" {{ form_enctype(form) }}>
-
-            <h3>Основные данные</h3>
-
-            <div class="form-group control-group">
-                <label for="User_name" class="col-sm-3 control-label">{{ 'form.label_name'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.firstname, {'attr': {'class':'form-control'}}) }}</div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
 
-            <div class="form-group control-group">
-                <label for="User_lastname" class="col-sm-3 control-label">{{ 'form.label_lastname'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.lastname, {'attr': {'class':'form-control'}}) }}</div>
+                {% block page_body %}
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+
+                    {{ flashMessage }}
+
+                    {% endfor %}
+
+                    {# Underscore templates for the uploader
+                    {% include "TooBigAppBundle:Item\\FileUpload:templates.html.twig" %}#}
+
+                    <form name="User" class="edit-form form-horizontal" action="{{ path('app_user_profile_edit') }}" method="post" {{ form_enctype(form) }}>
+
+                    <h3>Основные данные</h3>
+
+                    <div class="form-group control-group">
+                        <label for="User_name" class="col-sm-3 control-label">{{ 'form.label_name'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.firstname, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group">
+                        <label for="User_lastname" class="col-sm-3 control-label">{{ 'form.label_lastname'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.lastname, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group">
+                        <label for="User_gender" class="col-sm-3 control-label">{{ 'form.label_gender'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.gender, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group">
+                        <label for="User_dateOfBirth" class="col-sm-3 control-label">{{ 'form.label_date_of_birth'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.dateOfBirth, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group separator"></div>
+
+                    <h3>Контактные данные</h3>
+
+                    <div class="form-group control-group">
+                        <label for="User_email" class="col-sm-3 control-label">{{ 'form.label_email'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.email, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group">
+                        <label for="User_phone" class="col-sm-3 control-label">{{ 'form.label_phone'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.phone, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group">
+                        <label for="User_place" class="col-sm-3 control-label">{{ 'form.label_place'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.place, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group separator"></div>
+
+                    <script type="text/javascript">
+                        $("#sonata_user_profile_place").suggestions({
+                            serviceUrl: "https://suggestions.dadata.ru/suggestions/api/4_1/rs",
+                            token: "d12783ba3618826d3096e6ceecf7290c90f56092",
+                            type: "ADDRESS",
+                            count: 5,
+                            /* Вызывается, когда пользователь выбирает одну из подсказок */
+                            onSelect: function(suggestion) {
+                                $("#sonata_user_profile_place_geo_lat").val(suggestion.data.geo_lat);
+                                $("#sonata_user_profile_place_geo_lon").val(suggestion.data.geo_lon);
+                            }
+                        });
+                    </script>
+
+                    <h3>Дополнительно</h3>
+
+                    <div class="form-group control-group">
+                        <label for="User_locale" class="col-sm-3 control-label">{{ 'form.label_locale'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.locale, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group">
+                        <label for="User_timezone" class="col-sm-3 control-label">{{ 'form.label_timezone'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.timezone, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group">
+                        <label for="User_biography" class="col-sm-3 control-label">{{ 'form.label_biography'|trans({}, 'SonataUserBundle') }}</label>
+                        <div class="col-sm-9">{{ form_widget(form.biography, {'attr': {'class':'form-control'}}) }}</div>
+                    </div>
+
+                    <div class="form-group control-group separator"></div>
+
+                    {{ form_rest(form) }}
+
+                    {{ form_end(form) }}
+
+
+                {% endblock page_body %}
+
             </div>
-
-            <div class="form-group control-group">
-                <label for="User_gender" class="col-sm-3 control-label">{{ 'form.label_gender'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.gender, {'attr': {'class':'form-control'}}) }}</div>
-            </div>
-
-            <div class="form-group control-group">
-                <label for="User_dateOfBirth" class="col-sm-3 control-label">{{ 'form.label_date_of_birth'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.dateOfBirth, {'attr': {'class':'form-control'}}) }}</div>
-            </div>
-
-            <div class="form-group control-group separator"></div>
-
-            <h3>Контактные данные</h3>
-
-            <div class="form-group control-group">
-                <label for="User_email" class="col-sm-3 control-label">{{ 'form.label_email'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.email, {'attr': {'class':'form-control'}}) }}</div>
-            </div>
-
-            <div class="form-group control-group">
-                <label for="User_phone" class="col-sm-3 control-label">{{ 'form.label_phone'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.phone, {'attr': {'class':'form-control'}}) }}</div>
-            </div>
-
-            <div class="form-group control-group">
-                <label for="User_place" class="col-sm-3 control-label">{{ 'form.label_place'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.place, {'attr': {'class':'form-control'}}) }}</div>
-            </div>
-
-            <div class="form-group control-group separator"></div>
-
-            <script type="text/javascript">
-                $("#sonata_user_profile_place").suggestions({
-                    serviceUrl: "https://suggestions.dadata.ru/suggestions/api/4_1/rs",
-                    token: "d12783ba3618826d3096e6ceecf7290c90f56092",
-                    type: "ADDRESS",
-                    count: 5,
-                    /* Вызывается, когда пользователь выбирает одну из подсказок */
-                    onSelect: function(suggestion) {
-                        $("#sonata_user_profile_place_geo_lat").val(suggestion.data.geo_lat);
-                        $("#sonata_user_profile_place_geo_lon").val(suggestion.data.geo_lon);
-                    }
-                });
-            </script>
-
-            <h3>Дополнительно</h3>
-
-            <div class="form-group control-group">
-                <label for="User_locale" class="col-sm-3 control-label">{{ 'form.label_locale'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.locale, {'attr': {'class':'form-control'}}) }}</div>
-            </div>
-
-            <div class="form-group control-group">
-                <label for="User_timezone" class="col-sm-3 control-label">{{ 'form.label_timezone'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.timezone, {'attr': {'class':'form-control'}}) }}</div>
-            </div>
-
-            <div class="form-group control-group">
-                <label for="User_biography" class="col-sm-3 control-label">{{ 'form.label_biography'|trans({}, 'SonataUserBundle') }}</label>
-                <div class="col-sm-9">{{ form_widget(form.biography, {'attr': {'class':'form-control'}}) }}</div>
-            </div>
-
-            <div class="form-group control-group separator"></div>
-
-            {{ form_rest(form) }}
-
-            {{ form_end(form) }}
-
-
-        {% endblock page_body %}
-
+        </div>
     </div>
 
 {% endblock content_body %}
