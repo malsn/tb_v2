@@ -720,3 +720,69 @@ div.error input, div.error textarea {
     display: inline-block;
     vertical-align: top;
 }
+
+/* user account blocks */
+
+@media only screen and (min-width: 1240px){
+    .RG {
+        margin: auto;
+        width: 1200px;
+    }
+    .Bt {
+        border-radius: 2px;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+        background-color: white;
+        display: inline-block;
+        width: 390px;
+    }
+    .WG {
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .Bt+.Bt {
+        margin-left: 15px;
+    }
+}
+
+.kS {
+    margin-bottom: 48px;
+}
+.kS {
+    margin: auto;
+}
+.Bt {
+    vertical-align: top;
+}
+a.Yna {
+    text-decoration: none;
+}
+.WG {
+    display: table;
+    height: 96px;
+    line-height: 25px;
+    width: 100%;
+}
+.Xna {
+    display: table-cell;
+    padding: 0 8px 0 20px;
+    vertical-align: middle;
+    width: 38px;
+}
+.OZ {
+    color: rgba(0,0,0,0.54);
+    display: table-cell;
+    font-size: 24px;
+    vertical-align: middle;
+}
+.Vna {
+    display: table-cell;
+    padding: 0 20px 0 8px;
+    vertical-align: middle;
+    width: 36px;
+}
+.NZ {
+    font-size: 15px;
+    padding: 0 24px;
+}
+.lS {
+    margin: 24px 0;
+}
