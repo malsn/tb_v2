@@ -388,6 +388,22 @@ class Item extends BaseItem
     }
 
     /**
+     * @return SizeCountry
+     */
+    public function getSizeCountry()
+    {
+        return $this->size_country;
+    }
+
+    /**
+     * @param SizeCountry $size_country
+     */
+    public function setSizeCountry($size_country)
+    {
+        $this->size_country = $size_country;
+    }
+
+    /**
      * @return Size
      */
     public function getSize()
