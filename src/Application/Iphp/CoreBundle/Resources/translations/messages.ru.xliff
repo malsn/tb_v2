@@ -192,7 +192,12 @@
 
             <trans-unit id="SizeType">
                 <source>SizeType</source>
-                <target>Размерные ряды</target>
+                <target>Типы размеров</target>
+            </trans-unit>
+
+            <trans-unit id="SizeCountry">
+                <source>SizeCountry</source>
+                <target>Страны-производители</target>
             </trans-unit>
 
             <trans-unit id="Size">
