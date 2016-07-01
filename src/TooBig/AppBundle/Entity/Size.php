@@ -23,6 +23,11 @@ class Size
     private $size_type;
 
     /**
+     * @var SizeCountry
+     */
+    private $size_country;
+
+    /**
      * Get id
      *
      * @return int
@@ -70,6 +75,22 @@ class Size
     public function setSizeType($size_type)
     {
         $this->size_type = $size_type;
+    }
+
+    /**
+     * @return SizeCountry
+     */
+    public function getSizeCountry()
+    {
+        return $this->size_country;
+    }
+
+    /**
+     * @param SizeCountry $size_country
+     */
+    public function setSizeCountry($size_country)
+    {
+        $this->size_country = $size_country;
     }
 
     public function __toString(){

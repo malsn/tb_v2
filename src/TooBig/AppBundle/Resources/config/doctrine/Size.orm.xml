@@ -8,5 +8,8 @@
     <many-to-one target-entity="TooBig\AppBundle\Entity\SizeType" field="size_type" inversed-by="sizes">
       <cascade><cascade-persist/></cascade>
     </many-to-one>
+    <many-to-one field="size_country" target-entity="TooBig\AppBundle\Entity\SizeCountry">
+      <cascade><cascade-persist/></cascade>
+    </many-to-one>
   </entity>
 </doctrine-mapping>
