@@ -217,6 +217,13 @@ class ItemAdmin extends Admin
                     'class'=>'model'
                 ]
             ])
+            ->add('size_country', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\SizeCountry',
+                'empty_value' => 'Укажите страну-производителя',
+                'attr'=>[
+                    'class'=>'size-country',
+                ]
+            ])
             ->add('size_type', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\SizeType',
                 'empty_value' => 'Укажите размерный ряд',

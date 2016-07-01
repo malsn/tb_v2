@@ -434,7 +434,12 @@
 
              <trans-unit id="Size Type">
                  <source>Size Type</source>
-                 <target>Размерный ряд</target>
+                 <target>Тип размера</target>
+             </trans-unit>
+
+             <trans-unit id="Size Country">
+                 <source>Size Country</source>
+                 <target>Страна-производитель</target>
              </trans-unit>
 
              <trans-unit id="User">

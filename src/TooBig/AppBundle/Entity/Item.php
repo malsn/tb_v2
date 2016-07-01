@@ -105,6 +105,11 @@ class Item extends BaseItem
     private $size_type;
 
     /**
+     * @var SizeCountry
+     */
+    private $size_country;
+
+    /**
      * @var Size
      */
     private $size;
