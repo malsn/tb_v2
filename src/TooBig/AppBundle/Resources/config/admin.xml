@@ -144,6 +144,14 @@
             <argument>SonataAdminBundle:CRUD</argument>
         </service>
 
+        <service id="item.admin.size_country" class="TooBig\AppBundle\Admin\SizeCountryAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="References"
+                 label="SizeCountry"/>
+            <argument/>
+            <argument>TooBig\AppBundle\Entity\SizeCountry</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+        </service>
+
         <service id="item.admin.size_type" class="TooBig\AppBundle\Admin\SizeTypeAdmin">
             <tag name="sonata.admin" manager_type="orm" group="References"
                  label="SizeType"/>

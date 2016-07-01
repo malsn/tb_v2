@@ -4,10 +4,10 @@ namespace TooBig\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 /**
- * SizeMN
+ * SizeCountry
  * @ORM\Table()
  */
-class SizeMN
+class SizeCountry
 {
     /**
      * @var int
@@ -19,11 +19,6 @@ class SizeMN
      */
     private $name;
 
-
-    /**
-     * @var Size[]
-     */
-    private $sizes;
     /**
      * Get id
      *
@@ -39,7 +34,7 @@ class SizeMN
      *
      * @param string $name
      *
-     * @return SizeType
+     * @return SizeCountry
      */
     public function setName($name)
     {
@@ -57,24 +52,6 @@ class SizeMN
     {
         return $this->name;
     }
-
-    /**
-     * @return Size[]
-     */
-    public function getSizes()
-    {
-        return $this->sizes;
-    }
-
-    /**
-     * @param Size[] $sizes
-     */
-    public function setSizes($sizes)
-    {
-        $this->sizes = $sizes;
-    }
-
-
 
     public function __toString(){
         return $this->getName();
