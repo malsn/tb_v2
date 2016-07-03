@@ -49,15 +49,7 @@ class SizeComplianceAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
-            ->add('enabled', null, array('editable' => true))
-            ->add('rubric')
-            /*       ->add('image', 'text', array(
-                'template' => 'IphpCoreBundle::image_preview.html.twig'
-            ))*/
-            ->add('size_country')
-            ->add('createdBy')
-            ->add('updatedAt');
+            ->add('size_1');
     }
 
     /**
@@ -68,10 +60,7 @@ class SizeComplianceAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('enabled')
-            ->add('title')
-            ->add('abstract')
-            ->add('content');
+            ->add('size_1');
 
     }
 
@@ -82,8 +71,6 @@ class SizeComplianceAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
-        $this->configureFormFieldsBaseParams($formMapper);
         $this->configureFormFieldsAttributes($formMapper);
 
 
@@ -92,31 +79,8 @@ class SizeComplianceAdmin extends Admin
         $this->configureFormFieldsContent($formMapper);
 
 
-        /*       $formMapper
-
-                   ->with('Meta', array('class' => 'col-md-6'))->end();*/
-
-    }
 
 
-    protected function configureFormFieldsBaseParams(FormMapper $formMapper)
-    {
-        $formMapper->with('Base params', array('class' => 'col-md-8'));
-        $formMapper->add('title')
-
-            ->add('slug', 'slug_text', array(
-                'blank_title' => 'is rubric index (no slug)',
-                'source_field' => 'title',
-                'usesource_title' => 'use content title',
-                'required' => false
-            ))
-            ->add('rubric', 'rubricchoice')
-
-
-            /*->add('redirectUrl')
-            ->add('redirectToFirstFile', null, ['required' => false])*/
-            ->add('abstract')
-            ->end();
     }
 
 
@@ -187,36 +151,6 @@ class SizeComplianceAdmin extends Admin
                 ]
             ])
             ->end();
-    }
-
-
-    /**
-     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
-     *
-     * @return void
-     */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-        $datagridMapper
-            ->add('rubric', null, array(), null, array(
-                'property' => 'TitleLevelIndented',
-                'query_builder' => function (\Doctrine\ORM\EntityRepository $er) {
-                    return $er->createQueryBuilder('r')
-                        ->orderBy('r.left', 'ASC');
-                }
-            ))
-            ->add('title')
-            ->add('enabled')
-            ->add('id')//     ->add('date')
-            ->add('createdBy')
-        ;
-    }
-
-    public function prePersist($content)
-    {
-        if (!$content->getSlug()) $content->setSlug('');
-
-        parent::prePersist($content);
     }
 
     public function setRoutingService($routing)
