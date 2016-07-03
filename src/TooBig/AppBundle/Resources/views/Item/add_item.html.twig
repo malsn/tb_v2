@@ -128,9 +128,9 @@
     </div>
 
     <div class="form-group control-group">
-        <label for="Item_size_type" class="col-sm-3 control-label">{{ 'Тип предложения'|trans({}, 'SonataUserBundle') }}</label>
+        <label for="Item_size_type" class="col-sm-3 control-label">{# 'Тип предложения'|trans({}, 'SonataUserBundle') #}</label>
         <div class="col-sm-8">
-            <input id="Item_size_type" name="Item[size_type]" required="required" class="size-type form-control" path-controller="{{ path('app_list_size_by_sizetype') }}" value="{{ rubric.sizeType }}" />
+            <input type="hidden" id="Item_size_type" name="Item[size_type]" required="required" class="size-type form-control" path-controller="{{ path('app_list_size_by_sizetype') }}" value="{{ rubric.sizeType.id }}" />
         </div>
     </div>
 
