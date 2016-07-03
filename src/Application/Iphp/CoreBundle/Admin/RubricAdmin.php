@@ -88,6 +88,7 @@ class RubricAdmin extends TreeAdmin
 
         $formMapper->add('abstract')
             ->add('redirectUrl')
+            ->add('size_type')
             ->add('controllerName', 'modulechoice',
             array('label' => 'Choose module',
                 'required' => false,
