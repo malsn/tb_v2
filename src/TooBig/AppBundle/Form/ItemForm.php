@@ -86,7 +86,7 @@ class ItemForm extends AbstractType
             ])
             ->add('size_country', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\SizeCountry',
-                'empty_value' => 'Укажите страну-производителя',
+                'empty_value' => 'Укажите производителя',
                 'attr'=>[
                     'class'=>'size-country'
                 ]
