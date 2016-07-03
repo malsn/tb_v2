@@ -1,7 +1,7 @@
 parameters:
 
     iphp.admin.title: TooBig
-
+    iphp.core.admin.rubric.class: Application\Iphp\CoreBundle\Admin\RubricAdmin
     #iphp.content.admin.content.class: Application\Iphp\ContentBundle\Admin\ContentAdmin
 
 

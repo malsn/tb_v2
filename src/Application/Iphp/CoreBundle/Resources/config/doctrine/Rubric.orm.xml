@@ -18,6 +18,10 @@
             <gedmo:tree-parent/>
         </many-to-one>
 
+        <many-to-one target-entity="TooBig\AppBundle\Entity\SizeType" field="size_type">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+
 
          <indexes>
              <index name="status_idx" columns="status"/>
