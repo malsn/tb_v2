@@ -16,7 +16,7 @@ class SizeController extends Controller
     public function listSizebySizeTypeAction( Request $request ){
         $keys = $request->request->keys();
         $size_type = $this->get('sizetype_model')->getSizeTypeById( $request->request->get($keys[0])['size_type'] );
-        $size_country = $this->get('sizecountry_model')->getSizeCountryById( $request->request->get($keys[0])['size_country'] );
+        //$size_country = $this->get('sizecountry_model')->getSizeCountryById( $request->request->get($keys[0])['size_country'] );
         return $request->request->get($keys[0]);
         /*$form_array = $request->request->get($keys[0]);
         if (array_key_exists('size',$form_array)) {
