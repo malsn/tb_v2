@@ -49,6 +49,10 @@ jQuery(document).ready(function() {
         $ajax_req($sizetype);
         $init.remove();
     }
+    var $sizecountry = jQuery('.size-country.form-control');
+    $sizecountry.on('change', function(){
+        $sizetype.trigger('change');
+    });
 
     var $blueimp = jQuery('.blueimp-item-admin');
     if ($blueimp.attr('path-controller')){
