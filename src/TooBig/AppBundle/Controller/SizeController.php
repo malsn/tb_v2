@@ -15,9 +15,9 @@ class SizeController extends Controller
      */
     public function listSizebySizeTypeAction( Request $request ){
         $keys = $request->request->keys();
-        $size_type = $this->get('sizetype_model')->getSizeTypeById( $request->request->get($keys[0])['size_type'] );
-        $size_country = $this->get('sizecountry_model')->getSizeCountryById( $request->request->get($keys[0])['size_country'] );
-        $form_array = $request->request->get($keys[0]);
+        $size_type = $this->get('sizetype_model')->getSizeTypeById( $request->request->get($keys[1])['size_type'] );
+        $size_country = $this->get('sizecountry_model')->getSizeCountryById( $request->request->get($keys[1])['size_country'] );
+        $form_array = $request->request->get($keys[1]);
         if (array_key_exists('size',$form_array)) {
             $item_size = $form_array['size'];
         } else {
@@ -27,7 +27,7 @@ class SizeController extends Controller
             $sizes = $this->get('size_model')->getSizeBySizeType($size_type, $size_country);
             return $this->render('TooBigAppBundle:Size:size_by_sizetype.html.twig', [
                 'sizes' => $sizes,
-                'form_name' => $keys[0],
+                'form_name' => $keys[1],
                 'item_size' => $item_size
             ]);
         } else {
