@@ -13,6 +13,10 @@
                 <target>Справочники</target>
             </trans-unit>
 
+            <trans-unit id="Size Type">
+                 <source>Size Type</source>
+                 <target>Связанный тип размера</target>
+            </trans-unit>
           
         </body>
     </file>
