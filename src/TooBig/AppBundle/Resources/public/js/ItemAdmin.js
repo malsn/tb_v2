@@ -52,7 +52,7 @@ jQuery(document).ready(function() {
     }
     var $sizecountry = jQuery('.size-country.form-control');
     $sizecountry.on('change', function(){
-        $st = $(this).next();
+        $st = $(this).parent().parent().next();
         $st.find('.size-type.form-control').trigger('change');
     });
 
