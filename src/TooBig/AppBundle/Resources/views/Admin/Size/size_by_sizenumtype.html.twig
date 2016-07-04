@@ -1,0 +1,13 @@
+<div class="form-group ajax-size" id="sonata-ba-field-container-{{ form_name }}_size_{{ num }}">
+    <label class="control-label" for="{{ form_name }}_size_{{ num }}">
+        Размер
+    </label>
+    <div class="sonata-ba-field sonata-ba-field-standard-natural">
+        <select id="{{ form_name }}_size_{{ num }}" name="{{ form_name }}[size_{{ num }}]" class="form-control">
+            <option value="">Укажите размер</option>
+            {% for size in sizes %}
+                <option value="{{ size.id }}" {{ item_size is defined and size.id == item_size ? 'selected' : '' }}>{{ size.value }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>

@@ -50,10 +50,11 @@ class AdminSizeController extends Controller
         }
         if ( null !== $size_type && null !== $size_country ) {
             $sizes = $this->get('size_model')->getSizeBySizeType($size_type, $size_country);
-            return $this->render('TooBigAppBundle:Admin\Size:size_by_sizetype.html.twig', [
+            return $this->render('TooBigAppBundle:Admin\Size:size_by_sizenumtype.html.twig', [
                 'sizes' => $sizes,
                 'form_name' => $keys[1],
-                'item_size' => $item_size
+                'item_size' => $item_size,
+                'num' => $num,
             ]);
         } else {
             return false;
