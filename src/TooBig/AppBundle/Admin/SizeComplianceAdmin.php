@@ -49,7 +49,12 @@ class SizeComplianceAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('size_1');
+            ->add('size_1')
+            ->add('size_type_1')
+            ->add('size_country_1')
+            ->add('size_2')
+            ->add('size_type_2')
+            ->add('size_country_2');
     }
 
     /**
@@ -60,7 +65,12 @@ class SizeComplianceAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('size_1');
+            ->add('size_1')
+            ->add('size_type_1')
+            ->add('size_country_1')
+            ->add('size_2')
+            ->add('size_type_2')
+            ->add('size_country_2');
 
     }
 
