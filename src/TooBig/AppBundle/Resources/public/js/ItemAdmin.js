@@ -52,6 +52,7 @@ jQuery(document).ready(function() {
     }
     var $sizecountry = jQuery('.size-country.form-control');
     $sizecountry.on('change', function(){
+        $sizetype = $(this).next();
         $sizetype.trigger('change');
     });
 
