@@ -53,7 +53,7 @@ jQuery(document).ready(function() {
     var $sizecountry = jQuery('.size-country.form-control');
     $sizecountry.on('change', function(){
         $st = $(this).next();
-        $st.children('.size-type.form-control').trigger('change');
+        $st.find('.size-type.form-control').trigger('change');
     });
 
     var $blueimp = jQuery('.blueimp-item-admin');
