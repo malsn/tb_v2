@@ -90,7 +90,7 @@ class SizeComplianceAdmin extends Admin
                 'empty_value' => 'Укажите размерный ряд',
                 'attr'=>[
                     'class'=>'size-type',
-                    'path-controller' => $this->route_service->generate('admin_list_size_by_sizetype', array())
+                    'path-controller' => $this->route_service->generate('admin_list_size_by_sizenumtype', array())
                 ]
             ])
             ->add('size_1', 'entity', [
@@ -113,7 +113,7 @@ class SizeComplianceAdmin extends Admin
                 'empty_value' => 'Укажите размерный ряд',
                 'attr'=>[
                     'class'=>'size-type',
-                    'path-controller' => $this->route_service->generate('admin_list_size_by_sizetype', array())
+                    'path-controller' => $this->route_service->generate('admin_list_size_by_sizenumtype', array())
                 ]
             ])
             ->add('size_2', 'entity', [
