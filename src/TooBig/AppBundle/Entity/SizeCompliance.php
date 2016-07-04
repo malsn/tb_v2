@@ -15,6 +15,11 @@ class SizeCompliance
     /**
      * @var \DateTime
      */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
     private $updatedAt;
     /**
      * @var Size
@@ -166,6 +171,22 @@ class SizeCompliance
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 }
 

@@ -5,6 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="updatedAt" type="datetime" column="updated_at"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
     <many-to-one field="size_1" target-entity="TooBig\AppBundle\Entity\Size">
       <cascade><cascade-persist/></cascade>
     </many-to-one>
