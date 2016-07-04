@@ -13,6 +13,10 @@ class SizeCompliance
     private $id;
 
     /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+    /**
      * @var Size
      */
     private $size_1;
@@ -55,7 +59,7 @@ class SizeCompliance
     /**
      * @return Size
      */
-    public function getSizeId1()
+    public function getSize1()
     {
         return $this->size_1;
     }
@@ -63,9 +67,25 @@ class SizeCompliance
     /**
      * @param Size $size_1
      */
-    public function setSizeId1($size_1)
+    public function setSize1($size_1)
     {
-        $this->size_id_1 = $size_1;
+        $this->size_1 = $size_1;
+    }
+
+    /**
+     * @return Size
+     */
+    public function getSize2()
+    {
+        return $this->size_2;
+    }
+
+    /**
+     * @param Size $size_2
+     */
+    public function setSize2($size_2)
+    {
+        $this->size_2 = $size_2;
     }
 
     /**
@@ -101,22 +121,6 @@ class SizeCompliance
     }
 
     /**
-     * @return Size
-     */
-    public function getSizeId2()
-    {
-        return $this->size_2;
-    }
-
-    /**
-     * @param Size $size_2
-     */
-    public function setSizeId2($size_2)
-    {
-        $this->size_id_2 = $size_2;
-    }
-
-    /**
      * @return SizeType
      */
     public function getSizeType2()
@@ -146,6 +150,22 @@ class SizeCompliance
     public function setSizeCountry2($size_country_2)
     {
         $this->size_country_2 = $size_country_2;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 }
 

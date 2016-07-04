@@ -9,7 +9,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+
 use Sonata\AdminBundle\Admin\AdminInterface;
+use TooBig\AppBundle\Form\Type\SizeTypeType;
 
 class SizeComplianceAdmin extends Admin
 {
@@ -28,6 +30,15 @@ class SizeComplianceAdmin extends Admin
     public function __construct($code, $class, $baseControllerName)
     {
         parent::__construct($code, $class, $baseControllerName);
+
+        if (!$this->hasRequest()) {
+            $this->datagridValues = array(
+                '_per_page' => 30,
+                '_page' => 1,
+                '_sort_order' => 'DESC', // sort direction
+                '_sort_by' => 'updatedAt' // field name
+            );
+        }
     }
 
     /**
