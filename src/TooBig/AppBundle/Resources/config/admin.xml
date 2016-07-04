@@ -150,6 +150,9 @@
             <argument/>
             <argument>TooBig\AppBundle\Entity\SizeCompliance</argument>
             <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setRoutingService">
+                <argument type="service" id="router"/>
+            </call>
         </service>
 
         <service id="item.admin.size_country" class="TooBig\AppBundle\Admin\SizeCountryAdmin">
