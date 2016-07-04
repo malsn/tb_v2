@@ -44,12 +44,17 @@ jQuery(document).ready(function() {
         //jQuery(".form-group:has(select.size)").remove();
         $ajax_req(jQuery(this));
     });
-    if ($sizetype.attr('path-controller')){
-        $init = jQuery(".form-group:has(select.size)");
-        $init.hide();
-        $ajax_req($sizetype);
-        $init.remove();
-    }
+    $sizetype.each(function () {
+        if ($(this).attr('path-controller')){
+            $init = $(this).parent().parent().next();
+            if ( $init.find('.size.form-control') ){
+                $init.hide();
+                $ajax_req($(this));
+                $init.remove();
+            }
+        }
+    })
+
     var $sizecountry = jQuery('.size-country.form-control');
     $sizecountry.on('change', function(){
         $st = $(this).parent().parent().next();
