@@ -106,6 +106,9 @@ admin_list_model_by_brand:
 admin_list_size_by_sizetype:
     path:     /admin/size/type/
     defaults: { _controller: TooBigAppBundle:Admin\AdminSize:listSizebySizeType }
+admin_list_size_by_sizenumtype:
+    path:     /admin/size/type/{num}
+    defaults: { _controller: TooBigAppBundle:Admin/AdminSize:listSizebySizeNumType }
 admin_list_blueimp_by_item:
     path:     /admin/item/blueimp/list
     defaults: { _controller: TooBigAppBundle:Admin\AdminBlueimp:listBlueimpByItem }
