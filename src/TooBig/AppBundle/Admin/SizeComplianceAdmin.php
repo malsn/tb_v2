@@ -71,35 +71,8 @@ class SizeComplianceAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $this->configureFormFieldsAttributes($formMapper);
-
-
         $this->addInformationBlock($formMapper);
-
         $this->configureFormFieldsContent($formMapper);
-
-
-
-
-    }
-
-
-    function configureFormFieldsAttributes(FormMapper $formMapper)
-    {
-        $formMapper->with('Attributes', array('class' => 'col-md-4'))
-            ->add('enabled', null, array('required' => false, 'label' => 'Show content on website'))
-            ->add('publication_date_end', 'sonata_type_datetime_picker', [
-                'required' => false,
-                'format' => 'dd.MM.yyyy H:mm',
-                'datepicker_use_button' => false
-            ])
-            ->end();
-
-        if ($this->subject && $this->subject->getRubric()) {
-            $url = $this->configurationPool->getContainer()->get('iphp.core.entity.router')
-                ->entitySiteUrl($this->subject);
-            $formMapper->setHelps(['enabled' => '<a target="_blank" href="' . $url . '">' . $url . '</a>']);
-        }
     }
 
     protected function configureFormFieldsContent(FormMapper $formMapper)
