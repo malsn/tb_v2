@@ -39,7 +39,7 @@ jQuery(document).ready(function() {
 
     var $sizetype = jQuery('.size-type.form-control');
     $sizetype.on('change', function(){
-        $(this).parent().parent().sibling(".ajax-size").remove();
+        $(this).parent().parent().siblings(".ajax-size").remove();
         //jQuery(".form-group:has(select.size)").remove();
         $ajax_req(jQuery(this));
     });
