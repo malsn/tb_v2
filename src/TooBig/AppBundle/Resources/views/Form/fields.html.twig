@@ -4,10 +4,10 @@
             {% set current_type = '' %}
 
                 {% for key, choice in form.vars.choices %}
-                    {% if attribute(choice.data, 'sizeType') is defined %}
-                        {% if current_type != choice.data.sizeType.name %}
-                            {{ choice.data.sizeType.name }}
-                            {% set current_type = choice.data.sizeType.name %}
+                    {% if attribute(choice.data, 'sizeFilterType') is defined %}
+                        {% if current_type != choice.data.sizeFilterType.name %}
+                            {{ choice.data.sizeFilterType.name }}
+                            {% set current_type = choice.data.sizeFilterType.name %}
                         {% endif %}
                     {% endif %}
                     <div class="">
