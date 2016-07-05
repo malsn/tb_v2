@@ -149,9 +149,9 @@ class ItemModel extends ContainerAware {
                         $filters['Brand'][$brand->getId()] = $brand->getName();
                     }
                 }
-                $sizeId = $item->getSizeFilter();
-                if ( null !== $sizeId ){
-                    if ( !in_array($sizeId, $filters['Size']) ) array_push($filters['Size'],$sizeId);
+                $size = $item->getSizeFilter();
+                if ( null !== $size ){
+                    if ( !in_array($size->getId(), $filters['Size']) ) array_push($filters['Size'],$size->getId());
                 }
                 $color = $item->getColor();
                 if ( null !== $color ){
