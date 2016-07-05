@@ -86,7 +86,7 @@ class ItemController extends RubricAwareController
         $filter_params['Brand'] = isset($request->query->get('ItemsFilter')['brand']) ? $request->query->get(
             'ItemsFilter'
         )['brand'] : null;
-        $filter_params['Size_filter'] = isset($request->query->get('ItemsFilter')['size']) ? $request->query->get(
+        $filter_params['Size'] = isset($request->query->get('ItemsFilter')['size']) ? $request->query->get(
             'ItemsFilter'
         )['size'] : null;
         $filter_params['Color'] = isset($request->query->get('ItemsFilter')['color']) ? $request->query->get(
@@ -659,7 +659,7 @@ class ItemController extends RubricAwareController
         $filter_params['Brand'] = isset($request->query->get('ItemsFilter')['brand']) ? $request->query->get(
             'ItemsFilter'
         )['brand'] : null;
-        $filter_params['Size_filter'] = isset($request->query->get('ItemsFilter')['size']) ? $request->query->get(
+        $filter_params['Size'] = isset($request->query->get('ItemsFilter')['size']) ? $request->query->get(
             'ItemsFilter'
         )['size'] : null;
         $filter_params['Color'] = isset($request->query->get('ItemsFilter')['color']) ? $request->query->get(
