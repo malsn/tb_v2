@@ -56,8 +56,8 @@ class ItemsFilterType extends AbstractType
                         if ( $orX->count() ){
                             $qb->add('where',$orX);
                         }
-                        $qb->where('u.size_country = 1');
-                        return $qb->orderBy('u.size_type', 'ASC');
+                        $qb->where('u.size_country = 1'); /* установить динамически от настроек сайта */
+                        return $qb->orderBy('u.value', 'ASC');
                     },
                     'expanded'=>true,
                     'multiple'=>true,
