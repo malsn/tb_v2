@@ -41,7 +41,7 @@
                             {% endfor %}
                             {% set current=0 %}
                             {% for choice in filterForm.size.vars.choices %}
-                                {% if choice.value in filter_params['Size'] %}
+                                {% if choice.value in filter_params['Size_filter'] %}
                                     {% if current == 0 %}
                                         <span class="filter-result-params">Размеры: </span>
                                         {% set current = 1 %}
