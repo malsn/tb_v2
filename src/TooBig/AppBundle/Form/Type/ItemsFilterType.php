@@ -50,14 +50,13 @@ class ItemsFilterType extends AbstractType
                     'query_builder' => function(EntityRepository $er) {
                         $qb = $er->createQueryBuilder('u');
                         $orX = $qb->expr()->orX();
-                        foreach ($this->filters['Size'] as $size) { 
+                        foreach ($this->filters['Size'] as $size) {
                             $orX->add($qb->expr()->eq('u.id', $size));
                         }
                         if ( $orX->count() ){
                             $qb->add('where',$orX);
                         }
-                        $qb->where('u.size_country = 1'); /* установить динамически от настроек сайта */
-                        return $qb->orderBy('u.value', 'ASC');
+                        return $qb->orderBy('u.size_type', 'ASC');
                     },
                     'expanded'=>true,
                     'multiple'=>true,
