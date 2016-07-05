@@ -17,6 +17,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 use Sonata\AdminBundle\Admin\AdminInterface;
 use TooBig\AppBundle\Form\Type\SizeTypeType;
+use TooBig\AppBundle\Model\SizeComplianceModel;
 
 class ItemAdmin extends Admin
 {
@@ -29,6 +30,11 @@ class ItemAdmin extends Admin
      * @var Route
      */
     protected $route_service;
+
+    /**
+     * @var SizeComplianceModel
+     */
+    protected $compliance_service;
 
 
     /*    function configure()
@@ -279,13 +285,15 @@ class ItemAdmin extends Admin
         ;
     }
 
-    public function prePersist($content)
+    public function prePersist( $item )
     {
-        if (!$content->getSlug()) $content->setSlug('');
-
-        parent::prePersist($content);
+        if (!$item->getSlug()) $item->setSlug('');
+        $sizeCompliance = $this->compliance_service->getComplianceBySize($item->getSize(), $item->getSizeType(), $item->getSizeCountry());
+        $item->setSizeFilter($sizeCompliance->getSize1());
+        $item->setSizeFilterType($sizeCompliance->getSizeType1());
+        $item->setSizeFilterCountry($sizeCompliance->getSizeCountry1());
+        parent::prePersist($item);
     }
-
 
     public function postUpdate($content)
     {
@@ -335,6 +343,16 @@ class ItemAdmin extends Admin
     public function getRoutingService()
     {
         return $this->route_service;
+    }
+
+    public function setSizeComplianceService($compliance)
+    {
+        $this->compliance_service = $compliance;
+    }
+
+    public function getSizeComplianceService()
+    {
+        return $this->compliance_service;
     }
 
 }

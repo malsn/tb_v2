@@ -65,6 +65,11 @@
                 <argument type="service" id="service_container" />
             </call>
         </service>
+        <service id="sizecompliance_model" class="TooBig\AppBundle\Model\SizeComplianceModel">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
         <service id="front.item.form" class="TooBig\AppBundle\Form\ItemForm">
             <argument type="service" id="router"></argument>
         </service>

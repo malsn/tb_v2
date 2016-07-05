@@ -43,6 +43,9 @@
         <field name="commentsCloseAt" type="datetime" column="comments_close_at" nullable="true"/>
         <field name="commentsDefaultStatus" type="integer" column="comments_default_status" nullable="true"/>
 
+        <field name="size_filter_type" type="integer" column="size_filter_type" nullable="false"/>
+        <field name="size_filter_country" type="integer" column="size_filter_country" nullable="false"/>
+        <field name="size_filter" type="integer" column="size_filter" nullable="false"/>
 
         <field name="date" type="datetime" column="date" nullable="true"/>
         <field name="createdAt" type="datetime" column="created_at"/>

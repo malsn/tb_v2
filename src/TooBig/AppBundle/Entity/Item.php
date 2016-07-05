@@ -115,6 +115,21 @@ class Item extends BaseItem
     private $size;
 
     /**
+     * @var SizeType
+     */
+    private $size_filter_type;
+
+    /**
+     * @var SizeCountry
+     */
+    private $size_filter_country;
+
+    /**
+     * @var Size
+     */
+    private $size_filter;
+
+    /**
      * @var string
      */
     private $gender;
@@ -417,6 +432,54 @@ class Item extends BaseItem
     public function setSize($size)
     {
         $this->size = $size;
+    }
+
+    /**
+     * @return SizeType
+     */
+    public function getSizeFilterType()
+    {
+        return $this->size_filter_type;
+    }
+
+    /**
+     * @param SizeType $size_filter_type
+     */
+    public function setSizeFilterType($size_filter_type)
+    {
+        $this->size_filter_type = $size_filter_type;
+    }
+
+    /**
+     * @return SizeCountry
+     */
+    public function getSizeFilterCountry()
+    {
+        return $this->size_filter_country;
+    }
+
+    /**
+     * @param SizeCountry $size_filter_country
+     */
+    public function setSizeFilterCountry($size_filter_country)
+    {
+        $this->size_filter_country = $size_filter_country;
+    }
+
+    /**
+     * @return Size
+     */
+    public function getSizeFilter()
+    {
+        return $this->size_filter;
+    }
+
+    /**
+     * @param Size $size_filter
+     */
+    public function setSizeFilter($size_filter)
+    {
+        $this->size_filter = $size_filter;
     }
 
     /**

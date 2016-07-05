@@ -53,21 +53,19 @@
             <argument/>
             <argument>%item.admin.item.entity%</argument>
             <argument>%item.admin.item.controller%</argument>
-
             <call method="setUserManager">
                 <argument type="service" id="fos_user.user_manager"/>
             </call>
-
             <call method="setRoutingService">
                 <argument type="service" id="router"/>
             </call>
-
+            <call method="setSizeComplianceService">
+                <argument type="service" id="sizecompliance_model"/>
+            </call>
             <!--
             <call method="setPoolFormatter">
                 <argument type="service" id="sonata.formatter.pool"/>
-            </call>
--->
-
+            </call>-->
         </service>
 
         <service id="item.admin.ratecomment" class="%item.admin.ratecomment.class%">
