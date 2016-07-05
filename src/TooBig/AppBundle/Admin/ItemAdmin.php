@@ -289,18 +289,18 @@ class ItemAdmin extends Admin
     {
         if (!$item->getSlug()) $item->setSlug('');
         $sizeCompliance = $this->compliance_service->getComplianceBySize($item->getSize(), $item->getSizeType(), $item->getSizeCountry());
-        $item->setSizeFilter($sizeCompliance->getSize1()->getId());
-        $item->setSizeFilterType($sizeCompliance->getSizeType1()->getId());
-        $item->setSizeFilterCountry($sizeCompliance->getSizeCountry1()->getId());
+        $item->setSizeFilter($sizeCompliance->getSize1());
+        $item->setSizeFilterType($sizeCompliance->getSizeType1());
+        $item->setSizeFilterCountry($sizeCompliance->getSizeCountry1());
         parent::prePersist($item);
     }
 
     public function preUpdate( $item )
     {
         $sizeCompliance = $this->compliance_service->getComplianceBySize($item->getSize(), $item->getSizeType(), $item->getSizeCountry());
-        $item->setSizeFilter($sizeCompliance->getSize1()->getId());
-        $item->setSizeFilterType($sizeCompliance->getSizeType1()->getId());
-        $item->setSizeFilterCountry($sizeCompliance->getSizeCountry1()->getId());
+        $item->setSizeFilter($sizeCompliance->getSize1());
+        $item->setSizeFilterType($sizeCompliance->getSizeType1());
+        $item->setSizeFilterCountry($sizeCompliance->getSizeCountry1());
         parent::preUpdate($item);
     }
 
