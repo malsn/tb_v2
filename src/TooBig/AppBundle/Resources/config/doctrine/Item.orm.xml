@@ -43,10 +43,6 @@
         <field name="commentsCloseAt" type="datetime" column="comments_close_at" nullable="true"/>
         <field name="commentsDefaultStatus" type="integer" column="comments_default_status" nullable="true"/>
 
-        <field name="size_filter_type" type="integer" column="size_filter_type" nullable="false"/>
-        <field name="size_filter_country" type="integer" column="size_filter_country" nullable="false"/>
-        <field name="size_filter" type="integer" column="size_filter" nullable="false"/>
-
         <field name="date" type="datetime" column="date" nullable="true"/>
         <field name="createdAt" type="datetime" column="created_at"/>
         <field name="editedAt" type="datetime" column="edited_at"/>
@@ -84,6 +80,15 @@
             <cascade><cascade-persist/></cascade>
         </many-to-one>
         <many-to-one target-entity="TooBig\AppBundle\Entity\Size" field="size">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <many-to-one target-entity="TooBig\AppBundle\Entity\SizeType" field="size_filter_type">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <many-to-one target-entity="TooBig\AppBundle\Entity\SizeCountry" field="size_filter_country">
+            <cascade><cascade-persist/></cascade>
+        </many-to-one>
+        <many-to-one target-entity="TooBig\AppBundle\Entity\Size" field="size_filter">
             <cascade><cascade-persist/></cascade>
         </many-to-one>
         <one-to-many field="rateComments" target-entity="TooBig\AppBundle\Entity\RateComment" mapped-by="item">
