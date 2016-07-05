@@ -287,7 +287,7 @@ class ItemAdmin extends Admin
 
     public function prePersist( $item )
     {
-        if (!$item->getSlug()) $item->setSlug('');
+        if (!$item->getSlug()) $item->setSlug('the space');
         $sizeCompliance = $this->compliance_service->getComplianceBySize($item->getSize(), $item->getSizeType(), $item->getSizeCountry());
         $item->setSizeFilter($sizeCompliance->getSize1());
         $item->setSizeFilterType($sizeCompliance->getSizeType1());
