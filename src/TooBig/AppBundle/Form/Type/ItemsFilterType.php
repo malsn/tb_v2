@@ -53,6 +53,7 @@ class ItemsFilterType extends AbstractType
                         foreach ($this->filters['Size'] as $size) {
                             $orX->add($qb->expr()->eq('u.id', $size));
                         }
+                        $qb->add($qb->expr()->eq('u.size_country', 1));
                         if ( $orX->count() ){
                             $qb->add('where',$orX);
                         }
