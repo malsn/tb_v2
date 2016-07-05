@@ -149,7 +149,7 @@ class ItemModel extends ContainerAware {
                         $filters['Brand'][$brand->getId()] = $brand->getName();
                     }
                 }
-                $size = $item->getSizeFilter();
+                $size = $item->getSize();
                 if ( null !== $size ){
                     if ( !in_array($size->getId(), $filters['Size']) ) array_push($filters['Size'],$size->getId());
                 }
