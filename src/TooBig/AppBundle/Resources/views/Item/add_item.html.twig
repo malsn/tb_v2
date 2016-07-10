@@ -129,7 +129,7 @@
 
     <div class="form-group control-group">
         <label for="Item_size_type" class="col-sm-3 control-label">{# 'Тип предложения'|trans({}, 'SonataUserBundle') #}</label>
-        <div class="col-sm-8">{{ form_widget(form.size_type, {'attr': {'class':'size-type form-control'}}) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.size_type, {'attr': {'class':'size-type form-control', 'value': rubric.sizeType.id }}) }}</div>
     </div>
 
     <div class="form-group control-group">
