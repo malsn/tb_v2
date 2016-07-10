@@ -91,14 +91,14 @@ class ItemForm extends AbstractType
                     'class'=>'size-country'
                 ]
             ])
-            /*->add('size_type', 'hidden', [
+            ->add('size_type', 'hidden', [
                 'class'=>'TooBig\AppBundle\Entity\SizeType',
                 'empty_value' => 'Укажите размерный ряд',
                 'attr'=>[
                     'class'=>'size-type',
                     'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
                 ]
-            ])*/
+            ])
             ->add('size', 'entity', [
                 'class'=>'TooBig\AppBundle\Entity\Size',
                 'empty_value' => 'Укажите размер',
