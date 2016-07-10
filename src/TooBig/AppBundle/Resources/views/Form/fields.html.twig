@@ -6,7 +6,7 @@
                 {% for key, choice in form.vars.choices %}
                     {% if attribute(choice.data, 'sizeType') is defined %}
                         {% if current_type != choice.data.sizeType.name %}
-                            {{ choice.data.sizeType.name }}
+                            {{ choice.data.sizeType.name }} - российский размер
                             {% set current_type = choice.data.sizeType.name %}
                         {% endif %}
                     {% endif %}
