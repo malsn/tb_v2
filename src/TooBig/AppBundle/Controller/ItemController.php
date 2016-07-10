@@ -217,7 +217,7 @@ class ItemController extends RubricAwareController
         } else {
 
             $form = $this->createForm(
-                new ItemForm($this->get('router')),
+                new ItemForm($this->get('router'), $rubric),
                 $record
             );
 
@@ -577,7 +577,7 @@ class ItemController extends RubricAwareController
         } else {
 
             $form = $this->createForm(
-                new ItemForm($this->get('router')),
+                new ItemForm($this->get('router'), $rubric),
                 $copy
             );
 

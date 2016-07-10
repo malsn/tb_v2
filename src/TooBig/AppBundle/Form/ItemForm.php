@@ -23,10 +23,15 @@ class ItemForm extends AbstractType
      * @var Router
      */
     protected $route_service;
+    /**
+     * @var Rubric
+     */
+    protected $rubric;
 
-    public function __construct(Router $route)
+    public function __construct(Router $route, Rubric $rubric)
     {
         $this->route_service = $route;
+        $this->rubric = $rubric;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -92,7 +97,7 @@ class ItemForm extends AbstractType
                 ]
             ])
             ->add('size_type', 'hidden', [
-                'data' => '3',
+                'data' => $this->rubric->getId(),
                 'attr'=>[
                     'class'=>'size-type',
                     'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
