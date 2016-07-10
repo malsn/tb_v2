@@ -96,8 +96,8 @@ class ItemForm extends AbstractType
                     'class'=>'size-country'
                 ]
             ])
-            ->add('size_type', 'hidden', [
-                'data' => $this->rubric->getSizeType()->getId(),
+            ->add('size_type', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\SizeType',
                 'attr'=>[
                     'class'=>'size-type',
                     'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
