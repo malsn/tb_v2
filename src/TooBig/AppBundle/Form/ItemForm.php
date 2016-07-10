@@ -92,7 +92,6 @@ class ItemForm extends AbstractType
                 ]
             ])
             ->add('size_type', 'hidden', [
-                'class'=>'TooBig\AppBundle\Entity\SizeType',
                 'empty_value' => 'Укажите размерный ряд',
                 'attr'=>[
                     'class'=>'size-type',
@@ -100,8 +99,12 @@ class ItemForm extends AbstractType
                 ]
             ])
             ->add('size', 'entity', [
+                'class'=>'TooBig\AppBundle\Entity\Size',
                 'empty_value' => 'Укажите размер',
-                'required' => true,
+                'required' => false,
+                'attr'=>[
+                    'class'=>'size'
+                ]
             ])
             ->add('content', 'textarea', [
                 'attr'=>[
