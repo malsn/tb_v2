@@ -117,6 +117,9 @@
         <div class="col-sm-9">
             {% if posting.size is defined and posting.size is not null %}
                 <span>{{ posting.size | raw }}</span> ( <span>{{ posting.sizeType | raw }}</span> )
+                <span class="item-title">Размер производителя</span>: <span class="item-size-value">{{ posting.size | raw }}</span> <span class="item-size-type">{{ posting.sizeCountry | raw }}</span><br/>
+                <span class="item-title">Российский размер</span>: <span class="item-size-value">{{ posting.sizeFilter | raw }}</span> <span class="item-size-type">{{ posting.sizeFilterCountry | raw }}</span>
+
             {% endif %}
         </div>
     </div>

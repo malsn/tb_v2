@@ -346,7 +346,7 @@
             {% block content_size  %}
             <div class="item-feature item-size">
             {% if content.size is defined and content.size is not null %}
-                <span class="item-title">Размер производителя</span> {#( <span class="item-size-type">{{ content.sizeType | raw }}</span> )#}: <span class="item-size-value">{{ content.size | raw }}</span> <span class="item-size-type">{{ content.sizeCountry | raw }}</span>
+                <span class="item-title">Размер производителя</span> {#( <span class="item-size-type">{{ content.sizeType | raw }}</span> )#}: <span class="item-size-value">{{ content.size | raw }}</span> <span class="item-size-type">{{ content.sizeCountry | raw }}</span><br/>
                 <span class="item-title">Российский размер</span> {#( <span class="item-size-type">{{ content.sizeFilterType | raw }}</span> )#}: <span class="item-size-value">{{ content.sizeFilter | raw }}</span> <span class="item-size-type">{{ content.sizeFilterCountry | raw }}</span>
             {% endif %}
             </div>
