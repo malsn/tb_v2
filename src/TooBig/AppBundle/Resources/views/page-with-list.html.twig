@@ -206,7 +206,7 @@
         {% block entity_list_entry_size  %}
         <div class="item-feature item-size">
             {% if entity.size is defined and entity.size is not null %}
-                <span class="item-title">Размер</span> ( <span class="item-size-type">{{ entity.sizeType | raw }}</span> ): <span class="item-size-value">{{ entity.size | raw }}</span>
+                <span class="item-title">Размер</span>{#( <span class="item-size-type">{{ entity.sizeType | raw }}</span> )#}: <span class="item-size-value">{{ entity.size | raw }} {{ entity.sizeCountry | raw }}</span>
             {% endif %}
         </div>
         {% endblock entity_list_entry_size  %}
