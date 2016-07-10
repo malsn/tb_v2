@@ -92,7 +92,7 @@ class ItemForm extends AbstractType
                 ]
             ])
             ->add('size_type', 'hidden', [
-                'data' => 'Укажите размерный ряд',
+                'data' => '',
                 'attr'=>[
                     'class'=>'size-type',
                     'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
