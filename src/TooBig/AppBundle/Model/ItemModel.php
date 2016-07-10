@@ -25,7 +25,7 @@ class ItemModel extends ContainerAware {
         $record->setEditedAt(new \DateTime());
         $record->setEnabled(false);
 
-        
+
 
         /* установка значений даты публикации */
         $pub_date = new \DateTime();

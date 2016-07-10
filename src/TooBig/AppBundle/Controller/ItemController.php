@@ -264,7 +264,7 @@ class ItemController extends RubricAwareController
                         return $this->redirect($this->generateUrl('app_item_edit', ['item_id' => $record->getId()]));
                     } catch (\Exception $e) {
                         $this->get('flash_bag')->addMessage(
-                            'Произошла ошибка в добавлении объявления! '.$e->getMessage()
+                            'Произошла ошибка в добавлении объявления.! '.$e->getMessage()
                         );
                     }
                 } else {
