@@ -25,16 +25,7 @@ class ItemModel extends ContainerAware {
         $record->setEditedAt(new \DateTime());
         $record->setEnabled(false);
 
-        /* установка значений фильтрации */
-        $sizeCompliance = $this->container->get('sizecompliance_model')->getComplianceBySize(
-            $record->getSize(),
-            $record->getSizeType(),
-            $record->getSizeCountry()
-        );
-        $record->setSizeFilter($sizeCompliance->getSize1());
-        $record->setSizeFilterType($sizeCompliance->getSizeType1());
-        $record->setSizeFilterCountry($sizeCompliance->getSizeCountry1());
-        /* установка значений фильтрации */
+        
 
         /* установка значений даты публикации */
         $pub_date = new \DateTime();
