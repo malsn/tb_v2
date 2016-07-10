@@ -97,7 +97,7 @@ class ItemForm extends AbstractType
                 ]
             ])
             ->add('size_type', 'hidden', [
-                'data' => $this->rubric->getSizeType(),
+                'data' => $this->rubric->getSizeType()->getId(),
                 'attr'=>[
                     'class'=>'size-type',
                     'path-controller' => $this->route_service->generate('app_list_size_by_sizetype', array())
