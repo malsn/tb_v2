@@ -269,7 +269,7 @@ class ItemController extends RubricAwareController
                     }
                 } else {
                     $this->get('flash_bag')->addMessage(
-                        'Произошла ошибка в добавлении объявления! '.$form->getErrors()->next()
+                        'Произошла ошибка в добавлении объявления..! '.$form->getErrors()->next()
                     );
                 }
             }
