@@ -159,8 +159,8 @@
         </div>
     </div>
 
-    {{ form_widget(form.place_geo_lat, {'attr': {'value': app.user.place_geo_lat }}) }}
-    {{ form_widget(form.place_geo_lon, {'attr': {'value': app.user.place_geo_lon }}) }}
+    {{ form_widget(form.place_geo_lat, {'attr': {'value': app.user.PlaceGeoLat }}) }}
+    {{ form_widget(form.place_geo_lon, {'attr': {'value': app.user.PlaceGeoLon }}) }}
 
     {{ form_rest(form) }}
     {{ form_end(form) }}
