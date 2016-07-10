@@ -96,7 +96,7 @@ class ItemForm extends AbstractType
                     'class'=>'size-country'
                 ]
             ])
-            ->add('size_type', 'entity_hiddn', [
+            ->add('size_type', 'entity_hidden', [
                 'class'=>'TooBig\AppBundle\Entity\SizeType',
                 'attr'=>[
                     'class'=>'size-type',
