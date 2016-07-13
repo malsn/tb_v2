@@ -64,12 +64,12 @@ class ItemsFilterType extends AbstractType
                             $qb->add('where',$qb->expr()->andX(
                                 $orX,
                                 $qb->expr()->eq('u.size_country', 1),
-                                $qb->expr()->eq('u.size_type', $this->rubric->getSizeType())
+                                $qb->andWhere($qb->expr()->eq('u.size_type', $this->rubric->getSizeType()))
                             ));
                         } else {
                             $qb->add('where',
                                 $qb->expr()->eq('u.size_country', 1),
-                                $qb->expr()->eq('u.size_type', $this->rubric->getSizeType())
+                                $qb->andWhere($qb->expr()->eq('u.size_type', $this->rubric->getSizeType()))
                             );
                         }
 
