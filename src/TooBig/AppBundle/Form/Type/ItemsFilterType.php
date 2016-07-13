@@ -71,7 +71,7 @@ class ItemsFilterType extends AbstractType
                             );
                         }
 
-                        $qb->andWhere($qb->expr()->eq('u.size_type', $this->rubric->getSizeType()));
+                        $qb->andWhere($qb->expr()->eq('u.size_type', $this->rubric->getSizeType()->getId()));
 
                         return $qb->orderBy('u.value', 'ASC');
                     },
