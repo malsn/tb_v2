@@ -57,7 +57,8 @@ class ItemController extends RubricAwareController
      * @Template("TooBigAppBundle:Form:search_form.html.twig")
      */
     public function showSearchFormAction(){
-        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), null));
+        $rubric = $this->getCurrentRubric();
+        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), null, $rubric));
         return array(
             'filterForm' => $filterForm->createView(),
         );
