@@ -56,11 +56,11 @@ class ItemsFilterType extends AbstractType
                         if ( $orX->count() ){
                             $qb->add('where',$qb->expr()->andX(
                                 $orX,
-                                $qb->expr()->eq('u.size_country', 1)
+                                $qb->expr()->eq('u.size_country', 2)
                             ));
                         } else {
                             $qb->add('where',
-                                $qb->expr()->eq('u.size_country', 1)
+                                $qb->expr()->eq('u.size_country', 2)
                             );
                         }
 
