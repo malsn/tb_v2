@@ -120,7 +120,7 @@ class ItemController extends RubricAwareController
         /* получаем фильтр от всего результата $query_non_filter */
         $filters = $this->get('item_model')->getItemsFilter($query_non_filter);
 
-        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), $filters));
+        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), $filters, $rubric));
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
         }
@@ -693,7 +693,7 @@ class ItemController extends RubricAwareController
         /* получаем фильтр от всего результата $query_non_filter */
         $filters = $this->get('item_model')->getItemsFilter($query_non_filter);
 
-        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), $filters));
+        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), $filters, $rubric));
         if ($request->isMethod('GET')) {
             $filterForm->handleRequest($request);
         }
@@ -719,7 +719,7 @@ class ItemController extends RubricAwareController
 
         $rubric = $this->getCurrentRubric();
 
-        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), null));
+        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), null, $rubric));
 
         $blocks = $this->getDoctrine()
             ->getRepository('ApplicationIphpCoreBundle:Block')

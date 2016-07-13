@@ -9,6 +9,7 @@ use TooBig\AppBundle\Entity\Brand;
 use TooBig\AppBundle\Entity\Size;
 use TooBig\AppBundle\Entity\SizeType;
 use Doctrine\ORM\EntityRepository;
+use Application\Iphp\CoreBundle\Entity\Rubric;
 
 
 class ItemsFilterType extends AbstractType
@@ -21,10 +22,16 @@ class ItemsFilterType extends AbstractType
 
     protected $filters;
 
-    public function __construct(Router $route, $filters)
+    /**
+     * @var Rubric
+     */
+    protected $rubric;
+
+    public function __construct(Router $route, $filters, Rubric $rubric)
     {
         $this->route_service = $route;
         $this->filters = $filters;
+        $this->rubric = $rubric;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -56,11 +63,13 @@ class ItemsFilterType extends AbstractType
                         if ( $orX->count() ){
                             $qb->add('where',$qb->expr()->andX(
                                 $orX,
-                                $qb->expr()->eq('u.size_country', 1)
+                                $qb->expr()->eq('u.size_country', 1),
+                                $qb->expr()->eq('u.size_type', $this->rubric->getSizeType())
                             ));
                         } else {
                             $qb->add('where',
-                                $qb->expr()->eq('u.size_country', 1)
+                                $qb->expr()->eq('u.size_country', 1),
+                                $qb->expr()->eq('u.size_type', $this->rubric->getSizeType())
                             );
                         }
 
