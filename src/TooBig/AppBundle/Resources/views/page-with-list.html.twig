@@ -49,6 +49,9 @@
                                     <span>{{ choice.label }} </span>
                                 {% endif %}
                             {% endfor %}
+                            {% if current > 0 %}
+                                <span class="glyphicon glyphicon-remove"></span>
+                            {% endif %}
                             {% set current=0 %}
                             {% for choice in filterForm.color.vars.choices %}
                                 {% if choice.value in filter_params['Color'] %}
