@@ -238,6 +238,9 @@ div#Subscription_color input[type=checkbox],
 div#Subscription_color input[type=radio] {
     display: none;
 }
+.glyphicon-remove.filter-result-params {
+    cursor: pointer;
+}
 .filter-color-box {
     width: 30px;
     height: 30px;
