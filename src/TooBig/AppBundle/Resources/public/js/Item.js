@@ -176,8 +176,9 @@ jQuery(document).ready(function() {
 
     jQuery(".glyphicon-remove.filter-result-params")
         .on('click', function(){
-            var data = $(this).attr("data");
-            $(".filter-form-item."+data).find("input[type=checkbox]").attr("checked",false);
+            var data = jQuery(this).attr("data");
+            jQuery(".filter-form-item."+data).find("input[type=checkbox]").attr("checked",false);
+            jQuery(data+"-submit").find(".filter-form-submit").trigger("click");
         });
 
 
