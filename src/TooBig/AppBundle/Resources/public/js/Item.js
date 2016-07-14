@@ -178,7 +178,7 @@ jQuery(document).ready(function() {
         .on('click', function(){
             var data = jQuery(this).attr("data");
             jQuery(".filter-form-item."+data).find("input[type=checkbox]").attr("checked",false);
-            jQuery(".filter-form-submit").trigger("click");
+            jQuery("."+data+"-submit").find(".filter-form-submit").trigger("click");
         });
 
 
