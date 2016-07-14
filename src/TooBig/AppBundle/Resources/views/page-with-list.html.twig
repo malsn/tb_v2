@@ -40,7 +40,7 @@
                                 {% endif %}
                             {% endfor %}
                             {% if current > 0 %}
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="glyphicon glyphicon-remove filter-result-params" data="brand"></span>
                             {% endif %}
                             {% set current=0 %}
                             {% for choice in filterForm.size.vars.choices %}
@@ -53,7 +53,7 @@
                                 {% endif %}
                             {% endfor %}
                             {% if current > 0 %}
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="glyphicon glyphicon-remove filter-result-params" data="size"></span>
                             {% endif %}
                             {% set current=0 %}
                             {% for choice in filterForm.color.vars.choices %}
@@ -66,7 +66,7 @@
                                 {% endif %}
                             {% endfor %}
                             {% if current > 0 %}
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="glyphicon glyphicon-remove filter-result-params" data="color"></span>
                             {% endif %}
                             {% set current=0 %}
                             {% for choice in filterForm.gender.vars.choices %}
@@ -79,7 +79,7 @@
                                 {% endif %}
                             {% endfor %}
                             {% if current > 0 %}
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="glyphicon glyphicon-remove filter-result-params" data="gender"></span>
                             {% endif %}
                         </div>
                     </div>

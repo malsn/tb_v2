@@ -174,5 +174,11 @@ jQuery(document).ready(function() {
             sibcheckbox.attr("checked", !sibcheckbox.attr("checked"));
         });
 
+    jQuery(".glyphicon-remove.filter-result-params")
+        .on('click', function(){
+            var data = $(this).attr("data");
+            $(".filter-form-item."+data).find("input[type=checkbox]").attr("checked",false);
+        });
+
 
 });
