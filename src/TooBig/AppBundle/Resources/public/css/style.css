@@ -805,3 +805,27 @@ a.jS {
 .lS {
     margin: 24px 0;
 }
+
+/* main page */
+.widescreen .width-wrapper {
+    width: 1206px;
+}
+.bnr-pallete {
+    padding-top: 40px;
+    padding-bottom: 21px;
+}
+.width-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: auto;
+    width: 960px;
+}
+.bnr-palleteii__item_v {
+    float: right;
+    background: #fafafa;
+}
+.widescreen .bnr-palleteii__item_v {
+    width: 388px;
+    height: 797px;
+}
+
