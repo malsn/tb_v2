@@ -145,7 +145,7 @@
 
 {% endblock page_header #}
 
-{% block page_body %}
+{# block page_body %}
 
 {% if entities is defined and entities %}
 {% block entity_list%}
@@ -183,14 +183,13 @@
                 {{ entity.abstract is defined ? entity.abstract | raw  : '' }}
                 {{ entity.description is defined ? entity.description | raw : '' }}
                 {{ entity.announce is defined ? entity.announce | raw : '' }}
-                {# entity.size is defined and entity.size is not null ? 'Размер: ' ~ entity.size | raw : '' #}
             </div>
         {% endblock entity_list_entry_announce  %}
 
         {% block entity_list_entry_size  %}
         <div class="item-feature item-size">
             {% if entity.size is defined and entity.size is not null %}
-                <span class="item-title">Размер</span>{#( <span class="item-size-type">{{ entity.sizeType | raw }}</span> )#}: <span class="item-size-value">{{ entity.size | raw }} {{ entity.sizeCountry | raw }}</span>
+                <span class="item-title">Размер</span>: <span class="item-size-value">{{ entity.size | raw }} {{ entity.sizeCountry | raw }}</span>
             {% endif %}
         </div>
         {% endblock entity_list_entry_size  %}
@@ -219,5 +218,294 @@
 
 {% endif%}
 
-{% endblock page_body %}
+{% endblock page_body #}
 
+{% block content_body %}
+<div class="container-fluid oZ">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="bnr-pallete width-wrapper clearfix"><div class="bnr-pallete__item bnr-palleteii__item_v">
+                    <style>
+                        .ibanner3273828 {
+                            width: 306px;
+                            height: 633px;
+                            transition: all .3s ease;
+                            position: relative;
+                            display: inline-block;
+                            vertical-align: top;
+                            margin-right: 21px;
+                            overflow: hidden;
+                            font-family: 'ProximaNova Light', sans-serif;
+                            line-height: 1;
+                            background-size: cover;
+                        }
+                        .ibanner3273828:hover .ibanner3273828__overlay {
+                            opacity: .2;
+                        }
+                        .widescreen .ibanner3273828 {
+                            width: 388px;
+                            height: 797px;
+                        }
+                        .ibanner3273828__link {
+                            text-decoration: none;
+                            display: block;
+                        }
+                        .ibanner3273828__overlay {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: #333;
+                            opacity: 0;
+                            transition: opacity .3s ease;
+                        }
+
+
+                        .ibanner3273828__plate {
+                            background-color: rgba(255, 255, 255, .95);
+                            color: #333;
+                            position: absolute;
+                            left: 20px;
+                            bottom: 20px;
+                            right: 20px;
+                            padding: 17px 10px 15px;
+                            text-align: center;
+                        }
+                        .ibanner3273828__title {
+                            font-family: 'ProximaNova Semibold', sans-serif;
+                            font-size: 24px;
+                            transition: font-size .3s ease;
+                            margin-bottom: .3em;
+                            position: relative;
+                            top: 1px;
+                        }
+                        .ibanner3273828__subtitle {
+                            font-size: 16px;
+                            transition: font-size .3s ease;
+                            position: relative;
+                            top: -1px;
+                        }
+
+                        .widescreen .ibanner3273828__title {
+                            font-size: 26px;
+                        }
+                        .widescreen .ibanner3273828__subtitle {
+                            font-size: 18px;
+                        }
+
+                    </style>
+
+                    <div class="ibanner3273828 js-ibanner-bg-image" style="background-image:url('//bs.lmcdn.ru/31104/tiz-t1.5784C0D1.jpg')" data-dy-unit="">
+                        <a class="ibanner3273828__link" href="/bs-click/37424;61628;KsZRfowi600Ki9JH2VMkrd6VLGY_of5Q?aim=/c/4153/default-women/%3Flabels%3D2665%26sf%3D80">
+                            <div class="ibanner3273828__overlay"></div>
+
+                            <div class="ibanner3273828__plate">
+                                <div class="ibanner3273828__title">Все на пикник</div>
+                                <div class="ibanner3273828__subtitle">Сезон в разгаре!</div>
+                            </div>
+
+                        </a>
+                    </div></div><div class="bnr-pallete__item bnr-palleteii__item_sq"><style>
+                        .ibanner59755298 {
+                            width: 306px;
+                            height: 306px;
+                            transition: all .3s ease;
+                            position: relative;
+                            display: inline-block;
+                            vertical-align: top;
+                            margin-bottom: 21px;
+                            overflow: hidden;
+                            font-family: 'ProximaNova Light', sans-serif;
+                            line-height: 1;
+                            background-size: cover;
+                        }
+                        .ibanner59755298__link {
+                            text-decoration: none;
+                            display: block;
+                        }
+                        .ibanner59755298__overlay {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: #333;
+                            opacity: 0;
+                            transition: opacity .3s ease;
+                        }
+                        .ibanner59755298__plate {
+                            background-color: rgba(255, 255, 255, .95);
+                            color: #333;
+                            position: absolute;
+                            left: 20px;
+                            bottom: 20px;
+                            right: 20px;
+                            padding: 17px 10px 15px;
+                            text-align: center;
+                        }
+                        .ibanner59755298__title {
+                            font-family: 'ProximaNova Semibold', sans-serif;
+                            font-size: 24px;
+                            transition: font-size .3s ease;
+                            margin-bottom: .3em;
+                            position: relative;
+                            top: 1px;
+                        }
+                        .ibanner59755298__subtitle {
+                            font-size: 16px;
+                            transition: font-size .3s ease;
+                            position: relative;
+                            top: -1px;
+                        }
+                        .widescreen .ibanner59755298 {
+                            width: 388px;
+                            height: 388px;
+                        }
+                        .widescreen .ibanner59755298__title {
+                            font-size: 26px;
+                        }
+                        .widescreen .ibanner59755298__subtitle {
+                            font-size: 18px;
+                        }
+                        .ibanner59755298:hover .ibanner59755298__overlay {
+                            opacity: .2;
+                        }
+                    </style>
+
+                    <div class="ibanner59755298 js-ibanner-bg-image" style="background-image:url('//bs.lmcdn.ru/31575/tiz.5788D822.jpg')" data-dy-unit="">
+                        <a class="ibanner59755298__link" href="/bs-click/37988;62641;KsZRfoxQ700LrLR@2VMkrFYhM8yoco_P?aim=/c/4153/default-women/%3Flabels%3D6985%26sf%3D80">
+                            <div class="ibanner59755298__overlay"></div>
+
+                        </a>
+                    </div></div><div class="bnr-pallete__item bnr-palleteii__item_sq"><style>
+                        .ibanner1478759 {
+                            width: 306px;
+                            height: 306px;
+                            transition: all .3s ease;
+                            position: relative;
+                            display: inline-block;
+                            vertical-align: top;
+                            margin-bottom: 21px;
+                            overflow: hidden;
+                            font-family: 'ProximaNova Light', sans-serif;
+                            line-height: 1;
+                            background-size: cover;
+                        }
+                        .ibanner1478759__link {
+                            text-decoration: none;
+                            display: block;
+                        }
+                        .ibanner1478759__overlay {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: #333;
+                            opacity: 0;
+                            transition: opacity .3s ease;
+                        }
+                        .ibanner1478759__plate {
+                            background-color: rgba(255, 255, 255, .95);
+                            color: #333;
+                            position: absolute;
+                            left: 20px;
+                            bottom: 20px;
+                            right: 20px;
+                            padding: 17px 10px 15px;
+                            text-align: center;
+                        }
+                        .ibanner1478759__title {
+                            font-family: 'ProximaNova Semibold', sans-serif;
+                            font-size: 24px;
+                            transition: font-size .3s ease;
+                            margin-bottom: .3em;
+                            position: relative;
+                            top: 1px;
+                        }
+                        .ibanner1478759__subtitle {
+                            font-size: 16px;
+                            transition: font-size .3s ease;
+                            position: relative;
+                            top: -1px;
+                        }
+                        .widescreen .ibanner1478759 {
+                            width: 388px;
+                            height: 388px;
+                        }
+                        .widescreen .ibanner1478759__title {
+                            font-size: 26px;
+                        }
+                        .widescreen .ibanner1478759__subtitle {
+                            font-size: 18px;
+                        }
+                        .ibanner1478759:hover .ibanner1478759__overlay {
+                            opacity: .2;
+                        }
+                    </style>
+
+                    <div class="ibanner1478759 js-ibanner-bg-image" style="background-image:url('//bs.lmcdn.ru/31485/tiz-s_8319_w_1_AG.5787B02A.jpg')" data-dy-unit="">
+                        <a class="ibanner1478759__link" href="/bs-click/37897;62557;KsZRfoxEu00LJ@EY2VMksOCyz2_keKpT?aim=/c/4153/default-women/%3Flabels%3D7374%26sf%3D80">
+                            <div class="ibanner1478759__overlay"></div>
+
+                            <div class="ibanner1478759__plate">
+
+                                <div class="ibanner1478759__title">Максимум выгоды</div>
+
+
+                                <div class="ibanner1478759__subtitle">50% по промокоду</div>
+
+                            </div>
+
+                        </a>
+                    </div></div><div class="bnr-pallete__item bnr-palleteii__item_h"><style>
+                        .ibanner29425334 {
+                            height: 306px;
+                            width: 633px;
+                            transition: all .3s ease;
+                            position: relative;
+                            display: inline-block;
+                            vertical-align: top;
+                            margin-bottom: 21px;
+                            overflow: hidden;
+                            font-family: 'ProximaNova Light', sans-serif;
+                            line-height: 1;
+                            background-size: cover;
+                        }
+                        .ibanner29425334:hover .ibanner29425334__overlay {
+                            opacity: .2;
+                        }
+                        .widescreen .ibanner29425334 {
+                            height: 388px;
+                            width: 797px;
+                        }
+                        .ibanner29425334__link {
+                            text-decoration: none;
+                            display: block;
+                        }
+                        .ibanner29425334__overlay {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: #333;
+                            opacity: 0;
+                            transition: opacity .3s ease;
+                        }
+
+                    </style>
+
+                    <div class="ibanner29425334 js-ibanner-bg-image" style="background-image:url('//bs.lmcdn.ru/31211/tizw_020.5784F9AC.jpg')" data-dy-unit="">
+                        <a class="ibanner29425334__link" href="/bs-click/37545;61950;KsZRfowmo00_2FiB2VMks5dOLd1NRmIl?aim=/c/4153/default-women/%3Flabels%3D2661%26sf%3D150">
+                            <div class="ibanner29425334__overlay"></div>
+
+                        </a>
+                    </div></div></div>
+
+        </div>
+    </div>
+</div>
+{% endblock content_body %}
