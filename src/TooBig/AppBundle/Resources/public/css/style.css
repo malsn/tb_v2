@@ -828,4 +828,22 @@ a.jS {
     width: 388px;
     height: 797px;
 }
+.widescreen .bnr-palleteii__item_sq {
+    width: 388px;
+    height: 388px;
+}
+.bnr-palleteii__item_sq {
+    float: left;
+    margin-right: 21px;
+    background: #fafafa;
+}
+.widescreen .bnr-palleteii__item_h {
+    width: 797px;
+    height: 388px;
+}
+.bnr-palleteii__item_h {
+    float: left;
+    margin-top: 21px;
+    background: #fafafa;
+}
 
