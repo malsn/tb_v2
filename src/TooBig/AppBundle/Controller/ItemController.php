@@ -82,67 +82,67 @@ class ItemController extends RubricAwareController
             return new RedirectResponse($redirect_url);
         }
 
-        $rubric = $this->get('rubric_model')->getRubricById(1);
 
-        $filter_params = [];
-        $price_params = [];
-        $filter_params['Brand'] = isset($request->query->get('ItemsFilter')['brand']) ? $request->query->get(
-            'ItemsFilter'
-        )['brand'] : null;
-        $filter_params['Size_filter'] = isset($request->query->get('ItemsFilter')['size']) ? $request->query->get(
-            'ItemsFilter'
-        )['size'] : null;
-        $filter_params['Color'] = isset($request->query->get('ItemsFilter')['color']) ? $request->query->get(
-            'ItemsFilter'
-        )['color'] : null;
-        $filter_params['Gender'] = isset($request->query->get('ItemsFilter')['gender']) ? $request->query->get(
-            'ItemsFilter'
-        )['gender'] : null;
-        $search_params['Search'] = isset($request->query->get('ItemsFilter')['search']) ? $request->query->get(
-            'ItemsFilter'
-        )['search'] : null;
-        /*$min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
-        $max = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'max');
-        $price_params['Min'] = $request->query->get('ItemsFilter')['price_min'] ? : $min[0][1];
-        $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];*/
+        if ( isset($request->query->get('ItemsFilter')) ){
 
-        $query = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
-        $query_filter = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
+            $rubric = $this->get('rubric_model')->getRubricById(1);
 
-        $query_non_filter = $this->getDoctrine()
-            ->getRepository('TooBigAppBundle:Item')
-            ->createQuery(
-                'c',
-                function ($qb) use ($rubric) {
-                    $qb->fromRubric($rubric)->withSubrubrics(true);
-                    $qb->whereIndex(false);
-                    $qb->whereEnabled();
-                }
-            );
+            $filter_params = [];
+            $price_params = [];
+            $filter_params['Brand'] = isset($request->query->get('ItemsFilter')['brand']) ? $request->query->get(
+                'ItemsFilter'
+            )['brand'] : null;
+            $filter_params['Size_filter'] = isset($request->query->get('ItemsFilter')['size']) ? $request->query->get(
+                'ItemsFilter'
+            )['size'] : null;
+            $filter_params['Color'] = isset($request->query->get('ItemsFilter')['color']) ? $request->query->get(
+                'ItemsFilter'
+            )['color'] : null;
+            $filter_params['Gender'] = isset($request->query->get('ItemsFilter')['gender']) ? $request->query->get(
+                'ItemsFilter'
+            )['gender'] : null;
+            $search_params['Search'] = isset($request->query->get('ItemsFilter')['search']) ? $request->query->get(
+                'ItemsFilter'
+            )['search'] : null;
+            /*$min = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'min');
+            $max = $this->get('rubric_model')->getRubricPriceRange($rubric, $filter_params, 'max');
+            $price_params['Min'] = $request->query->get('ItemsFilter')['price_min'] ? : $min[0][1];
+            $price_params['Max'] = $request->query->get('ItemsFilter')['price_max'] ? : $max[0][1];*/
 
-        /* получаем фильтр от всего результата $query_non_filter */
-        $filters = $this->get('item_model')->getItemsFilter($query_non_filter);
+            $query = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
+            $query_filter = $this->itemsQueryBuilder($rubric, $filter_params, $price_params, $search_params);
 
-        $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), $filters, $rubric));
-        if ($request->isMethod('GET')) {
-            $filterForm->handleRequest($request);
-        }
+            $query_non_filter = $this->getDoctrine()
+                ->getRepository('TooBigAppBundle:Item')
+                ->createQuery(
+                    'c',
+                    function ($qb) use ($rubric) {
+                        $qb->fromRubric($rubric)->withSubrubrics(true);
+                        $qb->whereIndex(false);
+                        $qb->whereEnabled();
+                    }
+                );
 
-        //if ( $request->query->count() ) {
-        return array(
-            'entities' => $this->paginate($query, 20),
-            'filterForm' => $filterForm->createView(),
-            'rubricPriceRange' => $price_params,
-            'filter_params' => $filter_params,
-            'count' => count($query_filter->getResult()),
-            'filter_results' => $filters,
-        );
-        /*} else {
-            return array(
+            /* получаем фильтр от всего результата $query_non_filter */
+            $filters = $this->get('item_model')->getItemsFilter($query_non_filter);
+
+            $filterForm = $this->createForm(new ItemsFilterType($this->get('router'), $filters, $rubric));
+            if ($request->isMethod('GET')) {
+                $filterForm->handleRequest($request);
+            }
+
+            return [
+                'entities' => $this->paginate($query, 20),
                 'filterForm' => $filterForm->createView(),
                 'rubricPriceRange' => $price_params,
-            );
-        }*/
+                'filter_params' => $filter_params,
+                'count' => count($query_filter->getResult()),
+                'filter_results' => $filters,
+            ];
+
+        } else {
+            return [];
+        }
 
     }
 
