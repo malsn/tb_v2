@@ -140,7 +140,7 @@ class ItemController extends RubricAwareController
             'filter_results' => $filters,
             ];
         } else {
-            return [];
+            //return [];
         }
 
     }
