@@ -132,7 +132,7 @@ class ItemController extends RubricAwareController
 
         if ( $entities->count() ) {
         return [
-            'entities' => $this->paginate($query, 20),
+            'entities' => $entities,
             'filterForm' => $filterForm->createView(),
             'rubricPriceRange' => $price_params,
             'filter_params' => $filter_params,
