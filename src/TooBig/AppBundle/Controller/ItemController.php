@@ -83,7 +83,7 @@ class ItemController extends RubricAwareController
         }
 
 
-        if ( isset($request->query->get('ItemsFilter')) ){
+        if ( null !== ($request->query->get('ItemsFilter')) ){
 
             $rubric = $this->get('rubric_model')->getRubricById(1);
 
