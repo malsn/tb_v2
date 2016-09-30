@@ -147,7 +147,7 @@
 
 {% if entities is defined and entities %}
 
-    {% block content_body %}
+    {% block page %}
 
         {% block entity_list%}
 
@@ -217,7 +217,7 @@
         {% include 'IphpCoreBundle::pagination.html.twig' with {'entities': entities} %}
         {% endblock pagination %}
 
-    {% endblock content_body %}
+    {% endblock page %}
 
 {% endif%}
 
