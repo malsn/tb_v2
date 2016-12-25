@@ -22,12 +22,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="fos_user_registration_form_password" class="col-sm-12 control-label">{{ 'form.place'|trans({}, 'FOSUserBundle') }}</label>
-                        <div class="col-sm-12 {% if form_errors(form.plainPassword)  %}error{% endif %}">{{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}</div>
-                        <div class='error'>{{ form_errors(form.plainPassword) }}</div>
+                        <label for="fos_user_registration_form_plainPassword_first" class="col-sm-12 control-label">{{ 'form.password'|trans({}, 'FOSUserBundle') }}</label>
+                        <div class="col-sm-12"><input type="password" class="form-control" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required"/></div>
                     </div>
 
-                    
+                    <div class="form-group">
+                        <label for="fos_user_registration_form_plainPassword_second" class="col-sm-12 control-label">{{ 'form.password_confirmation'|trans({}, 'FOSUserBundle') }}</label>
+                        <div class="col-sm-12"><input type="password" class="form-control" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required"/></div>
+                    </div>
 
                     <div class='error'>{{ form_errors(form.plainPassword) }}</div>
 
