@@ -23,11 +23,13 @@
 
                     <div class="form-group">
                         <label for="fos_user_registration_form_password" class="col-sm-12 control-label">{{ 'form.place'|trans({}, 'FOSUserBundle') }}</label>
-                        <div class="col-sm-12 {% if form_errors(form.place)  %}error{% endif %}">{{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}</div>
+                        <div class="col-sm-12 {% if form_errors(form.plainPassword)  %}error{% endif %}">{{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}</div>
                         <div class='error'>{{ form_errors(form.plainPassword) }}</div>
                     </div>
 
-                   
+                    
+
+                    <div class='error'>{{ form_errors(form.plainPassword) }}</div>
 
                     {{ form_widget(form.phone) }}
                     {{ form_widget(form.place_geo_lat) }}
