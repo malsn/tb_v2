@@ -101,6 +101,19 @@ var pre_register_phone = function(){
                         });
                     } else if (response.status == '200' || response.status == '201') {
                         $after_check_code.html(response.response);
+
+                        $("#fos_user_registration_form_place").suggestions({
+                            serviceUrl: "https://suggestions.dadata.ru/suggestions/api/4_1/rs",
+                            token: "d12783ba3618826d3096e6ceecf7290c90f56092",
+                            type: "ADDRESS",
+                            count: 5,
+                            /* Вызывается, когда пользователь выбирает одну из подсказок */
+                            onSelect: function(suggestion) {
+                                $("#fos_user_registration_form_place_geo_lat").val(suggestion.data.geo_lat);
+                                $("#fos_user_registration_form_place_geo_lon").val(suggestion.data.geo_lon);
+                            }
+                        });
+
                         $('.btn-ajax-to-modal').click(function(){
                             ajax_to_modal($(this));
                         });
