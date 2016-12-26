@@ -443,12 +443,7 @@
                     //,type: "yandex#satellite" // загрузка спутник
                 });
                 myPlacemark0 = new ymaps.Placemark([{{ content.placeGeoLat }},{{ content.placeGeoLon }}], {
-                    balloonContent: '{{ content.place }}'}, {
-                    iconLayout: 'default#image',
-                    iconImageHref: 'http://g12spb.ru/images/logo/marker.png',
-                    iconImageSize: [70, 70],
-                    iconImageOffset: [-20, -70]
-                });
+                    balloonContent: '{{ content.place }}'}, {preset: "twirl#blueDotIcon"});
 
 
 
