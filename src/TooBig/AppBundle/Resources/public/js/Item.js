@@ -171,7 +171,7 @@ jQuery(document).ready(function() {
                 .siblings("input[type=radio]")
                 .attr("checked",false);
             jQuery(this).toggleClass('glyphicon glyphicon-ok');
-            sibcheckbox.attr("checked") ? sibcheckbox.attr("checked", false) : sibcheckbox.attr("checked", true);
+            sibcheckbox.attr("checked") ? sibcheckbox.prop("checked", false) : sibcheckbox.prop("checked", true);
         });
 
     jQuery(".glyphicon-remove.filter-result-params")
