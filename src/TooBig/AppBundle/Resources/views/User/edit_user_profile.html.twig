@@ -22,14 +22,17 @@
 {% block content_body %}
     <div class="container-fluid oZ">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
 
                 {% block breadcrumbs %}{% endblock breadcrumbs %}
 
             </div>
+            <div class="col-md-1"></div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
 
                 {% block page_body %}
                     {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -127,6 +130,7 @@
                 {% endblock page_body %}
 
             </div>
+            <div class="col-md-1"></div>
         </div>
     </div>
 
