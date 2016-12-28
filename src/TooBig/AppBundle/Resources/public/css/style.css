@@ -344,8 +344,8 @@ div.c-item:hover, div.c-item:nth-child(odd):hover {
     background-color: #eee;
 }
 div.c-item.c-brand {
-    width: 100px;
-    margin: 0 10px 10px 0;
+    width: 200px;
+    margin: 0 1px 1px 0;
     position: relative;
 }
 div.item-img {
