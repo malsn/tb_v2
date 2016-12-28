@@ -43,9 +43,13 @@
                         <div class="col-md-1">
                         {% block entity_list_entry_image  %}
                             {% if entity.item.imagesMedia | length %}
-                               <a href="{{ path('app_item_edit', {'item_id': entity.item.id}) }}"><img src="{% path entity.item.imagesMedia[0].media, 'small' %}"></a>
+                                <a {% if entity.item.enabled %}href="{{ entitypath(entity.item) }}"{% endif %}>
+                                   <img src="{% path entity.item.imagesMedia[0].media, 'small' %}">
+                                </a>
                             {% elseif (entity.item.blueimpImages is defined) and entity.item.blueimpImages | length %}
-                               <a href="{{ path('app_item_edit', {'item_id': entity.item.id}) }}"><img src="/uploads/attachments/{{ entity.item.id }}/thumbnails/{{ entity.item.blueimpImages[0].name }}"></a>
+                                <a {% if entity.item.enabled %}href="{{ entitypath(entity.item) }}"{% endif %}>
+                                   <img src="/uploads/attachments/{{ entity.item.id }}/thumbnails/{{ entity.item.blueimpImages[0].name }}">
+                                </a>
                             {% endif %}
                         {% endblock entity_list_entry_image  %}
                         </div>
@@ -53,7 +57,9 @@
                             <div class="col-md-5">
                                 {% block entity_list_entry_link  %}
                                     <div>
-                                        <a href="{{ entitypath(entity.item) }}">{{ entity.item }}</a>
+                                        <a {% if entity.item.enabled %}href="{{ entitypath(entity.item) }}"{% endif %}>
+                                            {{ entity.item }}
+                                        </a>
                                     </div>
                                 {% endblock entity_list_entry_link  %}
                                 {% block entity_list_entry_announce  %}
