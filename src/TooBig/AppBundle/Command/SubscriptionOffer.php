@@ -30,10 +30,10 @@ class SubscriptionOffer extends ContainerAwareCommand
                 $mailer = $this->getContainer()->get('mailer');
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Новые предложения по вашей подписке на площадке TooBig')
-                    ->setFrom('admin@old-stuff.spbeta.ru')
+                    ->setFrom('admin@toobig.ru')
                     ->setTo($user->getEmail())
                     ->setContentType('text/html')
-                    ->setBody(sprintf("Уважаемый(ая), %s. По вашей подписке \"%s\" для вас появилось %d новых объявлений. Чтобы их посмотреть, перейдите в раздел <a href='http://old-stuff.spbeta.ru%s'>Мои подписки</a>.",
+                    ->setBody(sprintf("Уважаемый(ая), %s. По вашей подписке \"%s\" для вас появилось %d новых объявлений. Чтобы их посмотреть, перейдите в раздел <a href='http://toobig.ru%s'>Мои подписки</a>.",
                         $user->getFirstName(),
                         $subscription->getTitle(),
                         $count,

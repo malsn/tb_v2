@@ -49,7 +49,7 @@ class WatchItemsChange extends ContainerAwareCommand
                 $i=0;
                 foreach ($watch_items as $key => $watch_item) {
                     $item = $watch_item->getItem();
-                    $items_table .= sprintf('<tr><td>%d</td><td><a href="http://old-stuff.spbeta.ru%s" target="_blank">%s</a></td></tr>',
+                    $items_table .= sprintf('<tr><td>%d</td><td><a href="http://toobig.ru%s" target="_blank">%s</a></td></tr>',
                         ++$i,
                         $item->getRubric()->getFullPath().$item->getSlug(),
                         $item->getTitle());
@@ -59,10 +59,10 @@ class WatchItemsChange extends ContainerAwareCommand
                 $mailer = $this->getContainer()->get('mailer');
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Уведомление об изменении объявлений на площадке TooBig')
-                    ->setFrom('admin@old-stuff.spbeta.ru')
+                    ->setFrom('admin@toobig.ru')
                     ->setTo($user->getEmail())
                     ->setContentType('text/html')
-                    ->setBody(sprintf("Уважаемый(ая), %s.<br/>В избанных Вами объявлениях произошли изменения: %s Чтобы посмотреть Избранное, перейдите по ссылке <a href='http://old-stuff.spbeta.ru%s'>Избранное</a>.",
+                    ->setBody(sprintf("Уважаемый(ая), %s.<br/>В избанных Вами объявлениях произошли изменения: %s Чтобы посмотреть Избранное, перейдите по ссылке <a href='http://toobig.ru%s'>Избранное</a>.",
                             $user->getFirstName(),
                             $items_table,
                             $this->getContainer()->get('router')->generate('app_list_watch_items'))
