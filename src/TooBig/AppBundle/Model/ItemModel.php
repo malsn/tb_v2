@@ -22,6 +22,7 @@ class ItemModel extends ContainerAware {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $record->setCreatedBy($user);
         $record->setUpdatedBy($user);
+        $record->setSlugPrefix($this->generateSlugPrefix());
         $record->setEditedAt(new \DateTime());
         $record->setEnabled(false);
 
@@ -39,6 +40,10 @@ class ItemModel extends ContainerAware {
         $em = $this->container->get('doctrine.orm.entity_manager');
         $em->persist($record);
         $em->flush();
+    }
+
+    protected function generateSlugPrefix(){
+        return mt_rand(12345,98765);
     }
 
     /**
